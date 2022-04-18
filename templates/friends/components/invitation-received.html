@@ -1,0 +1,48 @@
+{% load static %}
+{% load humanize %}
+{% load cloudinary %}
+
+<div class="my-friends-container">
+  {% for obj in qs %}
+
+  <!-- {{obj}} -->
+  <div class="container-list-my-friends-profiles">
+    <div class="my-friends-info">
+      <!-- img profile -->
+      <a href="{% url 'profiles:profile' pseudo=obj.sender.pseudo %}">
+        <img src="
+          {% if obj.sender.img_profile %}
+            {{obj.sender.img_profile.url}} 
+          {% else %}
+            {% static 'home/img/default-img-profile.jpg' %}
+          {% endif %}" class="my-friends-img-profile">
+      </a>
+
+      <div class="my-friends-box-title">
+        <a href="{% url 'profiles:profile' pseudo=obj.sender.pseudo %}">
+          <strong>{{obj.sender.user.first_name}} {{obj.sender.user.last_name}}</strong>
+          <p>{{obj.sender.bio}}</p>
+        </a>
+        {% if obj.date_sender %}
+        <P>{{obj.date_sender|naturaltime}}</P>
+        {% endif %}
+
+      </div>
+    </div>
+
+    <div class="container-form-accepted-rejected-invites">
+      <form action="{% url 'friends:reject_invitation' %}" method="POST" class="my-friends-add-friends">
+        {% csrf_token %}
+        <input type="hidden" name="profile_id" value="{{obj.sender.id}}">
+        <button class="btn-add-friends btn-rejected-invitation" type="submit">Ignorer</button>
+      </form>
+
+      <form action="{% url 'friends:accept_invitation' %}" method="POST" class="my-friends-add-friends">
+        {% csrf_token %}
+        <input type="hidden" name="profile_id" value="{{obj.sender.id}}">
+        <button class="btn-add-friends btn-accepted-invitation" type="submit">Accepter</button>
+      </form>
+    </div>
+  </div>
+  {% endfor %}
+</div>

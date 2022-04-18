@@ -1,0 +1,62 @@
+{% extends 'base.html' %}
+{% load static %}
+
+
+{% block style %}
+<link rel="shortcut icon" href=" {% static 'home/svg/linkedin-cust.svg' %} " type="image/x-icon">
+<link rel="stylesheet" href="{% static 'users/css/style.css' %}">
+{% endblock style %}
+
+{% block title %} S'inscrire {% endblock title %}
+
+{% block content %}
+<main>
+  <div class="form-container">
+    <div class="title-form">
+      <h1>S'inscrire</h1>
+    </div>
+
+    {% if messages %}
+    {% for message in messages %}
+    <div {% if message.tags %} class="message-{{ message.tags }}" {% endif %}>
+      <p>{{ message }}</p>
+      {% if user_form.errors %}
+      {% for field in user_form %}
+      {% for error in field.errors %}
+      <div class="alert alert-danger">
+        <p>{{ error|escape }}</p>
+      </div>
+      {% endfor %}
+      {% endfor %}
+      {% endif %}
+    </div>
+    {% endfor %}
+    {% endif %}
+
+    <form method="post">{% csrf_token %}
+
+      {% for field in user_form %}
+      <div class="{{ field.name }}-container">
+        <div class="txt_field">
+          {{ field }}
+          <span class="span-border-bottom"></span>
+          <label>{{ field.label }} *</label>
+        </div>
+        <span class="content-error"></span>
+      </div>
+      {% endfor %}
+
+      <input type="submit" value="S'inscrire">
+      <div class="sign_link">
+        Vous avez déjà un compte ? <a href="{% url 'sign_in' %}">S'identifier</a>
+        <p>Revenir au page <a href="{% url 'home:home' %}">d'acceuil</a></p>
+      </div>
+    </form>
+  </div>
+</main>
+{% endblock content %}
+
+
+{% block js %}
+<script type="text/javascript" src=" {% static 'users/js/sign_up.js' %} "></script>
+{% endblock js %}

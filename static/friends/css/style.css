@@ -1,0 +1,347 @@
+@import url("https://fonts.googleapis.com/css2?family=Baumans&family=Inconsolata:wght@300&family=Megrim&display=swap");
+*, ::after, ::before {
+  box-sizing: border-box;
+  margin: 0;
+  padding: 0;
+  outline: none;
+}
+
+*::selection {
+  background-color: #1abc9c;
+  color: #f1f1f1;
+}
+
+a {
+  text-decoration: none;
+  color: #f1f1f1;
+}
+
+a:visited {
+  color: #f1f1f1;
+}
+
+.flex-center, main.my-network .container-right .my-friends-container .container-list-my-friends-profiles .container-form-accepted-rejected-invites, main.my-network .container-right .my-friends-container .container-list-my-friends-profiles form.my-friends-add-friends, main.my-network .container-right .my-friends-container .container-list-my-friends-profiles .my-friends-info, main.my-network .container-right .to-invites-container .container-list-to-invites-profiles .to-invites-box-title {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}
+
+.flex-column {
+  display: flex;
+  flex-direction: column;
+}
+
+main.my-network {
+  width: 100%;
+  margin-top: 5.5rem;
+  display: flex;
+  justify-content: espace-between;
+  gap: 2rem;
+  position: relative;
+}
+main.my-network .container-left {
+  width: 25%;
+  min-width: 260px;
+  max-width: 300px;
+  height: 355px;
+  box-shadow: 0 2px 3px 0 #0000001a;
+  border-radius: 8px;
+  display: flex;
+  flex-direction: column;
+  gap: 1rem;
+  background-color: #34495e;
+  position: sticky;
+  left: 0;
+  top: 87px;
+}
+main.my-network .container-right {
+  width: 72%;
+  box-shadow: 0 2px 3px 0 #0000001a;
+  border-radius: 8px;
+  display: flex;
+  justify-content: start;
+  flex-direction: column;
+  gap: 1rem;
+  background-color: #34495e;
+}
+main.my-network .container-right h3 {
+  margin-top: 0.5rem;
+  padding: 0.5rem;
+  text-align: center;
+}
+
+@media screen and (max-width: 750px) {
+  main.my-network {
+    flex-direction: column;
+    align-items: center;
+  }
+  main.my-network .container-left, main.my-network .container-right {
+    width: 100%;
+    min-width: none;
+    max-width: none;
+  }
+  main.my-network .container-left {
+    position: relative;
+    left: 0;
+    top: 0;
+  }
+}
+main.my-network .container-right .to-invites-container {
+  margin: auto;
+  padding: 1rem;
+  width: 100%;
+  display: grid;
+  grid-template-columns: repeat(auto-fill, minmax(180px, 1fr));
+  grid-gap: 1rem;
+}
+main.my-network .container-right .to-invites-container .container-list-to-invites-profiles {
+  height: 250px;
+  box-shadow: 0 0px 4px 2px #2c3e50;
+  border-radius: 10px;
+  position: relative;
+  display: flex;
+  flex-direction: column;
+  transition: 0.3s ease-out;
+}
+main.my-network .container-right .to-invites-container .container-list-to-invites-profiles:hover {
+  box-shadow: 0 0px 6px 4px #2c3e50;
+}
+main.my-network .container-right .to-invites-container .container-list-to-invites-profiles img.to-invites-img-profile {
+  width: 6rem;
+  height: 6rem;
+  border-radius: 50%;
+  border: 3px solid #34495e;
+  background-color: #34495e;
+  object-position: center;
+  object-fit: cover;
+  position: absolute;
+  top: 6%;
+  left: 50%;
+  transform: translateX(-50%);
+  transform: translateY();
+}
+main.my-network .container-right .to-invites-container .container-list-to-invites-profiles .to-invites-box-img-bg {
+  width: 100%;
+  height: 30%;
+}
+main.my-network .container-right .to-invites-container .container-list-to-invites-profiles .to-invites-box-img-bg img {
+  width: 100%;
+  height: 100%;
+  border-top-left-radius: 8px;
+  border-top-right-radius: 8px;
+  object-position: center;
+  object-fit: cover;
+}
+main.my-network .container-right .to-invites-container .container-list-to-invites-profiles .to-invites-box-title {
+  margin-top: 40px;
+  padding: 0 0.5rem;
+  text-align: center;
+}
+main.my-network .container-right .to-invites-container .container-list-to-invites-profiles .to-invites-box-title p {
+  font-size: 15px;
+  color: #CCCCCC;
+  display: -webkit-box;
+  -webkit-line-clamp: 2;
+  -webkit-box-orient: vertical;
+  overflow: hidden;
+  text-overflow: ellipsis;
+}
+main.my-network .container-right .to-invites-container .container-list-to-invites-profiles .to-invites-box-title strong {
+  transition: 0.3s ease-out;
+}
+main.my-network .container-right .to-invites-container .container-list-to-invites-profiles .to-invites-box-title strong:hover {
+  text-decoration: underline;
+}
+main.my-network .container-right .to-invites-container .container-list-to-invites-profiles form.to-invites-add-friends button.btn-add-friends {
+  width: 80%;
+  padding: 0.6rem 0;
+  border: none;
+  outline: none;
+  background-color: #1abc9c40;
+  color: #f1f1f1;
+  border-radius: 20px;
+  border: 1px solid #1abc9c;
+  transition: 0.3s ease-out;
+  cursor: pointer;
+  position: absolute;
+  bottom: 5%;
+  left: 50%;
+  transform: translateX(-50%);
+  transform: translateY();
+}
+main.my-network .container-right .to-invites-container .container-list-to-invites-profiles form.to-invites-add-friends button.btn-add-friends:hover {
+  background-color: #1abc9c;
+}
+
+main.my-network .container-right .my-friends-container {
+  padding: 2rem;
+  width: 100%;
+  display: flex;
+  justify-content: start;
+  flex-direction: column;
+  gap: 1rem;
+}
+main.my-network .container-right .my-friends-container .container-list-my-friends-profiles {
+  width: 100%;
+  padding: 0.8rem;
+  box-shadow: 0 0px 4px 2px #2c3e50;
+  background-color: #0000001a;
+  border-radius: 10px;
+  display: flex;
+  justify-content: space-between;
+  gap: 1rem;
+  transition: 0.3s ease-out;
+}
+main.my-network .container-right .my-friends-container .container-list-my-friends-profiles .my-friends-info {
+  gap: 0.5rem;
+}
+main.my-network .container-right .my-friends-container .container-list-my-friends-profiles .my-friends-info img.my-friends-img-profile {
+  width: 4.5rem;
+  height: 4.5rem;
+  border-radius: 50%;
+  border: 3px solid #34495e;
+  background-color: #34495e;
+  object-position: center;
+  object-fit: cover;
+}
+@media screen and (max-width: 420px) {
+  main.my-network .container-right .my-friends-container .container-list-my-friends-profiles .my-friends-info img.my-friends-img-profile {
+    width: 3.5rem;
+    height: 3.5rem;
+  }
+}
+main.my-network .container-right .my-friends-container .container-list-my-friends-profiles .my-friends-info .my-friends-box-title {
+  display: flex;
+  justify-content: start;
+  flex-direction: column;
+  text-align: left;
+  max-width: 340px;
+}
+main.my-network .container-right .my-friends-container .container-list-my-friends-profiles .my-friends-info .my-friends-box-title p {
+  font-size: 15px;
+  color: #CCCCCC;
+  display: -webkit-box;
+  -webkit-line-clamp: 1;
+  -webkit-box-orient: vertical;
+  overflow: hidden;
+  text-overflow: ellipsis;
+}
+main.my-network .container-right .my-friends-container .container-list-my-friends-profiles .my-friends-info .my-friends-box-title strong {
+  display: -webkit-box;
+  -webkit-line-clamp: 1;
+  -webkit-box-orient: vertical;
+  overflow: hidden;
+  text-overflow: ellipsis;
+  transition: 0.3s ease-out;
+}
+main.my-network .container-right .my-friends-container .container-list-my-friends-profiles .my-friends-info .my-friends-box-title strong:hover {
+  text-decoration: underline;
+}
+main.my-network .container-right .my-friends-container .container-list-my-friends-profiles form.my-friends-add-friends {
+  text-align: center;
+  gap: 0.5rem;
+}
+main.my-network .container-right .my-friends-container .container-list-my-friends-profiles form.my-friends-add-friends button.btn-add-friends, main.my-network .container-right .my-friends-container .container-list-my-friends-profiles form.my-friends-add-friends a {
+  padding: 0.3rem 0.5rem;
+  border: none;
+  outline: none;
+  font-size: 16px;
+  font-family: ui-sans-serif, system-ui;
+  border-radius: 8px;
+  transition: 0.3s ease-out;
+  cursor: pointer;
+  width: 8rem;
+}
+main.my-network .container-right .my-friends-container .container-list-my-friends-profiles form.my-friends-add-friends button.btn-add-friends {
+  background-color: #f31d5a49;
+  color: #f1f1f1;
+  border: 1px solid #f31d58;
+}
+main.my-network .container-right .my-friends-container .container-list-my-friends-profiles form.my-friends-add-friends button.btn-add-friends:hover {
+  background-color: #f31d58;
+}
+main.my-network .container-right .my-friends-container .container-list-my-friends-profiles form.my-friends-add-friends a {
+  background-color: #1abc9c40;
+  color: #f1f1f1;
+  border: 1px solid #1abc9c;
+}
+main.my-network .container-right .my-friends-container .container-list-my-friends-profiles form.my-friends-add-friends a:hover {
+  background-color: #1abc9c;
+}
+main.my-network .container-right .my-friends-container .container-list-my-friends-profiles form.my-friends-add-friends button.btn-accepted-invitation {
+  background-color: #1abc9c40;
+  color: #f1f1f1;
+  border: 1px solid #1abc9c;
+}
+main.my-network .container-right .my-friends-container .container-list-my-friends-profiles form.my-friends-add-friends button.btn-accepted-invitation:hover {
+  background-color: #1abc9c;
+}
+main.my-network .container-right .my-friends-container .container-list-my-friends-profiles form.my-friends-add-friends button.btn-rejected-invitation {
+  padding: 0.5rem 1rem;
+  background-color: #2c3e50;
+  color: #f1f1f1;
+  border-radius: 8px;
+  border: none;
+  outline: none;
+}
+main.my-network .container-right .my-friends-container .container-list-my-friends-profiles form.my-friends-add-friends button.btn-rejected-invitation:hover {
+  background-color: #34495e;
+}
+@media screen and (max-width: 420px) {
+  main.my-network .container-right .my-friends-container .container-list-my-friends-profiles form.my-friends-add-friends {
+    flex-direction: column;
+    margin: 0 auto;
+  }
+}
+main.my-network .container-right .my-friends-container .container-list-my-friends-profiles .container-form-accepted-rejected-invites {
+  gap: 0.5rem;
+}
+@media screen and (max-width: 420px) {
+  main.my-network .container-right .my-friends-container .container-list-my-friends-profiles .container-form-accepted-rejected-invites {
+    flex-direction: column;
+    margin: 0 auto;
+  }
+}
+@media screen and (max-width: 950px) and (min-width: 750px) {
+  main.my-network .container-right .my-friends-container .container-list-my-friends-profiles {
+    flex-direction: column;
+    align-items: start;
+  }
+}
+@media screen and (max-width: 655px) {
+  main.my-network .container-right .my-friends-container .container-list-my-friends-profiles {
+    flex-direction: column;
+    align-items: start;
+  }
+}
+
+main.my-network .container-left .gestion-network {
+  padding: 0.8rem;
+}
+main.my-network .container-left .container-nav-statistics {
+  width: 100%;
+  display: flex;
+  justify-content: start;
+  flex-direction: column;
+  gap: 0.1rem;
+}
+main.my-network .container-left .container-nav-statistics a.nav-link-statistc {
+  width: 100%;
+  padding: 0.8rem 2rem 0.8rem 1rem;
+  display: flex;
+  justify-content: space-between;
+  cursor: pointer;
+  transition: 0.3s ease-out;
+}
+main.my-network .container-left .container-nav-statistics a.nav-link-statistc:hover {
+  background-color: #0000001a;
+}
+main.my-network .container-left .container-nav-statistics a.nav-link-statistc span.text:hover {
+  text-decoration: underline;
+}
+main.my-network .container-left .container-nav-statistics a.nav-link-statistc span.num {
+  color: #1abc9c;
+  font-weight: bold;
+}
+
+/*# sourceMappingURL=style.css.map */

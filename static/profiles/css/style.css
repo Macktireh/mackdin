@@ -1,0 +1,458 @@
+@import url("https://fonts.googleapis.com/css2?family=Baumans&family=Inconsolata:wght@300&family=Megrim&display=swap");
+*, ::after, ::before {
+  box-sizing: border-box;
+  margin: 0;
+  padding: 0;
+  outline: none;
+}
+
+*::selection {
+  background-color: #1abc9c;
+  color: #f1f1f1;
+}
+
+a {
+  text-decoration: none;
+  color: #f1f1f1;
+}
+
+a:visited {
+  color: #f1f1f1;
+}
+
+.flex-center, .main-profile-update, .asd-rs .profile-friends-box-container .voir-plus-box, .info-img-bg {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}
+
+.flex-column {
+  display: flex;
+  flex-direction: column;
+}
+
+.main-profile {
+  margin-top: 5.5rem;
+  width: 100%;
+  display: flex;
+  justify-content: space-between;
+  gap: 1.5rem;
+}
+
+.container-right {
+  width: 25%;
+  display: flex;
+  flex-direction: column;
+  gap: 1rem;
+}
+
+.container-left {
+  width: 75%;
+  display: flex;
+  flex-direction: column;
+  gap: 1rem;
+}
+
+.icon-edit-profile-infon-personnel {
+  width: 30px;
+  position: absolute;
+  right: 15px;
+  top: 12px;
+}
+
+@media screen and (max-width: 840px) {
+  .main-profile {
+    flex-direction: column;
+    align-items: center;
+  }
+  .main-profile .container-right, .main-profile .container-left {
+    width: 100%;
+  }
+}
+.profile-info {
+  width: 100%;
+  box-shadow: 0 2px 3px 0 #0000001a;
+  border-radius: 8px;
+  background-color: #34495e;
+  display: flex;
+}
+
+.container-info {
+  width: 100%;
+  height: 100%;
+  position: relative;
+}
+
+.info-img-bg {
+  width: 100%;
+  height: 200px;
+  max-height: 15rem;
+  min-height: 10rem;
+}
+.info-img-bg .img_bg {
+  width: 100%;
+  height: 100%;
+  border-top-left-radius: 8px;
+  border-top-right-radius: 8px;
+  object-position: center;
+  object-fit: cover;
+}
+
+.img_profile {
+  width: 10rem;
+  height: 10rem;
+  border-radius: 50%;
+  border: 3px solid #34495e;
+  position: absolute;
+  top: 100px;
+  left: 1.5%;
+  transform: translateX();
+  transform: translateY();
+  background-color: #34495e;
+  object-position: center;
+  object-fit: cover;
+}
+@media screen and (max-width: 440px) {
+  .img_profile {
+    width: 9rem;
+    height: 9rem;
+    position: absolute;
+    top: 115px;
+    left: 50%;
+    transform: translateX(-50%);
+    transform: translateY();
+  }
+}
+
+.info-content {
+  margin-top: 0.5rem;
+  padding: 4rem 2rem 2rem;
+  text-align: left;
+  line-height: 26px;
+  position: relative;
+}
+.info-content h2 span {
+  display: inline-block;
+  width: 3px;
+  height: 3px;
+  border-radius: 50%;
+  background-color: #f1f1f1;
+  margin: 0 3px 4px;
+}
+.info-content h2 small {
+  font-size: 16px;
+  color: #1abc9c;
+}
+.info-content .box-location {
+  margin-top: 3px;
+  display: flex;
+  justify-content: start;
+  align-items: center;
+  gap: 1rem;
+}
+.info-content .box-location img {
+  width: 15px;
+}
+.info-content .box-location p span {
+  display: inline-block;
+  width: 3px;
+  height: 3px;
+  border-radius: 50%;
+  background-color: #f1f1f1;
+  margin: 0 3px 3px;
+}
+.info-content .box-tel {
+  margin-top: 3px;
+  display: flex;
+  justify-content: start;
+  align-items: center;
+  gap: 0.8rem;
+}
+.info-content .box-tel img {
+  width: 20px;
+}
+.info-content .box-friends {
+  margin-top: 3px;
+  display: flex;
+  justify-content: start;
+  align-items: center;
+  gap: 0.8rem;
+}
+.info-content .box-friends img {
+  width: 20px;
+}
+.info-content .box-friends a:hover {
+  text-decoration: underline;
+  color: #1abc9c;
+}
+.info-content button.btn-add-friends,
+.info-content button.btn-remove-friends,
+.info-content .btn-container-update-profile {
+  padding: 0.3rem 1rem;
+  border: none;
+  outline: none;
+  background-color: #1abc9c40;
+  color: #f1f1f1;
+  border-radius: 8px;
+  border: 1px solid #1abc9c;
+  transition: 0.3s ease-out;
+  cursor: pointer;
+  font-size: 15px;
+  font-family: ui-sans-serif, system-ui;
+  position: absolute;
+  top: 8px;
+  right: 15px;
+  transform: translateX();
+  transform: translateY();
+}
+.info-content button.btn-add-friends:hover,
+.info-content button.btn-remove-friends:hover,
+.info-content .btn-container-update-profile:hover {
+  background-color: #1abc9c;
+}
+@media screen and (max-width: 440px) {
+  .info-content button.btn-add-friends,
+.info-content button.btn-remove-friends,
+.info-content .btn-container-update-profile {
+    margin-top: 10px;
+    padding: 0.3rem 0.8rem;
+    right: 0;
+    top: 0;
+    display: block;
+    position: relative;
+    text-align: center;
+  }
+}
+.info-content button.btn-remove-friends {
+  background-color: #f31d5a49;
+  border: 1px solid #f31d58;
+}
+.info-content button.btn-remove-friends:hover {
+  background-color: #f31d58;
+}
+
+.profile-description {
+  width: 100%;
+  background-color: #34495e;
+  box-shadow: 0 2px 3px 0 #0000001a;
+  border-radius: 8px;
+  position: relative;
+}
+.profile-description h2 {
+  margin-left: 2rem;
+  padding-top: 1.5rem;
+}
+.profile-description .container-description {
+  margin: 1rem 1rem 1rem 1rem;
+  padding: 0.5rem 0.5rem 1rem 1rem;
+  line-height: 25px;
+}
+
+.asd-info-stat {
+  width: 100%;
+  padding: 0.5rem;
+  background-color: #34495e;
+  box-shadow: 0 2px 3px 0 #0000001a;
+  border-radius: 8px;
+  padding: 1rem;
+  display: flex;
+  justify-content: start;
+  flex-direction: column;
+  gap: 1.2rem;
+}
+.asd-info-stat .btn-container-update-profile a {
+  text-decoration: underline;
+  transition: 0.3s ease-out;
+}
+.asd-info-stat .btn-container-update-profile a:hover {
+  color: #1abc9c;
+}
+.asd-info-stat .statistic-profile {
+  display: flex;
+  justify-content: start;
+  flex-direction: column;
+  gap: 0.5rem;
+}
+.asd-info-stat .statistic-profile .statistic {
+  display: flex;
+  justify-content: start;
+  gap: 1rem;
+}
+.asd-info-stat .statistic-profile .statistic .statistic-text {
+  width: 60%;
+}
+.asd-info-stat .statistic-profile .statistic .statistic-num {
+  color: #1abc9c;
+  font-weight: bold;
+}
+.asd-info-stat .others-link {
+  display: flex;
+  justify-content: start;
+  flex-direction: column;
+  gap: 0.5rem;
+}
+.asd-info-stat .others-link .link-pro {
+  display: flex;
+  justify-content: start;
+  align-items: center;
+  gap: 1.5rem;
+}
+.asd-info-stat .others-link .link-pro .link-pro-icon {
+  width: 30px;
+}
+.asd-info-stat .others-link .link-pro .link-pro-link {
+  text-decoration: underline;
+  transition: 0.3s ease-out;
+}
+.asd-info-stat .others-link .link-pro .link-pro-link:hover {
+  color: #1abc9c;
+}
+
+.asd-rs {
+  width: 100%;
+  padding: 0.5rem;
+  background-color: #34495e;
+  box-shadow: 0 2px 3px 0 #0000001a;
+  border-radius: 8px;
+  display: flex;
+  justify-content: start;
+  flex-direction: column;
+  gap: 0.3rem;
+}
+.asd-rs .profile-friends-box-container {
+  display: flex;
+  justify-content: start;
+  flex-direction: column;
+  gap: 0.3rem;
+  padding-bottom: 0.5rem;
+}
+.asd-rs .profile-friends-box-container h4 {
+  margin: 0.5rem;
+  text-decoration: underline;
+}
+.asd-rs .profile-friends-box-container .voir-plus-box a.voir-plus {
+  color: #1abc9c;
+  text-align: center;
+}
+.asd-rs .profile-friends-box-container .voir-plus-box a.voir-plus:hover {
+  text-decoration: underline;
+}
+.asd-rs .profile-friends-box-container .profile-friends-container {
+  display: flex;
+  justify-content: start;
+  flex-direction: column;
+  gap: 0.5rem;
+}
+.asd-rs .profile-friends-box-container .profile-friends-container .profile-friends-box {
+  width: 100%;
+  display: flex;
+  justify-content: start;
+  align-items: center;
+  gap: 0.3rem;
+}
+.asd-rs .profile-friends-box-container .profile-friends-container .profile-friends-box img.profile-img-friends {
+  width: 55px;
+  height: 55px;
+  border-radius: 50%;
+  border: 3px solid #34495e;
+  object-position: center;
+  object-fit: cover;
+}
+.asd-rs .profile-friends-box-container .profile-friends-container .profile-friends-box .profile-friends-info-container {
+  display: flex;
+  justify-content: start;
+  flex-direction: column;
+  font-size: 14px;
+  text-align: left;
+}
+.asd-rs .profile-friends-box-container .profile-friends-container .profile-friends-box .profile-friends-info-container p, .asd-rs .profile-friends-box-container .profile-friends-container .profile-friends-box .profile-friends-info-container strong {
+  display: -webkit-box;
+  -webkit-line-clamp: 1;
+  -webkit-box-orient: vertical;
+  overflow: hidden;
+  text-overflow: ellipsis;
+}
+.asd-rs .profile-friends-box-container .profile-friends-container .profile-friends-box .profile-friends-info-container p {
+  color: #CCCCCC;
+}
+
+.main-profile-update {
+  margin-top: 5.5rem;
+  width: 100%;
+  background-color: #34495e;
+  box-shadow: 0 2px 3px 0 #0000001a;
+  border-radius: 8px;
+  padding: 1.5rem;
+}
+@media screen and (max-width: 500px) {
+  .main-profile-update {
+    padding: 1.5rem 0.5rem;
+  }
+}
+.main-profile-update .update-porfile-container {
+  width: 100%;
+  max-width: 750px;
+  display: flex;
+  justify-content: start;
+  align-items: center;
+  flex-direction: column;
+  gap: 3rem;
+  padding: 1rem;
+}
+@media screen and (max-width: 500px) {
+  .main-profile-update .update-porfile-container {
+    padding: 0;
+  }
+}
+.main-profile-update .update-porfile-container h2 {
+  text-decoration: underline;
+  font-size: 26px;
+}
+.main-profile-update .update-porfile-container .form-profile-update {
+  width: 100%;
+  display: flex;
+  justify-content: start;
+  flex-direction: column;
+  gap: 1.5rem;
+}
+.main-profile-update .update-porfile-container .form-profile-update .container-form-control-profile {
+  width: 100%;
+}
+.main-profile-update .update-porfile-container .form-profile-update .container-form-control-profile input[type=text], .main-profile-update .update-porfile-container .form-profile-update .container-form-control-profile textarea {
+  width: 100%;
+  padding: 0.8rem;
+  border: none;
+  outline: none;
+  border-radius: 8px;
+  background-color: #2c3e50;
+  color: #f1f1f1;
+  font-family: ui-sans-serif, system-ui;
+  font-size: 16px;
+}
+.main-profile-update .update-porfile-container .form-profile-update .container-form-control-profile input[type=text]:focus, .main-profile-update .update-porfile-container .form-profile-update .container-form-control-profile textarea:focus {
+  border: 1px solid #1abc9c;
+}
+.main-profile-update .update-porfile-container .form-profile-update .container-form-control-profile a {
+  text-decoration: underline;
+  transition: 0.3s ease-out;
+}
+.main-profile-update .update-porfile-container .form-profile-update .container-form-control-profile a:hover {
+  color: #1abc9c;
+}
+.main-profile-update .update-porfile-container .form-profile-update input[type=submit] {
+  margin-top: 1rem;
+  width: 100%;
+  padding: 0.8rem;
+  border: none;
+  outline: none;
+  border-radius: 8px;
+  background-color: #1abc9c;
+  color: #f1f1f1;
+  font-family: ui-sans-serif, system-ui;
+  font-size: 20px;
+}
+.main-profile-update .update-porfile-container .form-profile-update input[type=submit]:active {
+  transform: scale(0.98);
+}
+
+/*# sourceMappingURL=style.css.map */

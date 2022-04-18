@@ -1,0 +1,64 @@
+footer
+    width: 100%
+    max-width: 1150px
+    height: 270px
+    display: grid
+    grid-template-rows: 85% 15%
+    padding: 0
+    margin-top: 18px
+    background-color: $color6
+    box-shadow: 0 2px 3px 0 $color4
+    border-radius: 8px
+
+    .footer-content
+        display: flex
+        justify-content: center
+        align-items: center
+        flex-direction: column
+
+        .footer-content-box
+            width: 300px
+            height: auto
+
+            .footer-logo
+                width: 300px
+                @extend .flex-center
+
+                img
+                    width: 80%
+                    height: auto
+
+            ul
+                list-style-type: none
+                display: flex
+                justify-content: center
+                align-items: center
+                margin-top: 5px
+                a
+                    display: block
+                    img
+                        width: 30px
+                        height: 30px
+                    .ml
+                        margin: 0 20px
+
+    hr
+        margin: 0.1rem auto
+        width: 70%
+        height: 0.1rem
+        background-color: $color7
+        border: none
+        outline: none
+
+    .footer-bottom
+        display: flex
+        justify-content: center
+        align-items: center
+        color: $color7
+        height: 3rem
+        // background-color: $color4
+        a
+            transition: 0.5s
+            color: $color7
+            &:hover
+                color: $color3

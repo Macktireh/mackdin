@@ -1,0 +1,46 @@
+{% load static %}
+{% load humanize %}
+{% load cloudinary %}
+
+<div class="container-notif">
+  {% for notif in qs %}
+  {% if notif.from_user != request.user and notif.to_user == request.user %}
+  <div class="box-notif {% if notif.bg_seen == False %}bg_seen{% endif %}">
+    {% if notif.bg_seen == False %}
+    <span id="bg_seen"></span>
+    {% endif %}
+
+    <a href="{% url 'profiles:profile' pseudo=notif.from_user.profile.pseudo  %}">
+      <img src="{% if notif.from_user.profile.img_profile %}
+        {{ notif.from_user.profile.img_profile.url }}
+        {% else %}
+        {% static 'home/img/default-img-profile.jpg' %}
+        {% endif %}">
+    </a>
+
+    <a href="{% url 'notifications:seen' id=notif.id %}">
+      <div class="info-notif">
+        <strong>{{ notif.from_user.first_name }} {{ notif.from_user.last_name }}</strong>
+        {% if notif.type_notif == 'Like_Post' or notif.type_notif == 'Add_Post' or notif.type_notif == 'Add_Comment' %}
+        <p>
+          {% if notif.type_notif == 'Add_Post' %}
+          à ajouter un nouveau post : {{notif.post.message}}
+          {% elif notif.type_notif == 'Like_Post' %}
+          à aimer votre post : {{notif.post.message}}
+          {% elif notif.type_notif == 'Add_Comment' %}
+          à commenter votre post : {{notif.post.message}}
+          {% endif %}
+        </p>
+        {% elif notif.type_notif == 'invitation_send' %}
+        <p>souhaite rejoindre à votre réseau</p>
+        {% elif notif.type_notif == 'invitation_accepted' %}
+        <p>à accepté votre invitation desormais vous ami sur Mackdin</p>
+        {% endif %}
+        <em>{{ notif.date_created|naturaltime }}</em>
+      </div>
+    </a>
+  </div>
+  <hr>
+  {% endif %}
+  {% endfor %}
+</div>

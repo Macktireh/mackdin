@@ -1,0 +1,54 @@
+{% extends 'base.html' %}
+{% load static %}
+{% load cloudinary %}
+
+
+{% block title %} Update profile {{profile.user.first_name}} {{profile.user.last_name}} {% endblock title %}
+
+
+{% block style %}
+<link rel="shortcut icon" href=" {% static 'home/svg/linkedin-cust.svg' %} " type="image/x-icon">
+<link rel="stylesheet" href=" {% static 'components/css/style.css' %}" />
+<link rel="stylesheet" href=" {% static 'profiles/css/style.css' %} " />
+{% endblock style %}
+
+<!-- Navbar -->
+{% block navbar %} {% include 'components/navbar2.html' %} {% endblock navbar %}
+
+{% block content %}
+<main class="main-profile-update">
+
+  <div class="update-porfile-container">
+    <h2>Modifier le profile</h2>
+
+    <form action="" method="POST" enctype="multipart/form-data" class="form-profile-update">
+      {% csrf_token %}
+
+      {% for field in user_profile_form %}
+      <div class="container-form-control-profile">
+        <label for="id_{{field.name}}">{{field.label}}</label>
+        {{field}}
+      </div>
+      {% endfor %}
+
+      {% for field in profile_form %}
+      <div class="container-form-control-profile">
+        <label for="id_{{field.name}}">{{field.label}}</label>
+        {{field}}
+      </div>
+      {% endfor %}
+
+      <input type="submit" value="Enregistrer">
+    </form>
+  </div>
+
+</main>
+{% endblock content %}
+
+<!-- Footer -->
+{% block footer %} {% include 'components/footer.html' %} {% endblock footer %}
+
+{% block js %}
+<script type="text/javascript" src=" {% static 'components/js/index.js' %} "></script>
+<script type="text/javascript" src=" {% static 'notifications/js/notifications.js' %} "></script>
+{% endblock js %}

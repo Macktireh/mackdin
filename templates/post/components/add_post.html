@@ -1,0 +1,98 @@
+{% load static %}
+{% load cloudinary %}
+
+
+<div class="new-add-post">
+  <div class="new-add-post1">
+    <a href="{% url 'profiles:profile' pseudo=user.profile.pseudo  %}">
+      <div class="new-add-post-left-container">
+        <img src="        
+      {% if user.profile.img_profile %}
+      {{ user.profile.img_profile.url }}
+      {% else %}
+      {% static 'home/img/default-img-profile.jpg' %}
+      {% endif %}" alt="">
+      </div>
+    </a>
+    <div class="new-add-post-right-container">
+      <form class="form-new-add-post" action="" method="POST" enctype="multipart/form-data" id="form-add-new-post">
+        {% csrf_token %}
+        <div class="input-text">
+          {% if page == 'update' %}
+          <textarea name="message" id="textarea_id" cols="65" rows="2"
+            placeholder="Ajouter un post">{{post_edit.message}}</textarea>
+          {% else %}
+          {{ AddPostForm.message }}
+          {% endif %}
+        </div>
+        <div class="add-img-btn-send">
+          <div class="input-file">
+            {% if page == 'update' %}
+            <input type="file" name="img" id="file" class="form-input-file">
+            {% else %}
+            {{ AddPostForm.img }}
+            {% endif %}
+            <label for="file" class="form-lable">
+              <img src="{% static 'home/svg/gal.svg' %}" alt="">
+              <span>Ajouter une photo</span>
+            </label>
+          </div>
+          <button id="btn-add-new-post" type="submit" name="submit_p_form">
+            <span>Publier</span>
+            <img src="{% static 'home/svg/send.svg' %}" alt="">
+          </button>
+        </div>
+      </form>
+    </div>
+  </div>
+
+  <div class="previous-new-add-post">
+    <div class="previous-post-container">
+      <div class="previous-post-box">
+        <p id="Previsualisation">Prévisualisation de votre post :</p>
+        <div class="previous-post-header">
+          <div class="previous-post-header-img">
+            <img src="        
+            {% if user.profile.img_profile %}
+            {{ user.profile.img_profile.url }}
+            {% else %}
+            {% static 'home/img/default-img-profile.jpg' %}
+            {% endif %}" alt="">
+          </div>
+          <div class="previous-post-header-info">
+            <strong></strong>
+            <p id='bio'>
+              {% if user.profile.bio %}
+              {{ user.profile.bio }}
+              {% endif %}
+            </p>
+            <p id='date_created'>{% now "jS F Y H:i" %}</p>
+          </div>
+        </div>
+
+        <div class="previous-post-text-content">
+          <p id='previous-message'>{% if page == 'update' %}{{post_edit.message}}{% endif %}</p>
+        </div>
+
+        <div class="previous-post-img">
+          {% if page == 'update' %}
+          <img id='previous-post-image' src="{% if post_edit.img %} {{post_edit.img.url}} {% endif %}">
+          {% else %}
+          <img id='previous-post-image' src="">
+          <img id="close-img-previous" src="{% static 'home/svg/clos.svg' %}" alt="">
+          {% endif %}
+        </div>
+
+      </div>
+    </div>
+    <div class="cancel-add-post-container">
+      {% if page == 'update' %}
+      <a href="{% url 'post:post_list' %}">
+        <span id="btn-cancel-add-post">Annuler</span>
+      </a>
+      {% else %}
+      <span id="btn-cancel-add-post">Annuler</span>
+      {% endif %}
+    </div>
+  </div>
+</div>

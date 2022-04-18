@@ -1,0 +1,47 @@
+.comment-options-btn
+  position: absolute
+  top: 19px
+  right: 15px
+  width: 30px
+  height: 10px
+  @extend .flex-center
+  gap: 3px
+  cursor: pointer
+  #btn-point
+    width: 4px
+    height: 4px
+    background-color: $color7
+    border-radius: 50%
+
+.comment-options-actions-container
+  position: absolute
+  top: 35px
+  right: 15px
+  width: 150px
+  // height: 135px
+  background-color: $color4
+  border-radius: 8px
+  padding: 0.3rem
+  @extend .flex-center
+  transition: 0.5s
+
+  ul
+    @include flex-el(center, null)
+    // @extend .flex-center
+    flex-direction: column
+    gap: 12px
+    .comment-options-item
+      @include flex-el(start, center)
+      gap: 8px
+      transition: 0.4s
+      cursor: pointer
+      font-size: 14px
+
+      .comment-options-item-img
+        width: 20px
+
+      img.comment-options-item-img, .comment-options-item-span
+        opacity: 0.8
+      &:hover
+        img.comment-options-item-img, .comment-options-item-span
+          opacity: 1

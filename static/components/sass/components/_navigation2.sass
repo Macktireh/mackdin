@@ -1,0 +1,212 @@
+.nav-container
+  height: 70px
+  width: 100%
+  max-width: 1150px
+  flex: 1 0 auto
+  @include flex-el(space-between, center)
+  transition: 0.4s
+  background-color: $color4
+  box-shadow: 0 5px 5px $color1
+  // border-radius: 8px
+  position: fixed
+  z-index: 1
+  border-bottom-left-radius: 8px
+  border-bottom-right-radius: 8px
+
+a.logo
+  margin-left: 20px
+  height: 50px
+  transition: 0.4s
+  vertical-align: middle
+  @extend .flex-center
+  font-size: 30px
+  font-weight: 650
+  img
+    margin-left: 3px
+    width: 35px
+
+nav
+  @include flex-el(center, center)
+  // width: 800px
+  height: 100%
+  font-size: 0
+  // background-color: #fff
+
+nav ul
+  position: relative
+  @include flex-el(center, null)
+  gap: 15px
+  height: 100%
+  width: 100%
+  //background-color: #fff
+
+nav ul a
+  font-size: 15px
+  text-transform: uppercase
+  color: $color2
+  text-decoration: none
+  line-height: 50px
+  z-index: 1
+  display: inline-block
+  text-align: center
+  padding: 5px 5px 0
+  @extend .flex-center
+  transition: all 0.5s ease-out 0s
+
+.nav-img
+  width: 20px
+
+.nav-text
+  position: relative
+  text-align: center
+  height: 100%
+  @extend .flex-center
+  gap: 10px
+
+.animation
+  position: absolute
+  height: 4px
+  bottom: 0
+  z-index: 0
+  background: $color3
+  border-radius: 8px
+  transition: all 0.8s ease 0s
+
+nav ul a .start-animation
+  width: 110%
+
+a.nav-nofit
+  position: relative
+  span#nav-nofit-alert
+    width: 15px
+    height: 15px
+    padding: 8px
+    border-radius: 50%
+    background-color: $color8
+    font-size: 12px
+    z-index: 1
+    display: none
+    justify-content: center
+    align-items: center
+    @include position-abs(45%, null, null, 11%, -50%, -50%)
+
+nav ul a:hover
+  background: $color5
+  border-radius: 8px
+
+.nav-profil-mobile
+  display: none
+
+.nav-box-profil
+  height: 60px
+  width: 60px
+  @extend .flex-center
+  padding-right: 30px
+
+.nav-profil
+  @extend .flex-center
+  img
+    width: 50px
+    height: 50px
+    border-radius: 9999px
+    object-position: center
+    object-fit: cover
+
+.hamburger-nav-profil
+  @extend .flex-center
+  gap: 0.5rem
+
+.hamburger
+  display: none
+  // visibility: hidden
+  cursor: pointer
+  margin-right: 2rem
+  &__bar
+    background-color: $color2
+    display: block
+    width: 28px
+    height: 4px
+    margin: 5px auto
+    -webkit-transition: all 0.3s ease-in-out
+    transition: all 0.3s ease-in-out
+    border-radius: 8px
+
+@media screen and (max-width:1070px)
+  .nav-text
+    flex-direction: column
+    line-height: 20px
+    gap: 5px
+
+  a.nav-nofit
+    span#nav-nofit-alert
+      @include position-abs(30%, null, null, 52%, -50%, -50%)
+
+@media screen and (max-width:840px)
+  .hamburger
+    display: block
+    // visibility: visible
+    &:active
+      transform: scale(0.97)
+
+    .hamburger.active .hamburger__bar:nth-child(2)
+      opacity: 0
+    .hamburger.active .hamburger__bar:nth-child(1)
+      transform: translateY(8px) rotate(45deg)
+    .hamburger.active .hamburger__bar:nth-child(3)
+      transform: translateY(-8px) rotate(-45deg)
+
+  .nav-menu
+    margin-right: 0
+    width: 100%
+    max-width: 1150px
+    position: fixed
+    background-color: $color1
+    opacity: 0.98
+    left: -100%
+    top: 70px
+    height: 550px
+    gap: 0
+    @include flex-el(center, center)
+    flex-direction: column
+    width: 100%
+    text-align: center
+    transition: 0.3s
+    z-index: 1000
+    box-shadow: 0 2px 3px 0 $color6
+    border-radius: 5px
+
+  .nav-item
+    margin: 10px 0
+    opacity: 0.95
+    justify-content: start
+    gap: 12px
+
+  nav ul a .nav-text
+    flex-direction: rows
+    padding-bottom: 10px
+
+  nav ul a:hover
+    background: $color4
+    border-radius: 8px
+
+  .nav-menu.active
+    left: 0
+
+  a.nav-nofit
+    span#nav-nofit-alert
+      @include position-abs(17%, null, null, 52%, -50%, -50%)
+
+//   .nav-profil
+//     height: 80px
+//     width: 80px
+
+@media screen and (max-width:390px)
+  .nav-profil-mobile
+    display: block
+  .nav-profil-ecran
+    visibility: hidden
+    display: none
+  .hamburger
+    margin-right: 1rem
+  .logo
+    margin-left: 10px

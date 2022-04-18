@@ -1,0 +1,48 @@
+{% extends 'base.html' %}
+{% load static %}
+
+
+{% block title %} Home {% endblock title %}
+
+
+{% block style %}
+<link rel="shortcut icon" href=" {% static 'home/svg/linkedin-cust.svg' %} " type="image/x-icon">
+<link rel="stylesheet" href=" {% static 'components/css/style.css' %}" />
+<link rel="stylesheet" href=" {% static 'home/css/style.css' %} " />
+{% endblock style %}
+
+{% block navbar %} {% include 'components/navbar-home.html' %} {% endblock navbar %}
+
+{% block content %}
+<main class="main-home">
+
+  <div class="container1">
+    <img id="container1-img" src="{% static 'home/svg/img-home.svg' %}">
+    <div class="content">
+      <h1>Bienvenue dans votre réseau social professionnelle</h1>
+      <h3>Veuillez vous connecter si vous avez déjà un compte ou vous s'inscrire si vous n'avez pas de compte.</h3>
+    </div>
+  </div>
+
+  <div class="container2">
+    <div class="box box1">
+      <img src="{% static 'home/svg/img-home2.svg' %}">
+      <h4>
+        Connectez-vous avec des bonnes personnes
+      </h4>
+    </div>
+    <div class="box box2">
+      <img src="{% static 'home/svg/img-home3.svg' %}">
+      <h4>
+        Booster et enrichir votre profile
+      </h4>
+    </div>
+  </div>
+</main>
+{% endblock content %}
+
+{% block footer %} {% include 'components/footer.html' %} {% endblock footer %}
+
+{% block js %}
+<script type="text/javascript" src=" {% static 'components/js/index.js' %} "></script>
+{% endblock js %}

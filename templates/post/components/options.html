@@ -1,0 +1,22 @@
+{% load static %}
+
+{% if request.user == post.author %}
+<div id="{{post.id}}" class="options-btn">
+  <span id="btn-point"></span>
+  <span id="btn-point"></span>
+  <span id="btn-point"></span>
+</div>
+
+<div id="options-container{{post.id}}" class="options-actions-container display-none">
+  <ul>
+    <a href="{% url 'post:update_post' post.id  %}" class="options-item">
+      <img src="{% static 'home/svg/edit.svg' %}">
+      <span class="btn-edit-post" id="{{post.id}}">Modifier</span>
+    </a>
+    <a href="{% url 'post:delete_post' post.id  %}" class="options-item">
+      <img src="{% static 'home/svg/delete.svg' %}">
+      <span class="btn-del-post" id="{{post.id}}">Supprimer</span>
+    </a>
+  </ul>
+</div>
+{% endif %}

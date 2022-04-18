@@ -1,0 +1,96 @@
+@import url("https://fonts.googleapis.com/css2?family=Baumans&family=Inconsolata:wght@300&family=Megrim&display=swap");
+*, ::after, ::before {
+  box-sizing: border-box;
+  margin: 0;
+  padding: 0;
+  outline: none;
+}
+
+*::selection {
+  background-color: #1abc9c;
+  color: #f1f1f1;
+}
+
+a {
+  text-decoration: none;
+  color: #f1f1f1;
+}
+
+a:visited {
+  color: #f1f1f1;
+}
+
+.flex-center, main.main-home .container2 .box, main.main-home .container1 .content {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}
+
+.flex-column {
+  display: flex;
+  flex-direction: column;
+}
+
+main.main-home {
+  box-shadow: 0 2px 3px 0 #0000001a;
+  border-radius: 8px;
+  display: flex;
+  justify-content: space-between;
+  flex-direction: column;
+  margin-top: 5.5rem;
+  width: 100%;
+  gap: 1rem;
+  background-color: #34495e;
+  padding: 0.5rem;
+}
+main.main-home .container1 {
+  display: flex;
+  justify-content: space-between;
+}
+main.main-home .container1 img {
+  width: 600px;
+}
+main.main-home .container1 .content {
+  padding: 0.5rem;
+  flex-direction: column;
+  text-align: center;
+}
+main.main-home .container1 .content h1 {
+  margin-bottom: 2.5rem;
+}
+main.main-home .container2 {
+  padding-bottom: 1.5rem;
+  display: flex;
+  justify-content: space-around;
+}
+main.main-home .container2 img {
+  width: 200px;
+}
+main.main-home .container2 .box {
+  flex-direction: column;
+  gap: 0.5rem;
+}
+
+@media screen and (max-width: 920px) {
+  img#container1-img {
+    width: 500px;
+  }
+}
+@media screen and (max-width: 780px) {
+  img#container1-img {
+    width: 100%;
+  }
+}
+@media screen and (max-width: 740px) {
+  .container1 {
+    flex-direction: column;
+    align-items: center;
+  }
+}
+@media screen and (max-width: 480px) {
+  .container2 {
+    flex-direction: column;
+  }
+}
+
+/*# sourceMappingURL=style.css.map */

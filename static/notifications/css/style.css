@@ -1,0 +1,81 @@
+@import url("https://fonts.googleapis.com/css2?family=Baumans&family=Inconsolata:wght@300&family=Megrim&display=swap");
+*, ::after, ::before {
+  box-sizing: border-box;
+  margin: 0;
+  padding: 0;
+  outline: none;
+}
+
+*::selection {
+  background-color: #1abc9c;
+  color: #f1f1f1;
+}
+
+a {
+  text-decoration: none;
+  color: #f1f1f1;
+}
+
+a:visited {
+  color: #f1f1f1;
+}
+
+.flex-center {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}
+
+.flex-column {
+  display: flex;
+  flex-direction: column;
+}
+
+.container-main .container-notif {
+  width: 100%;
+  height: 100%;
+  box-shadow: 0 2px 3px 0 #0000001a;
+  border-radius: 8px;
+  background-color: #34495e;
+  display: flex;
+  justify-content: start;
+  flex-direction: column;
+  gap: 0.4rem;
+}
+.container-main .container-notif .box-notif {
+  padding: 1rem 1rem 1rem 1.5rem;
+  border-radius: 8px;
+  display: grid;
+  grid-template-columns: 52px 1fr;
+  grid-gap: 0.5rem;
+  align-items: center;
+  position: relative;
+}
+.container-main .container-notif .box-notif #bg_seen {
+  width: 6px;
+  height: 6px;
+  border-radius: 50%;
+  background-color: #1abc9c;
+  position: absolute;
+  top: 50%;
+  left: 10px;
+  transform: translateX();
+  transform: translateY(-50%);
+}
+.container-main .container-notif .box-notif img {
+  width: 52px;
+  height: 52px;
+  border-radius: 50%;
+  object-fit: cover;
+  object-position: center;
+}
+.container-main .container-notif hr {
+  margin: 0 auto 0;
+  width: 100%;
+  height: 0.5px;
+  background-color: #666464;
+  border: none;
+  outline: none;
+}
+
+/*# sourceMappingURL=style.css.map */

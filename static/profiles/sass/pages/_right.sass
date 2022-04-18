@@ -1,0 +1,110 @@
+.asd-info-stat
+  // height: 18rem
+  width: 100%
+  padding: 0.5rem
+  background-color: $color4
+  box-shadow: 0 2px 3px 0 $color6
+  border-radius: 8px
+  padding: 1rem
+  @include flex-el(start, null)
+  flex-direction: column
+  gap: 1.2rem
+
+  .btn-container-update-profile
+    // @extend .flex-center
+    a
+      text-decoration: underline
+      transition: .3s ease-out
+      &:hover
+        color: $color3
+
+  .statistic-profile
+    @include flex-el(start, null)
+    flex-direction: column
+    gap: 0.5rem
+    .statistic
+      @include flex-el(start, null)
+      gap: 1rem
+      .statistic-text
+        width: 60%
+      .statistic-num
+        color: $color3
+        font-weight: bold
+
+  .others-link
+    // margin-top: 1rem
+    @include flex-el(start, null)
+    flex-direction: column
+    gap: 0.5rem
+    .link-pro
+      @include flex-el(start, center)
+      gap: 1.5rem
+      .link-pro-icon
+        width: 30px
+      .link-pro-link
+        text-decoration: underline
+        transition: .3s ease-out
+        &:hover
+          color: $color3
+
+.asd-rs
+  // height: 25rem
+  width: 100%
+  padding: 0.5rem
+  background-color: $color4
+  box-shadow: 0 2px 3px 0 $color6
+  border-radius: 8px
+  @include flex-el(start, null)
+  flex-direction: column
+  gap: 0.3rem
+
+  .profile-friends-box-container
+    @include flex-el(start, null)
+    flex-direction: column
+    gap: 0.3rem
+    padding-bottom: 0.5rem
+
+    h4
+      margin: 0.5rem
+      text-decoration: underline
+
+    .voir-plus-box
+      // margin-top: 0.5rem
+      @extend .flex-center
+      a.voir-plus
+        color: $color3
+        text-align: center
+        &:hover
+          text-decoration: underline
+    .profile-friends-container
+      @include flex-el(start, null)
+      flex-direction: column
+      gap: 0.5rem
+      .profile-friends-box
+        width: 100%
+        @include flex-el(start, center)
+        gap: 0.3rem
+
+        img.profile-img-friends
+          width: 55px
+          height: 55px
+          border-radius: 50%
+          border: 3px solid $color4
+          object-position: center
+          object-fit: cover
+
+        .profile-friends-info-container
+          @include flex-el(start, null)
+          flex-direction: column
+          font-size: 14px
+          text-align: left
+
+          p, strong
+            display: -webkit-box
+            -webkit-line-clamp: 1
+            -webkit-box-orient: vertical
+            overflow: hidden
+            text-overflow: ellipsis
+
+          p
+            color: $color9

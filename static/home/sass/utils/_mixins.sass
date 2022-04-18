@@ -1,0 +1,33 @@
+.flex-center
+    display: flex
+    justify-content: center
+    align-items: center
+
+.flex-column
+    display: flex
+    flex-direction: column
+
+@mixin hr-el($m-t, $m-b, $width, $color)
+    margin: $m-t auto $m-b
+    width: $width
+    max-width: 3.5rem
+    height: 0.2rem
+    background-color: $color
+    border: none
+    outline: none
+
+@mixin position-abs($left, $top, $x, $y)
+    position: absolute
+    left: $left
+    top: $top
+    transform: translate($x, $y)
+
+@mixin p-el($align, $espace, $size)
+    text-align: $align
+    line-height: $espace
+    font-size: $size
+
+@mixin flex-el($jc, $at)
+    display: flex
+    justify-content: $jc
+    align-items: $at

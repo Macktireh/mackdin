@@ -1,0 +1,55 @@
+{% load static %}
+{% load humanize %}
+{% load cloudinary %}
+
+
+<div class="container-all-post">
+  {% include 'post/components/options.html' %}
+
+  <div class="post-header">
+    <a href="{% url 'profiles:profile' pseudo=post.author.profile.pseudo  %}">
+      <div class="post-header-img">
+        <img src="        
+            {% if post.author.profile.img_profile %}
+            {{ post.author.profile.img_profile.url }}
+            {% else %}
+            {% static 'home/img/default-img-profile.jpg' %}
+            {% endif %}" />
+      </div>
+    </a>
+    <div class="post-header-info">
+      <strong><a href="{% url 'profiles:profile' pseudo=post.author.profile.pseudo  %}">{{post.author.first_name}}
+          {{post.author.last_name}}</a></strong>
+      <p>{{post.author.profile.bio}}</p>
+      <p>{{post.date_created|naturaltime}}</p>
+    </div>
+  </div>
+
+  <div class="post-text-content">
+    <p>{{post.message|linebreaksbr}}</p>
+  </div>
+
+  {% if post.img %}
+  <div class="post-img">
+    <img src="{{post.img.url}}" alt="" />
+  </div>
+  {% endif %}
+
+  <div class="post-footer">
+    {% include 'post/components/count-likes-comments.html' %}
+    <hr />
+    <div class="box-action-icon">
+      {% include 'post/components/like-form-btn.html' %}
+      <button href="#" class="action-icon box-comment btn-container-comment-toggle" id="{{post.id}}">
+        <img src="{% static 'home/svg/comment.svg' %}" class="icon-like-comment-share" id="{{post.id}}" />
+        <span id="{{post.id}}" class="label-like-comment-share">Commenter</span>
+      </button>
+      <button href="#" class="action-icon box-share">
+        <img src="{% static 'home/svg/share.svg' %}" class="icon-like-comment-share" />
+        <span class="label-like-comment-share">Partager</span>
+      </button>
+    </div>
+  </div>
+
+  {% include 'comments/include/comment.html' %}
+</div>

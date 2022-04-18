@@ -1,0 +1,129 @@
+.post-header
+  padding-left: 0.8rem
+  padding-right: 0.8rem
+  @include flex-el(null, center)
+  gap: 0.5rem
+
+  .post-header-img
+    height: 70px
+    width: 70px
+    @extend .flex-center
+
+  .post-header-img img
+    width: 60px
+    height: 60px
+    object-position: center
+    object-fit: cover
+    // min-height: 60px
+    // min-width: 60px
+    // max-height: 60px
+    // max-width: 60px
+    border-radius: 50%
+
+  .post-header-info
+    width: 100%
+    strong
+      width: 80%
+      display: -webkit-box
+      -webkit-line-clamp: 1
+      -webkit-box-orient: vertical
+      overflow: hidden
+      text-overflow: ellipsis
+    p
+      color: $color7
+      display: -webkit-box
+      -webkit-line-clamp: 1
+      -webkit-box-orient: vertical
+      overflow: hidden
+      text-overflow: ellipsis
+
+.post-text-content
+  padding-left: 0.8rem
+  padding-right: 0.8rem
+  margin: 0.5rem 0 0.8rem
+  p
+    line-height: 150%
+
+.post-img
+  width: 100%
+  img
+    width: 100%
+
+.post-footer
+  padding-left: 0.8rem
+  padding-right: 0.8rem
+  margin: 0.5rem 0 0
+
+  .count-likes-comments
+    @include flex-el(space-between, null)
+
+  hr
+    height: 0.08px
+    background-color: $color7
+    border: none
+    margin: 0.6rem 0
+    outline: none
+
+  .box-action-icon
+    display: grid
+    grid-template-columns: 33% 34% 33%
+    // grid-template-columns: 25% 25% 25% 25%
+
+    .action-icon
+      padding: 1rem 0
+      @extend .flex-center
+      gap: 0.4rem
+      width: 100%
+      background-color: $color4
+      border: none
+      outline: none
+      cursor: pointer
+      color: $color2
+      font-size: 16px
+      font-family: $font1
+
+      img
+        width: 20px
+
+      &:hover
+        background-color: $color6
+        border-radius: 8px
+
+      &:active
+        transform: scale(0.98)
+
+  // @media screen and (max-width:730px)
+  //   .label-like-comment-share
+
+  form button
+    padding: 1rem 0
+    width: 100%
+    background-color: $color4
+    border: none
+    outline: none
+    @extend .flex-center
+    gap: 0.4rem
+    cursor: pointer
+    img
+      width: 20px
+    span
+      color: $color2
+      font-size: 16px
+      font-family: $font1
+    &:hover
+      background-color: $color6
+      border-radius: 8px
+    &:active
+      transform: scale(0.98)
+
+  .text-like_unlike-span
+    color: $color3
+
+@media screen and (max-width:420px)
+  .label-like-comment-share
+    display: none
+
+  .post-footer
+    form button, .box-action-icon .action-icon
+      img.icon-like-comment-share
+        width: 30px

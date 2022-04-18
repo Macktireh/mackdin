@@ -1,0 +1,55 @@
+{% extends 'base.html' %}
+{% load static %}
+
+
+{% block style %}
+<link rel="shortcut icon" href=" {% static 'components/img/linkedin-cust.svg' %} " type="image/x-icon">
+<link rel="stylesheet" href="{% static 'users/css/style.css' %}">
+{% endblock style %}
+
+{% block title %} S'identifier {% endblock title %}
+
+{% block content %}
+<main>
+  <div class="form-container">
+    <div class="title-form">
+      <h1>S'identifier</h1>
+    </div>
+
+    {% if messages %}
+    {% for message in messages %}
+    <div {% if message.tags %} class="message-{{ message.tags }}" {% endif %}>
+      <p>{{ message }}</p>
+    </div>
+    {% endfor %}
+    {% endif %}
+
+    <form method="POST">
+      {% csrf_token %}
+      <div class="txt_field">
+        <input type="text" name="email" required autocomplete="off">
+        <span class="span-border-bottom"></span>
+        <label>Email</label>
+      </div>
+
+      <div class="txt_field">
+        <input type="password" name="password" required autocomplete="off">
+        <span class="span-border-bottom"></span>
+        <label>Mot de passe</label>
+      </div>
+
+      <a href="{% url 'reset_password' %}" class="pass">Mot de passe oublié ?</a>
+      <input type="submit" value="Se connecter">
+      <div class="sign_link">
+        Vous n'avez pas de compte ? <a href="{% url 'sign_up' %}">S'inscrire</a>
+        <p>Revenir au page <a href="{% url 'home:home' %}">d'acceuil</a></p>
+      </div>
+    </form>
+  </div>
+</main>
+{% endblock content %}
+
+
+{% block js %}
+
+{% endblock js %}

@@ -1,0 +1,248 @@
+{% extends 'base.html' %}
+{% load static %}
+{% load humanize %}
+{% load cloudinary %}
+
+
+{% block title %} {{profile.user.first_name}} {{profile.user.last_name}} {% endblock title %}
+
+
+{% block style %}
+<link rel="shortcut icon" href=" {% static 'home/svg/linkedin-cust.svg' %} " type="image/x-icon">
+<link rel="stylesheet" href=" {% static 'components/css/style.css' %}" />
+<link rel="stylesheet" href=" {% static 'profiles/css/style.css' %} " />
+{% endblock style %}
+
+<!-- Navbar -->
+{% block navbar %} {% include 'components/navbar2.html' %} {% endblock navbar %}
+
+{% block content %}
+<main class="main-profile">
+  <div class="container-left">
+    <section class="profile-info">
+      <div class="container-info">
+        <div class="info-img-bg">
+          <img class="img_bg" src="
+              {% if profile.img_bg %}
+                {{ profile.img_bg.url }}
+              {% else %}
+                {% static 'home/img/default-img-bg.jpg' %}
+              {% endif %}" alt="Couverture">
+        </div>
+        <img class="img_profile" src="{% if profile.img_profile %}
+          {{ profile.img_profile.url }}
+          {% else %}
+          {% static 'home/img/default-img-profile.jpg' %}
+          {% endif %}" alt="Profile">
+        <div class="info-content">
+          <h2>{{profile.user.first_name}} {{profile.user.last_name}} <span id="point-separator-style"></span>
+            <small>@{{profile.pseudo}}</small>
+          </h2>
+          <p>{{profile.bio}}</p>
+
+          {% if profile.country or profile.region or profile.town %}
+          <div class="box-location">
+            <img src="{% static 'home/svg/location.svg' %}">
+            <p>
+              {% if profile.country %}
+              {{profile.country|title}}
+              <span id="point-separator-style"></span>
+              {% endif %}
+
+              {% if profile.region %}
+              {{profile.region|title}}
+              <span id=" point-separator-style"></span>
+              {% endif %}
+              {{profile.town|title}}
+            </p>
+          </div>
+          {% endif %}
+
+          {% if profile.user.email %}
+          <div class="box-tel">
+            <img src="{% static 'home/svg/email.svg' %}">
+            <p> {{profile.user.email}} </p>
+          </div>
+          {% endif %}
+
+          {% if profile.phone %}
+          <div class="box-tel">
+            <img src="{% static 'home/svg/phone.svg' %}">
+            <p>{{profile.phone}}</p>
+          </div>
+          {% endif %}
+
+          <div class="box-friends">
+            <img src="{% static 'home/svg/friends.svg' %}">
+
+            {% if profile.user == request.user %}
+            <a href="{% url 'friends:my_friends' %}">
+              {{profile.friends.count}}
+              {% if profile.friends.count > 1 %}
+              relations
+              {% else %}
+              relation
+              {% endif %}
+            </a>
+            {% else %}
+            <p>
+              {{profile.friends.count}}
+              {% if profile.friends.count > 1 %}
+              relations
+              {% else %}
+              relation
+              {% endif %}
+            </p>
+            {% endif %}
+          </div>
+
+          {% if profile.user == request.user %}
+          <!-- <div class="btn-container-update-profile"> -->
+          <a class="btn-container-update-profile" href="{% url 'profiles:update_profile' %}">Modifier le profile</a>
+          <!-- </div> -->
+          {% endif %}
+
+          {% if profile.user not in list_receiver and profile.user not in list_sender and user != profile.user %}
+          <form action="{% url 'friends:send_invitation' %}" method="POST" class="to-invites-add-friends">
+            {% csrf_token %}
+            <input type="hidden" name="profile_id" value="{{profile.id}}">
+            <input type="hidden" name="redirect" value="profile">
+            <button class="btn-add-friends" type="submit">Envoyer une invitation</button>
+          </form>
+          {% endif %}
+
+
+          {% comment %}
+          {% if request.user in profile.friends.all %}
+          <!-- <form action="{% url 'friends:remove_invitation' %}" method="POST" class="to-invites-add-friends">
+            {% csrf_token %}
+            <input type="hidden" name="profile_id" value="{{profile.id}}">
+            <input type="hidden" name="redirect" value="profile">
+            <button class="btn-remove-friends" type="submit">Supprimer</button>
+          </form> -->
+          {% endif %}
+          {% endcomment %}
+
+        </div>
+      </div>
+    </section>
+
+    <section class="profile-description">
+      <h2>Infos</h2>
+      <div class="container-description">
+        <p>
+          {{ profile.description|linebreaksbr }}
+        </p>
+      </div>
+    </section>
+  </div>
+
+  <div class="container-right">
+    <aside class="asd-info-stat">
+      {% if profile.user == request.user %}
+      <!-- <div class="btn-container-update-profile">
+        <a href="{% url 'profiles:update_profile' %}">Modifier le profile</a>
+      </div> -->
+      {% endif %}
+
+      <div class="statistic-profile">
+        <div class="num-vue statistic">
+          <span class="statistic-text">Vues de votre profile</span>
+          <span class="statistic-num">
+            {% if profile.number_views %}
+            {{profile.number_views}}
+            {% else %}
+            0
+            {% endif %}
+          </span>
+        </div>
+        <div class="num-post statistic">
+          <span class="statistic-text">Nombre de post</span>
+          <span class="statistic-num">{{profile.user.post.count}}</span>
+        </div>
+      </div>
+      <div class="others-link">
+
+        {% if profile.link_linkedin %}
+        <div class="link-pro">
+          <img src="{% static 'home/svg/linkedin.svg' %}" class="link-pro-icon">
+          <a href="{{profile.link_linkedin}}" class="link-pro-link" target="_blank">linkedin</a>
+        </div>
+        {% endif %}
+
+        {% if profile.link_twitter %}
+        <div class="link-pro">
+          <img src="{% static 'home/svg/twitter.svg' %}" class="link-pro-icon">
+          <a href="{{profile.link_twitter}}" class="link-pro-link" target="_blank">twitter</a>
+        </div>
+        {% endif %}
+
+        {% if profile.link_gitthub %}
+        <div class="link-pro">
+          <img src="{% static 'home/svg/github.svg' %}" class="link-pro-icon">
+          <a href="{{profile.link_gitthub}}" class="link-pro-link" target="_blank">github</a>
+        </div>
+        {% endif %}
+
+        {% if profile.link_mysite %}
+        <div class="link-pro">
+          <img src="{% static 'home/svg/web.svg' %}" class="link-pro-icon">
+          <a href="{{profile.link_mysite}}" class="link-pro-link" target="_blank">mysite</a>
+        </div>
+        {% endif %}
+      </div>
+    </aside>
+
+    {% if profile.friends.all|length >= 1 %}
+    <aside class="asd-rs">
+      <div class="profile-friends-box-container">
+        <h4>Vos Relations</h4>
+        <div class="profile-friends-container">
+          {% for obj in profile.friends.all|slice:"5" %}
+          <a href="{% url 'profiles:profile' pseudo=obj.profile.pseudo %}">
+            <div class="profile-friends-box">
+              <img class="profile-img-friends" src="{% if obj.profile.img_profile %}
+            {{ obj.profile.img_profile.url }}
+            {% else %}
+            {% static 'home/svg/default-img-profile.jpg' %}
+            {% endif %}">
+
+              <div class="profile-friends-info-container">
+
+                <strong>{{obj.first_name}} {{obj.last_name}}</strong>
+                <p>{{obj.profile.bio}}</p>
+
+                {% if obj.last_logout %}
+                <P>
+                  {% if obj.last_logout > obj.last_login %}
+                  Connecté {{obj.last_logout|naturaltime}}
+                  {% else %}
+                  Connecté maintenant
+                  {% endif %}
+                </P>
+                {% endif %}
+              </div>
+            </div>
+          </a>
+          {% endfor %}
+        </div>
+
+        {% if profile.friends.all|length > 5 %}
+        <div class="voir-plus-box">
+          <a href="{% url 'friends:my_friends' %}" class="voir-plus">Voir plus</a>
+        </div>
+        {% endif %}
+      </div>
+    </aside>
+    {% endif %}
+  </div>
+</main>
+{% endblock content %}
+
+<!-- Footer -->
+{% block footer %} {% include 'components/footer.html' %} {% endblock footer %}
+
+{% block js %}
+<script type="text/javascript" src=" {% static 'components/js/index.js' %} "></script>
+<script type="text/javascript" src=" {% static 'notifications/js/notifications.js' %} "></script>
+{% endblock js %}

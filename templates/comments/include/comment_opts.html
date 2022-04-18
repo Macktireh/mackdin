@@ -1,0 +1,24 @@
+{% load static %}
+
+{% ifequal request.user comment.author %}
+<div id="{{comment.id}}" class="comment-options-btn">
+  <span id="btn-point"></span>
+  <span id="btn-point"></span>
+  <span id="btn-point"></span>
+</div>
+
+<div id="comment-options-container{{comment.id}}" class="comment-options-actions-container display-none">
+  <ul>
+    <div class="comment-options-item comment-options-item-edit" id="{{comment.id}}">
+      <img src="{% static 'home/svg/edit.svg' %}" id="{{comment.id}}" class="comment-options-item-img">
+      <span class="btn-edit-comment comment-options-item-span" id="{{comment.id}}">Modifier</span>
+    </div>
+
+    <div class="comment-options-item comment-options-item-delete" id="{{comment.id}}" title="{{post.id}}">
+
+      <img src="{% static 'home/svg/delete.svg' %}" id="{{comment.id}}" class="comment-options-item-img">
+      <span class="btn-del-comment comment-options-item-span" id="{{comment.id}}" title="{{post.id}}">Supprimer</span>
+    </div>
+  </ul>
+</div>
+{% endifequal %}

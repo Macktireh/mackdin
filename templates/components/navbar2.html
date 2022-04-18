@@ -1,0 +1,112 @@
+{% load static %}
+{% load cloudinary %}
+
+<div class="nav-container">
+  <div>
+    <a class="logo" href="{% url 'home:home' %}">
+      <img src=" {% static 'home/svg/linkedin-cust.svg' %} " alt="logo">
+    </a>
+  </div>
+
+  <nav>
+    <ul class="nav-menu">
+      {% if not user.is_authenticated %}
+      <a href="{% url 'sign_in' %}" class="nav-item">
+        <div class="nav-text">
+          <img class="nav-img" src="{% static 'home/svg/user.svg' %}" alt="">
+          <span class="animation {% if start_animation == 'sign_in' %}start-animation{% endif %}"></span>
+          <span class="nav-text-span">Connexion</span>
+        </div>
+      </a>
+      <a href="{% url 'sign_up' %}" class="nav-item">
+        <div class="nav-text">
+          <img class="nav-img" src="{% static 'home/svg/signup.svg' %}" alt="">
+          <span class="animation {% if start_animation == 'sign_up' %}start-animation{% endif %}"></span>
+          <span>S'inscrire</span>
+        </div>
+      </a>
+      {% else %}
+      <a href="{% url 'post:post_list' %}" class="nav-item">
+        <div class="nav-text">
+          <img class="nav-img" src="{% static 'home/svg/home.svg' %}" alt="">
+          <span class="animation  {% if start_animation == 'feed' %}start-animation{% endif %}"></span>
+          <span class="nav-text-span">Acceuil</span>
+        </div>
+      </a>
+      <a href="{% url 'friends:my_network' %}" class="nav-item">
+        <div class="nav-text">
+          <img class="nav-img" src="{% static 'home/svg/friends.svg' %}" alt="">
+          <span class="animation {% if start_animation == 'my_network' %}start-animation{% endif %}"></span>
+          <span class="nav-text-span">Réseau</span>
+        </div>
+      </a>
+      <a href="" class="nav-item">
+        <div class="nav-text">
+          <img class="nav-img" src="{% static 'home/svg/chat.svg' %}" alt="">
+          <span class="animation {% if start_animation == 'chat' %}start-animation{% endif %}"></span>
+          <span class="nav-text-span">Messagerie</span>
+        </div>
+      </a>
+      <a href="{% url 'notifications:notif' %}" class="nav-item nav-nofit" id="nav-nofit-icon">
+        <span id="nav-nofit-alert"></span>
+        <div class="nav-text">
+          <img class="nav-img" src="{% static 'home/svg/notification.svg' %}" alt="">
+          <span class="animation {% if start_animation == 'notif' %}start-animation{% endif %}"></span>
+          <span class="nav-text-span">Notifications</span>
+        </div>
+      </a>
+      {% if user.is_superuser %}
+      <a href="{% url 'admin:index' %}" class="nav-item" target="_blank">
+        <div class="nav-text">
+          <img class="nav-img" src="{% static 'home/svg/contact.svg' %}" alt="">
+          <span class="animation {% if start_animation == 'admin' %}start-animation{% endif %}}"></span>
+          <span class="nav-text-span">Administration</span>
+        </div>
+      </a>
+      {% endif %}
+      <a href="{% url 'logout' %}" class="nav-item">
+        <div class="nav-text">
+          <img class="nav-img" src="{% static 'home/svg/logout.svg' %}" alt="">
+          <span class="animation {% if start_animation == 'logout' %}start-animation{% endif %}"></span>
+          <span class="nav-text-span">Déconnexion</span>
+        </div>
+      </a>
+      {% endif %}
+
+      {% if user.is_authenticated %}
+      <a href="{% url 'profiles:profile' pseudo=user.profile.pseudo  %}" class="nav-profil nav-profil-mobile">
+        <div class="nav-box-profil">
+          <img src="        
+          {% if user.profile.img_profile %}
+          {{ user.profile.img_profile.url }}
+          {% else %}
+          {% static 'home/svg/user.svg' %}
+          {% endif %}" alt="">
+        </div>
+      </a>
+      {% endif %}
+    </ul>
+  </nav>
+
+  <div class="hamburger-nav-profil">
+    <div class="hamburger">
+      <span class="hamburger__bar"></span>
+      <span class="hamburger__bar"></span>
+      <span class="hamburger__bar"></span>
+    </div>
+
+    {% if user.is_authenticated %}
+
+    <a href="{% url 'profiles:profile' pseudo=user.profile.pseudo %}" class="nav-profil nav-profil-ecran">
+      <div class="nav-box-profil">
+        <img src="        
+      {% if user.profile.img_profile %}
+      {{ user.profile.img_profile.url }}
+      {% else %}
+      {% static 'home/svg/user.svg' %}
+      {% endif %}" alt="">
+      </div>
+    </a>
+    {% endif %}
+  </div>
+</div>

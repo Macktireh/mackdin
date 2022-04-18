@@ -1,0 +1,67 @@
+.main-profile-update
+  margin-top: 5.5rem
+  width: 100%
+  background-color: $color4
+  box-shadow: 0 2px 3px 0 $color6
+  border-radius: 8px
+  padding: 1.5rem
+  @extend .flex-center
+  @media screen and (max-width: 500px)
+    padding: 1.5rem 0.5rem
+
+  .update-porfile-container
+    width: 100%
+    max-width: 750px
+    @include flex-el(start, center)
+    flex-direction: column
+    gap: 3rem
+    // border: 1px solid #fff
+    padding: 1rem
+
+    @media screen and (max-width: 500px)
+      padding: 0
+
+    h2
+      text-decoration: underline
+      font-size: 26px
+
+    .form-profile-update
+      width: 100%
+      @include flex-el(start, null)
+      flex-direction: column
+      gap: 1.5rem
+      .container-form-control-profile
+        width: 100%
+
+        input[type="text"], textarea
+          width: 100%
+          padding: 0.8rem
+          border: none
+          outline: none
+          border-radius: 8px
+          background-color: $color1
+          color: $color2
+          font-family: $font1
+          font-size: 16px
+          &:focus
+            border: 1px solid $color3
+
+        a
+          text-decoration: underline
+          transition: .3s ease-out
+          &:hover
+            color: $color3
+
+      input[type="submit"]
+        margin-top: 1rem
+        width: 100%
+        padding: 0.8rem
+        border: none
+        outline: none
+        border-radius: 8px
+        background-color: $color3
+        color: $color2
+        font-family: $font1
+        font-size: 20px
+        &:active
+          transform: scale(0.98)

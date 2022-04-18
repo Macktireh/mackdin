@@ -1,0 +1,44 @@
+.options-btn
+  position: absolute
+  top: 10px
+  right: 8px
+  width: 40px
+  height: 15px
+  @extend .flex-center
+  gap: 4px
+  cursor: pointer
+  #btn-point
+    width: 4px
+    height: 4px
+    background-color: $color2
+    border-radius: 50%
+
+.options-actions-container
+  position: absolute
+  top: 35px
+  right: 8px
+  width: 190px
+  // height: 135px
+  background-color: $color1
+  border-radius: 8px
+  padding: 0.5rem
+  @extend .flex-center
+  transition: 0.5s
+
+  ul
+    @include flex-el(center, null)
+    // @extend .flex-center
+    flex-direction: column
+    gap: 12px
+    .options-item
+      @include flex-el(null, center)
+      gap: 15px
+      transition: 0.4s
+      cursor: pointer
+      img, span
+        opacity: 0.8
+      img
+        width: 30px
+      &:hover
+        img, span
+          opacity: 1

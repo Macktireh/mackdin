@@ -1,0 +1,48 @@
+{% load static %}
+{% load humanize %}
+{% load cloudinary %}
+
+<div class="my-friends-container">
+  {% for obj in qs %}
+
+  {% if request.user in obj.friends.all %}
+  <!-- les utilisateurs pas de relation et pas reçu d'invitation et pas envoyer une invitation -->
+  <div class="container-list-my-friends-profiles">
+    <div class="my-friends-info">
+      <!-- img profile -->
+      <a href="{% url 'profiles:profile' pseudo=obj.pseudo %}">
+        <img src="{% if obj.img_profile %}
+            {{obj.img_profile.url}}
+          {% else %}
+            {% static 'home/img/default-img-profile.jpg' %}
+          {% endif %}" class="my-friends-img-profile">
+      </a>
+
+      <div class="my-friends-box-title">
+        <a href="{% url 'profiles:profile' pseudo=obj.pseudo %}">
+          <strong>{{obj.user.first_name}} {{obj.user.last_name}}</strong>
+          <p>{{obj.bio}}</p>
+        </a>
+        {% if obj.user.last_logout %}
+        <P>
+          {% if obj.user.last_logout > obj.user.last_login %}
+          Connecté {{obj.user.last_logout|naturaltime}}
+          {% else %}
+          Connecté maintenant
+          {% endif %}
+        </P>
+        {% endif %}
+
+      </div>
+    </div>
+
+    <form action="{% url 'friends:remove_invitation' %}" method="POST" class="my-friends-add-friends">
+      {% csrf_token %}
+      <input type="hidden" name="profile_id" value="{{obj.id}}">
+      <a href="{% url 'profiles:profile' pseudo=obj.pseudo %}">Voir le profile</a>
+      <button class="btn-add-friends" type="submit">Supprimer</button>
+    </form>
+  </div>
+  {% endif %}
+  {% endfor %}
+</div>

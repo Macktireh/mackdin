@@ -1,0 +1,60 @@
+{% extends 'base.html' %}
+{% load static %}
+{% load humanize %}
+{% load cloudinary %}
+
+
+{% block title %} Invites {% endblock title %}
+
+
+{% block style %}
+<link rel="shortcut icon" href=" {% static 'home/svg/linkedin-cust.svg' %} " type="image/x-icon">
+<link rel="stylesheet" href=" {% static 'components/css/style.css' %}" />
+<link rel="stylesheet" href=" {% static 'friends/css/style.css' %}" />
+{% endblock style %}
+
+<!-- Navbar -->
+{% block navbar %} {% include 'components/navbar2.html' %} {% endblock navbar %}
+
+
+{% block content %}
+
+<main class="my-network">
+  <div class="container-left">
+    {% include 'friends/components/nav-statistic.html' %}
+  </div>
+
+  <div class="container-right">
+    {% if is_empty %}
+    <h3>{{h3_empty}}</h3>
+    {% else %}
+    <!-- <h3>{{h3}}</h3> -->
+    {% endif %}
+
+    {% if page == "list_not_friends" %}
+    {% include 'friends/components/invites_list_profiles.html' %}
+    {% endif %}
+
+    {% if page == "my_friends" %}
+    {% include 'friends/components/list_myfriends.html' %}
+    {% endif %}
+
+    {% if page == "invitation_received" %}
+    {% include 'friends/components/invitation-received.html' %}
+    {% endif %}
+
+    {% if page == "invitation_send" %}
+    {% include 'friends/components/invitation-send.html' %}
+    {% endif %}
+
+
+  </div>
+</main>
+{% endblock content %}
+
+
+
+{% block js %}
+<script type="text/javascript" src=" {% static 'components/js/index.js' %} "></script>
+<script type="text/javascript" src=" {% static 'notifications/js/notifications.js' %} "></script>
+{% endblock js %}

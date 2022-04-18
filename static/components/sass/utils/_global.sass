@@ -1,0 +1,24 @@
+.flex-center
+  display: flex
+  justify-content: center
+  align-items: center
+
+.flex-column
+  display: flex
+  flex-direction: column
+
+body
+  background: $color1
+  color: $color2
+  font-family: $font1
+  width: 100%
+  @include flex-el(space-between, center)
+  flex-direction: column
+
+.body-container
+  width: 100%
+  max-width: 1150px
+
+@media screen and (max-width:1149px)
+  .body-container
+    padding: 0 1rem 0

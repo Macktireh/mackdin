@@ -1,0 +1,42 @@
+{% load static %}
+{% load humanize %}
+{% load cloudinary %}
+
+<div class="my-friends-container">
+  {% for obj in qs %}
+
+  <!-- {{obj}} -->
+  <div class="container-list-my-friends-profiles">
+    <div class="my-friends-info">
+      <!-- img profile -->
+      <a href="{% url 'profiles:profile' pseudo=obj.receiver.pseudo %}">
+        <img src="
+          {% if obj.receiver.img_profile %}
+            {{obj.receiver.img_profile.url}} 
+          {% else %}
+            {% static 'home/img/default-img-profile.jpg' %}
+          {% endif %}" class="my-friends-img-profile">
+      </a>
+
+      <div class="my-friends-box-title">
+        <a href="{% url 'profiles:profile' pseudo=obj.receiver.pseudo %}">
+          <strong>{{obj.receiver.user.first_name}} {{obj.receiver.user.last_name}}</strong>
+          <p>{{obj.receiver.bio}}</p>
+        </a>
+        {% if obj.date_receiver %}
+        <P>{{obj.date_receiver|naturaltime}}</P>
+        {% endif %}
+
+      </div>
+    </div>
+
+    <div class="container-form-accepted-rejected-invites">
+      <form action="{% url 'friends:cancel_invitation' %}" method="POST" class="my-friends-add-friends">
+        {% csrf_token %}
+        <input type="hidden" name="profile_id" value="{{obj.receiver.id}}">
+        <button class="btn-add-friends btn-rejected-invitation" type="submit">Retirer</button>
+      </form>
+    </div>
+  </div>
+  {% endfor %}
+</div>

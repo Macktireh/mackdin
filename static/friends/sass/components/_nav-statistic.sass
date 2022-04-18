@@ -1,0 +1,26 @@
+main.my-network
+  .container-left
+    .gestion-network
+      padding: 0.8rem
+
+    .container-nav-statistics
+      width: 100%
+      @include flex-el(start, null)
+      flex-direction: column
+      gap: 0.1rem
+
+      a.nav-link-statistc
+        width: 100%
+        padding: 0.8rem 2rem 0.8rem 1rem
+        @include flex-el(space-between, null)
+        cursor: pointer
+        transition: .3s ease-out
+        &:hover
+          background-color: $color6
+
+        span.text
+          &:hover
+            text-decoration: underline
+        span.num
+          color: $color3
+          font-weight: bold

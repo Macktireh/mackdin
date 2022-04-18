@@ -1,0 +1,45 @@
+
+.container-main
+  .container-notif
+    width: 100%
+    height: 100%
+    // padding: 0.5rem 0
+    box-shadow: 0 2px 3px 0 $color6
+    border-radius: 8px
+    background-color: $color4
+    @include flex-el(start, null)
+    flex-direction: column
+    gap: 0.4rem
+
+    .bg_seen
+      // background-color: $color6
+
+    .box-notif
+      // p-left: 1.3rem
+      // margin-right: 0.5rem
+      padding: 1rem 1rem 1rem 1.5rem
+      // box-shadow: 0 2px 3px 0 $color6
+      // border-bottom: 1px solid $color10
+      border-radius: 8px
+      display: grid
+      grid-template-columns: 52px 1fr
+      grid-gap: 0.5rem
+      align-items: center
+      position: relative
+
+      #bg_seen
+        width: 6px
+        height: 6px
+        border-radius: 50%
+        background-color: $color3
+        @include position-abs(50%, null, null, 10px, null, -50%)
+
+      img
+        width: 52px
+        height: 52px
+        border-radius: 50%
+        object-fit: cover
+        object-position: center
+    hr
+      @include hr-el(0, 0, 100%, 0.5px, $color10)
+      // @include hr-el(0.3rem, 0.3rem, 100%, 0.5px, $color10)

@@ -1,0 +1,28 @@
+{% load static %}
+
+<div class="count-likes-comments">
+  <div id="likes-count{{post.id}}">
+
+    <span id="likes-num{{post.id}}">{{post.number_of_like}}</span>
+    <span id="text-plural{{post.id}}">
+      {% if post.number_of_like > 1 %}
+      Likes
+      {% else %}
+      Like
+      {% endif %}
+    </span>
+
+  </div>
+  <div class="comments-count-post" id="comments-count{{post.id}}">
+
+    <span id="comments-num{{post.id}}">{{post.post_comment.count}}</span>
+    <span id="text-plural-comments{{post.id}}">
+      {% if post.post_comment.count > 1 %}
+      commentaires
+      {% else %}
+      commentaire
+      {% endif %}
+    </span>
+
+  </div>
+</div>

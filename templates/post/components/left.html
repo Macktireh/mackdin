@@ -1,0 +1,49 @@
+{% load static %}
+{% load humanize %}
+{% load cloudinary %}
+
+
+<div class="left-sub-container">
+  <div class="left-container-bg-img">
+    <img src="        
+    {% if request.user.profile.img_bg %}
+    {{ request.user.profile.img_bg.url }}
+    {% else %}
+    {% static 'home/img/default-img-bg.jpg' %}
+    {% endif %}" class=left-bg-img />
+  </div>
+
+  <a href="{% url 'profiles:profile' pseudo=request.user.profile.pseudo  %}">
+    <img src="{% if request.user.profile.img_profile %}
+  {{ request.user.profile.img_profile.url }}
+  {% else %}
+  {% static 'home/img/default-img-profile.jpg' %}
+  {% endif %}" class="left-img-profile" />
+  </a>
+
+  <div class="left-container-info">
+    <a href="{% url 'profiles:profile' pseudo=request.user.profile.pseudo  %}">
+      <h4>{{ request.user.first_name }} {{ request.user.last_name }}</h4>
+    </a>
+    <p>{{ request.user.profile.bio }}</p>
+  </div>
+
+  <hr>
+
+  <div class="post-left-statistic-profile">
+    <div class="post-left-num-vue statistic">
+      <span class="post-left-statistic-text">Vues de votre profile</span>
+      <span class="post-left-statistic-num">
+        {% if request.user.profile.number_views %}
+        {{request.user.profile.number_views}}
+        {% else %}
+        0
+        {% endif %}
+      </span>
+    </div>
+    <div class="post-left-num-post statistic">
+      <span class="post-left-statistic-text">Nombre de post</span>
+      <span class="post-left-statistic-num">{{request.user.post.count}}</span>
+    </div>
+  </div>
+</div>

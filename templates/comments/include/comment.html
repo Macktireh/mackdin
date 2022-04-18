@@ -1,0 +1,64 @@
+{% load static %}
+{% load humanize %}
+{% load cloudinary %}
+
+<form title="{{post.id}}"
+  class="form-comment-list-input-container-global {% if not post_detail %} D-none_V-hidden_O-0 {% endif %}"
+  id="form-comment-list-input-container-global{{post.id}}" method="post"
+  action="{% url 'comments:add-update-comment' %}">
+  <div class="form-comment-container-input">
+    {% csrf_token %}
+    <div class="form-content-comment">
+      <img src="        
+        {% if user.profile.img_profile %}
+        {{ user.profile.img_profile.url }}
+        {% else %}
+        {% static 'home/img/default-img-profile.jpg' %}
+        {% endif %}" />
+      <!-- {{form_comment.message}} -->
+      <input type="text" name="message" id="input_message_comment-{{post.id}}" class="input_message_comment_id"
+        autocomplete="off" placeholder="Ajouter un commentaire..." required>
+      <input type="hidden" name="post_id_comment" id="input_hidden_post_comment-{{post.id}}" value="{{post.id}}">
+      <input type="hidden" name="post_id_comment2" id="input_hidden_post_comment2-{{post.id}}" value="">
+    </div>
+    <button class="btn-send-comment" type="submit" name="submit_c_form" title="{{post.id}}">Envoyer</button>
+  </div>
+
+  <div class="container-global-comment-list" id="container-global-comment-list-{{post.id}}">
+    {% for comment in post.post_comment.all %}
+    <div class="container-comment-list" id="container-comment-list{{comment.id}}">
+      {% include 'comments/include/comment_opts.html' %}
+      <a href="{% url 'profiles:profile' pseudo=comment.author.profile.pseudo  %}">
+        <img id="container-comment-list-img-profile" src="        
+      {% if comment.author.profile.img_profile %}
+      {{ comment.author.profile.img_profile.url }}
+      {% else %}
+      {% static 'home/img/default-img-profile.jpg' %}
+      {% endif %}" /></a>
+      <div class="comment-content-box">
+        <div class="comment-info-content">
+          <div class="comment-info-content-I" id="comment-info-content-I-{{post.id}}">
+            <strong>
+              <a href="{% url 'profiles:profile' pseudo=comment.author.profile.pseudo  %}">{{comment.author.first_name}}
+                {{comment.author.last_name}}
+              </a>
+              {% ifequal comment.author comment.post.author %}
+              <span id="author_post_and_comment">Auteur</span>
+              {% endifequal %}
+            </strong>
+            <p id="comment-author-profile-title">{{ comment.author.profile.bio }}</p>
+          </div>
+          <small>{{ comment.date_added|naturaltime }}</small>
+        </div>
+        <div class="comment-text-content">
+          <p class="msg-text-p-{{comment.id}}" id="{{post.id}}">{{ comment.message }}</p>
+        </div>
+      </div>
+    </div>
+    {% endfor %}
+  </div>
+
+  <div class="container-comment-like">
+    <!-- <img src="{% static 'home/svg/like.svg' %}" alt=""> -->
+  </div>
+</form>

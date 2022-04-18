@@ -1,0 +1,165 @@
+main.my-network
+
+  .container-right
+    .my-friends-container
+      padding: 2rem
+      width: 100%
+      @include flex-el(start, null)
+      flex-direction: column
+      gap: 1rem
+      // border: 1px solid #fff
+
+      .container-list-my-friends-profiles
+        width: 100%
+        padding: 0.8rem
+        box-shadow: 0 0px 4px 2px $color1
+        background-color: $color6
+        border-radius: 10px
+        @include flex-el(space-between, null)
+        gap: 1rem
+        transition: .3s ease-out
+
+        .my-friends-info
+          @extend .flex-center
+          gap: 0.5rem
+
+          img.my-friends-img-profile
+            width: 4.5rem
+            height: 4.5rem
+            border-radius: 50%
+            border: 3px solid $color4
+            background-color: $color4
+            object-position: center
+            object-fit: cover
+
+            @media screen and (max-width: 420px)
+              width: 3.5rem
+              height: 3.5rem
+
+          .my-friends-box-title
+            @include flex-el(start, null)
+            flex-direction: column
+            text-align: left
+            max-width: 340px
+
+            p
+              font-size: 15px
+              color: $color9
+              display: -webkit-box
+              -webkit-line-clamp: 1
+              -webkit-box-orient: vertical
+              overflow: hidden
+              text-overflow: ellipsis
+
+            strong
+              display: -webkit-box
+              -webkit-line-clamp: 1
+              -webkit-box-orient: vertical
+              overflow: hidden
+              text-overflow: ellipsis
+              transition: 0.3s ease-out
+              &:hover
+                text-decoration: underline
+
+        form.my-friends-add-friends
+          text-align: center
+          @extend .flex-center
+          gap: 0.5rem
+          button.btn-add-friends, a
+            padding: 0.3rem 0.5rem
+            border: none
+            outline: none
+            font-size: 16px
+            font-family: $font1
+            border-radius: 8px
+            transition: .3s ease-out
+            cursor: pointer
+            width: 8rem
+
+          button.btn-add-friends
+            background-color: $color11
+            color: $color2
+            border: 1px solid $color8
+            &:hover
+              background-color: $color8
+
+          a
+            background-color: $color10
+            color: $color2
+            border: 1px solid $color3
+            &:hover
+              background-color: $color3
+
+          // button.btn-add-friends
+          //   padding: 0.3rem 0.5rem
+          //   border: none
+          //   outline: none
+          //   font-size: 16px
+          //   font-family: $font1
+          //   border-radius: 8px
+          //   transition: .3s ease-out
+          //   cursor: pointer
+
+          button.btn-accepted-invitation
+            background-color: $color10
+            color: $color2
+            border: 1px solid $color3
+            &:hover
+              background-color: $color3
+
+          button.btn-rejected-invitation
+            padding: 0.5rem 1rem
+            background-color: $color1
+            color: $color2
+            border-radius: 8px
+            border: none
+            outline: none
+            &:hover
+              background-color: $color4
+
+          @media screen and (max-width: 420px)
+            flex-direction: column
+            margin: 0 auto
+
+        .container-form-accepted-rejected-invites
+          @extend .flex-center
+          gap: 0.5rem
+
+          @media screen and (max-width: 420px)
+            flex-direction: column
+            margin: 0 auto
+
+          // form.my-friends-add-friends
+
+            // button.btn-add-friends
+            //   padding: 0.3rem 0.5rem
+            //   border: none
+            //   outline: none
+            //   font-size: 16px
+            //   font-family: $font1
+            //   border-radius: 8px
+            //   transition: .3s ease-out
+            //   cursor: pointer
+
+            // button.btn-accepted-invitation
+            //   background-color: $color10
+            //   color: $color2
+            //   border: 1px solid $color3
+            //   &:hover
+            //     background-color: $color3
+
+            // button.btn-rejected-invitation
+            //   padding: 0.5rem 1rem
+            //   background-color: $color1
+            //   color: $color2
+            //   border-radius: 8px
+            //   &:hover
+            //     background-color: $color4
+
+        @media screen and (max-width: 950px) and (min-width: 750px)
+          flex-direction: column
+          align-items: start
+
+        @media screen and (max-width: 655px)
+          flex-direction: column
+          align-items: start

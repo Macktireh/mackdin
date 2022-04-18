@@ -1,0 +1,27 @@
+@mixin hr-el($m-t, $m-b, $width, $color)
+    margin: $m-t auto $m-b
+    width: $width
+    max-width: 3.5rem
+    height: 0.2rem
+    background-color: $color
+    border: none
+    outline: none
+
+@mixin position-abs($top, $right, $bottom, $left, $x, $y)
+    position: absolute
+    top: $top
+    right: $right
+    bottom: $bottom
+    left: $left
+    transform: translateX($x)
+    transform: translateY($y)
+
+@mixin p-el($align, $espace, $size)
+    text-align: $align
+    line-height: $espace
+    font-size: $size
+
+@mixin flex-el($jc, $at)
+    display: flex
+    justify-content: $jc
+    align-items: $at

@@ -1,0 +1,115 @@
+{% extends 'base.html' %}
+{% load static %}
+{% load humanize %}
+{% load cloudinary %}
+
+
+{% block title %} Fil d'actualité {% endblock title %}
+
+{% block style %}
+<link rel="shortcut icon" href=" {% static 'home/svg/linkedin-cust.svg' %} " type="image/x-icon" />
+<link rel="stylesheet" href=" {% static 'components/css/style.css' %}" />
+{% if page == 'notif' %}
+<link rel="stylesheet" href=" {% static 'notifications/css/style.css' %} " />
+{% else %}
+<link rel="stylesheet" href=" {% static 'comments/css/style.css' %} " />
+{% endif %}
+<link rel="stylesheet" href=" {% static 'post/css/style.css' %}" />
+{% endblock style %}
+
+{% block navbar %} {% include 'components/navbar2.html' %} {% endblock navbar %}
+
+
+{% block content %}
+<main class="main-list_post">
+  <div class="container-left">
+    {% include 'post/components/left.html' %}
+  </div>
+
+
+  <div class="container-main">
+    {% if page == 'detail' %}
+
+    {% include 'post/components/post-detail.html' %}
+
+    {% elif page == 'notif' %}
+
+    {% include 'notifications/list-notification.html' %}
+
+    {% else %}
+
+    {% include 'post/components/add_post.html' %}
+    {% for post in posts %}
+    {% include 'post/components/post-detail.html' %}
+    {% endfor %}
+
+    {% endif %}
+    <input type="hidden" id="input_hidden_url_delete_comment" value="{% url 'comments:delete-comment' %}">
+  </div>
+
+
+  <div class="container-right">
+    <ul class="container-aside-1">
+      <h4>Actualités</h4>
+    </ul>
+  </div>
+
+
+</main>
+{% endblock content %}
+
+
+{% comment %}
+{% block footer %} {% include 'components/footer.html' %} {% endblock footer %}
+{% endcomment %}
+
+{% block js %}
+<script type="text/javascript" src=" {% static 'components/js/index.js' %} "></script>
+<script type="text/javascript" src=" {% static 'notifications/js/notifications.js' %} "></script>
+<script type="text/javascript" src=" {% static 'post/js/post_list.js' %} "></script>
+<script type="text/javascript" src=" {% static 'post/js/ajax_like_post.js' %} "></script>
+<script type="text/javascript" src=" {% static 'comments/js/comment_list.js' %} "></script>
+
+<script type="text/javascript" src=" {% static 'post/js/api-news.js' %} "></script>
+
+
+{% comment %}
+{% include 'post/components/ajax_like_post.html' %}
+{% include 'comments/include/ajax_comment.html' %}
+{% endcomment %}
+
+{% if page == 'update' %}
+<script>
+  const previous_container_edit = document.querySelector(
+    ".previous-new-add-post"
+  );
+  const previous_p_img_container_edit =
+    document.querySelector(".previous-post-img");
+
+  previous_container_edit.classList.remove("display-none");
+  previous_container_edit.classList.add("display-block");
+
+  previous_p_img_container_edit.classList.remove("display-none");
+  previous_p_img_container_edit.classList.add("display-block");
+</script>
+{% endif %}
+{% if page == 'list' %}
+<script>
+  try {
+    // Close image previous
+    const close_previous_p_img_container = document.querySelector(".previous-post-img");
+    const close_input_img = document.querySelector(".form-input-file");
+    const close_p_img = document.getElementById("previous-post-image");
+    const closed_img_previous = document.getElementById("close-img-previous");
+
+    closed_img_previous.addEventListener("click", (e) => {
+      close_previous_p_img_container.classList.remove("display-none");
+      close_previous_p_img_container.classList.remove("display-block");
+      close_input_img.value = ''
+      close_p_img.setAttribute("src", "");
+    })
+  } catch (error) { }
+</script>
+{% endif %}
+
+{% endblock js %}
