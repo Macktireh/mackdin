@@ -23,6 +23,7 @@ urlpatterns = [
     path('comment/', include('apps.comments.urls')),
     path('mynetwork/', include('apps.friends.urls')),
     path('notifications/', include('apps.notifications.urls')),
+    path('messagerie/', include('apps.chat.urls')),
 ]
 
 if os.environ.get('DEV', 'prod') == 'dev':

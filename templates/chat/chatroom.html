@@ -1,0 +1,24 @@
+{% extends 'base.html' %}
+{% load static %}
+{% load humanize %}
+{% load cloudinary %}
+
+{% block title %} Messagerie {% endblock title %}
+
+{% block style %}
+<link rel="shortcut icon" href=" {% static 'home/svg/linkedin-cust.svg' %} " type="image/x-icon" />
+<link rel="stylesheet" href=" {% static 'components/css/style.css' %}" />
+{% endblock style %}
+
+{% block navbar %} {% include 'components/navbar2.html' %} {% endblock navbar %}
+
+{% block content %}
+<div class="d" style="margin: 100px auto; display: flex;">
+    <h1>chat</h1>
+</div>
+{% endblock content %}
+
+{% block js %}
+<script type="text/javascript" src=" {% static 'components/js/index.js' %} "></script>
+<script type="text/javascript" src=" {% static 'notifications/js/notifications.js' %} "></script>
+{% endblock js %}
