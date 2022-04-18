@@ -78,4 +78,10 @@ a:visited {
   outline: none;
 }
 
+@media screen and (max-width: 730px) {
+  main.main-list_post .container-left {
+    display: none;
+  }
+}
+
 /*# sourceMappingURL=style.css.map */

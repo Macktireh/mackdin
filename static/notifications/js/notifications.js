@@ -1,5 +1,5 @@
 const notif_alerte = document.getElementById("nav-nofit-alert");
-const url = "http://127.0.0.1:8000/notifications/data/";
+const url = "/notifications/data/";
 let data;
 
 const api_notif = async () => {
@@ -32,6 +32,10 @@ const api_notif = async () => {
 
 document.addEventListener("DOMContentLoaded", () => {
   setInterval(() => {
-    api_notif();
+    try {
+      api_notif();
+    } catch (error) {
+      api_notif();
+    }
   }, 3000);
 });

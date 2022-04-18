@@ -1,4 +1,5 @@
 
+import os
 from django.contrib import admin
 from django.urls import path, include, re_path
 from django.conf import settings
@@ -22,13 +23,13 @@ urlpatterns = [
     path('comment/', include('apps.comments.urls')),
     path('mynetwork/', include('apps.friends.urls')),
     path('notifications/', include('apps.notifications.urls')),
-    
-    # urls api
-    # path('api/', include('apps.profiles.api.urls')),
 ]
 
-if settings.DEBUG:
-    urlpatterns += static(settings.MEDIA_URL, document_root=settings.MEDIA_ROOT)
+if os.environ.get('DEV', 'prod') == 'dev':
+    if settings.DEBUG:
+        urlpatterns += static(settings.MEDIA_URL, document_root=settings.MEDIA_ROOT)
+    else:
+        urlpatterns += [re_path(r'^mediafiles/(?P<path>.*)$', serve, {'document_root': settings.MEDIA_ROOT}),]
     import debug_toolbar
     urlpatterns += [
         path('api/', include('apps.profiles.api.urls')),
@@ -38,10 +39,3 @@ if settings.DEBUG:
     ]
 else:
     urlpatterns += [re_path(r'^mediafiles/(?P<path>.*)$', serve, {'document_root': settings.MEDIA_ROOT}),]
-
-# print()
-# print()
-# for u in urlpatterns: 
-#     print(u)
-# print()
-# print()

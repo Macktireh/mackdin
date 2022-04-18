@@ -9,12 +9,13 @@
 {% block style %}
 <link rel="shortcut icon" href=" {% static 'home/svg/linkedin-cust.svg' %} " type="image/x-icon" />
 <link rel="stylesheet" href=" {% static 'components/css/style.css' %}" />
-{% if page == 'notif' %}
-<link rel="stylesheet" href=" {% static 'notifications/css/style.css' %} " />
-{% else %}
+{% if page != 'notif' %}
 <link rel="stylesheet" href=" {% static 'comments/css/style.css' %} " />
 {% endif %}
 <link rel="stylesheet" href=" {% static 'post/css/style.css' %}" />
+{% if page == 'notif' %}
+<link rel="stylesheet" href=" {% static 'notifications/css/style.css' %} " />
+{% endif %}
 {% endblock style %}
 
 {% block navbar %} {% include 'components/navbar2.html' %} {% endblock navbar %}

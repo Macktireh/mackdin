@@ -8,4 +8,4 @@ media
 fonts
 node_modules
 staticfiles
-logs
+logs.log

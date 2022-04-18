@@ -32,9 +32,9 @@ load = load_dotenv(os.path.join(BASE_DIR, '.env'))
 SECRET_KEY = os.environ.get('SECRET_KEY')
 
 # SECURITY WARNING: don't run with debug turned on in production!
-DEBUG = False if os.environ.get('ENV', 'development') == 'production' else True
+DEBUG = False if os.environ.get('ENV', 'dev') == 'production' else True
 
-ALLOWED_HOSTS = os.environ.get('ALLOWED_HOSTS').split(" ") if os.environ.get('ALLOWED_HOSTS', []) != [] else []
+ALLOWED_HOSTS = os.environ.get('ALLOWED_HOSTS').split(" ") if os.environ.get('ALLOWED_HOSTS', []) != [] else ["127.0.0.1", "localhost"]
 
 # Application definition
 DJANGO_APPS = [
@@ -48,7 +48,6 @@ DJANGO_APPS = [
 ]
 
 THIRD_PARTY_APPS = [
-    'django_extensions',
     'cloudinary',
     'rest_framework',
 ]
@@ -113,17 +112,7 @@ WSGI_APPLICATION = 'config.wsgi.application'
 
 
 # config database production settings
-if DEBUG:
-    # DATABASES = {
-    #     'default': {
-    #         'ENGINE': os.environ.get('ENGINE'),
-    #         'NAME': os.environ.get('POSTGRES_DB'),
-    #         'USER': os.environ.get('POSTGRES_USER'),
-    #         'PASSWORD': os.environ.get('POSTGRES_PASSWORD'),
-    #         'HOST': os.environ.get('POSTGRES_HOST'),
-    #         'PORT': os.environ.get('POSTGRES_PORT'),
-    #     }
-    # }
+if os.environ.get('DEV', 'prod') == 'dev':
     DATABASES = {
         'default': {
             'ENGINE': 'django.db.backends.sqlite3',
@@ -208,10 +197,11 @@ cloudinary.config(
 )
 
 
-# Django Debug Toolbar
+# # Django Debug Toolbar
 if DEBUG:
     INSTALLED_APPS += [
         'debug_toolbar',
+        'django_extensions',
     ]
     MIDDLEWARE = ['debug_toolbar.middleware.DebugToolbarMiddleware'] + list(MIDDLEWARE)
     INTERNAL_IPS = ['127.0.0.1']
@@ -243,6 +233,9 @@ logger = logging.getLogger(__name__)
 
 LOG_LEVEL = "INFO"
 
+DIR_LOGS = "logs/logs.log" if os.environ.get('DEV', 'prod') == 'dev' else "logs.log"
+# DIR_LOGS = "logs.log"
+
 logging.config.dictConfig(
     {
         "version": 1,
@@ -263,7 +256,7 @@ logging.config.dictConfig(
                 "level": "INFO",
                 "class": "logging.FileHandler",
                 "formatter": "file",
-                "filename": "logs/logs.log",
+                "filename": DIR_LOGS,
             },
             "django.server": DEFAULT_LOGGING["handlers"]["django.server"],
         },
