@@ -1,3 +1,7 @@
+import locale
+locale.setlocale(locale.LC_ALL, 'fr_FR.utf8')
+
+from django.http import HttpResponseNotFound, JsonResponse
 from django.shortcuts import render, get_object_or_404
 from django.contrib.auth.decorators import login_required
 from django.contrib.auth import get_user_model
@@ -5,15 +9,19 @@ from django.db.models import Q
 
 User = get_user_model()
 from apps.chat.models import Messenger
+from apps.profiles.models import Profile
 
 
 @login_required(login_url='sign_in')
 def chatroom(request, id):
-    other_user = get_object_or_404(User, pk=id)
+    try:
+        other_user = Profile.objects.select_related('user').get(user=id)
+    except:
+        return HttpResponseNotFound('<h1>Page not found</h1>')
     current_user = request.user
-    qs = Messenger.objects.filter(
-        Q(reciever=current_user, sender=other_user) | Q(reciever=other_user, sender=current_user)
-    )
+    
+    qs = Messenger.objects.messages(current_user, other_user.user)
+    qs.update(seen=True)
     
     template = 'chat/chatroom.html'
     context = {
@@ -21,3 +29,37 @@ def chatroom(request, id):
         'other_user': other_user,
     }
     return render(request, template, context=context)
+
+
+@login_required(login_url='sign_in')
+def ajax_load_messages(request, id):
+    try:
+        other_user = Profile.objects.select_related('user').get(user=id)
+    except:
+        return HttpResponseNotFound('<h1>Page not found</h1>')
+    current_user = request.user
+        
+    qs = Messenger.objects.filter(seen=False).filter(
+                Q(reciever=current_user, sender=other_user.user)
+            )
+    
+    data = []
+    for obj in qs:
+        item = {
+            'msg': obj.message,
+            'date_created': obj.date_created.strftime('%d %B %Y %H:%M').lower(),
+            'sent': 'right' if obj.sender == current_user else 'left',
+        }
+        data.append(item)
+    qs.update(seen=True)
+    
+    if request.method == 'POST':
+        msg = request.POST.get("msg")
+        new_msg = Messenger.objects.create(sender=current_user, reciever=other_user.user, message=msg)
+        data.append({
+            'msg': new_msg.message,
+            'date_created': new_msg.date_created.strftime('%d %B %Y %H:%M').lower(),
+            'sent': 'right',
+        })
+        
+    return JsonResponse({'data': data})

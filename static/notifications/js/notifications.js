@@ -37,5 +37,5 @@ document.addEventListener("DOMContentLoaded", () => {
     } catch (error) {
       api_notif();
     }
-  }, 3000);
+  }, 5000);
 });
