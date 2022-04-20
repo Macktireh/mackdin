@@ -1,3 +1,4 @@
+git
 .venv
 .vscode
 .env
@@ -8,4 +9,5 @@ media
 fonts
 node_modules
 staticfiles
+mediafiles
 logs.log

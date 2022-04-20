@@ -53,10 +53,12 @@
     .box-message-left,
     .box-message-right
       display: flex
+      flex-direction: column
 
       .msg
-        @include flex-el(start, null)
-        flex-direction: column
+        // @include flex-el(start, null)
+        // flex-direction: column
+        display: block
 
         p
           padding: 0.5rem
@@ -64,19 +66,24 @@
           box-shadow: 0 2px 3px 0 $color6
           border-radius: 8px
           background-color: $color6
+          max-width: 90%
+          display: inline-block
 
         em
+          display: block
           margin-left: 5px
           font-size: 11px
 
     .box-message-left
-      justify-content: start
+      // align-items: start
+      text-align: left
       .msg
         em
           margin-left: 5px
 
     .box-message-right
-      justify-content: end
+      // align-items: end
+      text-align: right
       .msg
         em
           margin-right: 5px
@@ -128,10 +135,3 @@
     @media screen and (max-width:430px)
       grid-template-columns: 1fr 3rem
       padding: 0 0.5rem
-    //   img
-    //     width: 40px
-    // @media screen and (max-width:880px)
-    //   grid-template-columns: 1fr 5rem
-    //   padding: 0 0.5rem
-    //   img
-    //     width: 40px

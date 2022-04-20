@@ -356,12 +356,11 @@ hr {
 .container-main .main-chat .box-message-left,
 .container-main .main-chat .box-message-right {
   display: flex;
+  flex-direction: column;
 }
 .container-main .main-chat .box-message-left .msg,
 .container-main .main-chat .box-message-right .msg {
-  display: flex;
-  justify-content: start;
-  flex-direction: column;
+  display: block;
 }
 .container-main .main-chat .box-message-left .msg p,
 .container-main .main-chat .box-message-right .msg p {
@@ -370,20 +369,23 @@ hr {
   box-shadow: 0 2px 3px 0 #0000001a;
   border-radius: 8px;
   background-color: #0000001a;
+  max-width: 90%;
+  display: inline-block;
 }
 .container-main .main-chat .box-message-left .msg em,
 .container-main .main-chat .box-message-right .msg em {
+  display: block;
   margin-left: 5px;
   font-size: 11px;
 }
 .container-main .main-chat .box-message-left {
-  justify-content: start;
+  text-align: left;
 }
 .container-main .main-chat .box-message-left .msg em {
   margin-left: 5px;
 }
 .container-main .main-chat .box-message-right {
-  justify-content: end;
+  text-align: right;
 }
 .container-main .main-chat .box-message-right .msg em {
   margin-right: 5px;
