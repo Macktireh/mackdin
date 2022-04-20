@@ -1,6 +1,3 @@
-import locale
-locale.setlocale(locale.LC_ALL, 'fr_FR.utf8')
-
 from django.http import HttpResponseNotFound, JsonResponse
 from django.shortcuts import redirect, render, get_object_or_404
 from django.contrib.auth.decorators import login_required
@@ -11,6 +8,21 @@ User = get_user_model()
 from apps.chat.models import Messenger
 from apps.profiles.models import Profile
 
+
+def parserdate(date):
+    date = date.replace('jan', 'janv')
+    date = date.replace('feb', 'févr')
+    date = date.replace('mar', 'mars')
+    date = date.replace('apr', 'avr')
+    date = date.replace('may', 'mai')
+    date = date.replace('jun', 'juin')
+    date = date.replace('jul', 'juill')
+    date = date.replace('aug', 'août')
+    date = date.replace('sep', 'sept')
+    date = date.replace('oct', 'oct')
+    date = date.replace('nov', 'nov')
+    date = date.replace('dec', 'déc')
+    return date
 
 @login_required(login_url='sign_in')
 def chat_view(request):
@@ -65,7 +77,7 @@ def ajax_load_messages(request, id):
     for obj in qs:
         item = {
             'msg': obj.message,
-            'date_created': obj.date_created.strftime('%d %B %Y %H:%M').lower(),
+            'date_created': parserdate(obj.date_created.strftime('%d %b %Y %H:%M').lower()),
             'sent': 'right' if obj.sender == current_user else 'left',
         }
         data.append(item)
@@ -76,7 +88,7 @@ def ajax_load_messages(request, id):
         new_msg = Messenger.objects.create(sender=current_user, reciever=other_user.user, message=msg)
         data.append({
             'msg': new_msg.message,
-            'date_created': new_msg.date_created.strftime('%d %B %Y %H:%M').lower(),
+            'date_created': parserdate(new_msg.date_created.strftime('%d %b %Y %H:%M').lower()),
             'sent': 'right',
         })
         

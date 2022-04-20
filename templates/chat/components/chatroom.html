@@ -37,7 +37,7 @@
   <div class="box-message-{% if chat.sender == request.user %}right{% else %}left{% endif %}">
     <div class="msg">
       <p>{{ chat.message }}</p>
-      <em>{{ chat.date_created }}</em>
+      <em>{{ chat.date_created|date:"d b Y H:i" }}</em>
     </div>
   </div>
   {% endfor %}

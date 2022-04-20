@@ -345,7 +345,7 @@ hr {
 .container-main .main-chat {
   width: 100%;
   padding: 1rem 3rem;
-  max-height: 62vh;
+  height: 62vh;
   overflow: hidden;
   overflow-y: scroll;
   display: flex;
