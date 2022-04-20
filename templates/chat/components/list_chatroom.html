@@ -1,0 +1,29 @@
+{% load static %}
+{% load humanize %}
+{% load cloudinary %}
+
+
+<a href="{% url 'chats:chatroom' id=obj.id %}">
+  <div class="my-friends-info">
+    <img src="{% if obj.profile.img_profile %}
+          {{obj.profile.img_profile.url}}
+        {% else %}
+          {% static 'home/img/default-img-profile.jpg' %}
+        {% endif %}" class="my-friends-img-profile">
+
+    <div class="my-friends-box-title">
+      <strong>{{obj.first_name}} {{obj.last_name}}</strong>
+      <p>{{obj.profile.bio}}</p>
+      {% if obj.last_logout %}
+      <P>
+        {% if obj.last_logout > obj.last_login %}
+        Connecté {{obj.last_logout|naturaltime}}
+        {% else %}
+        Connecté maintenant
+        {% endif %}
+      </P>
+      {% endif %}
+    </div>
+  </div>
+</a>
+<hr>

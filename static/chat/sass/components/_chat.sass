@@ -1,0 +1,54 @@
+main.messagerie
+  margin-top: 5.5rem
+  width: 100%
+  @include flex-el(space-between, null)
+  gap: 2rem
+  position: relative
+
+  .container-left, .container-left-chat
+    box-shadow: 0 2px 3px 0 $color6
+    border-radius: 8px
+    @include flex-el(start, start)
+    flex-direction: column
+    background-color: $color4
+    position: sticky
+    left: 0
+    top: 87px
+
+  .container-left
+    width: 28%
+    height: 325px
+    gap: 1rem
+
+  .container-left-chat
+    width: 50%
+    padding: 0.5rem
+    max-height: 60vh
+    overflow: hidden
+    overflow-y: scroll
+    @include flex-el(start, start)
+
+  .container-main
+    width: 100%
+    box-shadow: 0 2px 3px 0 $color6
+    border-radius: 8px
+    background-color: $color4
+    @include flex-el(start, start)
+    flex-direction: column
+    padding: 0.5rem
+
+  @media screen and (max-width:980px)
+    .container-left
+      width: 40%
+    .container-left-chat
+      width: 60%
+    // .container-main
+    //   width: 70%
+
+  @media screen and (max-width:730px)
+    flex-direction: column
+    align-items: center
+    .container-left, .container-left-chat
+      display: none
+    .container-main
+      padding: 0.5rem

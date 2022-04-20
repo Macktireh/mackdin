@@ -1,0 +1,55 @@
+{% extends 'base.html' %}
+{% load static %}
+{% load humanize %}
+{% load cloudinary %}
+
+{% block title %} Messagerie {% endblock title %}
+
+{% block style %}
+<link rel="shortcut icon" href=" {% static 'home/svg/linkedin-cust.svg' %} " type="image/x-icon" />
+<link rel="stylesheet" href=" {% static 'components/css/style.css' %}" />
+<!-- <link rel="stylesheet" href=" {% static 'post/css/style.css' %}" /> -->
+<link rel="stylesheet" href=" {% static 'chat/css/style.css' %}" />
+{% endblock style %}
+
+{% block navbar %} {% include 'home/components/navbar2.html' %} {% endblock navbar %}
+
+{% block content %}
+<main class="messagerie">
+  <div class="container-left{% if page != 'list_chatroom' %}-chat{% endif %}">
+    {% if page == 'list_chatroom' %}
+
+    {% include 'post/components/left.html' %}
+
+    {% else %}
+
+    {% for obj in qs.friends.all %}
+    {% include 'chat/components/list_chatroom.html' %}
+    {% endfor %}
+
+    {% endif %}
+  </div>
+
+  <div class="container-main">
+    {% if page == 'list_chatroom' %}
+
+    {% for obj in qs.friends.all %}
+    {% include 'chat/components/list_chatroom.html' %}
+    {% endfor %}
+
+    {% else %}
+
+    {% include 'chat/components/chatroom.html' %}
+
+    {% endif %}
+  </div>
+</main>
+{% endblock content %}
+
+{% block js %}
+<script type="text/javascript" src=" {% static 'components/js/index.js' %} "></script>
+<script type="text/javascript" src=" {% static 'notifications/js/notifications.js' %} "></script>
+{% if page != 'list_chatroom' %}
+<script type="text/javascript" src=" {% static 'chat/js/chatroom.js' %} "></script>
+{% endif %}
+{% endblock js %}

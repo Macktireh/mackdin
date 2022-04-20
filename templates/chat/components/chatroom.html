@@ -1,0 +1,52 @@
+{% load static %}
+{% load humanize %}
+{% load cloudinary %}
+
+
+<div class="header-chat">
+  <a href="{% url 'chats:chat' %}">
+    <img id="back-chat" src="{% static 'home/svg/back.svg'%}">
+  </a>
+  <a href="{% url 'profiles:profile' pseudo=other_user.pseudo %}">
+    <img id="img-profile" src="{% if other_user.img_profile %}
+        {{ other_user.img_profile.url }}
+        {% else %}
+        {% static 'home/img/default-img-profile.jpg' %}
+        {% endif %}">
+  </a>
+  <a href="{% url 'profiles:profile' pseudo=other_user.pseudo %}">
+    <div class="info">
+      <strong>
+        {{other_user.user.first_name}} {{other_user.user.last_name}}
+      </strong>
+      {% if other_user.user.last_logout %}
+      <P>
+        {% if other_user.user.last_logout > other_user.user.last_login %}
+        Connecté {{other_user.user.last_logout|naturaltime}}
+        {% else %}
+        Connecté maintenant
+        {% endif %}
+      </P>
+      {% endif %}
+    </div>
+  </a>
+</div>
+
+<div class="main-chat">
+  {% for chat in qs_m %}
+  <div class="box-message-{% if chat.sender == request.user %}right{% else %}left{% endif %}">
+    <div class="msg">
+      <p>{{ chat.message }}</p>
+      <em>{{ chat.date_created }}</em>
+    </div>
+  </div>
+  {% endfor %}
+</div>
+
+<form action="" method="POST" id="form-chat">
+  <input type="hidden" value="{{other_user.user.id}}" id="other_user_id">
+  <textarea id="chat-textarea-msg" required></textarea>
+  <button type="submit" id="chat-btn-send-msg">
+    <img src="{% static 'home/svg/send.svg' %}">
+  </button>
+</form>

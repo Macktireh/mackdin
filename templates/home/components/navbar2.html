@@ -40,7 +40,7 @@
           <span class="nav-text-span">Réseau</span>
         </div>
       </a>
-      <a href="" class="nav-item">
+      <a href="{% url 'chats:chat' %}" class="nav-item">
         <div class="nav-text">
           <img class="nav-img" src="{% static 'home/svg/chat.svg' %}" alt="">
           <span class="animation {% if start_animation == 'chat' %}start-animation{% endif %}"></span>
@@ -58,7 +58,7 @@
       {% if user.is_superuser %}
       <a href="{% url 'admin:index' %}" class="nav-item" target="_blank">
         <div class="nav-text">
-          <img class="nav-img" src="{% static 'home/svg/contact.svg' %}" alt="">
+          <img class="nav-img" src="{% static 'home/svg/admin.svg' %}" alt="">
           <span class="animation {% if start_animation == 'admin' %}start-animation{% endif %}}"></span>
           <span class="nav-text-span">Administration</span>
         </div>

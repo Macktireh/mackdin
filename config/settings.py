@@ -37,7 +37,6 @@ DJANGO_APPS = [
 
 THIRD_PARTY_APPS = [
     'cloudinary',
-    'rest_framework',
 ]
 
 LOCAL_APPS = [
@@ -190,6 +189,7 @@ if DEBUG:
     INSTALLED_APPS += [
         'debug_toolbar',
         'django_extensions',
+        'rest_framework',
     ]
     MIDDLEWARE = ['debug_toolbar.middleware.DebugToolbarMiddleware'] + list(MIDDLEWARE)
     INTERNAL_IPS = ['127.0.0.1']

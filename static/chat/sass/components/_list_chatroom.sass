@@ -1,0 +1,44 @@
+.my-friends-info
+  @extend .flex-center
+  gap: 0.5rem
+
+  img.my-friends-img-profile
+    width: 4.5rem
+    height: 4.5rem
+    border-radius: 50%
+    border: 3px solid $color4
+    background-color: $color4
+    object-position: center
+    object-fit: cover
+
+    @media screen and (max-width: 420px)
+      width: 3.5rem
+      height: 3.5rem
+
+    .my-friends-box-title
+      @include flex-el(start, null)
+      flex-direction: column
+      text-align: left
+      max-width: 340px
+
+      p
+        font-size: 15px
+        color: $color9
+        display: -webkit-box
+        -webkit-line-clamp: 1
+        -webkit-box-orient: vertical
+        overflow: hidden
+        text-overflow: ellipsis
+
+        strong
+          display: -webkit-box
+          -webkit-line-clamp: 1
+          -webkit-box-orient: vertical
+          overflow: hidden
+          text-overflow: ellipsis
+          transition: 0.3s ease-out
+          &:hover
+            text-decoration: underline
+
+hr
+  @include hr-el(5px, 5px, 100%, 1px, $color6)

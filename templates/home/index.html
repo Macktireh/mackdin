@@ -11,7 +11,7 @@
 <link rel="stylesheet" href=" {% static 'home/css/style.css' %} " />
 {% endblock style %}
 
-{% block navbar %} {% include 'components/navbar-home.html' %} {% endblock navbar %}
+{% block navbar %} {% include 'home/components/navbar-home.html' %} {% endblock navbar %}
 
 {% block content %}
 <main class="main-home">
@@ -41,7 +41,7 @@
 </main>
 {% endblock content %}
 
-{% block footer %} {% include 'components/footer.html' %} {% endblock footer %}
+{% block footer %} {% include 'home/components/footer.html' %} {% endblock footer %}
 
 {% block js %}
 <script type="text/javascript" src=" {% static 'components/js/index.js' %} "></script>
