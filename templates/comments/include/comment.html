@@ -21,7 +21,9 @@
       <input type="hidden" name="post_id_comment" id="input_hidden_post_comment-{{post.id}}" value="{{post.id}}">
       <input type="hidden" name="post_id_comment2" id="input_hidden_post_comment2-{{post.id}}" value="">
     </div>
-    <button class="btn-send-comment" type="submit" name="submit_c_form" title="{{post.id}}">Envoyer</button>
+    <button class="btn-send-comment" type="submit" name="submit_c_form" title="{{post.id}}">
+      <img src="{% static 'home/svg/send.svg' %}">
+    </button>
   </div>
 
   <div class="container-global-comment-list" id="container-global-comment-list-{{post.id}}">

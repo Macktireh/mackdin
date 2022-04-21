@@ -1,28 +1,44 @@
 {% load static %}
 {% load humanize %}
 {% load cloudinary %}
+{% load chat %}
 
 
-<a href="{% url 'chats:chatroom' id=obj.id %}">
-  <div class="my-friends-info">
-    <img src="{% if obj.profile.img_profile %}
+<a class="my-friends-info-link" href="{% url 'chats:chatroom' id=obj.id %}">
+  <div class="my-friends-info-container">
+    <div class="my-friends-info">
+      <img src="{% if obj.profile.img_profile %}
           {{obj.profile.img_profile.url}}
         {% else %}
           {% static 'home/img/default-img-profile.jpg' %}
         {% endif %}" class="my-friends-img-profile">
 
-    <div class="my-friends-box-title">
-      <strong>{{obj.first_name}} {{obj.last_name}}</strong>
-      <!-- <p>{{obj.profile.bio}}</p> -->
-      {% if obj.last_logout %}
-      <P>
-        {% if obj.last_logout > obj.last_login %}
-        Connecté {{obj.last_logout|naturaltime}}
-        {% else %}
-        Connecté maintenant
+      <div class="my-friends-box-title">
+        <strong>{{obj.first_name}} {{obj.last_name}}</strong>
+        {% for last_msg in last_msgs %}
+        {% if obj.id == last_msg.sender_id %}
+        {% if last_msg.seen == 'non' %}<span id="msg-not-seen"></span>{% endif %}
+        <p id="last_msg" class="{% if last_msg.seen == 'non' %}msg-not-seen{% endif %}">
+          {{last_msg.msg}}
+        </p>
+        {% elif obj.id == last_msg.reciever_id %}
+        <p id="last_msg">
+          Vous: {{last_msg.msg}}
+        </p>
         {% endif %}
-      </P>
+        {% endfor %}
+      </div>
+    </div>
+
+    <div class="date_created_last_msg">
+      {% for last_msg in last_msgs %}
+      {% if obj.id == last_msg.sender_id or obj.id == last_msg.reciever_id %}
+      <p id="last_msg_date"
+        class="{% if last_msg.seen == 'non' and obj.id == last_msg.sender_id %}msg-not-seen{% endif %}">
+        {{last_msg.date_created|parsedate}}
+      </p>
       {% endif %}
+      {% endfor %}
     </div>
   </div>
 </a>

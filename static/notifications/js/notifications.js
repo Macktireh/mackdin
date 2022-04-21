@@ -1,8 +1,8 @@
 const notif_alerte = document.getElementById("nav-nofit-alert");
-const url = "/notifications/data/";
+const notif_alerte_chat = document.getElementById("nav-nofit-alert-chat");
 let data;
 
-const api_notif = async () => {
+const api_notif = async (url, element) => {
   const api = await fetch(url, {
     method: "GET",
   })
@@ -12,17 +12,12 @@ const api_notif = async () => {
       data = response.data;
       // console.log(data);
       if (data.filter((notif) => notif.seen === false).length > 0) {
-        // notif_alerte.style.visibility = "visible";
-
-        notif_alerte.textContent = data.filter(
+        element.textContent = data.filter(
           (notif) => notif.seen === false
         ).length;
-        notif_alerte.style.display = "flex";
+        element.style.display = "flex";
       } else {
-        // notif_alerte.classList.remove("display-none");
-        // notif_alerte.style.visibility = "hidden";
-        notif_alerte.style.display = "none";
-        // notif_alerte.style.zIndex = "-1";
+        element.style.display = "none";
       }
     })
     .catch();
@@ -33,9 +28,15 @@ const api_notif = async () => {
 document.addEventListener("DOMContentLoaded", () => {
   setInterval(() => {
     try {
-      api_notif();
+      api_notif("/notifications/data/", notif_alerte);
+      setTimeout(() => {
+        api_notif("/messagerie/chat-api-notif/", notif_alerte_chat);
+      }, 3000);
     } catch (error) {
-      api_notif();
+      api_notif("/notifications/data/", notif_alerte);
+      setTimeout(() => {
+        api_notif("/messagerie/chat-api-notif/", notif_alerte_chat);
+      }, 5000);
     }
-  }, 5000);
+  }, 10000);
 });

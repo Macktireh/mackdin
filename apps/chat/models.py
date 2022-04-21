@@ -29,9 +29,13 @@ class Messenger(models.Model):
     reciever = models.ForeignKey(User, related_name='reciever_msg', on_delete=models.CASCADE)
     message = models.TextField()
     seen = models.BooleanField(default=False)
+    sent = models.BooleanField(default=False)
     date_created = models.DateTimeField(auto_now_add=True)
     
     objects = MessengerManager()
     
     def __str__(self):
         return f"CHAT sender: {self.sender.first_name} | reciever: {self.reciever.first_name}"
+    
+    def get_messages(self):
+        return f"{self.message}"

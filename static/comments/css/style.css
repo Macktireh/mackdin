@@ -53,9 +53,8 @@ a:visited {
 }
 .form-comment-list-input-container-global .form-comment-container-input {
   width: 100%;
-  display: flex;
-  align-items: end;
-  flex-direction: column;
+  display: grid;
+  grid-template-columns: 1fr 45px;
   padding: 0.5rem;
   gap: 0.1rem;
 }
@@ -96,7 +95,6 @@ a:visited {
   outline: none;
   border: none;
   border-radius: 10px;
-  width: 80px;
   color: #f1f1f1;
 }
 .form-comment-list-input-container-global .container-global-comment-list {

@@ -24,10 +24,11 @@
   .form-comment-container-input
     width: 100%
     // height: 3.5rem
-    // display: grid
+    display: grid
     // grid-template-columns: 25% 75%
-    @include flex-el(null, end)
-    flex-direction: column
+    grid-template-columns: 1fr 45px
+    // @include flex-el(null, end)
+    // flex-direction: column
     padding: 0.5rem
     gap: 0.1rem
     // border: 1px solid $color2
@@ -67,7 +68,6 @@
       outline: none
       border: none
       border-radius: 10px
-      width: 80px
       color: $color2
 
   .container-global-comment-list

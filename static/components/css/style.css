@@ -140,7 +140,8 @@ nav ul a .start-animation {
 a.nav-nofit {
   position: relative;
 }
-a.nav-nofit span#nav-nofit-alert {
+a.nav-nofit span#nav-nofit-alert,
+a.nav-nofit span#nav-nofit-alert-chat {
   width: 15px;
   height: 15px;
   padding: 8px;
@@ -208,7 +209,8 @@ nav ul a:hover {
     gap: 5px;
   }
 
-  a.nav-nofit span#nav-nofit-alert {
+  a.nav-nofit span#nav-nofit-alert,
+a.nav-nofit span#nav-nofit-alert-chat {
     position: absolute;
     top: 30%;
     left: 52%;
@@ -277,7 +279,8 @@ nav ul a:hover {
     left: 0;
   }
 
-  a.nav-nofit span#nav-nofit-alert {
+  a.nav-nofit span#nav-nofit-alert,
+a.nav-nofit span#nav-nofit-alert-chat {
     position: absolute;
     top: 17%;
     left: 52%;

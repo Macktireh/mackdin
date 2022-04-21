@@ -25,15 +25,48 @@ def parserdate(date):
     return date
 
 @login_required(login_url='sign_in')
+def chat_api_view(request):
+    qs = Profile.objects.select_related('user').get(user=request.user)
+    data = []
+    for obj in qs.friends.all():
+        last_msgs = Messenger.objects.filter(reciever=request.user, sender=obj)
+        data += [{
+            'id': msg.id,
+            'message': msg.message,
+            'seen': msg.seen,
+            'sender': msg.sender.first_name,
+            'reciever': msg.reciever.first_name,
+        } for msg in last_msgs]
+    
+    return JsonResponse({'data': data})
+
+
+
+@login_required(login_url='sign_in')
 def chat_view(request):
     qs = Profile.objects.select_related('user').get(user=request.user)
-    # last_msg = Messenger.objects.last()
-
+    
+    last_msgs = []
+    for obj in qs.friends.all():
+        last_msg = Messenger.objects.filter(
+            Q(reciever=request.user, sender=obj) | Q(reciever=obj, sender=request.user)
+        ).last()
+        last_msgs.append({
+            'sender_id': last_msg.sender.id,
+            'reciever_id': last_msg.reciever.id,
+            'msg': last_msg.message,
+            'seen': 'oui' if last_msg.seen else 'non',
+            'date_created': last_msg.date_created
+        })
+    print()
+    print(last_msgs)
+    print()
     template = 'chat/chat.html'
     context = {
         'qs': qs,
         'page': 'list_chatroom',
         'start_animation': 'chat',
+        'last_msgs': last_msgs,
     }
     return render(request, template, context=context)
 
@@ -50,6 +83,7 @@ def chatroom(request, id):
         return redirect('post:post_list')
     qs_m = Messenger.objects.messages(request.user, other_user.user)
     qs_m.update(seen=True)
+    qs_m.update(sent=True)
 
     template = 'chat/chat.html'
     context = {
@@ -69,7 +103,7 @@ def ajax_load_messages(request, id):
         return HttpResponseNotFound('<h1>Page not found</h1>')
     current_user = request.user
         
-    qs = Messenger.objects.filter(seen=False).filter(
+    qs = Messenger.objects.filter(sent=False).filter(
                 Q(reciever=current_user, sender=other_user.user)
             )
     
@@ -81,9 +115,13 @@ def ajax_load_messages(request, id):
             'sent': 'right' if obj.sender == current_user else 'left',
         }
         data.append(item)
-    qs.update(seen=True)
+    qs.update(sent=True)
     
     if request.method == 'POST':
+        Messenger.objects.filter(seen=False).filter(
+                Q(reciever=current_user, sender=other_user.user)
+            ).update(seen=True)
+        # qs.update(sent=True)
         msg = request.POST.get("msg")
         new_msg = Messenger.objects.create(sender=current_user, reciever=other_user.user, message=msg)
         data.append({

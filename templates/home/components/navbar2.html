@@ -40,7 +40,8 @@
           <span class="nav-text-span">Réseau</span>
         </div>
       </a>
-      <a href="{% url 'chats:chat' %}" class="nav-item">
+      <a href="{% url 'chats:chat' %}" class="nav-item nav-nofit">
+        <span id="nav-nofit-alert-chat"></span>
         <div class="nav-text">
           <img class="nav-img" src="{% static 'home/svg/chat.svg' %}" alt="">
           <span class="animation {% if start_animation == 'chat' %}start-animation{% endif %}"></span>
