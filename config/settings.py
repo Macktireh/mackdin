@@ -20,7 +20,7 @@ load = load_dotenv(os.path.join(BASE_DIR, '.env'))
 SECRET_KEY = os.environ.get('SECRET_KEY')
 
 # SECURITY WARNING: don't run with debug turned on in production!
-DEBUG = False if os.environ.get('ENV', 'dev') == 'production' else True
+DEBUG = False if os.environ.get('ENV', 'devs') == 'production' else True
 
 ALLOWED_HOSTS = os.environ.get('ALLOWED_HOSTS').split(" ") if os.environ.get('ALLOWED_HOSTS', []) != [] else ["127.0.0.1", "localhost"]
 
@@ -185,7 +185,7 @@ cloudinary.config(
 
 
 # # Django Debug Toolbar
-if DEBUG:
+if os.environ.get('DEV', 'prod') == 'dev':
     INSTALLED_APPS += [
         'debug_toolbar',
         'django_extensions',

@@ -27,16 +27,19 @@ def notification_data(request):
 @login_required(login_url='sign_in')
 def list_notification(request):
     qs = Notification.objects.select_related('from_user').select_related('post').select_related('like_post').select_related('comment_post').all()
+    is_notif = False
     for obj in qs:
         if obj.from_user != request.user and obj.to_user == request.user:
             if obj.seen == False:
                 obj.seen = True
                 obj.save()
+                is_notif = True
     template = 'post/post_list.html'
     context = {
-        'qs': qs,
-        'start_animation': 'notif',
+        'qs': qs if qs.count() > 0 else [],
+        'is_notif': is_notif,
         'page': 'notif',
+        'start_animation': 'notif',
     }
     return render(request, template, context)
 

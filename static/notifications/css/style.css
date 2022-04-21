@@ -42,6 +42,14 @@ a:visited {
   flex-direction: column;
   gap: 0.4rem;
 }
+.container-main .container-notif .pas-de-notif {
+  width: 100%;
+  height: 100%;
+  padding: 1rem;
+  text-align: center;
+  margin-top: 3rem;
+  gap: 0.8rem;
+}
 .container-main .container-notif .box-notif {
   padding: 1rem 1rem 1rem 1.5rem;
   border-radius: 8px;

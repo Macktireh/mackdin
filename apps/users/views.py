@@ -1,4 +1,3 @@
-from datetime import datetime
 from django.utils import timezone
 from django.contrib import messages
 from django.shortcuts import redirect, render
@@ -18,7 +17,7 @@ User = get_user_model()
 
 def send_action_email(user, request):
     current_site = get_current_site(request)
-    email_subject_activate = f"Confirmer votre adresse mail de votre compte sur {current_site}"
+    email_subject_activate = f"Confirmer votre adresse email de votre compte Mackdin"
     email_body_activate = render_to_string('users/actiavte.html', {
             'user': user,
             'domain': current_site,
@@ -36,15 +35,15 @@ def sign_up(request):
             user = user_form.save()
             user.set_password(user.password)
             user.save()
-            messages.success(request, "Votre compte à été bien creér avec succès. Vous recevez un email pour confirmer votre adresse email.")
+            messages.success(request, f"Votre compte à été bien creér avec succès. Veuillez vérifier votre adresse email afin d'accéder à votre compte Mackdin. \n Nous avons envoyé un email à {user.email} \n Pour continuer, veuillez votre boîte de réception et confirmer votre compte Mackdin.")
             current_site = get_current_site(request)
             
             # mail de bienvenue
-            subject_welcome = f"Bienvenue {user.first_name} sur notre site"
-            message_welcome = f"Bonjour {user.first_name} et Bienvenue sur notre site.\nNous très content de t'avoir parmis nous.\nMerci\nL'équipe {current_site}"
-            from_email_welcome = EMAIL_HOST_USER
-            to_email_welcome = [user.email]
-            send_mail(subject_welcome, message_welcome, from_email_welcome, to_email_welcome, fail_silently=False)
+            # subject_welcome = f"Bienvenue {user.first_name} sur Mackdin"
+            # message_welcome = f"Bonjour {user.first_name} et Bienvenue sur Mackdin.\nNous très content de t'avoir parmis nous.\nMerci\nL'équipe {current_site}"
+            # from_email_welcome = EMAIL_HOST_USER
+            # to_email_welcome = [user.email]
+            # send_mail(subject_welcome, message_welcome, from_email_welcome, to_email_welcome, fail_silently=False)
             
             # mail d'activation du compte
             send_action_email(user, request)

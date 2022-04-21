@@ -19,7 +19,7 @@
     {% if messages %}
     {% for message in messages %}
     <div {% if message.tags %} class="message-{{ message.tags }}" {% endif %}>
-      <p>{{ message }}</p>
+      <p>{{ message|linebreaksbr }}</p>
     </div>
     {% endfor %}
     {% endif %}

@@ -3,6 +3,8 @@
 {% load cloudinary %}
 
 <div class="container-notif">
+
+  {% if is_notif %}
   {% for notif in qs %}
   {% if notif.from_user != request.user and notif.to_user == request.user %}
   <div class="box-notif {% if notif.bg_seen == False %}bg_seen{% endif %}">
@@ -43,4 +45,9 @@
   <hr>
   {% endif %}
   {% endfor %}
+  {% else %}
+  <div class="pas-de-notif">
+    <p>Vous n'avez pas des notifications. Revenez plus tard pour voir les dernières notifications</p>
+  </div>
+  {% endif %}
 </div>

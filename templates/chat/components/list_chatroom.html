@@ -15,6 +15,9 @@
 
       <div class="my-friends-box-title">
         <strong>{{obj.first_name}} {{obj.last_name}}</strong>
+
+        {% if last_msgs %}
+
         {% for last_msg in last_msgs %}
         {% if obj.id == last_msg.sender_id %}
         {% if last_msg.seen == 'non' %}<span id="msg-not-seen"></span>{% endif %}
@@ -27,6 +30,8 @@
         </p>
         {% endif %}
         {% endfor %}
+
+        {% endif %}
       </div>
     </div>
 

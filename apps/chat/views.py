@@ -51,16 +51,15 @@ def chat_view(request):
         last_msg = Messenger.objects.filter(
             Q(reciever=request.user, sender=obj) | Q(reciever=obj, sender=request.user)
         ).last()
-        last_msgs.append({
-            'sender_id': last_msg.sender.id,
-            'reciever_id': last_msg.reciever.id,
-            'msg': last_msg.message,
-            'seen': 'oui' if last_msg.seen else 'non',
-            'date_created': last_msg.date_created
-        })
-    print()
-    print(last_msgs)
-    print()
+        if last_msg:
+            last_msgs.append({
+                'sender_id': last_msg.sender.id,
+                'reciever_id': last_msg.reciever.id,
+                'msg': last_msg.message,
+                'seen': 'oui' if last_msg.seen else 'non',
+                'date_created': last_msg.date_created
+            })
+
     template = 'chat/chat.html'
     context = {
         'qs': qs,
@@ -78,9 +77,22 @@ def chatroom(request, id):
     except:
         return HttpResponseNotFound('<h1>Page not found 404</h1>')
     qs = Profile.objects.select_related('user').get(user=request.user)
+    last_msgs = []
+    for obj in qs.friends.all():
+        last_msg = Messenger.objects.filter(
+            Q(reciever=request.user, sender=obj) | Q(reciever=obj, sender=request.user)
+        ).last()
+        if last_msg:
+            last_msgs.append({
+                'sender_id': last_msg.sender.id,
+                'reciever_id': last_msg.reciever.id,
+                'msg': last_msg.message,
+                'seen': 'oui' if last_msg.seen else 'non',
+                'date_created': last_msg.date_created
+            })
     
     if other_user.user not in request.user.profile.friends.all():
-        return redirect('post:post_list')
+        return redirect('chats:chat')
     qs_m = Messenger.objects.messages(request.user, other_user.user)
     qs_m.update(seen=True)
     qs_m.update(sent=True)
@@ -90,6 +102,7 @@ def chatroom(request, id):
         'qs_m': qs_m,
         'qs': qs,
         'other_user': other_user,
+        'last_msgs': last_msgs,
         'start_animation': 'chat',
     }
     return render(request, template, context=context)
