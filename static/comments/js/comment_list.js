@@ -116,7 +116,7 @@ form_comments.forEach((form) => {
         return response.json();
       })
       .then((data) => {
-        // console.log(data);
+        console.log(data);
         // console.log(data.comment_message);
 
         const verif_img = (v) => {
@@ -124,7 +124,7 @@ form_comments.forEach((form) => {
             return `<img id="container-comment-list-img-profile" src="${v}" />`;
             // return `<img id="container-comment-list-img-profile" src="http://127.0.0.1:8000${v}" />`;
           } else {
-            return `<img id="container-comment-list-img-profile" src="static/components/img/user.svg" />`;
+            return `<img id="container-comment-list-img-profile" src="static/home/img/default-img-profile.jpg" />`;
           }
         };
 
@@ -138,68 +138,138 @@ form_comments.forEach((form) => {
         //
 
         if (!input_hidden_post_comment2) {
-          container_list_comment.innerHTML += `
-            <div class="container-comment-list"  id="container-comment-list${
-              data.id
-            }">
-
+          const div = document.createElement("div");
+          div.classList.add("container-comment-list");
+          div.id = `container-comment-list${data.id}`;
+          div.innerHTML = /*html*/ `
             <div id="${data.id}" class="comment-options-btn">
               <span id="btn-point"></span>
               <span id="btn-point"></span>
               <span id="btn-point"></span>
             </div>
-          
-            <div id="comment-options-container${
-              data.id
-            }" class="comment-options-actions-container display-none">
+
+            <div 
+              id="comment-options-container${data.id}" 
+              class="comment-options-actions-container display-none">
               <ul>
-                <div class="comment-options-item comment-options-item-edit" title="${
-                  data.id
-                }">
-                  <img src="http://127.0.0.1:8000/static/comments/img/edit.svg" id="${
-                    data.id
-                  }" class="comment-options-item-img">
-                  <span class="btn-edit-comment comment-options-item-span" id="${
-                    data.id
-                  }">Modifier</span>
+                <div class="comment-options-item comment-options-item-edit"
+                  id="${data.id}">
+                  <img src="/static/home/svg/edit.svg" 
+                    id="${data.id}"
+                    class="comment-options-item-img">
+                  <span
+                    class="btn-edit-comment comment-options-item-span"
+                    id="${data.id}">Modifier
+                  </span>
                 </div>
-                <div class="comment-options-item comment-options-item-delete" id="${
-                  data.id
-                }"  title="${data.post_id}">
-                  <img src="http://127.0.0.1:8000/static/comments/img/delete.svg" id="${
-                    data.id
-                  }" class="comment-options-item-img">
-                  <span class="btn-del-comment comment-options-item-span" id="${
-                    data.id
-                  }"   title="${data.post_id}">Supprimer</span>
+
+                <div class="comment-options-item comment-options-item-delete"
+                  id="${data.id}"  
+                  title="${data.post_id}">
+                  <img src="/static/home/svg/delete.svg"
+                    id="${data.id}"
+                    class="comment-options-item-img">
+                  <span class="btn-del-comment comment-options-item-span" 
+                    id="${data.id}" 
+                    title="${data.post_id}">Supprimer
+                  </span>
                 </div>
               </ul>
             </div>
 
-              ${verif_img(
-                data.user_profile_img
-              )}              <div class="comment-content-box">
-                <div class="comment-info-content">
-                  <div class="comment-info-content-I" id="comment-info-content-I-${
-                    data.post_id
-                  }">
-                    <strong>${data.comment_author_first_name}
-                      ${data.comment_author_last_name}
-                      ${verif_author(data.comment_author, data.post_author)}
-                    </strong>
-                    <small>${data.comment_date_added}</small>
-                  </div>
-                  <p id="comment-author-profile-title">${
-                    data.user_profile_bio
-                  }</p>
+            <a href="/profile/${data.user_profile_pseudo}/">
+              ${verif_img(data.user_profile_img)}
+            </a>
+
+            <div class="comment-content-box">
+              <div class="comment-info-content">
+                <div 
+                  class="comment-info-content-I" 
+                  id="comment-info-content-I-${data.post_id}">
+
+                  <strong>${data.comment_author_first_name}
+                    ${data.comment_author_last_name}
+                    ${verif_author(data.comment_author, data.post_author)}
+                  </strong>
+                  <p id="comment-author-profile-title">
+                    ${data.user_profile_bio}
+                  </p>
                 </div>
-                <div class="comment-text-content">
-                  <p class="msg-text-p-${data.id}" id="${data.post_id}">${
-            data.comment_message
-          }</p>
-                </div>
+                <small>${data.comment_date_added}</small>
               </div>
-            </div>`;
+              <div class="comment-text-content">
+                <p class="msg-text-p-${data.id}" id="${data.post_id}">
+                  ${data.comment_message}
+                </p>
+              </div>
+            </div>
+          `;
+
+          container_list_comment.appendChild(div);
+          // console.log(div);
+
+          // container_list_comment.innerHTML += `
+          //   <div class="container-comment-list"  id="container-comment-list${
+          //     data.id
+          //   }">
+
+          //     <div id="${data.id}" class="comment-options-btn">
+          //       <span id="btn-point"></span>
+          //       <span id="btn-point"></span>
+          //       <span id="btn-point"></span>
+          //     </div>
+
+          //     <div id="comment-options-container${
+          //       data.id
+          //     }" class="comment-options-actions-container display-none">
+          //       <ul>
+          //         <div class="comment-options-item comment-options-item-edit" title="${
+          //           data.id
+          //         }">
+          //           <img src="http://127.0.0.1:8000/static/comments/img/edit.svg" id="${
+          //             data.id
+          //           }" class="comment-options-item-img">
+          //           <span class="btn-edit-comment comment-options-item-span" id="${
+          //             data.id
+          //           }">Modifier</span>
+          //         </div>
+          //         <div class="comment-options-item comment-options-item-delete" id="${
+          //           data.id
+          //         }"  title="${data.post_id}">
+          //           <img src="http://127.0.0.1:8000/static/comments/img/delete.svg" id="${
+          //             data.id
+          //           }" class="comment-options-item-img">
+          //           <span class="btn-del-comment comment-options-item-span" id="${
+          //             data.id
+          //           }"   title="${data.post_id}">Supprimer</span>
+          //         </div>
+          //       </ul>
+          //     </div>
+
+          //       ${verif_img(data.user_profile_img)}
+
+          //       <div class="comment-content-box">
+          //         <div class="comment-info-content">
+          //           <div class="comment-info-content-I" id="comment-info-content-I-${
+          //             data.post_id
+          //           }">
+          //             <strong>${data.comment_author_first_name}
+          //               ${data.comment_author_last_name}
+          //               ${verif_author(data.comment_author, data.post_author)}
+          //             </strong>
+          //             <small>${data.comment_date_added}</small>
+          //           </div>
+          //           <p id="comment-author-profile-title">${
+          //             data.user_profile_bio
+          //           }</p>
+          //         </div>
+          //         <div class="comment-text-content">
+          //           <p class="msg-text-p-${data.id}" id="${data.post_id}">
+          //             ${data.comment_message}
+          //           </p>
+          //         </div>
+          //       </div>
+          //   </div>`;
 
           num_comment = count_num_comment + 1;
           document.getElementById("comments-num" + e.target.title).textContent =

@@ -43,7 +43,8 @@ def comment_all_data(request):
             'post_author': obj.post.author.email,
             'post_message': obj.post.message,
             'post_img': obj.post.img.url,
-            'user_img_bio': qs_user.get(id=obj.author.id).profile.bio,
+            'user_pseudo': qs_user.get(id=obj.author.id).profile.pseudo,
+            'user_bio': qs_user.get(id=obj.author.id).profile.bio,
             'user_img_profile': qs_user.get(id=obj.author.id).profile.img_profile.url,
             'current_user': request.user.email,
         }
@@ -84,6 +85,7 @@ def add_update_comment_view(request):
             'post_author': comment_post.post.author.email,
             'post_id': comment_post.post.id,
             
+            'user_profile_pseudo': comment_post.author.profile.pseudo,
             'user_profile_bio': comment_post.author.profile.bio,
             'user_profile_img': comment_post.author.profile.img_profile.url if comment_post.author.profile.img_profile else "",
             
