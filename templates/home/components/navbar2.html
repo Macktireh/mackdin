@@ -57,25 +57,25 @@
         </div>
       </a>
       {% if user.is_superuser %}
-      <a href="{% url 'admin:index' %}" class="nav-item" target="_blank">
+      <!-- <a href="{% url 'admin:index' %}" class="nav-item" target="_blank">
         <div class="nav-text">
           <img class="nav-img" src="{% static 'home/svg/admin.svg' %}" alt="">
           <span class="animation {% if start_animation == 'admin' %}start-animation{% endif %}}"></span>
           <span class="nav-text-span">Administration</span>
         </div>
-      </a>
+      </a> -->
       {% endif %}
-      <a href="{% url 'logout' %}" class="nav-item">
+      <!-- <a href="{% url 'logout' %}" class="nav-item">
         <div class="nav-text">
           <img class="nav-img" src="{% static 'home/svg/logout.svg' %}" alt="">
           <span class="animation {% if start_animation == 'logout' %}start-animation{% endif %}"></span>
           <span class="nav-text-span">Déconnexion</span>
         </div>
-      </a>
+      </a> -->
       {% endif %}
 
       {% if user.is_authenticated %}
-      <a href="{% url 'profiles:profile' pseudo=user.profile.pseudo  %}" class="nav-profil nav-profil-mobile">
+      <!-- <a href="{% url 'profiles:profile' pseudo=user.profile.pseudo  %}" class="nav-profil nav-profil-mobile">
         <div class="nav-box-profil">
           <img src="        
           {% if user.profile.img_profile %}
@@ -84,30 +84,47 @@
           {% static 'home/svg/user.svg' %}
           {% endif %}" alt="">
         </div>
-      </a>
+      </a> -->
       {% endif %}
     </ul>
   </nav>
 
-  <div class="hamburger-nav-profil">
-    <div class="hamburger">
+  <!-- <div class="hamburger-nav-profil"> -->
+  <!-- <div class="hamburger">
       <span class="hamburger__bar"></span>
       <span class="hamburger__bar"></span>
       <span class="hamburger__bar"></span>
-    </div>
+    </div> -->
 
-    {% if user.is_authenticated %}
+  {% if user.is_authenticated %}
 
-    <a href="{% url 'profiles:profile' pseudo=user.profile.pseudo %}" class="nav-profil nav-profil-ecran">
-      <div class="nav-box-profil">
-        <img src="        
+  <div class="nav-profil">
+    <div class="nav-box-profil">
+      <img src="        
       {% if user.profile.img_profile %}
       {{ user.profile.img_profile.url }}
       {% else %}
       {% static 'home/svg/user.svg' %}
       {% endif %}" alt="">
-      </div>
+    </div>
+  </div>
+
+  <div class="list-box">
+    <a href="{% url 'profiles:profile' pseudo=user.profile.pseudo %}">
+      <img src="{% static 'home/svg/user.svg' %}">
+      <span class="text">Profile</span>
+    </a>
+    {% if user.is_superuser %}
+    <a href="{% url 'admin:index' %}">
+      <img src="{% static 'home/svg/admin.svg' %}">
+      <span class="text">Administration</span>
     </a>
     {% endif %}
+    <a href="{% url 'logout' %}">
+      <img src="{% static 'home/svg/logout.svg' %}">
+      <span class="text">Déconnexion</span>
+    </a>
   </div>
+  {% endif %}
+  <!-- </div> -->
 </div>

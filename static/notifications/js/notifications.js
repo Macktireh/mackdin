@@ -36,7 +36,7 @@ document.addEventListener("DOMContentLoaded", () => {
       api_notif("/notifications/data/", notif_alerte);
       setTimeout(() => {
         api_notif("/messagerie/chat-api-notif/", notif_alerte_chat);
-      }, 5000);
+      }, 2000);
     }
-  }, 10000);
+  }, 5000);
 });

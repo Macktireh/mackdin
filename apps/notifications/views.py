@@ -30,10 +30,10 @@ def list_notification(request):
     is_notif = False
     for obj in qs:
         if obj.from_user != request.user and obj.to_user == request.user:
+            is_notif = True
             if obj.seen == False:
                 obj.seen = True
                 obj.save()
-                is_notif = True
     template = 'post/post_list.html'
     context = {
         'qs': qs if qs.count() > 0 else [],
