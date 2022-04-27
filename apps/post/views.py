@@ -73,6 +73,8 @@ def post_detail_view(request, post_id):
 @login_required(login_url='sign_in')
 def update_post(request, post_id):
     post_edit = get_object_or_404(Post, id=post_id)
+    if post_edit.author != request.user:
+        return HttpResponseNotFound('<h1>Page Not Found 404</h1>')
     posts = Post.objects.all()
     # post_form = True
     

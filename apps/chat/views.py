@@ -93,9 +93,13 @@ def chatroom(request, id):
     
     if other_user.user not in request.user.profile.friends.all():
         return redirect('chats:chat')
+    qs_my_msg = Messenger.objects.filter(
+                Q(reciever=request.user, sender=other_user.user)
+            )
+    qs_my_msg.update(seen=True)
+    qs_my_msg.update(sent=True)
+    
     qs_m = Messenger.objects.messages(request.user, other_user.user)
-    qs_m.update(seen=True)
-    qs_m.update(sent=True)
 
     template = 'chat/chat.html'
     context = {

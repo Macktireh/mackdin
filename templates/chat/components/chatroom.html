@@ -1,18 +1,32 @@
 {% load static %}
 {% load humanize %}
 {% load cloudinary %}
+{% load chat %}
 
 
 <div class="header-chat">
   <a href="{% url 'chats:chat' %}">
     <img id="back-chat" src="{% static 'home/svg/back.svg'%}">
   </a>
-  <a href="{% url 'profiles:profile' pseudo=other_user.pseudo %}">
+  <a href="{% url 'profiles:profile' pseudo=other_user.pseudo %}" id="link-profile-user">
     <img id="img-profile" src="{% if other_user.img_profile %}
         {{ other_user.img_profile.url }}
         {% else %}
         {% static 'home/img/default-img-profile.jpg' %}
         {% endif %}">
+
+    {% if other_user.user.last_logout %}
+    <span id="point-connexion-color" class='{% if other_user.user.last_logout > other_user.user.last_login %}
+      {% if other_user.user.last_logout|is_connected_user %}
+      orange
+      {% else %}
+      red
+      {% endif %}
+      {% else %}
+      green
+      {% endif %}'>
+    </span>
+    {% endif %}
   </a>
   <a href="{% url 'profiles:profile' pseudo=other_user.pseudo %}">
     <div class="info">
@@ -22,9 +36,9 @@
       {% if other_user.user.last_logout %}
       <P>
         {% if other_user.user.last_logout > other_user.user.last_login %}
-        Connecté {{other_user.user.last_logout|naturaltime}}
+        {{other_user.user.last_logout|naturaltime|timestr}}
         {% else %}
-        Connecté maintenant
+        En ligne
         {% endif %}
       </P>
       {% endif %}

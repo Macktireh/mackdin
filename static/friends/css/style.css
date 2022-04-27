@@ -210,6 +210,31 @@ main.my-network .container-right .my-friends-container .container-list-my-friend
     height: 3.5rem;
   }
 }
+main.my-network .container-right .my-friends-container .container-list-my-friends-profiles .my-friends-info a#link-profile-user {
+  position: relative;
+}
+main.my-network .container-right .my-friends-container .container-list-my-friends-profiles .my-friends-info a#link-profile-user span#point-connexion-color {
+  position: absolute;
+  position: absolute;
+  top: 75%;
+  left: 75%;
+  transform: translateX(-50%);
+  transform: translateY(-50%);
+  border-radius: 50%;
+  width: 12px;
+  height: 12px;
+  border: 2px solid #34495e;
+  z-index: 1;
+}
+main.my-network .container-right .my-friends-container .container-list-my-friends-profiles .my-friends-info a#link-profile-user span#point-connexion-color.red {
+  background-color: #f31d58;
+}
+main.my-network .container-right .my-friends-container .container-list-my-friends-profiles .my-friends-info a#link-profile-user span#point-connexion-color.green {
+  background-color: #1abc9c;
+}
+main.my-network .container-right .my-friends-container .container-list-my-friends-profiles .my-friends-info a#link-profile-user span#point-connexion-color.orange {
+  background-color: orange;
+}
 main.my-network .container-right .my-friends-container .container-list-my-friends-profiles .my-friends-info .my-friends-box-title {
   display: flex;
   justify-content: start;

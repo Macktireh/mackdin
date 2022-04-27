@@ -1,6 +1,7 @@
 {% load static %}
 {% load humanize %}
 {% load cloudinary %}
+{% load chat %}
 
 <div class="my-friends-container">
   {% for obj in qs %}
@@ -10,12 +11,25 @@
   <div class="container-list-my-friends-profiles">
     <div class="my-friends-info">
       <!-- img profile -->
-      <a href="{% url 'profiles:profile' pseudo=obj.pseudo %}">
+      <a href="{% url 'profiles:profile' pseudo=obj.pseudo %}" id="link-profile-user">
         <img src="{% if obj.img_profile %}
             {{obj.img_profile.url}}
           {% else %}
             {% static 'home/img/default-img-profile.jpg' %}
           {% endif %}" class="my-friends-img-profile">
+
+        {% if obj.user.last_logout %}
+        <span id="point-connexion-color" class="{% if obj.user.last_logout > obj.user.last_login %}
+          {% if obj.user.last_logout|is_connected_user %}
+          orange
+          {% else %}
+          red
+          {% endif %}
+          {% else %}
+          green
+          {% endif %}">
+        </span>
+        {% endif %}
       </a>
 
       <div class="my-friends-box-title">
@@ -26,9 +40,9 @@
         {% if obj.user.last_logout %}
         <P>
           {% if obj.user.last_logout > obj.user.last_login %}
-          Connecté {{obj.user.last_logout|naturaltime}}
+          {{obj.user.last_logout|naturaltime}}
           {% else %}
-          Connecté maintenant
+          En ligne
           {% endif %}
         </P>
         {% endif %}

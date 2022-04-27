@@ -6,16 +6,34 @@
     background-color: $color4
     @include flex-el(start, center)
     gap: 0.5rem
+    position: relative
 
     img#back-chat
       width: 50px
 
-    img#img-profile
-      width: 55px
-      height: 55px
-      object-position: center
-      object-fit: cover
-      border-radius: 50%
+    a#link-profile-user
+      position: relative
+      img#img-profile
+        width: 55px
+        height: 55px
+        object-position: center
+        object-fit: cover
+        border-radius: 50%
+
+      span#point-connexion-color
+        position: absolute
+        @include position-abs(75%, null, null, 75%, -50%, -50%)
+        border-radius: 50%
+        width: 12px
+        height: 12px
+        border: 2px solid $color4
+        z-index: 1
+      span#point-connexion-color.red
+        background-color: $color8
+      span#point-connexion-color.green
+        background-color: $color3
+      span#point-connexion-color.orange
+        background-color: orange
 
     .info
       margin-left: 0.3rem

@@ -36,6 +36,23 @@ main.my-network
               width: 3.5rem
               height: 3.5rem
 
+          a#link-profile-user
+            position: relative
+            span#point-connexion-color
+              position: absolute
+              @include position-abs(75%, null, null, 75%, -50%, -50%)
+              border-radius: 50%
+              width: 12px
+              height: 12px
+              border: 2px solid $color4
+              z-index: 1
+            span#point-connexion-color.red
+              background-color: $color8
+            span#point-connexion-color.green
+              background-color: $color3
+            span#point-connexion-color.orange
+              background-color: orange
+
           .my-friends-box-title
             @include flex-el(start, null)
             flex-direction: column
