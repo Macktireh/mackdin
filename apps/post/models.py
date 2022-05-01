@@ -1,4 +1,5 @@
 import os
+import uuid
 from django.db import models
 from django.contrib.auth import get_user_model
 from django.utils.translation import gettext_lazy as _
@@ -22,6 +23,7 @@ def rename_img_video(instance, filename):
 
 class Post(models.Model):
     author = models.ForeignKey(User, on_delete=models.CASCADE, related_name='post')
+    uid = models.CharField(_("code post"), max_length=64, blank=True)
     message = models.TextField(_("message"), blank=True)
     # img = models.ImageField(_("image"), upload_to=rename_img_video, validators=[FileExtensionValidator(['png', 'jpg', 'jpeg', 'gif'])], blank=True, null=True)
     img = CloudinaryField(_("image"), blank=True, null=True)
@@ -32,6 +34,11 @@ class Post(models.Model):
 
     def __str__(self):
         return f"Post-{self.id}-{self.author.first_name}"
+    
+    def save(self, *args, **kwargs):
+        if self.uid == "":
+            self.uid = str(uuid.uuid4()).replace('-', '')[:64] + str(self.id)
+        return super().save(*args, **kwargs)
     
     @property
     def number_of_like(self):

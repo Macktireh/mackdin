@@ -1,3 +1,4 @@
+import uuid
 import cloudinary
 from django.db.models.signals import post_save, pre_delete
 from django.dispatch import receiver
@@ -14,7 +15,9 @@ def create_user_profile(sender, instance, created, **kwargs):
         Profile.objects.create(user=instance)
         if instance.first_name is not None or instance.first_name != '':
             instance.profile.pseudo = f'{instance.first_name}{instance.pk}'
-            instance.profile.save()
+        if instance.profile.uid == '':
+            instance.profile.uid = str(uuid.uuid4()).replace('-', '')[:64] + str(instance.id)
+        instance.profile.save()
         
 
 @receiver(post_save, sender=User)
@@ -22,7 +25,8 @@ def save_user_profile(sender, instance, **kwargs):
     if instance.profile.pseudo == '':
         if instance.first_name is not None or instance.first_name != '':
             instance.profile.pseudo = f'{instance.first_name}{instance.pk}'.lower()
-            instance.profile.save()
+    if instance.profile.uid == '':
+        instance.profile.uid = str(uuid.uuid4()).replace('-', '')[:64] + str(instance.id)
     instance.profile.save()
     
     

@@ -17,7 +17,6 @@ def post_create_list_view(request, *args, **kwargs):
     posts = Post.objects.select_related('author').prefetch_related('post_comment').all()
     current_user = Profile.objects.select_related('user').get(user=request.user)
     
-    # post_form = False
     AddPostForm = PostForm()
     
     if "submit_p_form" in request.POST:
@@ -40,7 +39,6 @@ def post_create_list_view(request, *args, **kwargs):
         'start_animation': 'feed',
         'posts': posts,
         'AddPostForm': AddPostForm,
-        # 'post_form': post_form,
         'page': 'list',
     }
     context.update(comment_view(request))
@@ -48,22 +46,16 @@ def post_create_list_view(request, *args, **kwargs):
 
 
 @login_required(login_url='sign_in')
-def post_detail_view(request, post_id):
+def post_detail_view(request, uid):
     try:
-        # post = get_object_or_404(Post, pk=post_id)
-        post = Post.objects.select_related('author').prefetch_related('post_comment').get(pk=post_id)
+        post = Post.objects.select_related('author').prefetch_related('post_comment').get(uid=uid)
     except:
         return HttpResponseNotFound('<h1>Page not found</h1>')
-    
-    # post_form = False
-    # post_detail = True
     
     template = 'post/post_list.html'
     context = {
         'start_animation': 'feed',
         'post': post,
-        # 'post_form': post_form,
-        # 'post_detail': post_detail,
         'page': 'detail',
     }
     context.update(comment_view(request))
@@ -71,13 +63,11 @@ def post_detail_view(request, post_id):
 
 
 @login_required(login_url='sign_in')
-def update_post(request, post_id):
-    post_edit = get_object_or_404(Post, id=post_id)
+def update_post(request, uid):
+    post_edit = get_object_or_404(Post, uid=uid)
     if post_edit.author != request.user:
         return HttpResponseNotFound('<h1>Page Not Found 404</h1>')
-    posts = Post.objects.all()
-    # post_form = True
-    
+    posts = Post.objects.all()    
     if request.method == 'POST':
         if len(request.FILES) != 0:
             if post_edit.img:
@@ -95,7 +85,6 @@ def update_post(request, post_id):
         'start_animation': 'feed',
         'posts': posts,
         'post_edit': post_edit,
-        # 'post_form': post_form,
         'page': 'update',
     }
     return render(request, template, context)
@@ -116,7 +105,7 @@ def update_post(request, post_id):
    
 
 @login_required(login_url='sign_in')
-def delete_post(request, post_id):
+def delete_post(request, uid):
     user = request.user
     # if request.method == 'POST':
     #     p_id = request.POST.get('post_id')
@@ -126,7 +115,7 @@ def delete_post(request, post_id):
     #         return JsonResponse({'status': 'Post supprimer'})
     # else:
     #     return JsonResponse({'status': 'error'})
-    instance = get_object_or_404(Post, id=post_id)
+    instance = get_object_or_404(Post, uid=uid)
     if user == instance.author:
         instance.delete()
     return redirect('post:post_list')
@@ -156,7 +145,6 @@ def like_post(request):
         
         data = {
             'value': str(like.value),
-            # 'likes': post_obj.liked.all().count()
         }
         return JsonResponse(data, safe=False)
     return redirect('post:post_list')

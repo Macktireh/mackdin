@@ -53,7 +53,7 @@ def seen_notification(request, id):
         qs.save()
     
     if qs.type_notif == 'Like_Post' or qs.type_notif == 'Add_Post' or qs.type_notif == 'Add_Comment':
-        return redirect('post:post_detail', qs.post.id)
+        return redirect('post:post_detail', qs.post.uid)
     elif qs.type_notif == 'invitation_accepted':
         return redirect('friends:my_friends')
     elif qs.type_notif == 'invitation_send':

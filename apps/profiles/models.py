@@ -1,4 +1,5 @@
 import os
+import uuid
 from django.db import models
 from django.contrib.auth import get_user_model
 from django.utils.translation import gettext_lazy as _
@@ -23,6 +24,7 @@ def pseudo_rename(instance, filename):
 
 class Profile(models.Model):
     user = models.OneToOneField(User, on_delete=models.CASCADE, related_name="profile")
+    uid = models.CharField(_("code identifiant"), max_length=64, blank=True)
     pseudo = models.CharField(_("non d'utilisateur"), max_length=48, blank=True, unique=True)
     bio = models.CharField(_("titre du profil"), max_length=250, blank=True)
     # img_profile = models.ImageField(_("photo de profile"), upload_to=rename_img, default='default/default-img-profile.jpg', blank=True, null=True)
@@ -55,6 +57,11 @@ class Profile(models.Model):
     
     def __str__(self):
         return f"{self.user.first_name} {self.user.last_name}"
+    
+    def save(self, *args, **kwargs):
+        if self.uid == "":
+            self.uid = str(uuid.uuid4()).replace('-', '')[:64] + str(self.user.id)
+        return super().save(*args, **kwargs)
     
     def get_friends(self):
         return self.friends.all()

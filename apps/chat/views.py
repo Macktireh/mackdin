@@ -71,9 +71,9 @@ def chat_view(request):
 
 
 @login_required(login_url='sign_in')
-def chatroom(request, id):
+def chatroom(request, uid):
     try:
-        other_user = Profile.objects.select_related('user').get(user=id)
+        other_user = Profile.objects.select_related('user').get(uid=uid)
     except:
         return HttpResponseNotFound('<h1>Page not found 404</h1>')
     qs = Profile.objects.select_related('user').get(user=request.user)
@@ -113,9 +113,9 @@ def chatroom(request, id):
 
 
 @login_required(login_url='sign_in')
-def ajax_load_messages(request, id):
+def ajax_load_messages(request, uid):
     try:
-        other_user = Profile.objects.select_related('user').get(user=id)
+        other_user = Profile.objects.select_related('user').get(uid=uid)
     except:
         return HttpResponseNotFound('<h1>Page not found</h1>')
     current_user = request.user

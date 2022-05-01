@@ -6,7 +6,7 @@ class ProfileAdmin(admin.ModelAdmin):
     list_display = ('full_name', 'pseudo', 'bio', 'birth_date', 'gender', 'phone', 'adress', 'town', 'country', 'number_views',)
     # list_filter = ('gender',)
     fieldsets = (
-        (None, {'fields': ('user',)}),
+        (None, {'fields': ('user', 'uid',)}),
         
         (_('Personal info'), {'fields': ('pseudo', 'bio', 'img_profile', 'img_bg', 'birth_date', 'gender', 'phone',)}),
         
