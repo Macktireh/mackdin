@@ -2,6 +2,7 @@
 {% load static %}
 {% load humanize %}
 {% load cloudinary %}
+{% load chat %}
 
 
 {% block title %} {{profile.user.first_name}} {{profile.user.last_name}} {% endblock title %}
@@ -215,9 +216,9 @@
                 {% if obj.last_logout %}
                 <P>
                   {% if obj.last_logout > obj.last_login %}
-                  Connecté {{obj.last_logout|naturaltime}}
+                  En ligne {{obj.last_logout|naturaltime|timestr}}
                   {% else %}
-                  Connecté maintenant
+                  En ligne maintenant
                   {% endif %}
                 </P>
                 {% endif %}

@@ -40,9 +40,9 @@
         {% if obj.user.last_logout %}
         <P>
           {% if obj.user.last_logout > obj.user.last_login %}
-          {{obj.user.last_logout|naturaltime}}
+          En ligne {{obj.user.last_logout|naturaltime|timestr}}
           {% else %}
-          En ligne
+          En ligne maintenant
           {% endif %}
         </P>
         {% endif %}

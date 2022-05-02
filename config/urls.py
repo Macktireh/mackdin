@@ -6,13 +6,6 @@ from django.conf import settings
 from django.conf.urls.static import static
 from django.views.static import serve
 
-from rest_framework import routers
-
-from apps.notifications.api.urls import router as router_notifications
-
-router = routers.DefaultRouter()
-router.registry.extend(router_notifications.registry)
-
 
 urlpatterns = [
     path('admin-site/mackind-administration', admin.site.urls, name='admin'),
@@ -31,7 +24,14 @@ if os.environ.get('DEV', 'prod') == 'dev':
         urlpatterns += static(settings.MEDIA_URL, document_root=settings.MEDIA_ROOT)
     else:
         urlpatterns += [re_path(r'^mediafiles/(?P<path>.*)$', serve, {'document_root': settings.MEDIA_ROOT}),]
+        
     import debug_toolbar
+    from rest_framework import routers
+    from apps.notifications.api.urls import router as router_notifications
+
+    router = routers.DefaultRouter()
+    router.registry.extend(router_notifications.registry)
+    
     urlpatterns += [
         path('api/', include('apps.profiles.api.urls')),
         path('api/', include('apps.notifications.api.urls')),

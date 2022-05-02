@@ -1,6 +1,8 @@
 {% load static %}
 {% load humanize %}
 {% load cloudinary %}
+{% load chat %}
+
 
 <form title="{{post.id}}"
   class="form-comment-list-input-container-global {% if not post_detail %} D-none_V-hidden_O-0 {% endif %}"
@@ -50,7 +52,7 @@
             </strong>
             <p id="comment-author-profile-title">{{ comment.author.profile.bio }}</p>
           </div>
-          <small>{{ comment.date_added|naturaltime }}</small>
+          <small>{{ comment.date_added|naturaltime|timestr }}</small>
         </div>
         <div class="comment-text-content">
           <p class="msg-text-p-{{comment.id}}" id="{{post.id}}">{{ comment.message }}</p>

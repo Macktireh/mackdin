@@ -1,6 +1,8 @@
 {% load static %}
 {% load humanize %}
 {% load cloudinary %}
+{% load chat %}
+
 
 <div class="container-notif">
 
@@ -38,7 +40,7 @@
         {% elif notif.type_notif == 'invitation_accepted' %}
         <p>à accepté votre invitation desormais vous ami sur Mackdin</p>
         {% endif %}
-        <em>{{ notif.date_created|naturaltime }}</em>
+        <em>{{ notif.date_created|naturaltime|timestr }}</em>
       </div>
     </a>
   </div>

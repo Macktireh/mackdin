@@ -1,6 +1,7 @@
 {% load static %}
 {% load humanize %}
 {% load cloudinary %}
+{% load chat %}
 
 
 <div class="container-all-post">
@@ -21,7 +22,7 @@
       <strong><a href="{% url 'profiles:profile' pseudo=post.author.profile.pseudo  %}">{{post.author.first_name}}
           {{post.author.last_name}}</a></strong>
       <p>{{post.author.profile.bio}}</p>
-      <p>{{post.date_created|naturaltime}}</p>
+      <p>{{post.date_created|naturaltime|timestr}}</p>
     </div>
   </div>
 
