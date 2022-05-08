@@ -76,7 +76,15 @@ def chatroom(request, uid):
         other_user = Profile.objects.select_related('user').get(uid=uid)
     except:
         return HttpResponseNotFound('<h1>Page not found 404</h1>')
+        
+    qs_my_msg = Messenger.objects.filter(
+                Q(reciever=request.user, sender=other_user.user)
+            )
+    qs_my_msg.update(seen=True)
+    qs_my_msg.update(sent=True)
+    
     qs = Profile.objects.select_related('user').get(user=request.user)
+    
     last_msgs = []
     for obj in qs.friends.all():
         last_msg = Messenger.objects.filter(
@@ -93,11 +101,7 @@ def chatroom(request, uid):
     
     if other_user.user not in request.user.profile.friends.all():
         return redirect('chats:chat')
-    qs_my_msg = Messenger.objects.filter(
-                Q(reciever=request.user, sender=other_user.user)
-            )
-    qs_my_msg.update(seen=True)
-    qs_my_msg.update(sent=True)
+    
     
     qs_m = Messenger.objects.messages(request.user, other_user.user)
 
