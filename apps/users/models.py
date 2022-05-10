@@ -1,3 +1,4 @@
+import uuid
 from django.contrib.auth.models import AbstractUser
 from django.db import models
 # from django.utils.translation import ugettext_lazy as _
@@ -8,6 +9,7 @@ from apps.users.managers import CustomUserManager
 
 class CustomUser(AbstractUser):
     username = None
+    uid = models.CharField(_("code identifiant"), max_length=64, blank=True)
     email = models.EmailField(
         _('email address'), 
         unique=True,
@@ -27,6 +29,11 @@ class CustomUser(AbstractUser):
     REQUIRED_FIELDS = ['first_name', 'last_name']
 
     objects = CustomUserManager()
+    
+    def save(self, *args, **kwargs):
+        if self.uid == "":
+            self.uid = str(uuid.uuid4()).replace('-', '')[:64] + str(self.pk)
+        return super().save(*args, **kwargs)
 
     def __str__(self):
         return self.email

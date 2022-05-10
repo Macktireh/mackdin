@@ -12,7 +12,8 @@ from apps.friends.views import list_relation_receiver_and_sender
 def profile(request, pseudo):
     try:
         profile = Profile.objects.select_related('user').get(pseudo=pseudo)
-        # profile = get_object_or_404(Profile, pseudo=pseudo)
+        if not profile.user.is_email_verified:
+            return HttpResponseNotFound('<h1>Page not found</h1>')
     except:
         return HttpResponseNotFound('<h1>Page not found</h1>')
     if request.user != profile.user:
