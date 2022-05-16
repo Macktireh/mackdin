@@ -13,7 +13,7 @@
       <img src="{% static 'home/svg/edit.svg' %}">
       <span class="btn-edit-post" id="{{post.id}}">Modifier</span>
     </a>
-    <a href="{% url 'post:delete_post' post.uid  %}" class="options-item">
+    <a href="{% url 'post:delete_post' post.uid  %}" class="options-item options-delete-post">
       <img src="{% static 'home/svg/delete.svg' %}">
       <span class="btn-del-post" id="{{post.id}}">Supprimer</span>
     </a>

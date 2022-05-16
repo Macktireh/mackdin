@@ -59,6 +59,13 @@ a:visited {
   align-items: center;
   position: relative;
 }
+.container-main .container-notif .box-notif .info-notif p {
+  display: -webkit-box;
+  -webkit-line-clamp: 2;
+  -webkit-box-orient: vertical;
+  overflow: hidden;
+  text-overflow: ellipsis;
+}
 .container-main .container-notif .box-notif #bg_seen {
   width: 6px;
   height: 6px;

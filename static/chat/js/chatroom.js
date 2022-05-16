@@ -100,4 +100,4 @@ chat_form.addEventListener("submit", (e) => {
 
 setInterval(() => {
   load_message_chat();
-}, 5000);
+}, 1000);

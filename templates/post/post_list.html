@@ -4,7 +4,7 @@
 {% load cloudinary %}
 
 
-{% block title %} Fil d'actualité {% endblock title %}
+{% block title %} {% if page == 'notif' %} Notifications {% else %} Fil d'actualité {% endif %} {% endblock title %}
 
 {% block style %}
 <link rel="shortcut icon" href=" {% static 'home/svg/linkedin-cust.svg' %} " type="image/x-icon" />

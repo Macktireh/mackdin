@@ -105,3 +105,11 @@ try {
       .classList.toggle("D-none_V-hidden_O-0");
   });
 }
+
+document.querySelectorAll("a.options-delete-post").forEach((element) =>
+  element.addEventListener("click", (e) => {
+    window.confirm("Vous êtes sûr de vouloir supprimer")
+      ? null
+      : e.preventDefault();
+  })
+);

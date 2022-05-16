@@ -31,12 +31,12 @@ document.addEventListener("DOMContentLoaded", () => {
       api_notif("/notifications/data/", notif_alerte);
       setTimeout(() => {
         api_notif("/messagerie/chat-api-notif/", notif_alerte_chat);
-      }, 3000);
+      }, 1000);
     } catch (error) {
       api_notif("/notifications/data/", notif_alerte);
       setTimeout(() => {
         api_notif("/messagerie/chat-api-notif/", notif_alerte_chat);
-      }, 2000);
+      }, 1000);
     }
-  }, 5000);
+  }, 1000);
 });
