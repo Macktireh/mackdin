@@ -507,6 +507,9 @@ hr {
 .container-main .main-chat .box-message-right {
   text-align: right;
 }
+.container-main .main-chat .box-message-right .msg p {
+  background-color: #2e8271;
+}
 .container-main .main-chat .box-message-right .msg em {
   margin-right: 5px;
 }

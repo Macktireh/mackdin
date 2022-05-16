@@ -29,14 +29,14 @@ document.addEventListener("DOMContentLoaded", () => {
   setInterval(() => {
     try {
       api_notif("/notifications/data/", notif_alerte);
-      setTimeout(() => {
-        api_notif("/messagerie/chat-api-notif/", notif_alerte_chat);
-      }, 1000);
+      api_notif("/messagerie/chat-api-notif/", notif_alerte_chat);
+      // setTimeout(() => {
+      // }, 1000);
     } catch (error) {
       api_notif("/notifications/data/", notif_alerte);
-      setTimeout(() => {
-        api_notif("/messagerie/chat-api-notif/", notif_alerte_chat);
-      }, 1000);
+      api_notif("/messagerie/chat-api-notif/", notif_alerte_chat);
+      // setTimeout(() => {
+      // }, 1000);
     }
   }, 1000);
 });
