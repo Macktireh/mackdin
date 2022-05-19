@@ -185,7 +185,7 @@ cloudinary.config(
 
 
 # # Django Debug Toolbar
-if os.environ.get('DEV', 'prod') == 'dev':
+if os.environ.get('DEV', 'prod') == 'devs':
     INSTALLED_APPS += [
         'debug_toolbar',
         'django_extensions',

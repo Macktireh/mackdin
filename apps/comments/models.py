@@ -14,6 +14,9 @@ class Comment(models.Model):
     date_updated = models.DateTimeField(auto_now=True)
     liked = models.ManyToManyField(User, related_name='users_comment_like', blank=True, default=None)
     
+    class Meta:
+        ordering = ('date_added',)
+    
     def __str__(self):
         return f"Comment-{self.id}-{self.author.first_name}"
 

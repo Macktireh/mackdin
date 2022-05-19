@@ -52,5 +52,15 @@
     </div>
   </div>
 
+  <div class="root-comments" data-post-id="{{ post.id }}"
+    data-class-toggle-post-detail="{% if post_detail %} D-none_V-hidden_O-0 {% endif %}"
+    data-url-add-update-comment="{% url 'comments:add-update-comment' %}" data-csrf-token="{{ csrf_token }}"
+    data-img-profile="{% if user.profile.img_profile %}{{ user.profile.img_profile.url }}{% else %}{% static 'home/img/default-img-profile.jpg' %}{% endif %}"
+    data-url-get-data="{% url 'comments:get-comment-post' post_id=post.id %}"></div>
+
+  {% comment %}
+
   {% include 'comments/include/comment.html' %}
+  {% endcomment %}
+
 </div>

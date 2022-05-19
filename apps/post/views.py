@@ -1,6 +1,7 @@
 import os
 from django.shortcuts import get_object_or_404, redirect, render
 from django.contrib.auth.decorators import login_required
+from django.contrib.sites.shortcuts import get_current_site
 from django.http import HttpResponseNotFound, JsonResponse
 
 import cloudinary
@@ -40,6 +41,7 @@ def post_create_list_view(request, *args, **kwargs):
         'posts': posts,
         'AddPostForm': AddPostForm,
         'page': 'list',
+        'domain':  get_current_site(request),
     }
     context.update(comment_view(request))
     return render(request, template, context)

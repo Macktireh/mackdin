@@ -8,6 +8,8 @@ from django.contrib.humanize.templatetags.humanize import naturaltime
 
 from apps.comments.models import Comment, ReponseComment, LikeComment
 from apps.comments.forms import CommentForm, ReponseCommentForm
+from apps.post.models import Post
+from apps.chat.templatetags.chat import timestr
 
 User = get_user_model()
 
@@ -37,6 +39,8 @@ def comment_all_data(request):
             'id': obj.id,
             'comment_author': obj.author.email,
             'comment_author_id': obj.author.id,
+            'comment_author_first_name': obj.author.first_name,
+            'comment_author_last_name': obj.author.last_name,
             'comment_message': obj.message,
             'comment_date_added': naturaltime(obj.date_added),
             'post_id': obj.post.id,
@@ -49,6 +53,38 @@ def comment_all_data(request):
             'current_user': request.user.email,
         }
         data.append(item)
+  
+    return JsonResponse({'data': data})
+
+@login_required(login_url='sign_in')
+def get_comments_post(request, post_id):  
+    qs_comment = Comment.objects.select_related("author").select_related("post").all()
+    qs_user = User.objects.prefetch_related("profile")
+    
+    data = []
+    
+    for obj in qs_comment:
+        if post_id == str(obj.post.id):
+            item = {
+                'id': obj.id,
+                'comment_author': obj.author.email,
+                'comment_author_id': obj.author.id,
+                'comment_author_first_name': obj.author.first_name,
+                'comment_author_last_name': obj.author.last_name,
+                'comment_message': obj.message,
+                'comment_date_added': timestr(naturaltime(obj.date_added)),
+                'post_id': obj.post.id,
+                'post_author': obj.post.author.email,
+                'post_message': obj.post.message,
+                'post_img': obj.post.img.url if obj.post.img else None,
+                'user_pseudo': qs_user.get(id=obj.author.id).profile.pseudo,
+                'user_bio': qs_user.get(id=obj.author.id).profile.bio,
+                'user_img_profile': qs_user.get(id=obj.author.id).profile.img_profile.url,
+                'current_user': request.user.email,
+            }
+            data.append(item)
+        
+        
   
     return JsonResponse({'data': data})
 

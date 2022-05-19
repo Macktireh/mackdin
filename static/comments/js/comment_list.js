@@ -116,7 +116,7 @@ form_comments.forEach((form) => {
         return response.json();
       })
       .then((data) => {
-        console.log(data);
+        // console.log(data);
         // console.log(data.comment_message);
 
         const verif_img = (v) => {
