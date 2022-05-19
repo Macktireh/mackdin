@@ -67,6 +67,7 @@
       border: none
       border-radius: 10px
       color: $color2
+      cursor: pointer
 
   .container-global-comment-list
     width: 100%
@@ -167,7 +168,37 @@
 
         .comment-text-content
           @include flex-el(start, null)
+          flex-direction: column
+          gap: 5px
           width: 100%
           margin-top: 1rem
           p
             text-align: left
+          textarea
+            width: 100%
+            padding: 5px
+            border-radius: 8px
+            resize: none
+            background-color: $color1
+            color: $color2
+            font-size: 16px
+            font-family: $font1
+            border: 1px solid $color3
+          .box-btn
+            @include flex-el(start, null)
+            gap: 8px
+            button, .cancel
+              padding: 2px 8px
+              border-radius: 8px
+              background-color: $color3
+              color: $color2
+              font-size: 16px
+              font-family: $font1
+              border: 1px solid $color3
+              cursor: pointer
+            .cancel
+              background-color: $color4
+              border: 1px solid $color4
+            button[disabled]
+              cursor: not-allowed
+              opacity: 0.4

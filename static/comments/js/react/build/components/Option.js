@@ -17,7 +17,8 @@ var Option = function (_React$Component) {
     _this.state = {
       comment: props.comment,
       toggle: false,
-      handleEditingComment: props.handleEditingComment
+      handleIsEditingComment: props.handleIsEditingComment,
+      handleDeleteComment: props.handleDeleteComment
     };
     return _this;
   }
@@ -64,7 +65,8 @@ var Option = function (_React$Component) {
                 className: "comment-options-item comment-options-item-edit",
                 id: this.state.comment.id,
                 onClick: function onClick() {
-                  return _this2.state.handleEditingComment();
+                  _this2.state.handleIsEditingComment();
+                  _this2.handleClickToggle();
                 }
               },
               React.createElement("img", {
@@ -86,7 +88,11 @@ var Option = function (_React$Component) {
               {
                 className: "comment-options-item comment-options-item-delete",
                 id: this.state.comment.id,
-                title: this.state.comment.post_id
+                title: this.state.comment.post_id,
+                onClick: function onClick() {
+                  _this2.state.handleDeleteComment(_this2.state.comment.id);
+                  _this2.handleClickToggle();
+                }
               },
               React.createElement("img", {
                 src: "/static/home/svg/delete.svg",

@@ -19,52 +19,80 @@ var InputForm = function (_React$Component) {
       classTogglePostDetail: props.classTogglePostDetail,
       urlAddUpdateComment: props.urlAddUpdateComment,
       csrfToken: props.csrfToken,
-      imgProfile: props.imgProfile
+      imgProfile: props.imgProfile,
+      handleAddComment: props.handleAddComment,
+      msg: ""
     };
     return _this;
   }
 
   _createClass(InputForm, [{
+    key: "handleSubmit",
+    value: function handleSubmit(e) {
+      e.preventDefault();
+      this.state.handleAddComment({
+        payload: {
+          post_id: this.state.postId,
+          msg: this.state.msg
+        }
+      });
+    }
+  }, {
     key: "render",
     value: function render() {
+      var _this2 = this;
+
       return React.createElement(
-        "div",
-        { className: "form-comment-container-input" },
+        "form",
+        {
+          onSubmit: function onSubmit(e) {
+            _this2.handleSubmit(e);
+            _this2.setState({ msg: "" });
+          }
+        },
         React.createElement(
           "div",
-          { className: "form-content-comment" },
-          React.createElement("img", { src: this.state.imgProfile }),
-          React.createElement("input", {
-            type: "text",
-            name: "message",
-            id: "input_message_comment-" + this.state.postId,
-            className: "input_message_comment_id",
-            autoComplete: "off",
-            placeholder: "Ajouter un commentaire...",
-            required: true
-          }),
-          React.createElement("input", {
-            type: "hidden",
-            name: "post_id_comment",
-            id: "input_hidden_post_comment-" + this.state.postId,
-            value: this.state.postId
-          }),
-          React.createElement("input", {
-            type: "hidden",
-            name: "post_id_comment2",
-            id: "input_hidden_post_comment2-" + this.state.postId,
-            value: ""
-          })
-        ),
-        React.createElement(
-          "button",
-          {
-            className: "btn-send-comment",
-            type: "submit",
-            name: "submit_c_form",
-            title: this.state.postId
-          },
-          React.createElement("img", { src: "/static/home/svg/send.svg" })
+          { className: "form-comment-container-input" },
+          React.createElement(
+            "div",
+            { className: "form-content-comment" },
+            React.createElement("img", { src: this.state.imgProfile }),
+            React.createElement("input", {
+              type: "text",
+              name: "message",
+              id: "input_message_comment-" + this.state.postId,
+              className: "input_message_comment_id",
+              autoComplete: "off",
+              placeholder: "Ajouter un commentaire...",
+              required: true,
+              value: this.state.msg,
+              onChange: function onChange(e) {
+                return _this2.setState({ msg: e.target.value });
+              }
+            }),
+            React.createElement("input", {
+              type: "hidden",
+              name: "post_id_comment",
+              id: "input_hidden_post_comment-" + this.state.postId,
+              value: this.state.postId
+            }),
+            React.createElement("input", {
+              type: "hidden",
+              name: "post_id_comment2",
+              id: "input_hidden_post_comment2-" + this.state.postId,
+              value: ""
+            })
+          ),
+          React.createElement(
+            "button",
+            {
+              className: "btn-send-comment",
+              type: "submit",
+              name: "submit_c_form",
+              title: this.state.postId
+            },
+            React.createElement("img", { src: "/static/home/svg/send.svg" })
+          )
         )
       );
     }

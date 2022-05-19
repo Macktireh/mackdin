@@ -68,18 +68,20 @@ def get_comments_post(request, post_id):
             item = {
                 'id': obj.id,
                 'comment_author': obj.author.email,
-                'comment_author_id': obj.author.id,
                 'comment_author_first_name': obj.author.first_name,
                 'comment_author_last_name': obj.author.last_name,
                 'comment_message': obj.message,
                 'comment_date_added': timestr(naturaltime(obj.date_added)),
+                
                 'post_id': obj.post.id,
                 'post_author': obj.post.author.email,
-                'post_message': obj.post.message,
-                'post_img': obj.post.img.url if obj.post.img else None,
-                'user_pseudo': qs_user.get(id=obj.author.id).profile.pseudo,
-                'user_bio': qs_user.get(id=obj.author.id).profile.bio,
-                'user_img_profile': qs_user.get(id=obj.author.id).profile.img_profile.url,
+                # 'post_message': obj.post.message,
+                # 'post_img': obj.post.img.url if obj.post.img else None,
+                
+                'user_profile_pseudo': qs_user.get(id=obj.author.id).profile.pseudo,
+                'user_profile_bio': qs_user.get(id=obj.author.id).profile.bio,
+                'user_profile_img': qs_user.get(id=obj.author.id).profile.img_profile.url,
+                
                 'current_user': request.user.email,
             }
             data.append(item)
@@ -116,7 +118,7 @@ def add_update_comment_view(request):
             'comment_author_first_name': comment_post.author.first_name,
             'comment_author_last_name': comment_post.author.last_name,
             'comment_message': comment_post.message,
-            'comment_date_added': naturaltime(comment_post.date_added),
+            'comment_date_added': timestr(naturaltime(comment_post.date_added)),
             
             'post_author': comment_post.post.author.email,
             'post_id': comment_post.post.id,
@@ -128,15 +130,16 @@ def add_update_comment_view(request):
             'current_user': request.user.email
         }
         
-        return JsonResponse(data, status=200)
+        return JsonResponse(data)
 
 
 @login_required(login_url='sign_in')
 def delete_comment(request):
     id_comment = request.POST.get("id_comment")
-    obj = Comment.objects.get(id=id_comment)
-    obj.delete()
-    return JsonResponse({'action': "commentaire supprimer"})
+    if Comment.objects.filter(id=id_comment).exists():
+        obj = Comment.objects.get(id=id_comment)
+        obj.delete()
+    return JsonResponse({'action': "ok"})
 
 
 

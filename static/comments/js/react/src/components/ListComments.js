@@ -4,13 +4,15 @@ class ListComments extends React.Component {
     this.state = {
       comment: props.comment,
       isEditingComment: false,
+      handleEditComment: props.handleEditComment,
+      handleDeleteComment: props.handleDeleteComment,
+      msg: "",
     };
-    this.handleEditingComment = this.handleEditingComment.bind(this);
+    this.handleIsEditingComment = this.handleIsEditingComment.bind(this);
   }
 
-  handleEditingComment() {
+  handleIsEditingComment() {
     const isEditingComment = this.state.isEditingComment;
-    // console.log(this);
     this.setState({ isEditingComment: !isEditingComment });
   }
 
@@ -20,15 +22,18 @@ class ListComments extends React.Component {
         className="container-comment-list"
         id={"container-comment-list" + this.state.comment.id}
       >
-        <Option
-          comment={this.state.comment}
-          handleEditingComment={this.handleEditingComment}
-        />
-        <a href="">
-          {/* <a href="{% url 'profiles:profile' pseudo=comment.author.profile.pseudo  %}"> */}
+        {this.state.comment.current_user ===
+        this.state.comment.comment_author ? (
+          <Option
+            comment={this.state.comment}
+            handleIsEditingComment={this.handleIsEditingComment}
+            handleDeleteComment={this.state.handleDeleteComment}
+          />
+        ) : null}
+        <a href={`/profile/${this.state.comment.user_profile_pseudo}/`}>
           <img
             id="container-comment-list-img-profile"
-            src={this.state.comment.user_img_profile}
+            src={this.state.comment.user_profile_img}
           />
         </a>
         <div className="comment-content-box">
@@ -38,8 +43,7 @@ class ListComments extends React.Component {
               id={"comment-info-content-I-" + this.state.comment.id}
             >
               <strong>
-                <a href="">
-                  {/* <a href="{% url 'profiles:profile' pseudo=comment.author.profile.pseudo  %}"> */}
+                <a href={`/profile/${this.state.comment.user_profile_pseudo}/`}>
                   {this.state.comment.comment_author_first_name}{" "}
                   {this.state.comment.comment_author_last_name}
                 </a>
@@ -49,18 +53,48 @@ class ListComments extends React.Component {
                 ) : null}
               </strong>
               <p id="comment-author-profile-title">
-                {this.state.comment.user_bio}
+                {this.state.comment.user_profile_bio}
               </p>
             </div>
             <small>{this.state.comment.comment_date_added}</small>
           </div>
           <div className="comment-text-content">
             {this.state.isEditingComment ? (
-              <input
-                className={"msg-text-p-" + this.state.comment.id}
-                id={this.state.comment.post_id}
-                defaultValue={this.state.comment.comment_message}
-              />
+              <form>
+                <textarea
+                  autoFocus
+                  className={"msg-text-p-" + this.state.comment.id}
+                  id={this.state.comment.post_id}
+                  defaultValue={this.state.comment.comment_message}
+                  onChange={(e) => this.setState({ msg: e.target.value })}
+                />
+                <div className="box-btn">
+                  <button
+                    onClick={(e) => {
+                      e.preventDefault();
+                      if (this.state.msg !== "") {
+                        this.state.handleEditComment({
+                          payload: {
+                            msg: this.state.msg,
+                            post_id: this.state.comment.post_id,
+                            comment_id: this.state.comment.id,
+                          },
+                        });
+                      }
+                      this.handleIsEditingComment();
+                    }}
+                    disabled={this.state.msg === ""}
+                  >
+                    Valider
+                  </button>
+                  <div
+                    className="cancel"
+                    onClick={() => this.handleIsEditingComment()}
+                  >
+                    Annuler
+                  </div>
+                </div>
+              </form>
             ) : (
               <p
                 className={"msg-text-p-" + this.state.comment.id}

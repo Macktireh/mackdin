@@ -16,38 +16,43 @@ var ListComments = function (_React$Component) {
 
     _this.state = {
       comment: props.comment,
-      isEditingComment: false
+      isEditingComment: false,
+      handleEditComment: props.handleEditComment,
+      handleDeleteComment: props.handleDeleteComment,
+      msg: ""
     };
-    _this.handleEditingComment = _this.handleEditingComment.bind(_this);
+    _this.handleIsEditingComment = _this.handleIsEditingComment.bind(_this);
     return _this;
   }
 
   _createClass(ListComments, [{
-    key: "handleEditingComment",
-    value: function handleEditingComment() {
+    key: "handleIsEditingComment",
+    value: function handleIsEditingComment() {
       var isEditingComment = this.state.isEditingComment;
-      // console.log(this);
       this.setState({ isEditingComment: !isEditingComment });
     }
   }, {
     key: "render",
     value: function render() {
+      var _this2 = this;
+
       return React.createElement(
         "div",
         {
           className: "container-comment-list",
           id: "container-comment-list" + this.state.comment.id
         },
-        React.createElement(Option, {
+        this.state.comment.current_user === this.state.comment.comment_author ? React.createElement(Option, {
           comment: this.state.comment,
-          handleEditingComment: this.handleEditingComment
-        }),
+          handleIsEditingComment: this.handleIsEditingComment,
+          handleDeleteComment: this.state.handleDeleteComment
+        }) : null,
         React.createElement(
           "a",
-          { href: "" },
+          { href: "/profile/" + this.state.comment.user_profile_pseudo + "/" },
           React.createElement("img", {
             id: "container-comment-list-img-profile",
-            src: this.state.comment.user_img_profile
+            src: this.state.comment.user_profile_img
           })
         ),
         React.createElement(
@@ -67,7 +72,7 @@ var ListComments = function (_React$Component) {
                 null,
                 React.createElement(
                   "a",
-                  { href: "" },
+                  { href: "/profile/" + this.state.comment.user_profile_pseudo + "/" },
                   this.state.comment.comment_author_first_name,
                   " ",
                   this.state.comment.comment_author_last_name
@@ -81,7 +86,7 @@ var ListComments = function (_React$Component) {
               React.createElement(
                 "p",
                 { id: "comment-author-profile-title" },
-                this.state.comment.user_bio
+                this.state.comment.user_profile_bio
               )
             ),
             React.createElement(
@@ -93,11 +98,53 @@ var ListComments = function (_React$Component) {
           React.createElement(
             "div",
             { className: "comment-text-content" },
-            this.state.isEditingComment ? React.createElement("input", {
-              className: "msg-text-p-" + this.state.comment.id,
-              id: this.state.comment.post_id,
-              defaultValue: this.state.comment.comment_message
-            }) : React.createElement(
+            this.state.isEditingComment ? React.createElement(
+              "form",
+              null,
+              React.createElement("textarea", {
+                autoFocus: true,
+                className: "msg-text-p-" + this.state.comment.id,
+                id: this.state.comment.post_id,
+                defaultValue: this.state.comment.comment_message,
+                onChange: function onChange(e) {
+                  return _this2.setState({ msg: e.target.value });
+                }
+              }),
+              React.createElement(
+                "div",
+                { className: "box-btn" },
+                React.createElement(
+                  "button",
+                  {
+                    onClick: function onClick(e) {
+                      e.preventDefault();
+                      if (_this2.state.msg !== "") {
+                        _this2.state.handleEditComment({
+                          payload: {
+                            msg: _this2.state.msg,
+                            post_id: _this2.state.comment.post_id,
+                            comment_id: _this2.state.comment.id
+                          }
+                        });
+                      }
+                      _this2.handleIsEditingComment();
+                    },
+                    disabled: this.state.msg === ""
+                  },
+                  "Valider"
+                ),
+                React.createElement(
+                  "div",
+                  {
+                    className: "cancel",
+                    onClick: function onClick() {
+                      return _this2.handleIsEditingComment();
+                    }
+                  },
+                  "Annuler"
+                )
+              )
+            ) : React.createElement(
               "p",
               {
                 className: "msg-text-p-" + this.state.comment.id,

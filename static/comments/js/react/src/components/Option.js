@@ -4,7 +4,8 @@ class Option extends React.Component {
     this.state = {
       comment: props.comment,
       toggle: false,
-      handleEditingComment: props.handleEditingComment,
+      handleIsEditingComment: props.handleIsEditingComment,
+      handleDeleteComment: props.handleDeleteComment,
     };
   }
 
@@ -38,7 +39,10 @@ class Option extends React.Component {
             <div
               className="comment-options-item comment-options-item-edit"
               id={this.state.comment.id}
-              onClick={() => this.state.handleEditingComment()}
+              onClick={() => {
+                this.state.handleIsEditingComment();
+                this.handleClickToggle();
+              }}
             >
               <img
                 src="/static/home/svg/edit.svg"
@@ -57,6 +61,10 @@ class Option extends React.Component {
               className="comment-options-item comment-options-item-delete"
               id={this.state.comment.id}
               title={this.state.comment.post_id}
+              onClick={() => {
+                this.state.handleDeleteComment(this.state.comment.id);
+                this.handleClickToggle();
+              }}
             >
               <img
                 src="/static/home/svg/delete.svg"

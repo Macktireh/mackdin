@@ -96,6 +96,7 @@ a:visited {
   border: none;
   border-radius: 10px;
   color: #f1f1f1;
+  cursor: pointer;
 }
 .form-comment-list-input-container-global .container-global-comment-list {
   width: 100%;
@@ -204,11 +205,47 @@ a:visited {
 .form-comment-list-input-container-global .container-global-comment-list .container-comment-list .comment-content-box .comment-text-content {
   display: flex;
   justify-content: start;
+  flex-direction: column;
+  gap: 5px;
   width: 100%;
   margin-top: 1rem;
 }
 .form-comment-list-input-container-global .container-global-comment-list .container-comment-list .comment-content-box .comment-text-content p {
   text-align: left;
+}
+.form-comment-list-input-container-global .container-global-comment-list .container-comment-list .comment-content-box .comment-text-content textarea {
+  width: 100%;
+  padding: 5px;
+  border-radius: 8px;
+  resize: none;
+  background-color: #2c3e50;
+  color: #f1f1f1;
+  font-size: 16px;
+  font-family: ui-sans-serif, system-ui;
+  border: 1px solid #1abc9c;
+}
+.form-comment-list-input-container-global .container-global-comment-list .container-comment-list .comment-content-box .comment-text-content .box-btn {
+  display: flex;
+  justify-content: start;
+  gap: 8px;
+}
+.form-comment-list-input-container-global .container-global-comment-list .container-comment-list .comment-content-box .comment-text-content .box-btn button, .form-comment-list-input-container-global .container-global-comment-list .container-comment-list .comment-content-box .comment-text-content .box-btn .cancel {
+  padding: 2px 8px;
+  border-radius: 8px;
+  background-color: #1abc9c;
+  color: #f1f1f1;
+  font-size: 16px;
+  font-family: ui-sans-serif, system-ui;
+  border: 1px solid #1abc9c;
+  cursor: pointer;
+}
+.form-comment-list-input-container-global .container-global-comment-list .container-comment-list .comment-content-box .comment-text-content .box-btn .cancel {
+  background-color: #34495e;
+  border: 1px solid #34495e;
+}
+.form-comment-list-input-container-global .container-global-comment-list .container-comment-list .comment-content-box .comment-text-content .box-btn button[disabled] {
+  cursor: not-allowed;
+  opacity: 0.4;
 }
 
 .comment-options-btn {
