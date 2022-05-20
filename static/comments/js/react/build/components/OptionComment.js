@@ -6,13 +6,13 @@ function _possibleConstructorReturn(self, call) { if (!self) { throw new Referen
 
 function _inherits(subClass, superClass) { if (typeof superClass !== "function" && superClass !== null) { throw new TypeError("Super expression must either be null or a function, not " + typeof superClass); } subClass.prototype = Object.create(superClass && superClass.prototype, { constructor: { value: subClass, enumerable: false, writable: true, configurable: true } }); if (superClass) Object.setPrototypeOf ? Object.setPrototypeOf(subClass, superClass) : subClass.__proto__ = superClass; }
 
-var Option = function (_React$Component) {
-  _inherits(Option, _React$Component);
+var OptionComment = function (_React$Component) {
+  _inherits(OptionComment, _React$Component);
 
-  function Option(props) {
-    _classCallCheck(this, Option);
+  function OptionComment(props) {
+    _classCallCheck(this, OptionComment);
 
-    var _this = _possibleConstructorReturn(this, (Option.__proto__ || Object.getPrototypeOf(Option)).call(this, props));
+    var _this = _possibleConstructorReturn(this, (OptionComment.__proto__ || Object.getPrototypeOf(OptionComment)).call(this, props));
 
     _this.state = {
       comment: props.comment,
@@ -21,7 +21,7 @@ var Option = function (_React$Component) {
     return _this;
   }
 
-  _createClass(Option, [{
+  _createClass(OptionComment, [{
     key: "handleClickToggle",
     value: function handleClickToggle() {
       var toggle = this.state.toggle;
@@ -99,5 +99,5 @@ var Option = function (_React$Component) {
     }
   }]);
 
-  return Option;
+  return OptionComment;
 }(React.Component);

@@ -1,4 +1,4 @@
-class Option extends React.Component {
+class OptionComment extends React.Component {
   constructor(props) {
     super(props);
     this.state = {

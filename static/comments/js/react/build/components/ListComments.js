@@ -36,7 +36,7 @@ var ListComments = function (_React$Component) {
       return React.createElement(
         "div",
         { className: "container-comment-list" },
-        this.props.comment.current_user === this.props.comment.comment_author ? React.createElement(Option, {
+        this.props.comment.current_user === this.props.comment.comment_author ? React.createElement(OptionComment, {
           comment: this.props.comment,
           handleIsEditingComment: this.handleIsEditingComment,
           handleDeleteComment: this.props.handleDeleteComment

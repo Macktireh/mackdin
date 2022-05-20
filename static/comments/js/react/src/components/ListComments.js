@@ -18,7 +18,7 @@ class ListComments extends React.Component {
       <div className="container-comment-list">
         {this.props.comment.current_user ===
         this.props.comment.comment_author ? (
-          <Option
+          <OptionComment
             comment={this.props.comment}
             handleIsEditingComment={this.handleIsEditingComment}
             handleDeleteComment={this.props.handleDeleteComment}
