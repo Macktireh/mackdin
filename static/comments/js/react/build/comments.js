@@ -6,13 +6,13 @@ function _possibleConstructorReturn(self, call) { if (!self) { throw new Referen
 
 function _inherits(subClass, superClass) { if (typeof superClass !== "function" && superClass !== null) { throw new TypeError("Super expression must either be null or a function, not " + typeof superClass); } subClass.prototype = Object.create(superClass && superClass.prototype, { constructor: { value: subClass, enumerable: false, writable: true, configurable: true } }); if (superClass) Object.setPrototypeOf ? Object.setPrototypeOf(subClass, superClass) : subClass.__proto__ = superClass; }
 
-var App = function (_React$Component) {
-  _inherits(App, _React$Component);
+var AppLikeComment = function (_React$Component) {
+  _inherits(AppLikeComment, _React$Component);
 
-  function App(props) {
-    _classCallCheck(this, App);
+  function AppLikeComment(props) {
+    _classCallCheck(this, AppLikeComment);
 
-    var _this = _possibleConstructorReturn(this, (App.__proto__ || Object.getPrototypeOf(App)).call(this, props));
+    var _this = _possibleConstructorReturn(this, (AppLikeComment.__proto__ || Object.getPrototypeOf(AppLikeComment)).call(this, props));
 
     _this.state = {
       postId: props.postId,
@@ -22,18 +22,23 @@ var App = function (_React$Component) {
       imgProfile: props.imgProfile,
       urlGetData: props.urlGetData,
       listComments: [],
+      isLike: props.isLike,
       nberLike: props.nberLike,
       nberComment: props.nberComment
     };
+
+    _this.handlIsLike = _this.handlIsLike.bind(_this);
+    _this.handleLikeorUnlike = _this.handleLikeorUnlike.bind(_this);
+
+    _this.handleClickToggle = _this.handleClickToggle.bind(_this);
+
     _this.handleAddComment = _this.handleAddComment.bind(_this);
     _this.handleEditComment = _this.handleEditComment.bind(_this);
     _this.handleDeleteComment = _this.handleDeleteComment.bind(_this);
     return _this;
   }
-  // D-none_V-hidden_O-0
 
-
-  _createClass(App, [{
+  _createClass(AppLikeComment, [{
     key: "handleClickToggle",
     value: function handleClickToggle() {
       var toggle = this.state.classTogglePostDetail;
@@ -44,11 +49,30 @@ var App = function (_React$Component) {
     value: function componentDidMount() {
       var _this2 = this;
 
-      fetch(this.state.urlGetData, { method: "GET" }).then(function (response) {
-        return response.json();
+      fetch(this.state.urlGetData, { method: "GET" }).then(function (res) {
+        return res.json();
       }).then(function (res) {
         return _this2.setState({ listComments: res.data });
       });
+    }
+  }, {
+    key: "handlIsLike",
+    value: function handlIsLike(type) {
+      if (type === "Unlike") {
+        this.setState({ isLike: false });
+      } else if (type === "Like") {
+        this.setState({ isLike: true });
+      }
+    }
+  }, {
+    key: "updateNberLike",
+    value: function updateNberLike(type) {
+      var num = parseInt(this.state.nberLike);
+      if (type === "Like") {
+        this.setState({ nberLike: num + 1 });
+      } else {
+        this.setState({ nberLike: num - 1 });
+      }
     }
   }, {
     key: "updateNberComment",
@@ -61,58 +85,72 @@ var App = function (_React$Component) {
       }
     }
   }, {
-    key: "handleAddComment",
-    value: function handleAddComment(action) {
-      var _this3 = this;
-
-      fetch(this.state.urlAddUpdateComment, {
-        method: "POST",
-        credentials: "same-origin",
+    key: "configFetch",
+    value: function configFetch(url, method, data) {
+      var request = new Request(url, {
+        method: method,
         headers: {
           Accept: "application/json",
           "X-Requested-With": "XMLHttpRequest",
           "X-CSRFToken": this.state.csrfToken
         },
-        body: JSON.stringify({
-          message: action.payload.msg,
-          id_post: action.payload.post_id,
-          id_comment: null
-        })
-      }).then(function (res) {
+        body: data
+      });
+      return request;
+    }
+  }, {
+    key: "handleLikeorUnlike",
+    value: function handleLikeorUnlike() {
+      var _this3 = this;
+
+      var formData = new FormData();
+      formData.append("post_id", this.state.postId);
+
+      fetch(this.configFetch("/feed/like/", "POST", formData)).then(function (res) {
         return res.json();
       }).then(function (res) {
-        // console.log(res);
-        var commentData = _this3.state.listComments.slice();
+        _this3.handlIsLike(res.value);
+        _this3.updateNberLike(res.value);
+      });
+    }
+  }, {
+    key: "handleAddComment",
+    value: function handleAddComment(action) {
+      var _this4 = this;
+
+      var data = JSON.stringify({
+        message: action.payload.msg,
+        id_post: action.payload.post_id,
+        id_comment: null
+      });
+
+      fetch(this.configFetch(this.state.urlAddUpdateComment, "POST", data)).then(function (res) {
+        return res.json();
+      }).then(function (res) {
+        var commentData = _this4.state.listComments.slice();
         commentData.push(res);
-        _this3.setState({ listComments: commentData });
+        _this4.setState({ listComments: commentData });
       }).then(function () {
-        _this3.updateNberComment("ADD");
+        _this4.updateNberComment("ADD");
       });
     }
   }, {
     key: "handleEditComment",
     value: function handleEditComment(action) {
-      var _this4 = this;
+      var _this5 = this;
 
-      fetch(this.state.urlAddUpdateComment, {
-        method: "POST",
-        credentials: "same-origin",
-        headers: {
-          Accept: "application/json",
-          "X-Requested-With": "XMLHttpRequest",
-          "X-CSRFToken": this.state.csrfToken
-        },
-        body: JSON.stringify({
-          message: action.payload.msg,
-          id_post: action.payload.post_id,
-          id_comment: action.payload.comment_id
-        })
-      }).then(function () {
-        var commentData1 = _this4.state.listComments.slice();
+      var data = JSON.stringify({
+        message: action.payload.msg,
+        id_post: action.payload.post_id,
+        id_comment: action.payload.comment_id
+      });
+
+      fetch(this.configFetch(this.state.urlAddUpdateComment, "POST", data)).then(function () {
+        var commentData1 = _this5.state.listComments.slice();
         commentData1.filter(function (comment) {
           if (comment.id === action.payload.comment_id) {
             comment.comment_message = action.payload.msg;
-            _this4.setState({ listComments: commentData1 });
+            _this5.setState({ listComments: commentData1 });
           }
         });
       });
@@ -120,29 +158,22 @@ var App = function (_React$Component) {
   }, {
     key: "handleDeleteComment",
     value: function handleDeleteComment(id) {
-      var _this5 = this;
+      var _this6 = this;
 
       var formData = new FormData();
       formData.append("id_comment", id);
 
-      fetch("/comment/delete-comment/", {
-        method: "POST",
-        headers: {
-          Accept: "application/json",
-          "X-Requested-With": "XMLHttpRequest",
-          "X-CSRFToken": this.state.csrfToken
-        },
-        body: formData
-      }).then(function () {
-        window.confirm("Vous êtes sûr de vouloir supprimer") && _this5.componentDidMount();
-      }).then(function () {
-        _this5.updateNberComment("DELETE");
+      fetch(this.configFetch("/comment/delete-comment/", "POST", formData)).then(function () {
+        if (window.confirm("Vous êtes sûr de vouloir supprimer")) {
+          _this6.componentDidMount();
+          _this6.updateNberComment("DELETE");
+        }
       });
     }
   }, {
     key: "render",
     value: function render() {
-      var _this6 = this;
+      var _this7 = this;
 
       return React.createElement(
         React.Fragment,
@@ -155,73 +186,31 @@ var App = function (_React$Component) {
             nberLike: this.state.nberLike
           }),
           React.createElement("hr", null),
-          React.createElement(
-            "div",
-            { className: "box-action-icon" },
-            React.createElement(LikeFormButton, null),
-            React.createElement(
-              "button",
-              {
-                className: "action-icon box-comment btn-container-comment-toggle",
-                id: "{{post.id}}",
-                onClick: function onClick() {
-                  return _this6.handleClickToggle();
-                }
-              },
-              React.createElement("img", {
-                src: "/static/home/svg/comment.svg",
-                className: "icon-like-comment-share",
-                id: "{{post.id}}"
-              }),
-              React.createElement(
-                "span",
-                { id: "{{post.id}}", className: "label-like-comment-share" },
-                "Commenter"
-              )
-            ),
-            React.createElement(
-              "button",
-              { className: "action-icon box-share" },
-              React.createElement("img", {
-                src: "/static/home/svg/share.svg",
-                className: "icon-like-comment-share"
-              }),
-              React.createElement(
-                "span",
-                { className: "label-like-comment-share" },
-                "Partager"
-              )
-            )
-          )
+          React.createElement(BtnLikeCommentShare, {
+            handleClickToggle: this.handleClickToggle,
+            handleLikeorUnlike: this.handleLikeorUnlike,
+            isLike: this.state.isLike
+          })
         ),
         React.createElement(
           "div",
           {
-            title: this.state.postId,
-            className: this.state.classTogglePostDetail ? "form-comment-list-input-container-global D-none_V-hidden_O-0" : "form-comment-list-input-container-global",
-            id: "form-comment-list-input-container-global" + this.state.postId,
-            method: "post"
+            className: this.state.classTogglePostDetail ? "form-comment-list-input-container-global D-none_V-hidden_O-0" : "form-comment-list-input-container-global"
           },
           React.createElement(InputForm, {
             postId: this.state.postId,
-            classTogglePostDetail: this.state.classTogglePostDetail,
-            urlAddUpdateComment: this.state.urlAddUpdateComment,
-            csrfToken: this.state.csrfToken,
             imgProfile: this.state.imgProfile,
             handleAddComment: this.handleAddComment
           }),
           React.createElement(
             "div",
-            {
-              className: "container-global-comment-list",
-              id: "container-global-comment-list-" + this.state.postId
-            },
+            { className: "container-global-comment-list" },
             this.state.listComments.length > 0 && this.state.listComments.map(function (comment) {
               return React.createElement(ListComments, {
                 key: comment.id,
                 comment: comment,
-                handleEditComment: _this6.handleEditComment,
-                handleDeleteComment: _this6.handleDeleteComment
+                handleEditComment: _this7.handleEditComment,
+                handleDeleteComment: _this7.handleDeleteComment
               });
             })
           )
@@ -230,30 +219,5 @@ var App = function (_React$Component) {
     }
   }]);
 
-  return App;
+  return AppLikeComment;
 }(React.Component);
-
-// export default index;
-
-document.querySelectorAll(".root-comments").forEach(function (div) {
-  var postId = div.dataset.postId;
-  var classTogglePostDetail = div.dataset.classTogglePostDetail;
-  var urlAddUpdateComment = div.dataset.urlAddUpdateComment;
-  var csrfToken = div.dataset.csrfToken;
-  var imgProfile = div.dataset.imgProfile;
-  var urlGetData = div.dataset.urlGetData;
-  var nberLike = div.dataset.nberLike;
-  var nberComment = div.dataset.nberComment;
-
-  var root = ReactDOM.createRoot(div);
-  root.render(React.createElement(App, {
-    postId: postId,
-    classTogglePostDetail: classTogglePostDetail,
-    urlAddUpdateComment: urlAddUpdateComment,
-    csrfToken: csrfToken,
-    imgProfile: imgProfile,
-    urlGetData: urlGetData,
-    nberLike: nberLike,
-    nberComment: nberComment
-  }));
-});

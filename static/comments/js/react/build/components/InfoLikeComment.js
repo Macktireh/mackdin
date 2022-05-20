@@ -14,10 +14,7 @@ var InfoLikeComment = function (_React$Component) {
 
     var _this = _possibleConstructorReturn(this, (InfoLikeComment.__proto__ || Object.getPrototypeOf(InfoLikeComment)).call(this, props));
 
-    _this.state = {
-      nberLike: props.nberLike,
-      nberComment: props.nberComment
-    };
+    _this.state = {};
     return _this;
   }
 
@@ -29,16 +26,16 @@ var InfoLikeComment = function (_React$Component) {
         { className: "count-likes-comments" },
         React.createElement(
           "div",
-          { id: "likes-count{{post.id}}" },
+          null,
           React.createElement(
             "span",
-            { id: "likes-num{{post.id}}" },
+            null,
             this.props.nberLike > 1 ? this.props.nberLike + " Likes" : this.props.nberLike + " Like"
           )
         ),
         React.createElement(
           "div",
-          { className: "comments-count-post", id: "comments-count{{post.id}}" },
+          { className: "comments-count-post" },
           React.createElement(
             "span",
             { id: "comments-num{{post.id}}" },

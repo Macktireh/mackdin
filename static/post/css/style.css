@@ -20,7 +20,7 @@ a:visited {
   color: #f1f1f1;
 }
 
-.flex-center, .post-footer form button, .post-footer .box-action-icon .action-icon, .post-header .post-header-img, .options-actions-container, .options-btn, .previous-post-container .previous-post-box .previous-post-header-img, form .add-img-btn-send button, form, .new-add-post-right-container, .container-main .new-add-post {
+.flex-center, .post-footer form button, .post-footer button.like-btn, .post-footer .box-action-icon .action-icon, .post-header .post-header-img, .options-actions-container, .options-btn, .previous-post-container .previous-post-box .previous-post-header-img, form .add-img-btn-send button, form, .new-add-post-right-container, .container-main .new-add-post {
   display: flex;
   justify-content: center;
   align-items: center;
@@ -475,7 +475,7 @@ form .add-img-btn-send button span {
 .post-footer .box-action-icon .action-icon:active {
   transform: scale(0.98);
 }
-.post-footer form button {
+.post-footer form button, .post-footer button.like-btn {
   padding: 1rem 0;
   width: 100%;
   background-color: #34495e;
@@ -484,19 +484,19 @@ form .add-img-btn-send button span {
   gap: 0.4rem;
   cursor: pointer;
 }
-.post-footer form button img {
+.post-footer form button img, .post-footer button.like-btn img {
   width: 20px;
 }
-.post-footer form button span {
+.post-footer form button span, .post-footer button.like-btn span {
   color: #f1f1f1;
   font-size: 16px;
   font-family: ui-sans-serif, system-ui;
 }
-.post-footer form button:hover {
+.post-footer form button:hover, .post-footer button.like-btn:hover {
   background-color: #0000001a;
   border-radius: 8px;
 }
-.post-footer form button:active {
+.post-footer form button:active, .post-footer button.like-btn:active {
   transform: scale(0.98);
 }
 .post-footer .text-like_unlike-span {

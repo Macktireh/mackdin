@@ -16,9 +16,7 @@ var Option = function (_React$Component) {
 
     _this.state = {
       comment: props.comment,
-      toggle: false,
-      handleIsEditingComment: props.handleIsEditingComment,
-      handleDeleteComment: props.handleDeleteComment
+      toggle: false
     };
     return _this;
   }
@@ -40,7 +38,6 @@ var Option = function (_React$Component) {
         React.createElement(
           "div",
           {
-            id: this.state.comment.id,
             className: "comment-options-btn",
             onClick: function onClick() {
               return _this2.handleClickToggle();
@@ -53,7 +50,6 @@ var Option = function (_React$Component) {
         React.createElement(
           "div",
           {
-            id: "comment-options-container" + this.state.comment.id,
             className: this.state.toggle ? "comment-options-actions-container" : "comment-options-actions-container display-none"
           },
           React.createElement(
@@ -63,23 +59,18 @@ var Option = function (_React$Component) {
               "div",
               {
                 className: "comment-options-item comment-options-item-edit",
-                id: this.state.comment.id,
                 onClick: function onClick() {
-                  _this2.state.handleIsEditingComment();
+                  _this2.props.handleIsEditingComment();
                   _this2.handleClickToggle();
                 }
               },
               React.createElement("img", {
                 src: "/static/home/svg/edit.svg",
-                id: this.state.comment.id,
                 className: "comment-options-item-img"
               }),
               React.createElement(
                 "span",
-                {
-                  className: "btn-edit-comment comment-options-item-span",
-                  id: this.state.comment.id
-                },
+                { className: "btn-edit-comment comment-options-item-span" },
                 "Modifier"
               )
             ),
@@ -87,25 +78,18 @@ var Option = function (_React$Component) {
               "div",
               {
                 className: "comment-options-item comment-options-item-delete",
-                id: this.state.comment.id,
-                title: this.state.comment.post_id,
                 onClick: function onClick() {
-                  _this2.state.handleDeleteComment(_this2.state.comment.id);
+                  _this2.props.handleDeleteComment(_this2.state.comment.id);
                   _this2.handleClickToggle();
                 }
               },
               React.createElement("img", {
                 src: "/static/home/svg/delete.svg",
-                id: this.state.comment.id,
                 className: "comment-options-item-img"
               }),
               React.createElement(
                 "span",
-                {
-                  className: "btn-del-comment comment-options-item-span",
-                  id: this.state.comment.id,
-                  title: this.state.comment.post_id
-                },
+                { className: "btn-del-comment comment-options-item-span" },
                 "Supprimer"
               )
             )

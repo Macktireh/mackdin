@@ -15,12 +15,6 @@ var InputForm = function (_React$Component) {
     var _this = _possibleConstructorReturn(this, (InputForm.__proto__ || Object.getPrototypeOf(InputForm)).call(this, props));
 
     _this.state = {
-      postId: props.postId,
-      classTogglePostDetail: props.classTogglePostDetail,
-      urlAddUpdateComment: props.urlAddUpdateComment,
-      csrfToken: props.csrfToken,
-      imgProfile: props.imgProfile,
-      handleAddComment: props.handleAddComment,
       msg: ""
     };
     return _this;
@@ -30,9 +24,9 @@ var InputForm = function (_React$Component) {
     key: "handleSubmit",
     value: function handleSubmit(e) {
       e.preventDefault();
-      this.state.handleAddComment({
+      this.props.handleAddComment({
         payload: {
-          post_id: this.state.postId,
+          post_id: this.props.postId,
           msg: this.state.msg
         }
       });
@@ -56,11 +50,9 @@ var InputForm = function (_React$Component) {
           React.createElement(
             "div",
             { className: "form-content-comment" },
-            React.createElement("img", { src: this.state.imgProfile }),
+            React.createElement("img", { src: this.props.imgProfile }),
             React.createElement("input", {
               type: "text",
-              name: "message",
-              id: "input_message_comment-" + this.state.postId,
               className: "input_message_comment_id",
               autoComplete: "off",
               placeholder: "Ajouter un commentaire...",
@@ -69,28 +61,11 @@ var InputForm = function (_React$Component) {
               onChange: function onChange(e) {
                 return _this2.setState({ msg: e.target.value });
               }
-            }),
-            React.createElement("input", {
-              type: "hidden",
-              name: "post_id_comment",
-              id: "input_hidden_post_comment-" + this.state.postId,
-              value: this.state.postId
-            }),
-            React.createElement("input", {
-              type: "hidden",
-              name: "post_id_comment2",
-              id: "input_hidden_post_comment2-" + this.state.postId,
-              value: ""
             })
           ),
           React.createElement(
             "button",
-            {
-              className: "btn-send-comment",
-              type: "submit",
-              name: "submit_c_form",
-              title: this.state.postId
-            },
+            { className: "btn-send-comment", type: "submit" },
             React.createElement("img", { src: "/static/home/svg/send.svg" })
           )
         )

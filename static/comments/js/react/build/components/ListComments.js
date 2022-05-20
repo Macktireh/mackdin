@@ -15,10 +15,7 @@ var ListComments = function (_React$Component) {
     var _this = _possibleConstructorReturn(this, (ListComments.__proto__ || Object.getPrototypeOf(ListComments)).call(this, props));
 
     _this.state = {
-      comment: props.comment,
       isEditingComment: false,
-      handleEditComment: props.handleEditComment,
-      handleDeleteComment: props.handleDeleteComment,
       msg: ""
     };
     _this.handleIsEditingComment = _this.handleIsEditingComment.bind(_this);
@@ -38,21 +35,18 @@ var ListComments = function (_React$Component) {
 
       return React.createElement(
         "div",
-        {
-          className: "container-comment-list",
-          id: "container-comment-list" + this.state.comment.id
-        },
-        this.state.comment.current_user === this.state.comment.comment_author ? React.createElement(Option, {
-          comment: this.state.comment,
+        { className: "container-comment-list" },
+        this.props.comment.current_user === this.props.comment.comment_author ? React.createElement(Option, {
+          comment: this.props.comment,
           handleIsEditingComment: this.handleIsEditingComment,
-          handleDeleteComment: this.state.handleDeleteComment
+          handleDeleteComment: this.props.handleDeleteComment
         }) : null,
         React.createElement(
           "a",
-          { href: "/profile/" + this.state.comment.user_profile_pseudo + "/" },
+          { href: "/profile/" + this.props.comment.user_profile_pseudo + "/" },
           React.createElement("img", {
             id: "container-comment-list-img-profile",
-            src: this.state.comment.user_profile_img
+            src: this.props.comment.user_profile_img
           })
         ),
         React.createElement(
@@ -63,21 +57,18 @@ var ListComments = function (_React$Component) {
             { className: "comment-info-content" },
             React.createElement(
               "div",
-              {
-                className: "comment-info-content-I",
-                id: "comment-info-content-I-" + this.state.comment.id
-              },
+              { className: "comment-info-content-I" },
               React.createElement(
                 "strong",
                 null,
                 React.createElement(
                   "a",
-                  { href: "/profile/" + this.state.comment.user_profile_pseudo + "/" },
-                  this.state.comment.comment_author_first_name,
+                  { href: "/profile/" + this.props.comment.user_profile_pseudo + "/" },
+                  this.props.comment.comment_author_first_name,
                   " ",
-                  this.state.comment.comment_author_last_name
+                  this.props.comment.comment_author_last_name
                 ),
-                this.state.comment.comment_author === this.state.comment.post_author ? React.createElement(
+                this.props.comment.comment_author === this.props.comment.post_author ? React.createElement(
                   "span",
                   { id: "author_post_and_comment" },
                   "Auteur"
@@ -86,13 +77,13 @@ var ListComments = function (_React$Component) {
               React.createElement(
                 "p",
                 { id: "comment-author-profile-title" },
-                this.state.comment.user_profile_bio
+                this.props.comment.user_profile_bio
               )
             ),
             React.createElement(
               "small",
               null,
-              this.state.comment.comment_date_added
+              this.props.comment.comment_date_added
             )
           ),
           React.createElement(
@@ -103,9 +94,7 @@ var ListComments = function (_React$Component) {
               null,
               React.createElement("textarea", {
                 autoFocus: true,
-                className: "msg-text-p-" + this.state.comment.id,
-                id: this.state.comment.post_id,
-                defaultValue: this.state.comment.comment_message,
+                defaultValue: this.props.comment.comment_message,
                 onChange: function onChange(e) {
                   return _this2.setState({ msg: e.target.value });
                 }
@@ -119,11 +108,11 @@ var ListComments = function (_React$Component) {
                     onClick: function onClick(e) {
                       e.preventDefault();
                       if (_this2.state.msg !== "") {
-                        _this2.state.handleEditComment({
+                        _this2.props.handleEditComment({
                           payload: {
                             msg: _this2.state.msg,
-                            post_id: _this2.state.comment.post_id,
-                            comment_id: _this2.state.comment.id
+                            post_id: _this2.props.comment.post_id,
+                            comment_id: _this2.props.comment.id
                           }
                         });
                       }
@@ -146,11 +135,8 @@ var ListComments = function (_React$Component) {
               )
             ) : React.createElement(
               "p",
-              {
-                className: "msg-text-p-" + this.state.comment.id,
-                id: this.state.comment.post_id
-              },
-              this.state.comment.comment_message
+              null,
+              this.props.comment.comment_message
             )
           )
         )

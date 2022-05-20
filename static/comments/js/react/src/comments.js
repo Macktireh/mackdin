@@ -1,4 +1,4 @@
-class App extends React.Component {
+class AppLikeComment extends React.Component {
   constructor(props) {
     super(props);
     this.state = {
@@ -9,14 +9,21 @@ class App extends React.Component {
       imgProfile: props.imgProfile,
       urlGetData: props.urlGetData,
       listComments: [],
+      isLike: props.isLike,
       nberLike: props.nberLike,
       nberComment: props.nberComment,
     };
+
+    this.handlIsLike = this.handlIsLike.bind(this);
+    this.handleLikeorUnlike = this.handleLikeorUnlike.bind(this);
+
+    this.handleClickToggle = this.handleClickToggle.bind(this);
+
     this.handleAddComment = this.handleAddComment.bind(this);
     this.handleEditComment = this.handleEditComment.bind(this);
     this.handleDeleteComment = this.handleDeleteComment.bind(this);
   }
-  // D-none_V-hidden_O-0
+
   handleClickToggle() {
     const toggle = this.state.classTogglePostDetail;
     this.setState({ classTogglePostDetail: !toggle });
@@ -24,8 +31,25 @@ class App extends React.Component {
 
   componentDidMount() {
     fetch(this.state.urlGetData, { method: "GET" })
-      .then((response) => response.json())
+      .then((res) => res.json())
       .then((res) => this.setState({ listComments: res.data }));
+  }
+
+  handlIsLike(type) {
+    if (type === "Unlike") {
+      this.setState({ isLike: false });
+    } else if (type === "Like") {
+      this.setState({ isLike: true });
+    }
+  }
+
+  updateNberLike(type) {
+    const num = parseInt(this.state.nberLike);
+    if (type === "Like") {
+      this.setState({ nberLike: num + 1 });
+    } else {
+      this.setState({ nberLike: num - 1 });
+    }
   }
 
   updateNberComment(type) {
@@ -37,24 +61,41 @@ class App extends React.Component {
     }
   }
 
-  handleAddComment(action) {
-    fetch(this.state.urlAddUpdateComment, {
-      method: "POST",
-      credentials: "same-origin",
+  configFetch(url, method, data) {
+    const request = new Request(url, {
+      method: method,
       headers: {
         Accept: "application/json",
         "X-Requested-With": "XMLHttpRequest",
         "X-CSRFToken": this.state.csrfToken,
       },
-      body: JSON.stringify({
-        message: action.payload.msg,
-        id_post: action.payload.post_id,
-        id_comment: null,
-      }),
-    })
+      body: data,
+    });
+    return request;
+  }
+
+  handleLikeorUnlike() {
+    const formData = new FormData();
+    formData.append("post_id", this.state.postId);
+
+    fetch(this.configFetch("/feed/like/", "POST", formData))
       .then((res) => res.json())
       .then((res) => {
-        // console.log(res);
+        this.handlIsLike(res.value);
+        this.updateNberLike(res.value);
+      });
+  }
+
+  handleAddComment(action) {
+    const data = JSON.stringify({
+      message: action.payload.msg,
+      id_post: action.payload.post_id,
+      id_comment: null,
+    });
+
+    fetch(this.configFetch(this.state.urlAddUpdateComment, "POST", data))
+      .then((res) => res.json())
+      .then((res) => {
         const commentData = this.state.listComments.slice();
         commentData.push(res);
         this.setState({ listComments: commentData });
@@ -65,50 +106,37 @@ class App extends React.Component {
   }
 
   handleEditComment(action) {
-    fetch(this.state.urlAddUpdateComment, {
-      method: "POST",
-      credentials: "same-origin",
-      headers: {
-        Accept: "application/json",
-        "X-Requested-With": "XMLHttpRequest",
-        "X-CSRFToken": this.state.csrfToken,
-      },
-      body: JSON.stringify({
-        message: action.payload.msg,
-        id_post: action.payload.post_id,
-        id_comment: action.payload.comment_id,
-      }),
-    }).then(() => {
-      const commentData1 = this.state.listComments.slice();
-      commentData1.filter((comment) => {
-        if (comment.id === action.payload.comment_id) {
-          comment.comment_message = action.payload.msg;
-          this.setState({ listComments: commentData1 });
-        }
-      });
+    const data = JSON.stringify({
+      message: action.payload.msg,
+      id_post: action.payload.post_id,
+      id_comment: action.payload.comment_id,
     });
+
+    fetch(this.configFetch(this.state.urlAddUpdateComment, "POST", data)).then(
+      () => {
+        const commentData1 = this.state.listComments.slice();
+        commentData1.filter((comment) => {
+          if (comment.id === action.payload.comment_id) {
+            comment.comment_message = action.payload.msg;
+            this.setState({ listComments: commentData1 });
+          }
+        });
+      }
+    );
   }
 
   handleDeleteComment(id) {
     const formData = new FormData();
     formData.append("id_comment", id);
 
-    fetch("/comment/delete-comment/", {
-      method: "POST",
-      headers: {
-        Accept: "application/json",
-        "X-Requested-With": "XMLHttpRequest",
-        "X-CSRFToken": this.state.csrfToken,
-      },
-      body: formData,
-    })
-      .then(() => {
-        window.confirm("Vous êtes sûr de vouloir supprimer") &&
+    fetch(this.configFetch("/comment/delete-comment/", "POST", formData)).then(
+      () => {
+        if (window.confirm("Vous êtes sûr de vouloir supprimer")) {
           this.componentDidMount();
-      })
-      .then(() => {
-        this.updateNberComment("DELETE");
-      });
+          this.updateNberComment("DELETE");
+        }
+      }
+    );
   }
 
   render() {
@@ -120,54 +148,26 @@ class App extends React.Component {
             nberLike={this.state.nberLike}
           />
           <hr />
-          <div className="box-action-icon">
-            <LikeFormButton />
-            <button
-              className="action-icon box-comment btn-container-comment-toggle"
-              id="{{post.id}}"
-              onClick={() => this.handleClickToggle()}
-            >
-              <img
-                src="/static/home/svg/comment.svg"
-                className="icon-like-comment-share"
-                id="{{post.id}}"
-              />
-              <span id="{{post.id}}" className="label-like-comment-share">
-                Commenter
-              </span>
-            </button>
-            <button className="action-icon box-share">
-              <img
-                src="/static/home/svg/share.svg"
-                className="icon-like-comment-share"
-              />
-              <span className="label-like-comment-share">Partager</span>
-            </button>
-          </div>
+          <BtnLikeCommentShare
+            handleClickToggle={this.handleClickToggle}
+            handleLikeorUnlike={this.handleLikeorUnlike}
+            isLike={this.state.isLike}
+          />
         </div>
 
         <div
-          title={this.state.postId}
           className={
             this.state.classTogglePostDetail
               ? "form-comment-list-input-container-global D-none_V-hidden_O-0"
               : "form-comment-list-input-container-global"
           }
-          id={"form-comment-list-input-container-global" + this.state.postId}
-          method="post"
         >
           <InputForm
             postId={this.state.postId}
-            classTogglePostDetail={this.state.classTogglePostDetail}
-            urlAddUpdateComment={this.state.urlAddUpdateComment}
-            csrfToken={this.state.csrfToken}
             imgProfile={this.state.imgProfile}
             handleAddComment={this.handleAddComment}
           />
-          <div
-            className="container-global-comment-list"
-            id={"container-global-comment-list-" + this.state.postId}
-          >
+          <div className="container-global-comment-list">
             {this.state.listComments.length > 0 &&
               this.state.listComments.map((comment) => (
                 <ListComments
@@ -183,30 +183,3 @@ class App extends React.Component {
     );
   }
 }
-
-// export default index;
-
-document.querySelectorAll(".root-comments").forEach((div) => {
-  const postId = div.dataset.postId;
-  const classTogglePostDetail = div.dataset.classTogglePostDetail;
-  const urlAddUpdateComment = div.dataset.urlAddUpdateComment;
-  const csrfToken = div.dataset.csrfToken;
-  const imgProfile = div.dataset.imgProfile;
-  const urlGetData = div.dataset.urlGetData;
-  const nberLike = div.dataset.nberLike;
-  const nberComment = div.dataset.nberComment;
-
-  const root = ReactDOM.createRoot(div);
-  root.render(
-    <App
-      postId={postId}
-      classTogglePostDetail={classTogglePostDetail}
-      urlAddUpdateComment={urlAddUpdateComment}
-      csrfToken={csrfToken}
-      imgProfile={imgProfile}
-      urlGetData={urlGetData}
-      nberLike={nberLike}
-      nberComment={nberComment}
-    />
-  );
-});

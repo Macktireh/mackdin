@@ -4,8 +4,6 @@ class Option extends React.Component {
     this.state = {
       comment: props.comment,
       toggle: false,
-      handleIsEditingComment: props.handleIsEditingComment,
-      handleDeleteComment: props.handleDeleteComment,
     };
   }
 
@@ -18,7 +16,6 @@ class Option extends React.Component {
     return (
       <React.Fragment>
         <div
-          id={this.state.comment.id}
           className="comment-options-btn"
           onClick={() => this.handleClickToggle()}
         >
@@ -28,7 +25,6 @@ class Option extends React.Component {
         </div>
 
         <div
-          id={"comment-options-container" + this.state.comment.id}
           className={
             this.state.toggle
               ? "comment-options-actions-container"
@@ -38,44 +34,32 @@ class Option extends React.Component {
           <ul>
             <div
               className="comment-options-item comment-options-item-edit"
-              id={this.state.comment.id}
               onClick={() => {
-                this.state.handleIsEditingComment();
+                this.props.handleIsEditingComment();
                 this.handleClickToggle();
               }}
             >
               <img
                 src="/static/home/svg/edit.svg"
-                id={this.state.comment.id}
                 className="comment-options-item-img"
               />
-              <span
-                className="btn-edit-comment comment-options-item-span"
-                id={this.state.comment.id}
-              >
+              <span className="btn-edit-comment comment-options-item-span">
                 Modifier
               </span>
             </div>
 
             <div
               className="comment-options-item comment-options-item-delete"
-              id={this.state.comment.id}
-              title={this.state.comment.post_id}
               onClick={() => {
-                this.state.handleDeleteComment(this.state.comment.id);
+                this.props.handleDeleteComment(this.state.comment.id);
                 this.handleClickToggle();
               }}
             >
               <img
                 src="/static/home/svg/delete.svg"
-                id={this.state.comment.id}
                 className="comment-options-item-img"
               />
-              <span
-                className="btn-del-comment comment-options-item-span"
-                id={this.state.comment.id}
-                title={this.state.comment.post_id}
-              >
+              <span className="btn-del-comment comment-options-item-span">
                 Supprimer
               </span>
             </div>
