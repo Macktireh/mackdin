@@ -102,18 +102,31 @@ nav ul a:hover
 
 .nav-profil
   margin-right: 20px
-  @extend .flex-center
   cursor: pointer
+  @extend .flex-center
+  // flex-direction: column
+  // gap: 2px
+  position: relative
   .nav-box-profil
-    height: 45px
-    width: 45px
+    margin-bottom: 2px
+    height: 40px
+    width: 40px
     @extend .flex-center
     img
-      width: 45px
-      height: 45px
+      width: 38px
+      height: 38px
       border-radius: 9999px
       object-position: center
       object-fit: cover
+  .drop-down-list
+    font-size: 13px
+    @extend .flex-center
+    gap: 3px
+    @include position-abs(null, null, -11px, 50%, -50%, null)
+    img.down-arrow
+      margin-top: 5px
+      width: 11px
+      height: 11px
 
 .hamburger-nav-profil
   @extend .flex-center
