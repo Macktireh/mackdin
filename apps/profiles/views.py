@@ -1,3 +1,4 @@
+import datetime
 from django.http import HttpResponseNotFound
 from django.shortcuts import redirect, render, get_object_or_404
 from django.contrib.auth import get_user_model
@@ -6,7 +7,9 @@ from django.contrib.auth.decorators import login_required
 User = get_user_model()
 from apps.profiles.models import Profile
 from apps.profiles.forms import ProfileForm, UserProfileForm
+from apps.notifications.models import Notification
 from apps.friends.views import list_relation_receiver_and_sender
+from apps.chat.templatetags.chat import add_2_hour
 
 @login_required(login_url='sign_in')
 def profile(request, pseudo):
@@ -17,8 +20,20 @@ def profile(request, pseudo):
     except:
         return HttpResponseNotFound('<h1>Page not found</h1>')
     if request.user != profile.user:
-        profile.number_views = profile.number_views + 1
-        profile.save()
+        if request.user.is_superuser == False:
+            if Notification.objects.filter(type_notif='seen_profile', from_user=request.user, to_user=profile.user).exists():
+                last_notif = Notification.objects.filter(type_notif='seen_profile', from_user=request.user, to_user=profile.user).last()
+                date_diff = datetime.datetime.now() - add_2_hour(last_notif.date_created.replace(tzinfo=None))
+                if date_diff.total_seconds() > 3600:
+                    last_notif.delete()
+                    
+                    Notification.objects.create(type_notif='seen_profile', from_user=request.user, to_user=profile.user)
+                    profile.number_views = profile.number_views + 1
+                    profile.save()
+            else:
+                Notification.objects.create(type_notif='seen_profile', from_user=request.user, to_user=profile.user)
+                profile.number_views = profile.number_views + 1
+                profile.save()
     
     template = "profiles/profiles.html"
     t, context = list_relation_receiver_and_sender(request)

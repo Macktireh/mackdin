@@ -146,6 +146,7 @@
       </div> -->
       {% endif %}
 
+      {% if profile.user == request.user %}
       <div class="statistic-profile">
         <div class="num-vue statistic">
           <span class="statistic-text">Vues de votre profile</span>
@@ -162,8 +163,10 @@
           <span class="statistic-num">{{profile.user.post.count}}</span>
         </div>
       </div>
-      <div class="others-link">
+      {% endif %}
 
+      {% if profile.link_linkedin or profile.link_twitter or profile.link_gitthub or profile.link_mysite %}
+      <div class="others-link">
         {% if profile.link_linkedin %}
         <div class="link-pro">
           <img src="{% static 'home/svg/linkedin.svg' %}" class="link-pro-icon">
@@ -192,27 +195,33 @@
         </div>
         {% endif %}
       </div>
+      {% endif %}
     </aside>
 
     {% if profile.friends.all|length >= 1 %}
     <aside class="asd-rs">
       <div class="profile-friends-box-container">
-        <h4>Vos Relations</h4>
+        <h4>
+          {% if profile.user == request.user %}
+          Vos Relations
+          {% else %}
+          Les connaissez-vous ?
+          {% endif %}
+        </h4>
         <div class="profile-friends-container">
           {% for obj in profile.friends.all|slice:"5" %}
+          {% if obj != request.user %}
           <a href="{% url 'profiles:profile' pseudo=obj.profile.pseudo %}">
             <div class="profile-friends-box">
               <img class="profile-img-friends" src="{% if obj.profile.img_profile %}
-            {{ obj.profile.img_profile.url }}
-            {% else %}
-            {% static 'home/svg/default-img-profile.jpg' %}
-            {% endif %}">
-
+                {{ obj.profile.img_profile.url }}
+                {% else %}
+                {% static 'home/svg/default-img-profile.jpg' %}
+                {% endif %}">
               <div class="profile-friends-info-container">
-
                 <strong>{{obj.first_name}} {{obj.last_name}}</strong>
                 <p>{{obj.profile.bio}}</p>
-
+                {% if profile.user in request.user.profile.friends.all %}
                 {% if obj.last_logout %}
                 <P>
                   {% if obj.last_logout > obj.last_login %}
@@ -222,16 +231,20 @@
                   {% endif %}
                 </P>
                 {% endif %}
+                {% endif %}
               </div>
             </div>
           </a>
+          {% endif %}
           {% endfor %}
         </div>
 
+        {% if profile.user == request.user %}
         {% if profile.friends.all|length > 5 %}
         <div class="voir-plus-box">
           <a href="{% url 'friends:my_friends' %}" class="voir-plus">Voir plus</a>
         </div>
+        {% endif %}
         {% endif %}
       </div>
     </aside>

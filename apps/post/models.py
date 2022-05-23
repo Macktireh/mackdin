@@ -23,7 +23,7 @@ def rename_img_video(instance, filename):
 
 class Post(models.Model):
     author = models.ForeignKey(User, on_delete=models.CASCADE, related_name='post')
-    uid = models.CharField(_("code post"), max_length=64, blank=True)
+    uid = models.CharField(_("code post"), max_length=500, blank=True)
     message = models.TextField(_("message"), blank=True)
     # img = models.ImageField(_("image"), upload_to=rename_img_video, validators=[FileExtensionValidator(['png', 'jpg', 'jpeg', 'gif'])], blank=True, null=True)
     img = CloudinaryField(_("image"), blank=True, null=True)
@@ -37,7 +37,7 @@ class Post(models.Model):
     
     def save(self, *args, **kwargs):
         if self.uid == "":
-            self.uid = str(uuid.uuid4()).replace('-', '')[:64] + str(self.id)
+            self.uid = str(uuid.uuid4()).replace('-', '') + str(uuid.uuid4()).replace('-', '') + str(uuid.uuid4()).replace('-', '') + str(uuid.uuid4()).replace('-', '') + str(uuid.uuid4()).replace('-', '') + str(uuid.uuid4()).replace('-', '') + str(uuid.uuid4()).replace('-', '') + str(uuid.uuid4()).replace('-', '') + str(uuid.uuid4()).replace('-', '') + str(uuid.uuid4()).replace('-', '') + str(self.id)
         return super().save(*args, **kwargs)
     
     @property

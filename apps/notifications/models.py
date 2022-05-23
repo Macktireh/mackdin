@@ -21,6 +21,7 @@ class Notification(models.Model):
         comment = 'Add_Comment', _('Add Comment')
         invitation_accepted = 'invitation_accepted', _('invitation accepted')
         invitation_send = 'invitation_send', _('invitation send')
+        seen_profile = 'seen_profile', _('seen profile')
         
     type_notif = models.CharField(_('type_notif'), max_length=30, choices=TypeNotifChoices.choices)
     from_user = models.ForeignKey(User, related_name='notif_from', on_delete=models.CASCADE)

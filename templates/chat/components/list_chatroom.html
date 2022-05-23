@@ -4,7 +4,7 @@
 {% load chat %}
 
 
-<a class="my-friends-info-link" href="{% url 'chats:chatroom' uid=obj.uid %}">
+<a class="my-friends-info-link" href="{% url 'chats:chatroom' uid=obj.profile.uid %}">
   <div class="my-friends-info-container">
     <div class="my-friends-info">
       <div id="link-profile-user">

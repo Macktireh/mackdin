@@ -151,21 +151,25 @@ nav ul a:hover
 .list-box
   // width: 200px
   // height: 150px
-  padding: 0.5rem
-  border-radius: 8px
+  padding: 0.8rem 0.8rem 1.5rem 0.8rem
+  border-top-left-radius: 8px
+  border-bottom-right-radius: 8px
+  border-bottom-left-radius: 8px
   background-color: $color4
-  border: 1px solid $color2
+  border: 1px solid $color7
   @include flex-el(center, start)
   flex-direction: column
   gap: 1rem
-  @include position-abs(60px, 10px, null, null, null, null)
+  @include position-abs(80px, 10px, null, null, null, null)
   display: none
   opacity: 0
   transition: all 0.3s ease-in-out
+  z-index: 5001
   a
+    width: 100%
     padding-left: 1rem
     text-transform: uppercase
-    @extend .flex-center
+    @include flex-el(start, start)
     gap: 0.5rem
     img
       width: 25px
