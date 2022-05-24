@@ -59,6 +59,7 @@
           </div>
           {% endif %}
 
+          {% comment %}
           {% if profile.user.email %}
           <div class="box-tel">
             <img src="{% static 'home/svg/email.svg' %}">
@@ -72,6 +73,7 @@
             <p>{{profile.phone}}</p>
           </div>
           {% endif %}
+          {% endcomment %}
 
           <div class="box-friends">
             <img src="{% static 'home/svg/friends.svg' %}">

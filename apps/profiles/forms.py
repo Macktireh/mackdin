@@ -15,14 +15,14 @@ class ProfileForm(forms.ModelForm):
     #     attrs={'class':'form-control-profile'}))
     class Meta:
         model = Profile
-        exclude = ('user', 'number_views', 'gender', 'birth_date', 'friends',)
+        exclude = ('user', 'uid', 'phone', 'adress', 'number_views', 'gender', 'birth_date', 'friends',)
         widgets = {
             'pseudo': forms.TextInput(attrs={'class': 'form-control-profile'}),
             'bio': forms.TextInput(attrs={'class': 'form-control-profile'}),
             # 'img_profile': forms.FileInput(attrs={'class': 'form-control-profile'}),
             # 'img_bg': forms.FileInput(attrs={'class': 'form-control-profile'}),
-            'phone': forms.TextInput(attrs={'class': 'form-control-profile'}),
-            'adress': forms.TextInput(attrs={'class': 'form-control-profile'}),
+            # 'phone': forms.TextInput(attrs={'class': 'form-control-profile'}),
+            # 'adress': forms.TextInput(attrs={'class': 'form-control-profile'}),
             'town': forms.TextInput(attrs={'class': 'form-control-profile'}),
             'region': forms.TextInput(attrs={'class': 'form-control-profile'}),
             'zipcode': forms.TextInput(attrs={'class': 'form-control-profile'}),

@@ -432,11 +432,18 @@ footer hr {
   outline: none;
 }
 footer .footer-bottom {
+  margin-bottom: 40px;
   display: flex;
   justify-content: center;
   align-items: center;
   color: #979eaa;
   height: 3rem;
+}
+footer .footer-bottom img {
+  position: relative;
+  top: 3px;
+  margin-left: 2px;
+  width: 15px;
 }
 footer .footer-bottom a {
   transition: 0.5s;
