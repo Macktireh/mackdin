@@ -223,7 +223,7 @@
               <div class="profile-friends-info-container">
                 <strong>{{obj.first_name}} {{obj.last_name}}</strong>
                 <p>{{obj.profile.bio}}</p>
-                {% if profile.user in request.user.profile.friends.all %}
+                {% if obj in request.user.profile.friends.all %}
                 {% if obj.last_logout %}
                 <P>
                   {% if obj.last_logout > obj.last_login %}
