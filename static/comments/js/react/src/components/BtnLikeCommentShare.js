@@ -7,43 +7,27 @@ class BtnLikeCommentShare extends React.Component {
   render() {
     return (
       <div className="box-action-icon">
-        <button
-          className="like-btn"
-          onClick={() => this.props.handleLikeorUnlike()}
-        >
+        <button onClick={() => this.props.handleLikeorUnlike()}>
           <img
-            className="icon-like-comment-share"
             src={
               this.props.isLike
                 ? "/static/home/svg/like.svg"
                 : "/static/home/svg/unlike.svg"
             }
           />
-          <span
-            className="label-like-comment-share"
-            style={{ color: this.props.isLike ? "#1abc9c" : "#f1f1f1" }}
-          >
+          <span style={{ color: this.props.isLike ? "#1abc9c" : "#f1f1f1" }}>
             J'aime
           </span>
         </button>
 
-        <button
-          className="action-icon box-comment btn-container-comment-toggle"
-          onClick={() => this.props.handleClickToggle()}
-        >
-          <img
-            src="/static/home/svg/comment.svg"
-            className="icon-like-comment-share"
-          />
-          <span className="label-like-comment-share">Commenter</span>
+        <button onClick={() => this.props.handleClickToggle()}>
+          <img src="/static/home/svg/comment.svg" />
+          <span>Commenter</span>
         </button>
 
-        <button className="action-icon box-share">
-          <img
-            src="/static/home/svg/share.svg"
-            className="icon-like-comment-share"
-          />
-          <span className="label-like-comment-share">Partager</span>
+        <button>
+          <img src="/static/home/svg/share.svg" />
+          <span>Partager</span>
         </button>
       </div>
     );

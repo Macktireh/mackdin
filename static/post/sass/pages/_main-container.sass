@@ -14,10 +14,6 @@
     height: 60px
     object-position: center
     object-fit: cover
-    // min-height: 60px
-    // min-width: 60px
-    // max-height: 60px
-    // max-width: 60px
     border-radius: 50%
 
   .post-header-info
@@ -69,7 +65,7 @@
     grid-template-columns: 33% 34% 33%
     // grid-template-columns: 25% 25% 25% 25%
 
-    .action-icon
+    button
       padding: 1rem 0
       @extend .flex-center
       gap: 0.4rem
@@ -92,38 +88,11 @@
       &:active
         transform: scale(0.98)
 
-  // @media screen and (max-width:730px)
-  //   .label-like-comment-share
-
-  form button, button.like-btn
-    padding: 1rem 0
-    width: 100%
-    background-color: $color4
-    border: none
-    outline: none
-    @extend .flex-center
-    gap: 0.4rem
-    cursor: pointer
-    img
-      width: 20px
-    span
-      color: $color2
-      font-size: 16px
-      font-family: $font1
-    &:hover
-      background-color: $color6
-      border-radius: 8px
-    &:active
-      transform: scale(0.98)
-
-  .text-like_unlike-span
-    color: $color3
-
 @media screen and (max-width:420px)
-  .label-like-comment-share
-    display: none
-
   .post-footer
-    form button, .box-action-icon .action-icon
-      img.icon-like-comment-share
-        width: 30px
+    .box-action-icon
+      button
+        span
+          display: none
+        img
+          width: 25px

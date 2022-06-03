@@ -372,6 +372,27 @@ a.nav-nofit span#nav-nofit-alert-chat {
     height: 38px;
   }
 }
+@media screen and (max-width: 295px) {
+  a.logo img {
+    width: 25px;
+  }
+
+  .nav-menu {
+    gap: 4px;
+  }
+  .nav-menu .nav-item .nav-img {
+    width: 30px;
+  }
+
+  .nav-profil .nav-box-profil {
+    width: 30px;
+    height: 30px;
+  }
+  .nav-profil .nav-box-profil img {
+    width: 35px;
+    height: 35px;
+  }
+}
 .active {
   opacity: 1;
   display: flex;

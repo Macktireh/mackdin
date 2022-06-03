@@ -20,7 +20,7 @@ a:visited {
   color: #f1f1f1;
 }
 
-.flex-center, .post-footer form button, .post-footer button.like-btn, .post-footer .box-action-icon .action-icon, .post-header .post-header-img, .options-actions-container, .options-btn, .previous-post-container .previous-post-box .previous-post-header-img, form .add-img-btn-send button, form, .new-add-post-right-container, .container-main .new-add-post {
+.flex-center, .post-footer .box-action-icon button, .post-header .post-header-img, .options-actions-container, .options-btn, .previous-post-container .previous-post-box .previous-post-header-img, form .add-img-btn-send button, form, .new-add-post-right-container, .container-main .new-add-post {
   display: flex;
   justify-content: center;
   align-items: center;
@@ -453,7 +453,7 @@ form .add-img-btn-send button span {
   display: grid;
   grid-template-columns: 33% 34% 33%;
 }
-.post-footer .box-action-icon .action-icon {
+.post-footer .box-action-icon button {
   padding: 1rem 0;
   gap: 0.4rem;
   width: 100%;
@@ -465,51 +465,23 @@ form .add-img-btn-send button span {
   font-size: 16px;
   font-family: ui-sans-serif, system-ui;
 }
-.post-footer .box-action-icon .action-icon img {
+.post-footer .box-action-icon button img {
   width: 20px;
 }
-.post-footer .box-action-icon .action-icon:hover {
+.post-footer .box-action-icon button:hover {
   background-color: #0000001a;
   border-radius: 8px;
 }
-.post-footer .box-action-icon .action-icon:active {
+.post-footer .box-action-icon button:active {
   transform: scale(0.98);
-}
-.post-footer form button, .post-footer button.like-btn {
-  padding: 1rem 0;
-  width: 100%;
-  background-color: #34495e;
-  border: none;
-  outline: none;
-  gap: 0.4rem;
-  cursor: pointer;
-}
-.post-footer form button img, .post-footer button.like-btn img {
-  width: 20px;
-}
-.post-footer form button span, .post-footer button.like-btn span {
-  color: #f1f1f1;
-  font-size: 16px;
-  font-family: ui-sans-serif, system-ui;
-}
-.post-footer form button:hover, .post-footer button.like-btn:hover {
-  background-color: #0000001a;
-  border-radius: 8px;
-}
-.post-footer form button:active, .post-footer button.like-btn:active {
-  transform: scale(0.98);
-}
-.post-footer .text-like_unlike-span {
-  color: #1abc9c;
 }
 
 @media screen and (max-width: 420px) {
-  .label-like-comment-share {
+  .post-footer .box-action-icon button span {
     display: none;
   }
-
-  .post-footer form button img.icon-like-comment-share, .post-footer .box-action-icon .action-icon img.icon-like-comment-share {
-    width: 30px;
+  .post-footer .box-action-icon button img {
+    width: 25px;
   }
 }
 .container-left .left-sub-container {

@@ -28,53 +28,37 @@ var BtnLikeCommentShare = function (_React$Component) {
         { className: "box-action-icon" },
         React.createElement(
           "button",
-          {
-            className: "like-btn",
-            onClick: function onClick() {
+          { onClick: function onClick() {
               return _this2.props.handleLikeorUnlike();
-            }
-          },
+            } },
           React.createElement("img", {
-            className: "icon-like-comment-share",
             src: this.props.isLike ? "/static/home/svg/like.svg" : "/static/home/svg/unlike.svg"
           }),
           React.createElement(
             "span",
-            {
-              className: "label-like-comment-share",
-              style: { color: this.props.isLike ? "#1abc9c" : "#f1f1f1" }
-            },
+            { style: { color: this.props.isLike ? "#1abc9c" : "#f1f1f1" } },
             "J'aime"
           )
         ),
         React.createElement(
           "button",
-          {
-            className: "action-icon box-comment btn-container-comment-toggle",
-            onClick: function onClick() {
+          { onClick: function onClick() {
               return _this2.props.handleClickToggle();
-            }
-          },
-          React.createElement("img", {
-            src: "/static/home/svg/comment.svg",
-            className: "icon-like-comment-share"
-          }),
+            } },
+          React.createElement("img", { src: "/static/home/svg/comment.svg" }),
           React.createElement(
             "span",
-            { className: "label-like-comment-share" },
+            null,
             "Commenter"
           )
         ),
         React.createElement(
           "button",
-          { className: "action-icon box-share" },
-          React.createElement("img", {
-            src: "/static/home/svg/share.svg",
-            className: "icon-like-comment-share"
-          }),
+          null,
+          React.createElement("img", { src: "/static/home/svg/share.svg" }),
           React.createElement(
             "span",
-            { className: "label-like-comment-share" },
+            null,
             "Partager"
           )
         )
