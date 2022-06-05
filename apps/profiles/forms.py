@@ -15,7 +15,7 @@ class ProfileForm(forms.ModelForm):
     #     attrs={'class':'form-control-profile'}))
     class Meta:
         model = Profile
-        exclude = ('user', 'uid', 'phone', 'adress', 'number_views', 'gender', 'birth_date', 'friends',)
+        exclude = ('user', 'uid', 'phone', 'adress', 'number_views', 'gender', 'birth_date', 'friends', 'is_updating_img_profile', 'is_updating_img_bg',)
         widgets = {
             'pseudo': forms.TextInput(attrs={'class': 'form-control-profile'}),
             'bio': forms.TextInput(attrs={'class': 'form-control-profile'}),

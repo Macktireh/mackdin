@@ -5,7 +5,7 @@
   "main": "index.js",
   "scripts": {
     "test": "echo \"Error: no test specified\" && exit 1",
-    "comment": "npx babel --watch src --out-dir build/ --presets react-app/prod"
+    "start": "npx babel --watch src --out-dir build/ --presets react-app/prod"
   },
   "keywords": [],
   "author": "",

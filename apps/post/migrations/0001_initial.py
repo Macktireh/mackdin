@@ -22,7 +22,7 @@ class Migration(migrations.Migration):
                 ('id', models.BigAutoField(auto_created=True, primary_key=True, serialize=False, verbose_name='ID')),
                 ('message', models.TextField(blank=True, verbose_name='message')),
                 ('img', cloudinary.models.CloudinaryField(blank=True, max_length=255, null=True, verbose_name='image')),
-                ('video', models.FileField(blank=True, null=True, upload_to=apps.post.models.rename_img_video, verbose_name='video')),
+                ('video', models.FileField(blank=True, null=True, verbose_name='video')),
                 ('date_created', models.DateTimeField(auto_now_add=True, verbose_name='date created')),
                 ('date_updated', models.DateTimeField(auto_now=True, verbose_name='date updated')),
                 ('author', models.ForeignKey(on_delete=django.db.models.deletion.CASCADE, related_name='post', to=settings.AUTH_USER_MODEL)),

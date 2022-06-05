@@ -3,36 +3,27 @@ import uuid
 from django.db import models
 from django.contrib.auth import get_user_model
 from django.utils.translation import gettext_lazy as _
+
 from cloudinary.models import CloudinaryField
+from apps.profiles.managers import ProfileManager
+from apps.utils.function import rename_profile_img
+from config.settings import ENV
 
 User = get_user_model()
-from apps.profiles.managers import ProfileManager
-
-
-def rename_img(instance, filename):
-    upload_to = 'image_profile'
-    ext = filename.split('.')[-1]
-    filename = f"{instance.user.first_name}_{instance.user.pk}_{instance.date_updated.strftime('%d-%m-%Y %H%M%S')}.{ext}"
-    folder = f"{instance.user.first_name}_{instance.user.pk}"
-    return os.path.join('media', folder, upload_to, filename)
-
-def pseudo_rename(instance, filename):
-    upload_to = 'image_profile'
-    ext = filename.split('.')[-1]
-    filename = f"{instance.user.first_name}_{instance.user.pk}_{instance.date_updated}.{ext}"
-    return os.path.join(upload_to, filename)
 
 class Profile(models.Model):
     user = models.OneToOneField(User, on_delete=models.CASCADE, related_name="profile")
     uid = models.CharField(_("code identifiant"), max_length=500, blank=True)
     pseudo = models.CharField(_("non d'utilisateur"), max_length=48, blank=True, unique=True)
     bio = models.CharField(_("titre du profil"), max_length=250, blank=True)
-    # img_profile = models.ImageField(_("photo de profile"), upload_to=rename_img, default='default/default-img-profile.jpg', blank=True, null=True)
-    # img_bg = models.ImageField(_("photo de couverture"), upload_to=rename_img, default='default/default-img-bg.jpg', blank=True, null=True)
-    img_profile = CloudinaryField('photo de profile', blank=True, null=True, default="https://res.cloudinary.com/dm68aag3e/image/upload/v1649743168/default-img-profile_hrhx6z.jpg")
-    img_bg = CloudinaryField('photo de couverture', blank=True, null=True, default="https://res.cloudinary.com/dm68aag3e/image/upload/v1649743327/default-img-bg_zbeoo4.jpg")
     birth_date = models.DateField(_("date de naissence"), null=True, blank=True)
     
+    img_profile = CloudinaryField('photo de profile', blank=True, null=True, default="https://res.cloudinary.com/dm68aag3e/image/upload/v1649743168/default-img-profile_hrhx6z.jpg")
+    img_bg = CloudinaryField('photo de couverture', blank=True, null=True, default="https://res.cloudinary.com/dm68aag3e/image/upload/v1649743327/default-img-bg_zbeoo4.jpg")
+    # img_profile = models.ImageField(_("photo de profile"), upload_to=rename_profile_img, default='default/default-img-profile.jpg', blank=True, null=True)
+    # img_bg = models.ImageField(_("photo de couverture"), upload_to=rename_profile_img, default='default/default-img-bg.jpg', blank=True, null=True)
+    is_updating_img_profile = models.BooleanField(_("is updating img profile"), default=False)
+    is_updating_img_bg = models.BooleanField(_("is updating img bg"), default=False)
     class GenderChoices(models.TextChoices):
         male = 'M', _('Masculin')
         female = 'F', _('Féminin')

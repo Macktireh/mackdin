@@ -6,6 +6,8 @@ from django.conf import settings
 from django.conf.urls.static import static
 from django.views.static import serve
 
+from config.settings import ENV
+
 
 urlpatterns = [
     path('admin-site/mackind-administration', admin.site.urls, name='admin'),
@@ -19,7 +21,7 @@ urlpatterns = [
     path('messagerie/', include('apps.chat.urls')),
 ]
 
-if os.environ.get('DEV', 'prod') == 'dev':
+if ENV == 'development':
     if settings.DEBUG:
         urlpatterns += static(settings.MEDIA_URL, document_root=settings.MEDIA_ROOT)
     else:

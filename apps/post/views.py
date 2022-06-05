@@ -11,6 +11,7 @@ from apps.profiles.models import Profile
 from apps.comments.views import comment_view
 from apps.post.models import LikePost, Post
 from apps.post.forms import PostForm
+from config.settings import ENV
 
 
 @login_required(login_url='sign_in')
@@ -74,8 +75,10 @@ def update_post(request, uid):
         if len(request.FILES) != 0:
             if post_edit.img:
                 if len(post_edit.img) > 0:
-                    cloudinary.uploader.destroy(post_edit.img.public_id)
-                    # os.remove(post_edit.img.path)
+                    if ENV == 'production':
+                        cloudinary.uploader.destroy(post_edit.img.public_id)
+                    else:
+                        os.remove(post_edit.img.path)
             post_edit.img = request.FILES['img']      
         post_edit.message = request.POST.get('message')
         post_edit.save()

@@ -12,6 +12,8 @@ from dotenv import load_dotenv
 BASE_DIR = Path(__file__).resolve().parent.parent
 load = load_dotenv(os.path.join(BASE_DIR, '.env'))
 
+# Variable environment local or production
+ENV = os.environ.get('ENV', 'development')
 
 # Quick-start development settings - unsuitable for production
 # See https://docs.djangoproject.com/en/3.2/howto/deployment/checklist/
@@ -20,7 +22,7 @@ load = load_dotenv(os.path.join(BASE_DIR, '.env'))
 SECRET_KEY = os.environ.get('SECRET_KEY')
 
 # SECURITY WARNING: don't run with debug turned on in production!
-DEBUG = False if os.environ.get('ENV', 'devs') == 'production' else True
+DEBUG = False if ENV == 'production' else os.environ.get('DEBUG') == 'True'
 
 ALLOWED_HOSTS = os.environ.get('ALLOWED_HOSTS').split(" ") if os.environ.get('ALLOWED_HOSTS', []) != [] else ["127.0.0.1", "localhost"]
 
@@ -99,16 +101,17 @@ WSGI_APPLICATION = 'config.wsgi.application'
 
 
 # config database production settings
-if os.environ.get('DEV', 'prod') == 'dev':
+if ENV == 'production':
+    DATABASES = {
+        'default': dj_database_url.config()
+    }
+    
+else:
     DATABASES = {
         'default': {
             'ENGINE': 'django.db.backends.sqlite3',
             'NAME': BASE_DIR / 'db.sqlite3',
         }
-    }
-else:
-    DATABASES = {
-        'default': dj_database_url.config()
     }
 
 # Password validation
@@ -176,16 +179,16 @@ EMAIL_USE_TLS = os.environ.get('EMAIL_USE_TLS')
 django_heroku.settings(locals())
 
 
-# config cloudinary
+# config cloudinary for production
 cloudinary.config( 
-  cloud_name = os.environ.get('CLOUD_NAME'), 
-  api_key = os.environ.get('API_KEY'), 
-  api_secret = os.environ.get('API_SECRET'),
+    cloud_name = os.environ.get('CLOUD_NAME'), 
+    api_key = os.environ.get('API_KEY'), 
+    api_secret = os.environ.get('API_SECRET'),
 )
 
 
-# # Django Debug Toolbar
-if os.environ.get('DEV', 'prod') == 'devs':
+# Django Debug Toolbar
+if ENV == 'development':
     INSTALLED_APPS += [
         'debug_toolbar',
         'django_extensions',
@@ -214,44 +217,41 @@ if os.environ.get('DEV', 'prod') == 'devs':
 # Config logs
 import logging
 import logging.config
-
 from django.utils.log import DEFAULT_LOGGING
 
 logger = logging.getLogger(__name__)
-
 LOG_LEVEL = "INFO"
+DIR_LOGS = "logs/logs.production.log" if ENV == 'production' else "logs/logs.development.log"
 
-DIR_LOGS = "logs/logs.log" if os.environ.get('DEV', 'prod') == 'dev' else "logs.log"
-# DIR_LOGS = "logs.log"
-
-logging.config.dictConfig(
-    {
-        "version": 1,
-        "disable_existing_loggers": False,
-        "formatters": {
-            "console": {
-                "format": "%(asctime)s %(name)-12s %(levelname)-8s %(message)s",
+if os.path.isfile(DIR_LOGS):
+    logging.config.dictConfig(
+        {
+            "version": 1,
+            "disable_existing_loggers": False,
+            "formatters": {
+                "console": {
+                    "format": "%(asctime)s %(name)-12s %(levelname)-8s %(message)s",
+                },
+                "file": {"format": "%(asctime)s %(name)-12s %(levelname)-8s %(message)s"},
+                "django.server": DEFAULT_LOGGING["formatters"]["django.server"],
             },
-            "file": {"format": "%(asctime)s %(name)-12s %(levelname)-8s %(message)s"},
-            "django.server": DEFAULT_LOGGING["formatters"]["django.server"],
-        },
-        "handlers": {
-            "console": {
-                "class": "logging.StreamHandler",
-                "formatter": "console",
+            "handlers": {
+                "console": {
+                    "class": "logging.StreamHandler",
+                    "formatter": "console",
+                },
+                "file": {
+                    "level": "INFO",
+                    "class": "logging.FileHandler",
+                    "formatter": "file",
+                    "filename": DIR_LOGS,
+                },
+                "django.server": DEFAULT_LOGGING["handlers"]["django.server"],
             },
-            "file": {
-                "level": "INFO",
-                "class": "logging.FileHandler",
-                "formatter": "file",
-                "filename": DIR_LOGS,
+            "loggers": {
+                "": {"level": "INFO", "handlers": ["console", "file"], "propagate": False},
+                "apps": {"level": "INFO", "handlers": ["console"], "propagate": False},
+                "django.server": DEFAULT_LOGGING["loggers"]["django.server"],
             },
-            "django.server": DEFAULT_LOGGING["handlers"]["django.server"],
-        },
-        "loggers": {
-            "": {"level": "INFO", "handlers": ["console", "file"], "propagate": False},
-            "apps": {"level": "INFO", "handlers": ["console"], "propagate": False},
-            "django.server": DEFAULT_LOGGING["loggers"]["django.server"],
-        },
-    }
-)
+        }
+    )

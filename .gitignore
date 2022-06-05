@@ -9,5 +9,4 @@ media
 fonts
 node_modules
 staticfiles
-mediafiles
-logs.log
+logs.development.log

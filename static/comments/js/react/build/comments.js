@@ -162,13 +162,12 @@ var AppLikeComment = function (_React$Component) {
 
       var formData = new FormData();
       formData.append("id_comment", id);
-
-      fetch(this.configFetch("/comment/delete-comment/", "POST", formData)).then(function () {
-        if (window.confirm("Vous êtes sûr de vouloir supprimer")) {
+      if (window.confirm("Vous êtes sûr de vouloir supprimer")) {
+        fetch(this.configFetch("/comment/delete-comment/", "POST", formData)).then(function () {
           _this6.componentDidMount();
           _this6.updateNberComment("DELETE");
-        }
-      });
+        });
+      }
     }
   }, {
     key: "render",

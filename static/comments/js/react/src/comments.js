@@ -128,15 +128,14 @@ class AppLikeComment extends React.Component {
   handleDeleteComment(id) {
     const formData = new FormData();
     formData.append("id_comment", id);
-
-    fetch(this.configFetch("/comment/delete-comment/", "POST", formData)).then(
-      () => {
-        if (window.confirm("Vous êtes sûr de vouloir supprimer")) {
-          this.componentDidMount();
-          this.updateNberComment("DELETE");
-        }
-      }
-    );
+    if (window.confirm("Vous êtes sûr de vouloir supprimer")) {
+      fetch(
+        this.configFetch("/comment/delete-comment/", "POST", formData)
+      ).then(() => {
+        this.componentDidMount();
+        this.updateNberComment("DELETE");
+      });
+    }
   }
 
   render() {

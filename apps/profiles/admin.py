@@ -8,7 +8,7 @@ class ProfileAdmin(admin.ModelAdmin):
     fieldsets = (
         (None, {'fields': ('user', 'uid',)}),
         
-        (_('Personal info'), {'fields': ('pseudo', 'bio', 'img_profile', 'img_bg', 'birth_date', 'gender', 'phone',)}),
+        (_('Personal info'), {'fields': ('pseudo', 'bio', 'img_profile', 'img_bg', 'is_updating_img_profile', 'is_updating_img_bg', 'birth_date', 'gender', 'phone',)}),
         
         (_('Location'), {'fields': ('adress', 'town', 'region', 'zipcode', 'country',),}),
         # (_('User description'), {'fields': ('description', 'bio')}),

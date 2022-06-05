@@ -1,33 +1,24 @@
-import os
 import uuid
+
 from django.db import models
 from django.contrib.auth import get_user_model
 from django.utils.translation import gettext_lazy as _
 from django.core.validators import FileExtensionValidator
-from datetime import datetime
+
 from cloudinary.models import CloudinaryField
+from apps.utils.function import rename_post_img_video
 
 User = get_user_model()
-
-def rename_img_video(instance, filename):
-    ext = filename.split('.')[-1]
-    name = ''
-    for i in range((len(filename.split('.'))-1)):
-        name += filename.split('.')[i]
-    filename = f"{name}_{datetime.now().strftime('%d-%m-%Y %H%M%S')}.{ext}"
-    folder = f"{instance.author.first_name}_{instance.author.pk}"
-    if ext.lower() in ['png', 'jpg', 'jpeg', 'gif']:
-        return os.path.join('media', folder, 'image_post', filename)
-    return os.path.join('media', folder, 'video_post', filename)
-
 
 class Post(models.Model):
     author = models.ForeignKey(User, on_delete=models.CASCADE, related_name='post')
     uid = models.CharField(_("code post"), max_length=500, blank=True)
     message = models.TextField(_("message"), blank=True)
-    # img = models.ImageField(_("image"), upload_to=rename_img_video, validators=[FileExtensionValidator(['png', 'jpg', 'jpeg', 'gif'])], blank=True, null=True)
+    
+    # cloudinary will be used to upload images and videos eslse
     img = CloudinaryField(_("image"), blank=True, null=True)
-    video = models.FileField(_("video"), upload_to=rename_img_video, blank=True, null=True)
+    # img = models.ImageField(_("image"), upload_to=rename_post_img_video, validators=[FileExtensionValidator(['png', 'jpg', 'jpeg', 'gif'])], blank=True, null=True)
+    video = models.FileField(_("video"), upload_to=rename_post_img_video, blank=True, null=True)
     date_created = models.DateTimeField(_("date created"), auto_now_add=True)
     date_updated = models.DateTimeField(_("date updated"), auto_now=True)
     liked = models.ManyToManyField(User, related_name='user_like', blank=True, default=None)
