@@ -164,7 +164,10 @@ var AppLikeComment = function (_React$Component) {
       formData.append("id_comment", id);
       if (window.confirm("Vous êtes sûr de vouloir supprimer")) {
         fetch(this.configFetch("/comment/delete-comment/", "POST", formData)).then(function () {
-          _this6.componentDidMount();
+          var filteredListComments = _this6.state.listComments.filter(function (t) {
+            return t.id !== id;
+          });
+          _this6.setState({ listComments: filteredListComments });
           _this6.updateNberComment("DELETE");
         });
       }

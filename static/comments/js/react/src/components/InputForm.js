@@ -27,8 +27,7 @@ class InputForm extends React.Component {
         <div className="form-comment-container-input">
           <div className="form-content-comment">
             <img src={this.props.imgProfile} />
-            <input
-              type="text"
+            <textarea
               className="input_message_comment_id"
               autoComplete="off"
               placeholder="Ajouter un commentaire..."
@@ -37,7 +36,11 @@ class InputForm extends React.Component {
               onChange={(e) => this.setState({ msg: e.target.value })}
             />
           </div>
-          <button className="btn-send-comment" type="submit">
+          <button
+            className="btn-send-comment"
+            type="submit"
+            disabled={this.state.msg === ""}
+          >
             <img src="/static/home/svg/send.svg" />
           </button>
         </div>

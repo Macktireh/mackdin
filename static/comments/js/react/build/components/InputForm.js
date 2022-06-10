@@ -51,8 +51,7 @@ var InputForm = function (_React$Component) {
             "div",
             { className: "form-content-comment" },
             React.createElement("img", { src: this.props.imgProfile }),
-            React.createElement("input", {
-              type: "text",
+            React.createElement("textarea", {
               className: "input_message_comment_id",
               autoComplete: "off",
               placeholder: "Ajouter un commentaire...",
@@ -65,7 +64,11 @@ var InputForm = function (_React$Component) {
           ),
           React.createElement(
             "button",
-            { className: "btn-send-comment", type: "submit" },
+            {
+              className: "btn-send-comment",
+              type: "submit",
+              disabled: this.state.msg === ""
+            },
             React.createElement("img", { src: "/static/home/svg/send.svg" })
           )
         )

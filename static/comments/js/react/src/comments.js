@@ -132,7 +132,10 @@ class AppLikeComment extends React.Component {
       fetch(
         this.configFetch("/comment/delete-comment/", "POST", formData)
       ).then(() => {
-        this.componentDidMount();
+        const filteredListComments = this.state.listComments.filter(
+          (t) => t.id !== id
+        );
+        this.setState({ listComments: filteredListComments });
         this.updateNberComment("DELETE");
       });
     }

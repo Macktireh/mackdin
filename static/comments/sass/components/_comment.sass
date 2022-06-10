@@ -53,6 +53,7 @@
         border: none
         border-radius: 40px
         border: 1px solid $color7
+        resize: none
         &:focus
           border: 1px solid $color2
         &::-webkit-input-placeholder
@@ -60,7 +61,7 @@
 
     .btn-send-comment
       padding: 0.5rem
-      width: 45px
+      width: 60px
       background-color: $color3
       font-family: $font1
       outline: none
@@ -68,6 +69,9 @@
       border-radius: 10px
       color: $color2
       cursor: pointer
+    .btn-send-comment[disabled]
+      cursor: not-allowed
+      opacity: 0.4
 
   .container-global-comment-list
     width: 100%
