@@ -60,11 +60,20 @@ Activer l'environnement virtual:
 source .venv/bin/activate
 ```
 
-### 4. Installer les dépendances et demarrer l'application
+### 4. Installer les dépendances et configurer les variables d'environnement
 
 ```bash
 pip install -r requirements.txt
 ```
+
+Renommer le fichier .env.example en .env et renseigner vos informations personnelles. 
+Puis executer les migrations :
+
+```bash
+python manage.py migrate
+```
+
+Ensuite lancer le server de développement :
 
 ```bash
 python manage.py runserver
