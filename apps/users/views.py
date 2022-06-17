@@ -20,8 +20,13 @@ def sign_up(request):
         if user_form.is_valid():
             user = user_form.save()
             user.set_password(user.password)
+            # user.is_email_verified = True
             user.save()
-            messages.success(request, f"Merci de votre incription. Veuillez activer votre adresse email afin d'accéder à votre compte Mackdin. \n Nous avons envoyé un email à {user.email} \n pour activer votre compte Mackdin.")
+            
+            msg = f"Merci de votre incription. Veuillez activer votre adresse email afin d'accéder à votre compte Mackdin. \n Nous avons envoyé un email à {user.email} \n pour activer votre compte Mackdin."
+            # msg: str = f"Votre compte a été créé et est prêt à être utilisé !"
+            
+            messages.success(request, msg)
             
             # mail d'activation du compte
             send_email_activation_account(user, request)
