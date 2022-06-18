@@ -21,4 +21,7 @@ def image_delete(sender, instance, **kwargs):
             cloudinary.uploader.destroy(instance.img.public_id)
     else:
         if instance.img:
-            os.remove(instance.img.path)
+            try:
+                os.remove(instance.img.path)
+            except AttributeError:
+                cloudinary.uploader.destroy(instance.img.public_id)

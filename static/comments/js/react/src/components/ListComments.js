@@ -49,45 +49,45 @@ class ListComments extends React.Component {
             </div>
             <small>{this.props.comment.comment_date_added}</small>
           </div>
-          <div className="comment-text-content">
-            {this.state.isEditingComment ? (
-              <form>
-                <textarea
-                  autoFocus
-                  defaultValue={this.props.comment.comment_message}
-                  onChange={(e) => this.setState({ msg: e.target.value })}
-                />
-                <div className="box-btn">
-                  <button
-                    onClick={(e) => {
-                      e.preventDefault();
-                      if (this.state.msg !== "") {
-                        this.props.handleEditComment({
-                          payload: {
-                            msg: this.state.msg,
-                            post_id: this.props.comment.post_id,
-                            comment_id: this.props.comment.id,
-                          },
-                        });
-                      }
-                      this.handleIsEditingComment();
-                    }}
-                    disabled={this.state.msg === ""}
-                  >
-                    Valider
-                  </button>
-                  <div
-                    className="cancel"
-                    onClick={() => this.handleIsEditingComment()}
-                  >
-                    Annuler
-                  </div>
+          {/* <div className="comment-text-content"> */}
+          {this.state.isEditingComment ? (
+            <form>
+              <textarea
+                autoFocus
+                defaultValue={this.props.comment.comment_message}
+                onChange={(e) => this.setState({ msg: e.target.value })}
+              />
+              <div className="box-btn">
+                <button
+                  onClick={(e) => {
+                    e.preventDefault();
+                    if (this.state.msg !== "") {
+                      this.props.handleEditComment({
+                        payload: {
+                          msg: this.state.msg,
+                          post_id: this.props.comment.post_id,
+                          comment_id: this.props.comment.id,
+                        },
+                      });
+                    }
+                    this.handleIsEditingComment();
+                  }}
+                  disabled={this.state.msg === ""}
+                >
+                  Valider
+                </button>
+                <div
+                  className="cancel"
+                  onClick={() => this.handleIsEditingComment()}
+                >
+                  Annuler
                 </div>
-              </form>
-            ) : (
-              <p>{this.props.comment.comment_message}</p>
-            )}
-          </div>
+              </div>
+            </form>
+          ) : (
+            <p>{this.props.comment.comment_message}</p>
+          )}
+          {/* </div> */}
         </div>
       </div>
     );

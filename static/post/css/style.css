@@ -295,6 +295,7 @@ form .add-img-btn-send button span {
 }
 .previous-post-container .previous-post-text-content p {
   line-height: 130%;
+  overflow-wrap: break-word;
 }
 
 .previous-post-img {
@@ -424,6 +425,7 @@ form .add-img-btn-send button span {
 }
 .post-text-content p {
   line-height: 150%;
+  overflow-wrap: break-word;
 }
 
 .post-img {

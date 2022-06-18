@@ -6,7 +6,6 @@
 
 <div class="container-all-post">
   {% include 'post/components/options.html' %}
-
   <div class="post-header">
     <a href="{% url 'profiles:profile' pseudo=post.author.profile.pseudo  %}">
       <div class="post-header-img">
@@ -36,6 +35,7 @@
   </div>
   {% endif %}
 
+  {% comment %}
   <!-- <div class="post-footer">
     {% include 'post/components/count-likes-comments.html' %}
     <hr />
@@ -51,6 +51,7 @@
       </button>
     </div>
   </div> -->
+  {% endcomment %}
 
   <div class="root-comments" data-post-id="{{ post.id }}"
     data-class-toggle-post-detail="{% if page != 'detail' %}1{% else %}0{% endif %}"
@@ -58,11 +59,10 @@
     data-img-profile="{% if user.profile.img_profile %}{{ user.profile.img_profile.url }}{% else %}{% static 'home/img/default-img-profile.jpg' %}{% endif %}"
     data-url-get-data="{% url 'comments:get-comment-post' post_id=post.id %}" data-nber-like="{{post.number_of_like}}"
     data-nber-comment="{{post.post_comment.count}}"
-    data-is-like="{% if user not in post.liked.all %}0{% else %}1{% endif %}"></div>
+    data-is-like="{% if user not in post.liked.all %}0{% else %}1{% endif %}">
+  </div>
 
   {% comment %}
-
   {% include 'comments/include/comment.html' %}
   {% endcomment %}
-
 </div>

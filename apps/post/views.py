@@ -78,7 +78,10 @@ def update_post(request, uid):
                     if ENV == 'production':
                         cloudinary.uploader.destroy(post_edit.img.public_id)
                     else:
-                        os.remove(post_edit.img.path)
+                        try:
+                            os.remove(post_edit.img.path)
+                        except AttributeError:
+                            cloudinary.uploader.destroy(post_edit.img.public_id)
             post_edit.img = request.FILES['img']      
         post_edit.message = request.POST.get('message')
         post_edit.save()

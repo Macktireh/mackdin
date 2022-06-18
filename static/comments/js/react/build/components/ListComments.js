@@ -86,58 +86,54 @@ var ListComments = function (_React$Component) {
               this.props.comment.comment_date_added
             )
           ),
-          React.createElement(
-            "div",
-            { className: "comment-text-content" },
-            this.state.isEditingComment ? React.createElement(
-              "form",
-              null,
-              React.createElement("textarea", {
-                autoFocus: true,
-                defaultValue: this.props.comment.comment_message,
-                onChange: function onChange(e) {
-                  return _this2.setState({ msg: e.target.value });
-                }
-              }),
+          this.state.isEditingComment ? React.createElement(
+            "form",
+            null,
+            React.createElement("textarea", {
+              autoFocus: true,
+              defaultValue: this.props.comment.comment_message,
+              onChange: function onChange(e) {
+                return _this2.setState({ msg: e.target.value });
+              }
+            }),
+            React.createElement(
+              "div",
+              { className: "box-btn" },
+              React.createElement(
+                "button",
+                {
+                  onClick: function onClick(e) {
+                    e.preventDefault();
+                    if (_this2.state.msg !== "") {
+                      _this2.props.handleEditComment({
+                        payload: {
+                          msg: _this2.state.msg,
+                          post_id: _this2.props.comment.post_id,
+                          comment_id: _this2.props.comment.id
+                        }
+                      });
+                    }
+                    _this2.handleIsEditingComment();
+                  },
+                  disabled: this.state.msg === ""
+                },
+                "Valider"
+              ),
               React.createElement(
                 "div",
-                { className: "box-btn" },
-                React.createElement(
-                  "button",
-                  {
-                    onClick: function onClick(e) {
-                      e.preventDefault();
-                      if (_this2.state.msg !== "") {
-                        _this2.props.handleEditComment({
-                          payload: {
-                            msg: _this2.state.msg,
-                            post_id: _this2.props.comment.post_id,
-                            comment_id: _this2.props.comment.id
-                          }
-                        });
-                      }
-                      _this2.handleIsEditingComment();
-                    },
-                    disabled: this.state.msg === ""
-                  },
-                  "Valider"
-                ),
-                React.createElement(
-                  "div",
-                  {
-                    className: "cancel",
-                    onClick: function onClick() {
-                      return _this2.handleIsEditingComment();
-                    }
-                  },
-                  "Annuler"
-                )
+                {
+                  className: "cancel",
+                  onClick: function onClick() {
+                    return _this2.handleIsEditingComment();
+                  }
+                },
+                "Annuler"
               )
-            ) : React.createElement(
-              "p",
-              null,
-              this.props.comment.comment_message
             )
+          ) : React.createElement(
+            "p",
+            null,
+            this.props.comment.comment_message
           )
         )
       );

@@ -489,8 +489,9 @@ hr {
   box-shadow: 0 2px 3px 0 #0000001a;
   border-radius: 8px;
   background-color: #0000001a;
-  max-width: 90%;
+  max-width: 85%;
   display: inline-block;
+  word-wrap: break-word;
 }
 .container-main .main-chat .box-message-left .msg em,
 .container-main .main-chat .box-message-right .msg em {

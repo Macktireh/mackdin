@@ -11,11 +11,10 @@
 <link rel="stylesheet" href=" {% static 'components/css/style.css' %}" />
 {% if page != 'notif' %}
 <link rel="stylesheet" href=" {% static 'comments/css/style.css' %} " />
-{% endif %}
-<link rel="stylesheet" href=" {% static 'post/css/style.css' %}" />
-{% if page == 'notif' %}
+{% else %}
 <link rel="stylesheet" href=" {% static 'notifications/css/style.css' %} " />
 {% endif %}
+<link rel="stylesheet" href=" {% static 'post/css/style.css' %}" />
 {% endblock style %}
 
 {% block navbar %} {% include 'home/components/navbar2.html' %} {% endblock navbar %}
@@ -26,8 +25,6 @@
   <div class="container-left">
     {% include 'post/components/left.html' %}
   </div>
-
-
   <div class="container-main">
     {% if page == 'detail' %}
 
@@ -47,22 +44,16 @@
     {% endif %}
     <input type="hidden" id="input_hidden_url_delete_comment" value="{% url 'comments:delete-comment' %}">
   </div>
-
-
   <div class="container-right">
     <ul class="container-aside-1">
       <h4>Actualités</h4>
     </ul>
   </div>
-
-
 </main>
 {% endblock content %}
-
 
 {% comment %}
 {% block footer %} {% include 'home/components/footer.html' %} {% endblock footer %}
 {% endcomment %}
-
 
 {% block js %} {% include 'post/components/block-js.html' %} {% endblock js %}

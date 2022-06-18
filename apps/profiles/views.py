@@ -78,12 +78,18 @@ def update_profile(request):
                     else:
                         if key == 'img_profile':
                             if profile.is_updating_img_profile:
-                                os.remove(profile.img_profile.path)
+                                try:
+                                    os.remove(profile.img_profile.path)
+                                except AttributeError:
+                                    cloudinary.uploader.destroy(profile.img_profile.public_id)
                             else:
                                 is_updating_img_profile = True
                         if key == 'img_bg':
                             if profile.is_updating_img_bg:
-                                os.remove(profile.img_bg.path)
+                                try:
+                                    os.remove(profile.img_bg.path)
+                                except AttributeError:
+                                    cloudinary.uploader.destroy(profile.img_bg.public_id)
                             else:
                                 is_updating_img_bg = True
             user_profile_form.save()
