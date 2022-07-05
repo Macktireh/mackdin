@@ -60,11 +60,12 @@ Activer l'environnement virtual:
 source .venv/bin/activate
 ```
 
-### 4. Installer les dépendances et configurer les variables d'environnement
+### 4. Installer les dépendances
 
 ```bash
 pip install -r requirements.txt
 ```
+### 5. Configurer les variables d'environnement
 
 Renommer le fichier .env.example en .env et renseigner vos informations personnelles. 
 Puis executer les migrations :
