@@ -34,9 +34,8 @@ Vous devez avoir sur votre machine Python, NodeJS et Git installer.
 Ouvrer un terminal et exécuter les commandes suivantes:
 
 ```bash
-mkdir mackdin
+git clone https://github.com/Macktireh/mackdin.git
 cd mackdin
-git clone https://github.com/Macktireh/mackdin.git .
 ```
 
 ### 3. Créer et activer un environnement virtual
