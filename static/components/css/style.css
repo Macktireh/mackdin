@@ -7,7 +7,7 @@
 }
 
 *::selection {
-  background-color: #1abc9c;
+  background-color: #96860d;
   color: #f1f1f1;
 }
 
@@ -140,7 +140,7 @@ nav ul a {
   height: 4px;
   bottom: 0;
   z-index: 0;
-  background: #1abc9c;
+  background: #96860d;
   border-radius: 8px;
   transition: all 0.8s ease 0s;
 }
@@ -270,7 +270,7 @@ nav ul a:hover {
   transition: color 0.3s ease-in-out;
 }
 .list-box a .text:hover {
-  color: #1abc9c;
+  color: #96860d;
 }
 
 @media screen and (max-width: 1070px) {
@@ -490,7 +490,7 @@ footer .footer-bottom a {
   color: #979eaa;
 }
 footer .footer-bottom a:hover {
-  color: #1abc9c;
+  color: #96860d;
 }
 
 /*# sourceMappingURL=style.css.map */
