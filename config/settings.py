@@ -17,7 +17,7 @@ ENV = os.environ.get('ENV', 'development')
 
 
 # SECURITY WARNING: keep the secret key used in production secret!
-SECRET_KEY = os.environ.get('SECRET_KEY')
+SECRET_KEY = os.environ.get('SECRET_KEY', 'sfdhvsnosgtrtvyt54g19hty1hd')
 
 # SECURITY WARNING: don't run with debug turned on in production!
 DEBUG = False if ENV == 'production' else True
@@ -162,8 +162,8 @@ EMAIL_PORT= os.environ.get('EMAIL_PORT')
 EMAIL_USE_TLS = os.environ.get('EMAIL_USE_TLS')
 
 
-# config django_heroku
-django_heroku.settings(locals())
+# Configure Django App for Heroku.
+django_heroku.settings(locals(), test_runner=False)
 
 
 # config cloudinary for production
