@@ -80,6 +80,11 @@ main.main-home .container2 .box {
   img#container1-img {
     width: 100%;
   }
+
+  .container1 {
+    flex-direction: column;
+    align-items: center;
+  }
 }
 @media screen and (max-width: 740px) {
   .container1 {

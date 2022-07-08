@@ -1,7 +1,5 @@
-import uuid
-from django.contrib.auth.models import AbstractUser
 from django.db import models
-# from django.utils.translation import ugettext_lazy as _
+from django.contrib.auth.models import AbstractUser
 from django.utils.translation import gettext_lazy as _
 
 from apps.users.managers import CustomUserManager
@@ -10,7 +8,8 @@ from apps.users.managers import CustomUserManager
 class CustomUser(AbstractUser):
     username = None
     email = models.EmailField(
-        _('email address'), 
+        _('email address'),
+        max_length=255,
         unique=True,
         help_text=_("Required to authenticate")
     )

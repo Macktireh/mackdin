@@ -32,7 +32,7 @@ class Sign_UpForm(forms.ModelForm):
     last_name = forms.CharField(label='Nom', min_length=2, required=True, widget=forms.TextInput(
         attrs={'id': 'lastname', 'class': 'form-control', 'autocomplete': 'off'}))
     
-    email = forms.EmailField(label='Email', required=True, widget=forms.EmailInput(
+    email = forms.EmailField(label='Email', max_length=255, required=True, widget=forms.EmailInput(
         attrs={'id': 'email', 'class': 'form-control', 'autocomplete': 'off'}))
     
     password = forms.CharField(label='Mot de pass', required=True, widget=forms.PasswordInput(

@@ -23,7 +23,10 @@ a.logo
   font-weight: 650
   img
     margin-left: 3px
-    width: 35px
+a.logo1 img
+  width: 130px
+a.logo2 img
+  width: 35px
 
 nav
   @include flex-el(center, center)
@@ -228,9 +231,10 @@ nav ul a:hover
   .nav-menu
     gap: 15px
 @media screen and (max-width:365px)
-  a.logo
-    img
-      width: 30px
+  a.logo1 img
+    width: 80px
+  a.logo2 img
+    width: 35px
   .nav-menu
     gap: 10px
   .nav-profil
@@ -241,9 +245,11 @@ nav ul a:hover
         width: 40px
         height: 40px
 @media screen and (max-width:330px)
-  a.logo
-    img
-      width: 28px
+  a.logo1 img
+    width: 75px
+  a.logo2 img
+    width: 30px
+
   .nav-menu
     gap: 7px
   .nav-profil
@@ -254,9 +260,10 @@ nav ul a:hover
         width: 38px
         height: 38px
 @media screen and (max-width:295px)
-  a.logo
-    img
-      width: 25px
+  a.logo1 img
+    width: 75px
+  a.logo2 img
+    width: 30px
   .nav-menu
     gap: 4px
     .nav-item
