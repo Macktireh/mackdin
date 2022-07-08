@@ -34,9 +34,8 @@ Vous devez avoir sur votre machine Python, NodeJS et Git installer.
 Ouvrer un terminal et exécuter les commandes suivantes:
 
 ```bash
-mkdir mackdin
+git clone https://github.com/Macktireh/mackdin.git
 cd mackdin
-git clone https://github.com/Macktireh/mackdin.git .
 ```
 
 ### 3. Créer et activer un environnement virtual
@@ -60,11 +59,12 @@ Activer l'environnement virtual:
 source .venv/bin/activate
 ```
 
-### 4. Installer les dépendances et configurer les variables d'environnement
+### 4. Installer les dépendances
 
 ```bash
 pip install -r requirements.txt
 ```
+### 5. Configurer les variables d'environnement
 
 Renommer le fichier .env.example en .env et renseigner vos informations personnelles. 
 Puis executer les migrations :
