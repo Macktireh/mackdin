@@ -2,9 +2,9 @@ name: Mackdin
 
 on:
   push:
-    branches: ["pre-prod"]
+    branches: ["main"]
   pull_request:
-    branches: ["pre-prod"]
+    branches: ["main"]
 
 jobs:
   build:
