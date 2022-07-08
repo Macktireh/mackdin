@@ -162,8 +162,8 @@ EMAIL_PORT= os.environ.get('EMAIL_PORT')
 EMAIL_USE_TLS = os.environ.get('EMAIL_USE_TLS')
 
 
-# config django_heroku
-django_heroku.settings(locals())
+# Configure Django App for Heroku.
+django_heroku.settings(locals(), test_runner=False)
 
 
 # config cloudinary for production
