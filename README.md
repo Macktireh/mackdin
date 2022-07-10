@@ -4,8 +4,6 @@
 
 Mackdin c'est un projet réseau social (clone Linkedin) que j'ai réalisé pour me donner un petit challenge en rentrant du travail le soir et quelques week-ends. Mackdin est construit en Python avec Django et un peu de React js.
 
-Pour toute proposition ou contribution est la bienvenue.
-
 Lien du site : <https://mackdin.herokuapp.com/>
 
 ![](static/home/img/mackdin.jpg)
@@ -27,7 +25,7 @@ Lien du site : <https://mackdin.herokuapp.com/>
 
 ### 1. Pré-requis
 
-Vous devez avoir sur votre machine Python, NodeJS et Git installer.
+Python, NodeJS et Git.
 
 ### 2. Récuperer le projet
 
@@ -41,6 +39,7 @@ cd mackdin
 ### 3. Créer et activer un environnement virtual
 
 Créer l'environnement virtual:
+
 ```bash
 python -m venv .venv
 ```
