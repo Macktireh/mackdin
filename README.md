@@ -36,7 +36,7 @@ git clone https://github.com/Macktireh/mackdin.git
 cd mackdin
 ```
 
-### 3. Créer et activer un environnement virtual
+### 3. Créer et activer l'environnement virtual
 
 Créer l'environnement virtual:
 
