@@ -77,3 +77,5 @@ Ensuite lancer le server de développement :
 ```bash
 python manage.py runserver
 ```
+
+Et aller sur localhost:8000 dans un navigateur web.
