@@ -2,7 +2,9 @@ from django.contrib import admin
 from apps.post.models import Post, LikePost
 from django.utils.translation import gettext_lazy as _
 
-class PostAdmin(admin.ModelAdmin):
+from import_export.admin import ImportExportModelAdmin
+
+class PostAdmin(ImportExportModelAdmin, admin.ModelAdmin):
     list_display = ('full_name', 'message', 'number_of_like', 'number_of_comment', 'date_created',)
 
     ordering = ('-date_created',)

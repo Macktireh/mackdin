@@ -1,8 +1,11 @@
 from django.contrib import admin
+
+from import_export.admin import ImportExportModelAdmin
+
 from apps.comments.models import Comment, ReponseComment, LikeComment
 
 
-class CommentAdmin(admin.ModelAdmin):
+class CommentAdmin(ImportExportModelAdmin, admin.ModelAdmin):
     list_display = ('Author_comment', 'post', 'message', 'count_like', 'date_added',)
 
     ordering = ('-date_added',)

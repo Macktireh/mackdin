@@ -10,4 +10,4 @@ Pillow==9.0.1
 psycopg2==2.9.3
 python-dotenv==0.19.2
 six==1.16.0
-whitenoise==6.0.0
+django-import-export

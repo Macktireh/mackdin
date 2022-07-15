@@ -1,16 +1,17 @@
 
-import os
+import uuid
 from django.contrib import admin
 from django.urls import path, include, re_path
 from django.conf import settings
 from django.conf.urls.static import static
 from django.views.static import serve
+from apps.utils.function import uid_gerator
 
 from config.settings import ENV
 
 
 urlpatterns = [
-    path('admin-site/mackind-administration', admin.site.urls, name='admin'),
+    path(f'admin-site/mackind-administration/{uid_gerator()}', admin.site.urls, name='admin'),
     path('', include('apps.home.urls')),
     path('accounts/', include('apps.users.urls')),
     path('profile/', include('apps.profiles.urls')),

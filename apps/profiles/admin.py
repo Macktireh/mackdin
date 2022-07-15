@@ -2,7 +2,9 @@ from django.contrib import admin
 from apps.profiles.models import Profile  
 from django.utils.translation import gettext_lazy as _
 
-class ProfileAdmin(admin.ModelAdmin):
+from import_export.admin import ImportExportModelAdmin
+
+class ProfileAdmin(ImportExportModelAdmin, admin.ModelAdmin):
     list_display = ('full_name', 'pseudo', 'bio', 'birth_date', 'gender', 'phone', 'adress', 'town', 'country', 'number_views',)
     # list_filter = ('gender',)
     fieldsets = (

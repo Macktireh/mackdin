@@ -2,11 +2,16 @@ from django.contrib import admin
 from django.contrib.auth.admin import UserAdmin
 from django.utils.translation import gettext_lazy as _
 
+from import_export.admin import ImportExportModelAdmin
+
 from apps.users.forms import CustomUserCreationForm, CustomUserChangeForm
 from apps.users.models import CustomUser
 
+admin.site.site_header = "Social Network Mackdin"
+admin.site.site_title = "Interface Administrateur"
+admin.site.index_title = "Mackdin"
 
-class CustomUserAdmin(UserAdmin):
+class CustomUserAdmin(UserAdmin, ImportExportModelAdmin):
     add_form = CustomUserCreationForm
     form = CustomUserChangeForm
     model = CustomUser

@@ -37,6 +37,7 @@ DJANGO_APPS = [
 
 THIRD_PARTY_APPS = [
     'cloudinary',
+    'import_export'
 ]
 
 LOCAL_APPS = [
