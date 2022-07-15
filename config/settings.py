@@ -174,6 +174,9 @@ cloudinary.config(
     api_secret = os.environ.get('API_SECRET'),
 )
 
+# uid acces Interface Administrateur 
+UID_ADMIN = os.environ.get('UID_ADMIN', 'admin-123')
+
 
 # Django Debug Toolbar
 if ENV == 'development':
