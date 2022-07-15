@@ -11,7 +11,7 @@ from config.settings import ENV
 
 
 urlpatterns = [
-    path(f'admin-site/mackind-administration/{uid_gerator()}', admin.site.urls, name='admin'),
+    path(f'admin-site/mackind-administration/{uid_gerator()}/', admin.site.urls, name='admin'),
     path('', include('apps.home.urls')),
     path('accounts/', include('apps.users.urls')),
     path('profile/', include('apps.profiles.urls')),
