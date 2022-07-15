@@ -1,4 +1,3 @@
-
 import uuid
 from django.contrib import admin
 from django.urls import path, include, re_path
@@ -9,9 +8,11 @@ from apps.utils.function import uid_gerator
 
 from config.settings import ENV
 
+# uid = "8b8c220c502f4eb6872ecc693908fba4e2dc716387014759bd380425b7d93f26a756c1b416d3463ba4134dcfec9a1f77eadf659827804cc7ae5c2a160dd11471"
+uid = uid_gerator()
 
 urlpatterns = [
-    path(f'admin-site/mackind-administration/{uid_gerator()}/', admin.site.urls, name='admin'),
+    path(f'admin-site/mackind-administration/{uid}/', admin.site.urls, name='admin'),
     path('', include('apps.home.urls')),
     path('accounts/', include('apps.users.urls')),
     path('profile/', include('apps.profiles.urls')),
