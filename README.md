@@ -78,4 +78,4 @@ Ensuite lancer le server de développement :
 python manage.py runserver
 ```
 
-Et aller sur localhost:8000 dans un navigateur web.
+Aller sur http://127.0.0.1:8000 dans un navigateur web.
