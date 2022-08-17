@@ -1,6 +1,6 @@
 cloudinary==1.29.0
 dj-database-url==0.5.0
-Django==3.2.14
+Django==3.2.15
 django-debug-toolbar==3.2.4
 django-extensions==3.1.5
 django-heroku==0.3.1
