@@ -25,7 +25,7 @@ Mackdin est un projet réseau social (clone Linkedin personnaliser) que j'ai ré
 
 Python, NodeJS et Git.
 
-### 2. Récuperer le projet
+### 2. Cloner le projet
 
 Ouvrer un terminal et exécuter les commandes suivantes:
 
