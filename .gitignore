@@ -3,6 +3,7 @@ git
 .vscode
 .env
 db.sqlite3
+__pycache__
 *.pyc
 data
 media
