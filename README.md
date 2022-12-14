@@ -61,6 +61,7 @@ source .venv/bin/activate
 ```bash
 pip install -r requirements.txt
 ```
+
 ### 5. Configurer les variables d'environnement
 
 Renommer le fichier .env.example en .env et renseigner vos informations personnelles. 
