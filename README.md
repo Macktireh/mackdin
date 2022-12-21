@@ -15,7 +15,6 @@ Mackdin est un projet réseau social (clone Linkedin personnaliser) que j'ai ré
 * React
 * HTML
 * SASS
-* Gunicorn
 * Cloudinary
 
 ## Installation
