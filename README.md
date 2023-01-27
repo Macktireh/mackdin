@@ -13,7 +13,6 @@ Mackdin est un projet réseau social (clone Linkedin personnaliser) que j'ai ré
 * PostgreSQL
 * JavaScript
 * React
-* HTML
 * SASS
 * Cloudinary
 
