@@ -55,6 +55,7 @@ try {
   // annuler le post
   cancel_add_post.addEventListener("click", () => {
     input_text.value = "";
+    input_text.style.height = "auto";
     input_img.value = "";
     val = "";
     p_text.textContent = val;
@@ -113,3 +114,18 @@ document.querySelectorAll("a.options-delete-post").forEach((element) =>
       : e.preventDefault();
   })
 );
+
+
+
+// textarea AutoSize
+const textarea = document.getElementById("textarea_id");
+
+const textareaAutoSize = (el) => {
+  el.style.height = "auto";
+  el.style.height = el.scrollHeight + "px";
+};
+
+if (textarea) {
+  textarea.addEventListener("input", () => textareaAutoSize(textarea));
+  textarea.addEventListener("focus", () => textareaAutoSize(textarea));
+}
