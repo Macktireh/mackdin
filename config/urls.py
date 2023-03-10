@@ -25,7 +25,7 @@ if ENV == 'development':
     else:
         urlpatterns += [re_path(r'^mediafiles/(?P<path>.*)$', serve, {'document_root': settings.MEDIA_ROOT}),]
         
-    import debug_toolbar
+    # import debug_toolbar
     from rest_framework import routers
     from apps.notifications.api.urls import router as router_notifications
 
@@ -36,7 +36,7 @@ if ENV == 'development':
         path('api/', include('apps.profiles.api.urls')),
         path('api/', include('apps.notifications.api.urls')),
         # path('api/', include(router.urls)),
-        path('__debug__/', include(debug_toolbar.urls)),
+        # path('__debug__/', include(debug_toolbar.urls)),
     ]
 else:
     urlpatterns += [re_path(r'^mediafiles/(?P<path>.*)$', serve, {'document_root': settings.MEDIA_ROOT}),]

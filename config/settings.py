@@ -38,8 +38,10 @@ DJANGO_APPS = [
 ]
 
 THIRD_PARTY_APPS = [
+    'rest_framework',
+    'django_extensions',
     'cloudinary',
-    'import_export'
+    'import_export',
 ]
 
 LOCAL_APPS = [
@@ -184,31 +186,31 @@ cloudinary.config(
 UID_ADMIN = os.environ.get('UID_ADMIN', 'admin-123')
 
 
-# Django Debug Toolbar
-if ENV == 'development':
-    INSTALLED_APPS += [
-        'debug_toolbar',
-        'django_extensions',
-        'rest_framework',
-    ]
-    MIDDLEWARE = ['debug_toolbar.middleware.DebugToolbarMiddleware'] + list(MIDDLEWARE)
-    INTERNAL_IPS = ['127.0.0.1']
+# # Django Debug Toolbar
+# if ENV == 'development':
+#     INSTALLED_APPS += [
+#         'debug_toolbar',
+#         'django_extensions',
+#         'rest_framework',
+#     ]
+#     MIDDLEWARE = ['debug_toolbar.middleware.DebugToolbarMiddleware'] + list(MIDDLEWARE)
+#     INTERNAL_IPS = ['127.0.0.1']
 
-    import mimetypes
-    mimetypes.add_type("application/javascript", ".js", True)
+#     import mimetypes
+#     mimetypes.add_type("application/javascript", ".js", True)
 
-    DEBUG_TOOLBAR_PATCH_SETTINGS = False
+#     DEBUG_TOOLBAR_PATCH_SETTINGS = False
 
-    def show_toolbar(request):
-        return True
+#     def show_toolbar(request):
+#         return True
         
-    DEBUG_TOOLBAR_CONFIG = {
-    'INTERCEPT_REDIRECTS': False,
-    "SHOW_TOOLBAR_CALLBACK": show_toolbar,
-    'INSERT_BEFORE': '</head>',
-    'INTERCEPT_REDIRECTS': False,
-    'RENDER_PANELS': True,
-}
+#     DEBUG_TOOLBAR_CONFIG = {
+#         'INTERCEPT_REDIRECTS': False,
+#         "SHOW_TOOLBAR_CALLBACK": show_toolbar,
+#         'INSERT_BEFORE': '</head>',
+#         'INTERCEPT_REDIRECTS': False,
+#         'RENDER_PANELS': True,
+#     }
 
 
 # Config logs
