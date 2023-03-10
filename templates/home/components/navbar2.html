@@ -82,7 +82,7 @@
       <img src="{% static 'home/svg/user.svg' %}">
       <span class="text">Profile</span>
     </a>
-    {% if user.is_superuser %}
+    {% if user.is_staff %}
     <a href="{% url 'admin:index' %}" target="_blank">
       <img src="{% static 'home/svg/admin.svg' %}">
       <span class="text">Administration</span>
