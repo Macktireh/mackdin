@@ -1,9 +1,10 @@
 import os
-import django_heroku
 import dj_database_url
 import cloudinary
 import cloudinary.uploader
 import cloudinary.api
+
+from django.core.management.utils import get_random_secret_key
 
 from pathlib import Path
 from dotenv import load_dotenv
@@ -17,12 +18,13 @@ ENV = os.environ.get('ENV', 'development')
 
 
 # SECURITY WARNING: keep the secret key used in production secret!
-SECRET_KEY = os.environ.get('SECRET_KEY', 'sfdhvsnosgtrtvyt54g19hty1hd')
+DEFAULT_SECRET_KEY = get_random_secret_key() + get_random_secret_key() + get_random_secret_key()
+SECRET_KEY = os.environ.get('SECRET_KEY', DEFAULT_SECRET_KEY)
 
 # SECURITY WARNING: don't run with debug turned on in production!
-DEBUG = False if ENV == 'production' else True
+DEBUG = ENV != 'production'
 
-ALLOWED_HOSTS = os.environ.get('ALLOWED_HOSTS').split(" ") if os.environ.get('ALLOWED_HOSTS', []) != [] else ["127.0.0.1", "localhost"]
+ALLOWED_HOSTS = os.environ.get('ALLOWED_HOSTS', "127.0.0.1 localhost").split(" ")
 
 # Application definition
 DJANGO_APPS = [
@@ -55,8 +57,8 @@ INSTALLED_APPS = DJANGO_APPS + THIRD_PARTY_APPS + LOCAL_APPS
 
 MIDDLEWARE = [
     'django.middleware.security.SecurityMiddleware',
+    "whitenoise.middleware.WhiteNoiseMiddleware",
     'django.contrib.sessions.middleware.SessionMiddleware',
-    # 'whitenoise.middleware.WhiteNoiseMiddleware',
     'django.middleware.common.CommonMiddleware',
     'django.middleware.csrf.CsrfViewMiddleware',
     'django.contrib.auth.middleware.AuthenticationMiddleware',
@@ -91,18 +93,26 @@ WSGI_APPLICATION = 'config.wsgi.application'
 
 
 # config database production settings
-if ENV == 'production':
-    DATABASES = {
-        'default': dj_database_url.config()
-    }
+# if ENV == 'production':
+#     DATABASES = {
+#         'default': dj_database_url.config(default="sqlite:////{0}".format(os.path.join(BASE_DIR, 'db.sqlite3')))
+#     }
     
-else:
-    DATABASES = {
-        'default': {
-            'ENGINE': 'django.db.backends.sqlite3',
-            'NAME': BASE_DIR / 'db.sqlite3',
-        }
-    }
+# else:
+#     DATABASES = {
+#         'default': {
+#             'ENGINE': 'django.db.backends.sqlite3',
+#             'NAME': BASE_DIR / 'db.sqlite3',
+#         }
+#     }
+
+
+DEFAULT_DATABASE_URL = "sqlite:////{0}".format(os.path.join(BASE_DIR, 'db.sqlite3'))
+DATABASE_URL = os.environ.get('DATABASE_URL')
+
+DATABASES = {
+    'default': dj_database_url.config(default=DEFAULT_DATABASE_URL)
+}
 
 # Password validation
 # https://docs.djangoproject.com/en/3.2/ref/settings/#auth-password-validators
@@ -161,10 +171,6 @@ EMAIL_HOST_USER = os.environ.get('EMAIL_HOST_USER')
 EMAIL_HOST_PASSWORD = os.environ.get('EMAIL_HOST_PASSWORD')
 EMAIL_PORT= os.environ.get('EMAIL_PORT')
 EMAIL_USE_TLS = os.environ.get('EMAIL_USE_TLS')
-
-
-# Configure Django App for Heroku.
-django_heroku.settings(locals(), test_runner=False)
 
 
 # config cloudinary for production

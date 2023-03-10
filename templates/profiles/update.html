@@ -3,11 +3,11 @@
 {% load cloudinary %}
 
 
-{% block title %} Update profile {{profile.user.first_name}} {{profile.user.last_name}} {% endblock title %}
+{% block title %} Update profil {{profile.user.first_name}} {{profile.user.last_name}} {% endblock title %}
 
 
 {% block style %}
-<link rel="shortcut icon" href=" {% static 'home/svg/m.svg' %} " type="image/x-icon">
+<link rel="shortcut icon" href=" {% static 'home/svg/linkedin-cust.svg' %} " type="image/x-icon">
 <link rel="stylesheet" href=" {% static 'components/css/style.css' %}" />
 <link rel="stylesheet" href=" {% static 'profiles/css/style.css' %} " />
 {% endblock style %}
@@ -19,7 +19,7 @@
 <main class="main-profile-update">
 
   <div class="update-porfile-container">
-    <h2>Modifier le profile</h2>
+    <h2>Modifier votre profil</h2>
 
     <form action="" method="POST" enctype="multipart/form-data" class="form-profile-update">
       {% csrf_token %}
