@@ -307,7 +307,7 @@ a.nav-nofit span#nav-nofit-alert-chat {
 }
 @media screen and (max-width: 530px) {
   .nav-menu {
-    gap: 10px;
+    gap: 5px;
   }
   .nav-menu .nav-item {
     line-height: 70px;
@@ -320,11 +320,14 @@ a.nav-nofit span#nav-nofit-alert-chat {
   }
 }
 @media screen and (max-width: 480px) {
+  .nav-menu {
+    gap: 20px;
+  }
   .nav-menu .nav-item .nav-img {
     width: 30px;
   }
   .nav-menu .nav-item .nav-text .nav-text-span {
-    font-size: 13px;
+    display: none;
   }
 
   a.nav-nofit span#nav-nofit-alert,
@@ -336,6 +339,11 @@ a.nav-nofit span#nav-nofit-alert-chat {
     left: 55%;
     transform: translateX(-50%);
     transform: translateY(-50%);
+  }
+}
+@media screen and (max-width: 415px) {
+  .nav-menu {
+    gap: 15px;
   }
 }
 @media screen and (max-width: 365px) {
