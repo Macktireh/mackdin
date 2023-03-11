@@ -79,7 +79,7 @@ a.logo {
   height: 50px;
   transition: 0.4s;
   vertical-align: middle;
-  font-size: 30px;
+  font-size: 35px;
   font-weight: 650;
 }
 a.logo img {
@@ -87,7 +87,7 @@ a.logo img {
 }
 
 a.logo1 img {
-  width: 130px;
+  width: 35px;
 }
 
 a.logo2 img {
@@ -306,6 +306,9 @@ a.nav-nofit span#nav-nofit-alert-chat {
   }
 }
 @media screen and (max-width: 530px) {
+  .nav-menu {
+    gap: 10px;
+  }
   .nav-menu .nav-item {
     line-height: 70px;
   }
@@ -317,14 +320,11 @@ a.nav-nofit span#nav-nofit-alert-chat {
   }
 }
 @media screen and (max-width: 480px) {
-  .nav-menu {
-    gap: 25px;
-  }
   .nav-menu .nav-item .nav-img {
-    width: 35px;
+    width: 30px;
   }
   .nav-menu .nav-item .nav-text .nav-text-span {
-    display: none;
+    font-size: 13px;
   }
 
   a.nav-nofit span#nav-nofit-alert,
@@ -338,22 +338,17 @@ a.nav-nofit span#nav-nofit-alert-chat {
     transform: translateY(-50%);
   }
 }
-@media screen and (max-width: 415px) {
-  .nav-menu {
-    gap: 15px;
-  }
-}
 @media screen and (max-width: 365px) {
   a.logo1 img {
-    width: 80px;
+    width: 25px;
+  }
+
+  a.logo1 {
+    font-size: 30px;
   }
 
   a.logo2 img {
     width: 35px;
-  }
-
-  .nav-menu {
-    gap: 10px;
   }
 
   .nav-profil .nav-box-profil {
@@ -398,9 +393,6 @@ a.nav-nofit span#nav-nofit-alert-chat {
 
   .nav-menu {
     gap: 4px;
-  }
-  .nav-menu .nav-item .nav-img {
-    width: 30px;
   }
 
   .nav-profil .nav-box-profil {
