@@ -6,7 +6,7 @@ Mackdin est un projet réseau social (clone LinkedIn personnalisé), j'ai réali
 
 ![](static/home/img/mackdin.jpg)
 
-**Les technologies utilisés :** 
+**Les technologies utilisés :**
 
 * Python
 * Django
