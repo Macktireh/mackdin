@@ -33,6 +33,13 @@ def comment_all_data(request):
     qs_user = User.objects.prefetch_related("profile")
     
     data = []
+
+    if qs_user.get(id=obj.author.id).profile.is_fixture:
+        user_profile_img = qs_user.get(id=obj.author.id).profile.img_profile_str
+    elif qs_user.get(id=obj.author.id).profile.img_profile:
+        user_profile_img = qs_user.get(id=obj.author.id).profile.img_profile.url
+    else:
+        user_profile_img = "https://res.cloudinary.com/dm68aag3e/image/upload/v1649743168/default-img-profile_hrhx6z.jpg"
     
     for obj in qs_comment:
         item = {
@@ -49,7 +56,7 @@ def comment_all_data(request):
             'post_img': obj.post.img.url,
             'user_pseudo': qs_user.get(id=obj.author.id).profile.pseudo,
             'user_bio': qs_user.get(id=obj.author.id).profile.bio,
-            'user_img_profile': qs_user.get(id=obj.author.id).profile.img_profile.url,
+            'user_img_profile': user_profile_img,
             'current_user': request.user.email,
         }
         data.append(item)
@@ -62,6 +69,13 @@ def get_comments_post(request, post_id):
     qs_user = User.objects.prefetch_related("profile")
     
     data = []
+
+    if qs_user.get(id=obj.author.id).profile.is_fixture:
+        user_profile_img = qs_user.get(id=obj.author.id).profile.img_profile_str
+    elif qs_user.get(id=obj.author.id).profile.img_profile:
+        user_profile_img = qs_user.get(id=obj.author.id).profile.img_profile.url
+    else:
+        user_profile_img = "https://res.cloudinary.com/dm68aag3e/image/upload/v1649743168/default-img-profile_hrhx6z.jpg"
     
     for obj in qs_comment:
         if post_id == str(obj.post.id):
@@ -80,7 +94,7 @@ def get_comments_post(request, post_id):
                 
                 'user_profile_pseudo': qs_user.get(id=obj.author.id).profile.pseudo,
                 'user_profile_bio': qs_user.get(id=obj.author.id).profile.bio,
-                'user_profile_img': qs_user.get(id=obj.author.id).profile.img_profile.url,
+                'user_profile_img': user_profile_img,
                 
                 'current_user': request.user.email,
             }
@@ -112,6 +126,14 @@ def add_update_comment_view(request):
         else:
             comment_post = Comment.objects.create(author=user, post_id=id_post, message=message)
         
+
+        if comment_post.author.profile.is_fixture:
+            user_profile_img = comment_post.author.profile.img_profile_str
+        elif comment_post.author.profile.img_profile:
+            user_profile_img = comment_post.author.profile.img_profile.url
+        else:
+            user_profile_img = "https://res.cloudinary.com/dm68aag3e/image/upload/v1649743168/default-img-profile_hrhx6z.jpg"
+        
         data = {
             'id': comment_post.id,
             'comment_author': comment_post.author.email,
@@ -125,7 +147,7 @@ def add_update_comment_view(request):
             
             'user_profile_pseudo': comment_post.author.profile.pseudo,
             'user_profile_bio': comment_post.author.profile.bio,
-            'user_profile_img': comment_post.author.profile.img_profile.url if comment_post.author.profile.img_profile else "",
+            'user_profile_img': user_profile_img,
             
             'current_user': request.user.email
         }

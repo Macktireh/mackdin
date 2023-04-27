@@ -11,21 +11,31 @@
     <!-- img bg -->
     <div class="to-invites-box-img-bg">
       <img src="
-          {% if obj.img_bg %}
-            {{obj.img_bg.url}}
+          {% if obj.is_fixture %}
+            {{obj.img_bg_str}}
           {% else %}
-            {% static 'home/img/default-img-bg.jpg' %}
-          {% endif %}">
+            {% if obj.img_bg %}
+              {{obj.img_bg.url}}
+            {% else %}
+              {% static 'home/img/default-img-bg.jpg' %}
+            {% endif %}
+          {% endif %}
+          ">
     </div>
 
     <!-- img profile -->
     <a href="{% url 'profiles:profile' pseudo=obj.pseudo %}">
       <img src="
-          {% if obj.img_profile %}
-            {{obj.img_profile.url}}
+          {% if obj.is_fixture %}
+            {{obj.img_profile_str}}
           {% else %}
-            {% static 'home/img/default-img-profile.jpg' %}
-          {% endif %}" class="to-invites-img-profile">
+            {% if obj.img_profile %}
+              {{obj.img_profile.url}}
+            {% else %}
+              {% static 'home/img/default-img-profile.jpg' %}
+            {% endif %}
+          {% endif %}
+          " class="to-invites-img-profile">
     </a>
 
     <div class="to-invites-box-title">

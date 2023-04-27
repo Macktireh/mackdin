@@ -10,4 +10,5 @@ media
 fonts
 node_modules
 staticfiles
-logs.development.log
+logs.log
+initial_data.json

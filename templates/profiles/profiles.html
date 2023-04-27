@@ -24,17 +24,28 @@
       <div class="container-info">
         <div class="info-img-bg">
           <img class="img_bg" src="
-              {% if profile.img_bg %}
-                {{ profile.img_bg.url }}
+              {% if profile.is_fixture %}
+                {{ profile.img_bg_str }}
               {% else %}
-                {% static 'home/img/default-img-bg.jpg' %}
-              {% endif %}" alt="Couverture">
+                {% if profile.img_bg %}
+                  {{ profile.img_bg.url }}
+                {% else %}
+                  {% static 'home/img/default-img-bg.jpg' %}
+                {% endif %}
+              {% endif %}
+            " alt="Couverture">
         </div>
-        <img class="img_profile" src="{% if profile.img_profile %}
-          {{ profile.img_profile.url }}
-          {% else %}
-          {% static 'home/img/default-img-profile.jpg' %}
-          {% endif %}" alt="Profile">
+        <img class="img_profile" src="
+            {% if profile.is_fixture %}
+              {{ profile.img_profile_str }}
+            {% else %}
+              {% if profile.img_profile %}
+                {{ profile.img_profile.url }}
+              {% else %}
+                {% static 'home/img/default-img-profile.jpg' %}
+              {% endif %}
+            {% endif %}
+          " alt="Profile">
         <div class="info-content">
           <h2>{{profile.user.first_name}} {{profile.user.last_name}} <span id="point-separator-style"></span>
             <small>@{{profile.pseudo}}</small>
@@ -133,9 +144,27 @@
     <section class="profile-description">
       <h2>Infos</h2>
       <div class="container-description">
+        {% if profile.description %}
         <p>
           {{ profile.description|linebreaksbr }}
         </p>
+        {% else %}
+        <p>
+          Lorem Ipsum is simply dummy text of the printing and typesetting industry.
+          Lorem Ipsum has been the industry's standard dummy text ever since the 1500s,
+          when an unknown printer took a galley of type and scrambled it to make a type specimen book.
+          <br>
+          <br>
+          It has survived not only five centuries, but also the leap into electronic typesetting, remaining essentially
+          unchanged. It was popularised in the 1960s with the release of Letraset sheets containing Lorem Ipsum
+          passages, and more recently with desktop publishing software like Aldus PageMaker including versions of Lorem
+          Ipsum.
+          <br>
+          <br>
+          Contrary to popular belief, Lorem Ipsum is not simply random text. It has roots in a piece of classical Latin
+          literature from 45 BC, making it over 2000 years old.
+        </p>
+        {% endif %}
       </div>
     </section>
   </div>
@@ -215,11 +244,17 @@
           {% if obj != request.user %}
           <a href="{% url 'profiles:profile' pseudo=obj.profile.pseudo %}">
             <div class="profile-friends-box">
-              <img class="profile-img-friends" src="{% if obj.profile.img_profile %}
-                {{ obj.profile.img_profile.url }}
-                {% else %}
-                {% static 'home/svg/default-img-profile.jpg' %}
-                {% endif %}">
+              <img class="profile-img-friends" src="
+                  {% if obj.profile.is_fixture %}
+                    {{ obj.profile.img_profile_str }}
+                  {% else %}
+                    {% if obj.profile.img_profile %}
+                      {{ obj.profile.img_profile.url }}
+                    {% else %}
+                      {% static 'home/svg/default-img-profile.jpg' %}
+                    {% endif %}
+                  {% endif %}
+                ">
               <div class="profile-friends-info-container">
                 <strong>{{obj.first_name}} {{obj.last_name}}</strong>
                 <p>{{obj.profile.bio}}</p>

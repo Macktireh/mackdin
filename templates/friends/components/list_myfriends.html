@@ -12,11 +12,17 @@
     <div class="my-friends-info">
       <!-- img profile -->
       <a href="{% url 'profiles:profile' pseudo=obj.pseudo %}" id="link-profile-user">
-        <img src="{% if obj.img_profile %}
+        <img src="
+        {% if obj.is_fixture %}
+            {{obj.img_profile_str}}
+          {% else %}
+        {% if obj.img_profile %}
             {{obj.img_profile.url}}
           {% else %}
             {% static 'home/img/default-img-profile.jpg' %}
-          {% endif %}" class="my-friends-img-profile">
+          {% endif %}
+          {% endif %}
+          " class="my-friends-img-profile">
 
         {% if obj.user.last_logout %}
         <span id="point-connexion-color" class="{% if obj.user.last_logout > obj.user.last_login %}

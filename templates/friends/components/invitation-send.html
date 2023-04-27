@@ -13,11 +13,16 @@
       <!-- img profile -->
       <a href="{% url 'profiles:profile' pseudo=obj.receiver.pseudo %}">
         <img src="
+          {% if obj.receiver.is_fixture %}
+          {{obj.receiver.img_profile_str}} 
+          {% else %}
           {% if obj.receiver.img_profile %}
             {{obj.receiver.img_profile.url}} 
           {% else %}
             {% static 'home/img/default-img-profile.jpg' %}
-          {% endif %}" class="my-friends-img-profile">
+          {% endif %}
+          {% endif %}
+          " class="my-friends-img-profile">
       </a>
 
       <div class="my-friends-box-title">

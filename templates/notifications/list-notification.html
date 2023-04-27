@@ -14,11 +14,17 @@
     {% endif %}
 
     <a href="{% url 'profiles:profile' pseudo=notif.from_user.profile.pseudo  %}">
-      <img src="{% if notif.from_user.profile.img_profile %}
-        {{ notif.from_user.profile.img_profile.url }}
+      <img src="
+        {% if notif.from_user.profile.is_fixture %}
+          {{ notif.from_user.profile.img_profile_str }}
         {% else %}
-        {% static 'home/img/default-img-profile.jpg' %}
-        {% endif %}">
+          {% if notif.from_user.profile.img_profile %}
+            {{ notif.from_user.profile.img_profile.url }}
+          {% else %}
+            {% static 'home/img/default-img-profile.jpg' %}
+          {% endif %}
+        {% endif %}
+        ">
     </a>
     <a href="{% url 'notifications:seen' id=notif.id %}">
       <div class="info-notif">
