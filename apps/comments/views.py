@@ -34,14 +34,14 @@ def comment_all_data(request):
     
     data = []
 
-    if qs_user.get(id=obj.author.id).profile.is_fixture:
-        user_profile_img = qs_user.get(id=obj.author.id).profile.img_profile_str
-    elif qs_user.get(id=obj.author.id).profile.img_profile:
-        user_profile_img = qs_user.get(id=obj.author.id).profile.img_profile.url
-    else:
-        user_profile_img = "https://res.cloudinary.com/dm68aag3e/image/upload/v1649743168/default-img-profile_hrhx6z.jpg"
-    
     for obj in qs_comment:
+        if qs_user.get(id=obj.author.id).profile.is_fixture:
+            user_profile_img = qs_user.get(id=obj.author.id).profile.img_profile_str
+        elif qs_user.get(id=obj.author.id).profile.img_profile:
+            user_profile_img = qs_user.get(id=obj.author.id).profile.img_profile.url
+        else:
+            user_profile_img = "https://res.cloudinary.com/dm68aag3e/image/upload/v1649743168/default-img-profile_hrhx6z.jpg"
+    
         item = {
             'id': obj.id,
             'comment_author': obj.author.email,
@@ -69,15 +69,15 @@ def get_comments_post(request, post_id):
     qs_user = User.objects.prefetch_related("profile")
     
     data = []
-
-    if qs_user.get(id=obj.author.id).profile.is_fixture:
-        user_profile_img = qs_user.get(id=obj.author.id).profile.img_profile_str
-    elif qs_user.get(id=obj.author.id).profile.img_profile:
-        user_profile_img = qs_user.get(id=obj.author.id).profile.img_profile.url
-    else:
-        user_profile_img = "https://res.cloudinary.com/dm68aag3e/image/upload/v1649743168/default-img-profile_hrhx6z.jpg"
     
     for obj in qs_comment:
+        if qs_user.get(id=obj.author.id).profile.is_fixture:
+            user_profile_img = qs_user.get(id=obj.author.id).profile.img_profile_str
+        elif qs_user.get(id=obj.author.id).profile.img_profile:
+            user_profile_img = qs_user.get(id=obj.author.id).profile.img_profile.url
+        else:
+            user_profile_img = "https://res.cloudinary.com/dm68aag3e/image/upload/v1649743168/default-img-profile_hrhx6z.jpg"
+
         if post_id == str(obj.post.id):
             item = {
                 'id': obj.id,

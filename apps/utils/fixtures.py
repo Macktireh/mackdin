@@ -1,5 +1,5 @@
 from datetime import timedelta
-from random import randint
+from random import randint, sample
 
 from django.utils import timezone
 from faker import Faker
@@ -8,12 +8,14 @@ from apps.utils.function import uid_gerator
 
 
 fake = Faker(locale="fr_FR")
-# fake = Faker()
 
 users_data = []
 
 list_email_unique = [fake.unique.email() for _ in range(200)]
 # list_phone_number_unique = [fake.unique.phone_number() for _ in range(11, 101)]
+
+def random_numbers(low, high, n):
+    return sample(range(low, high), n)
 
 for i, email in enumerate(list_email_unique):
     # email = _email.split("@")[0] + str(i + 2) + "@" + _email.split("@")[1]
@@ -37,6 +39,9 @@ profile_data = []
 
 for i, user in enumerate(users_data):
     pseudo = user["fields"]["email"].split("@")[0]
+    friends = random_numbers(1, len(users_data) - 1, randint(20, 50))
+    if i + 2 in friends:
+        friends.remove(i + 2)
     profile_data.append(
         {
             "model": "profiles.Profile",
@@ -57,8 +62,83 @@ for i, user in enumerate(users_data):
                 "zipcode": f"{fake.postcode()}",
                 "country": f"{fake.country()}",
                 "date_updated": str(timezone.now()),
+                "friends": friends,
             },
         }
     )
 
-data = users_data + profile_data
+
+post_data = []
+
+for i in range(60):
+    author_id = users_data[randint(0, len(users_data) - 1)]["pk"]
+    date = str(timezone.now() + timedelta(days=randint(-50, -11)) + timedelta(hours=randint(-9, 9)) + timedelta(minutes=randint(-20, 20)) + timedelta(seconds=randint(-20, 20)))
+    post_data.append(
+        {
+            "model": "post.Post",
+            "pk": i + 1,
+            "fields": {
+                "uid": f"{uid_gerator()}",
+                "author_id": f"{author_id}",
+                "message": f"{fake.paragraph(nb_sentences=5)}",
+                "img_str": f"{fake.image_url()}",
+                "is_fixture": True,
+                "liked": random_numbers(1, len(users_data) - 1, randint(40, 100)),
+                "date_created": date,
+                "date_updated": date,
+            },
+        }
+    )
+
+
+comment_data = []
+
+pks = []
+for i, post in enumerate(post_data):
+    for j in range(randint(10, 40)):
+        pks.append(j)
+        author_id = users_data[randint(0, len(users_data) - 1)]["pk"]
+        date = str(timezone.now() + timedelta(days=randint(-10, 0)) + timedelta(hours=randint(-9, 9)) + timedelta(minutes=randint(-20, 20)) + timedelta(seconds=randint(-20, 20)))
+        comment_data.append(
+            {
+                "model": "comments.Comment",
+                "pk": len(pks),
+                "fields": {
+                    "author_id": f"{author_id}",
+                    "post_id": f"{post['pk']}",
+                    "message": f"{fake.paragraph(nb_sentences=2)}",
+                    "liked": random_numbers(1, len(users_data) - 1, randint(1, 10)),
+                    "date_added": date,
+                    "date_updated": date,
+                },
+            }
+    )
+
+
+relationship_data = []
+
+pks = []
+for i, profile in enumerate(profile_data):
+    for j in profile["fields"]["friends"]:
+        pks.append(j)
+        date = str(timezone.now() + timedelta(days=randint(-22, 0)) + timedelta(hours=randint(-9, 9)) + timedelta(minutes=randint(-20, 20)) + timedelta(seconds=randint(-20, 20)))
+        sender_id = profile['pk'] if j % 2 == 0 else j
+        receiver_id = j if j % 2 == 0 else profile['pk']
+        relationship_data.append(
+            {
+                "model": "friends.Relationship",
+                "pk": len(pks),
+                "fields": {
+                    "sender_id": f"{sender_id}",
+                    "receiver_id": f"{receiver_id}",
+                    "status": "accepted",
+                    "date_sender": date,
+                    "date_receiver": date,
+                    "date_created": date,
+                    "date_updated": date,
+                },
+            }
+    )
+
+
+data = users_data + profile_data + post_data + comment_data + relationship_data
