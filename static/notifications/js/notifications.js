@@ -26,17 +26,19 @@ const api_notif = async (url, element) => {
 };
 
 document.addEventListener("DOMContentLoaded", () => {
-  setInterval(() => {
-    try {
-      api_notif("/notifications/data/", notif_alerte);
-      api_notif("/messagerie/chat-api-notif/", notif_alerte_chat);
-      // setTimeout(() => {
-      // }, 1000);
-    } catch (error) {
-      api_notif("/notifications/data/", notif_alerte);
-      api_notif("/messagerie/chat-api-notif/", notif_alerte_chat);
-      // setTimeout(() => {
-      // }, 1000);
-    }
-  }, 1000);
+  setTimeout(() => {
+    setInterval(() => {
+      try {
+        api_notif("/notifications/data/", notif_alerte);
+        api_notif("/messagerie/chat-api-notif/", notif_alerte_chat);
+        // setTimeout(() => {
+        // }, 1000);
+      } catch (error) {
+        api_notif("/notifications/data/", notif_alerte);
+        api_notif("/messagerie/chat-api-notif/", notif_alerte_chat);
+        // setTimeout(() => {
+        // }, 1000);
+      }
+    }, 1000)
+  }, 8000);
 });

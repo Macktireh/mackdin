@@ -7,11 +7,13 @@ from typing import Union
 from dotenv import load_dotenv
 
 from django.core.exceptions import ImproperlyConfigured
+from django.utils.log import DEFAULT_LOGGING
 
 
 BASE_DIR = Path(__file__).resolve().parent.parent
 
-load = load_dotenv(os.path.join(BASE_DIR, '.env'))
+load = load_dotenv(os.path.join(BASE_DIR, ".env"))
+
 
 def get_env_variable(var_name: str, default: Union[str, None] = None) -> str:
     try:
@@ -21,6 +23,7 @@ def get_env_variable(var_name: str, default: Union[str, None] = None) -> str:
             return default
         error_msg = f"Set the {var_name} environment variable"
         raise ImproperlyConfigured(error_msg)
+
 
 logger = logging.getLogger(__name__)
 LOG_LEVEL = "INFO"
@@ -36,15 +39,19 @@ LOGGING = {
     "version": 1,
     "disable_existing_loggers": False,
     "formatters": {
+        "simple": {
+            "format": "{levelname} {message}",
+            "style": "{",
+        },
+        "console": {
+            "format": "%(asctime)s %(name)-12s %(levelname)-8s %(message)s",
+        },
         "verbose": {
             "format": "{levelname} {asctime} {name} {process:d} {thread:d} {message}",
             "style": "{",
         },
         "file": {"format": "%(asctime)s %(name)-12s %(levelname)-8s %(message)s"},
-        "simple": {
-            "format": "{levelname} {message}",
-            "style": "{",
-        },
+        "django.server": DEFAULT_LOGGING["formatters"]["django.server"],
     },
     "filters": {
         "require_debug_true": {
@@ -56,7 +63,7 @@ LOGGING = {
             "level": "INFO",
             "filters": ["require_debug_true"],
             "class": "logging.StreamHandler",
-            "formatter": "simple",
+            "formatter": "console",
         },
         "mail_admins": {
             "level": "ERROR",

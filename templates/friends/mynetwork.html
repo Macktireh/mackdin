@@ -32,7 +32,9 @@
     {% endif %}
 
     {% if page == "list_not_friends" %}
-    {% include 'friends/components/invites_list_profiles.html' %}
+    <div class="to-invites-container">
+      {% include 'friends/components/invites_list_profiles.html' %}
+    </div>
     {% endif %}
 
     {% if page == "my_friends" %}
@@ -56,5 +58,11 @@
 
 {% block js %}
 <script type="text/javascript" src=" {% static 'components/js/index.js' %} "></script>
-<script type="text/javascript" src=" {% static 'notifications/js/notifications.js' %} "></script>
+<!-- <script type="text/javascript" src=" {% static 'notifications/js/notifications.js' %} "></script> -->
+
+{% if page == "list_not_friends" %}
+<script>
+  paginatorWithAjax("", ".to-invites-container", "{{ csrf_token }}", 150)
+</script>
+{% endif %}
 {% endblock js %}

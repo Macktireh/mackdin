@@ -1,12 +1,16 @@
-from django.shortcuts import get_object_or_404, render, redirect
 from django.contrib.auth import get_user_model
 from django.contrib.auth.decorators import login_required
+from django.core.paginator import Paginator
 from django.db.models import Q
+from django.http import HttpRequest
+from django.shortcuts import get_object_or_404, render, redirect
 from django.utils import timezone
 
-User = get_user_model()
 from apps.friends.models import Relationship
 from apps.profiles.models import Profile
+
+
+User = get_user_model()
 
 
 def num_friends(request):
@@ -15,6 +19,9 @@ def num_friends(request):
     for friend in qs:
         num_friends += request.user in friend.friends.all()
     return num_friends
+
+def is_ajax(request: HttpRequest):
+    return request.META.get('HTTP_X_REQUESTED_WITH') == 'XMLHttpRequest'
 
 
 def list_relation_receiver_and_sender(request):
@@ -37,10 +44,14 @@ def list_relation_receiver_and_sender(request):
     for obj in qs:
         num += (obj.user not in list_relation_receiver and obj.user not in list_relation_sender)
     is_empty = num == 0
+
+    paginator = Paginator(qs, 16)
+    page_number = request.GET.get('page')
+    page_obj = paginator.get_page(page_number)
         
     template = 'friends/mynetwork.html'        
     context = {
-        'qs': qs,
+        'qs': page_obj,
         'list_receiver': list_relation_receiver,
         'list_sender': list_relation_sender,
         'is_empty': is_empty,
@@ -67,8 +78,7 @@ def statistic_relationship_receiver(request):
 
 # Vue de tous utiliateurs qui ne sont pas ami (avec moi => utilisateur connecté) et il y'a aucune invitation et reception
 @login_required(login_url='sign_in')
-def invites_list_profiles_view(request):  
-    
+def invites_list_profiles_view(request: HttpRequest):  
     template, context = list_relation_receiver_and_sender(request)
     context.update(
         {
@@ -78,8 +88,10 @@ def invites_list_profiles_view(request):
             'h3_empty': 'Pas de profils avec lesquels interagir'
         }
     )
-    
     context.update(statistic_relationship_receiver(request))
+
+    if request.is_ajax():
+        return render(request, 'friends/components/invites_list_profiles.html', context)
     
     return render(request, template, context)
 

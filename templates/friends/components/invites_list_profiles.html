@@ -2,15 +2,14 @@
 {% load cloudinary %}
 
 
-<div class="to-invites-container">
-  {% for obj in qs %}
+{% for obj in qs %}
 
-  {% if obj.user not in list_receiver and obj.user not in list_sender %}
-  <!-- les utilisateurs pas de relation et pas reçu d'invitation et pas envoyer une invitation -->
-  <div class="container-list-to-invites-profiles">
-    <!-- img bg -->
-    <div class="to-invites-box-img-bg">
-      <img src="
+{% if obj.user not in list_receiver and obj.user not in list_sender %}
+<!-- les utilisateurs pas de relation et pas reçu d'invitation et pas envoyer une invitation -->
+<div class="container-list-to-invites-profiles">
+  <!-- img bg -->
+  <div class="to-invites-box-img-bg">
+    <img src="
           {% if obj.is_fixture %}
             {{obj.img_bg_str}}
           {% else %}
@@ -21,11 +20,11 @@
             {% endif %}
           {% endif %}
           ">
-    </div>
+  </div>
 
-    <!-- img profile -->
-    <a href="{% url 'profiles:profile' pseudo=obj.pseudo %}">
-      <img src="
+  <!-- img profile -->
+  <a href="{% url 'profiles:profile' pseudo=obj.pseudo %}">
+    <img src="
           {% if obj.is_fixture %}
             {{obj.img_profile_str}}
           {% else %}
@@ -36,22 +35,21 @@
             {% endif %}
           {% endif %}
           " class="to-invites-img-profile">
+  </a>
+
+  <div class="to-invites-box-title">
+    <a href="{% url 'profiles:profile' pseudo=obj.pseudo %}">
+      <strong>{{obj.user.first_name}} {{obj.user.last_name}}</strong>
+      <p>{{obj.bio}}</p>
     </a>
-
-    <div class="to-invites-box-title">
-      <a href="{% url 'profiles:profile' pseudo=obj.pseudo %}">
-        <strong>{{obj.user.first_name}} {{obj.user.last_name}}</strong>
-        <p>{{obj.bio}}</p>
-      </a>
-    </div>
-
-    <form action="{% url 'friends:send_invitation' %}" method="POST" class="to-invites-add-friends">
-      {% csrf_token %}
-      <input type="hidden" name="profile_id" value="{{obj.id}}">
-      <input type="hidden" name="redirect" value="my_network">
-      <button class="btn-add-friends" type="submit">Se connecter</button>
-    </form>
   </div>
-  {% endif %}
-  {% endfor %}
+
+  <form action="{% url 'friends:send_invitation' %}" method="POST" class="to-invites-add-friends">
+    {% csrf_token %}
+    <input type="hidden" name="profile_id" value="{{obj.id}}">
+    <input type="hidden" name="redirect" value="my_network">
+    <button class="btn-add-friends" type="submit">Se connecter</button>
+  </form>
 </div>
+{% endif %}
+{% endfor %}

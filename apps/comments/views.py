@@ -1,20 +1,22 @@
 import json
-from datetime import datetime
-from django.shortcuts import get_object_or_404, redirect, render
+from typing import Any
+
 from django.contrib.auth.decorators import login_required
 from django.contrib.auth import get_user_model
-from django.http import JsonResponse
 from django.contrib.humanize.templatetags.humanize import naturaltime
+from django.core.paginator import Paginator
+from django.http import JsonResponse
+from django.shortcuts import get_object_or_404
 
-from apps.comments.models import Comment, ReponseComment, LikeComment
-from apps.comments.forms import CommentForm, ReponseCommentForm
-from apps.post.models import Post
 from apps.chat.templatetags.chat import timestr
+from apps.comments.forms import CommentForm, ReponseCommentForm
+from apps.comments.models import Comment
+from apps.post.models import Post
+
 
 User = get_user_model()
 
-
-def comment_view(request):
+def comment_view(request) -> dict[str, Any]:
     qs_comment = Comment.objects.select_related('author').all()
     form_comment = CommentForm(request.POST)
     form_reponse = ReponseCommentForm(request.POST)
@@ -28,7 +30,7 @@ def comment_view(request):
 
 
 @login_required(login_url='sign_in')
-def comment_all_data(request):  
+def comment_all_data(request) -> JsonResponse:  
     qs_comment = Comment.objects.select_related("author").select_related("post").all()
     qs_user = User.objects.prefetch_related("profile")
     
@@ -64,9 +66,13 @@ def comment_all_data(request):
     return JsonResponse({'data': data})
 
 @login_required(login_url='sign_in')
-def get_comments_post(request, post_id):  
-    qs_comment = Comment.objects.select_related("author").select_related("post").all()
+def get_comments_post(request, post_id) -> JsonResponse:
+    qs_comment = Comment.objects.select_related("author").select_related("post").filter(post=post_id)
     qs_user = User.objects.prefetch_related("profile")
+
+    paginator = Paginator(qs_comment, 3)
+    page_number = request.GET.get('page')
+    qs_comment = paginator.get_page(page_number)
     
     data = []
     
@@ -106,7 +112,7 @@ def get_comments_post(request, post_id):
 
 
 @login_required(login_url='sign_in')
-def add_update_comment_view(request):
+def add_update_comment_view(request) -> JsonResponse:
     user = request.user
     
     if request.headers.get('x-requested-with') == 'XMLHttpRequest':
@@ -153,15 +159,15 @@ def add_update_comment_view(request):
         }
         
         return JsonResponse(data)
+    return JsonResponse({'action': "is ajax"})
 
 
 @login_required(login_url='sign_in')
-def delete_comment(request):
+def delete_comment(request) -> JsonResponse:
     id_comment = request.POST.get("id_comment")
+
     if Comment.objects.filter(id=id_comment).exists():
         obj = Comment.objects.get(id=id_comment)
         obj.delete()
-    return JsonResponse({'action': "ok"})
-
-
-
+    
+    return JsonResponse()

@@ -1,23 +1,28 @@
 import os
-from django.shortcuts import get_object_or_404, redirect, render
+import cloudinary
+
+from django.conf import settings
 from django.contrib.auth.decorators import login_required
 from django.contrib.sites.shortcuts import get_current_site
-from django.http import HttpResponseNotFound, JsonResponse
-
-import cloudinary
+from django.core.paginator import Paginator
+from django.http import HttpResponse, HttpResponseNotFound, HttpResponsePermanentRedirect, HttpResponseRedirect, JsonResponse
+from django.shortcuts import get_object_or_404, redirect, render
 
 from apps.notifications.models import Notification
 from apps.profiles.models import Profile
 from apps.comments.views import comment_view
 from apps.post.models import LikePost, Post
 from apps.post.forms import PostForm
-from config.settings import ENV
 
 
 @login_required(login_url='sign_in')
-def post_create_list_view(request, *args, **kwargs):
-    posts = Post.objects.select_related('author').prefetch_related('post_comment').all()
+def post_create_list_view(request, *args, **kwargs) -> HttpResponseRedirect | HttpResponsePermanentRedirect | HttpResponse:
+    _posts = Post.objects.select_related('author').prefetch_related('post_comment').all()
     current_user = Profile.objects.select_related('user').get(user=request.user)
+
+    paginator = Paginator(_posts, 6)
+    page_number = request.GET.get('page')
+    posts = paginator.get_page(page_number)
     
     AddPostForm = PostForm()
     
@@ -43,8 +48,14 @@ def post_create_list_view(request, *args, **kwargs):
         'AddPostForm': AddPostForm,
         'page': 'list',
         'domain':  get_current_site(request),
+        "is_ajax": request.is_ajax(),
+        "page_number": page_number,
     }
     context.update(comment_view(request))
+
+    if request.is_ajax():
+        return render(request, 'post/components/post-detail.html', context)
+
     return render(request, template, context)
 
 
@@ -75,7 +86,7 @@ def update_post(request, uid):
         if len(request.FILES) != 0:
             if post_edit.img:
                 if len(post_edit.img) > 0:
-                    if ENV == 'production':
+                    if settings.ENV == 'production':
                         cloudinary.uploader.destroy(post_edit.img.public_id)
                     else:
                         try:
