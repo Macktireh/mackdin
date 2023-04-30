@@ -75,6 +75,10 @@ def list_notification(request) -> HttpResponse:
         "page": "notif",
         "start_animation": "notif",
     }
+
+    if request.is_ajax():
+        return render(request, "notifications/card-notification.html", context)
+    
     return render(request, template, context)
 
 

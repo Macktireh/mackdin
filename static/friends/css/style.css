@@ -93,6 +93,7 @@ main.my-network .container-right .to-invites-container {
   display: grid;
   grid-template-columns: repeat(auto-fill, minmax(180px, 1fr));
   grid-gap: 1rem;
+  justify-items: center;
 }
 main.my-network .container-right .to-invites-container .container-list-to-invites-profiles {
   height: 250px;
@@ -180,6 +181,7 @@ main.my-network .container-right .my-friends-container {
   justify-content: start;
   flex-direction: column;
   gap: 1rem;
+  align-items: center;
 }
 main.my-network .container-right .my-friends-container .container-list-my-friends-profiles {
   width: 100%;
@@ -366,7 +368,7 @@ main.my-network .container-left .container-nav-statistics a.nav-link-statistc-ac
   border-left-color: #1abc9c;
   border-left-style: solid;
   border-left-width: 4px;
-  padding-left: 0.7rem;
+  padding-left: 12px;
 }
 main.my-network .container-left .container-nav-statistics a.nav-link-statistc-active span.text:hover {
   text-decoration: underline;

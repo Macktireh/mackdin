@@ -23,9 +23,7 @@
 
     {% else %}
 
-    {% for obj in qs.friends.all %}
     {% include 'chat/components/list_chatroom.html' %}
-    {% endfor %}
 
     {% endif %}
   </div>
@@ -34,10 +32,10 @@
     {% if page == 'list_chatroom' %}
 
 
-    {% if qs.friends.all %}
-    {% for obj in qs.friends.all %}
+    {% if my_friends %}
+    
     {% include 'chat/components/list_chatroom.html' %}
-    {% endfor %}
+    
     {% else %}
     <div class="pas-de-relation">
       <p>Vous n'avez pas des amis pour discuter</p>
@@ -57,7 +55,14 @@
 {% block js %}
 <script type="text/javascript" src=" {% static 'components/js/index.js' %} "></script>
 <script type="text/javascript" src=" {% static 'notifications/js/notifications.js' %} "></script>
-{% if page != 'list_chatroom' %}
+{% if page == "list_chatroom" %}
+<script>
+  paginatorWithAjax("", ".container-main", ".container-main", "{{ csrf_token }}", 0)
+</script>
+{% else %}
+<script>
+  paginatorWithAjax("", ".container-left-chat", ".container-left-chat", "{{ csrf_token }}", -200)
+</script>
 <script type="text/javascript" src=" {% static 'chat/js/chatroom.js' %} "></script>
 {% endif %}
 {% endblock js %}

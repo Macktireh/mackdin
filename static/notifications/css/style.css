@@ -58,6 +58,7 @@ a:visited {
   align-items: center;
   position: relative;
   transition: background-color 0.2s ease-in-out;
+  cursor: pointer;
 }
 .container-main .container-notif .box-notif:hover {
   background-color: #0000001a;

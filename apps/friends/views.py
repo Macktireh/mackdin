@@ -141,11 +141,6 @@ def my_friends_invites_profiles_view(request):
     # qs = Profile.objects.get_all_profiles_exclude_me(request, request.user)
 
     profile = Profile.objects.get(user=request.user)
-    print()
-    print(profile.friends.all()[0].profile)
-    print(profile.friends.all().count())
-    print()
-
     paginator = Paginator(profile.friends.all(), 8)
     page_number = request.GET.get("page")
     _profile = paginator.get_page(page_number)
@@ -167,6 +162,9 @@ def my_friends_invites_profiles_view(request):
     }
 
     context.update(statistic_relationship_receiver(request))
+
+    if request.is_ajax():
+        return render(request, "friends/components/list_myfriends.html", context)
 
     return render(request, template, context)
 

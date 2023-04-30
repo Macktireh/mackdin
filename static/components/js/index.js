@@ -10,15 +10,11 @@ try {
   });
 } catch (error) {}
 
-function paginatorWithAjax(url, className, csrfToken, h, isPagePosts = false) {
+function paginatorWithAjax(url, classContainerData, classContainerSpinner, csrfToken, h, isPagePosts = false) {
   let page = 1;
   let isPageEmpty = false;
   let canRequest = false;
-  const spinnerHTML = `
-    <div class="spinner-border" role="status">
-      <span class="sr-only">Loading...</span>
-    </div>
-  `;
+  const spinnerHTML = `<div class="spinner-loader" role="status"></div>`;
 
   window.addEventListener("scroll", (e) => {
     const marginY = document.body.clientHeight - window.innerHeight - h;
@@ -27,10 +23,11 @@ function paginatorWithAjax(url, className, csrfToken, h, isPagePosts = false) {
       canRequest = true;
       page += 1;
 
-      let container = document.querySelector(className);
-      container.innerHTML += spinnerHTML;
+      let containerData = document.querySelector(classContainerData);
+      let containerSpinner = document.querySelector(classContainerSpinner);
+      containerSpinner.innerHTML += spinnerHTML;
 
-      const spinner = container.querySelector(".spinner-border");
+      const spinner = containerSpinner.querySelector(".spinner-loader");
 
       fetch(`${url}?page=${page}`, {
         method: "GET",
@@ -44,10 +41,10 @@ function paginatorWithAjax(url, className, csrfToken, h, isPagePosts = false) {
           // console.log(data);
           if (data === "") {
             isPageEmpty = true;
-            container.removeChild(spinner);
+            containerSpinner.removeChild(spinner);
           } else {
-            container.removeChild(spinner);
-            container.innerHTML += data;
+            containerSpinner.removeChild(spinner);
+            containerData.innerHTML += data;
             canRequest = false;
 
             if (isPagePosts === true) {

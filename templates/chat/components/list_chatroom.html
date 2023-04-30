@@ -3,7 +3,7 @@
 {% load cloudinary %}
 {% load chat %}
 
-
+{% for obj in my_friends %}
 <a class="my-friends-info-link" href="{% url 'chats:chatroom' uid=obj.profile.uid %}">
   <div class="my-friends-info-container">
     <div class="my-friends-info">
@@ -69,3 +69,4 @@
   </div>
 </a>
 <hr>
+{% endfor %}

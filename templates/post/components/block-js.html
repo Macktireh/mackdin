@@ -63,6 +63,11 @@
     })
   } catch (error) { }
 
-  paginatorWithAjax("", ".container-main", "{{ csrf_token }}", -100, true);
+  paginatorWithAjax("", ".container-main", ".container-main", "{{ csrf_token }}", -100, true);
+</script>
+
+{% elif page == 'notif' %}
+<script>
+  paginatorWithAjax("", ".container-notif", ".container-notif", "{{ csrf_token }}", 0)
 </script>
 {% endif %}

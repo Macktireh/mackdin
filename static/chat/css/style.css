@@ -298,6 +298,7 @@ main.messagerie .container-main .pas-de-relation a:active {
 a.my-friends-info-link {
   width: 100%;
   padding: 2px 0.2rem;
+  transition: background-color 0.2s ease-in-out;
 }
 a.my-friends-info-link:hover {
   background-color: #0000001a;

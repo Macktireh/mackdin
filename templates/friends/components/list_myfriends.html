@@ -3,9 +3,8 @@
 {% load cloudinary %}
 {% load chat %}
 
-<div class="my-friends-container">
-  {% for obj in qs %}
 
+{% for obj in qs %}
   
   {% comment %} {% if request.user in obj.friends.all %} {% endcomment %}
   <!-- les utilisateurs pas de relation et pas reçu d'invitation et pas envoyer une invitation -->
@@ -65,5 +64,4 @@
     </form>
   </div>
   {% comment %} {% endif %} {% endcomment %}
-  {% endfor %}
-</div>
+{% endfor %}
