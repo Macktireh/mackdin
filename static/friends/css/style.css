@@ -361,10 +361,17 @@ main.my-network .container-left .container-nav-statistics a.nav-link-statistc {
 main.my-network .container-left .container-nav-statistics a.nav-link-statistc:hover {
   background-color: #0000001a;
 }
-main.my-network .container-left .container-nav-statistics a.nav-link-statistc span.text:hover {
+main.my-network .container-left .container-nav-statistics a.nav-link-statistc-active {
+  background-color: #0000001a;
+  border-left-color: #1abc9c;
+  border-left-style: solid;
+  border-left-width: 4px;
+  padding-left: 0.7rem;
+}
+main.my-network .container-left .container-nav-statistics a.nav-link-statistc-active span.text:hover {
   text-decoration: underline;
 }
-main.my-network .container-left .container-nav-statistics a.nav-link-statistc span.num {
+main.my-network .container-left .container-nav-statistics a.nav-link-statistc-active span.num {
   color: #1abc9c;
   font-weight: bold;
 }

@@ -116,13 +116,15 @@
           <!-- </div> -->
           {% endif %}
 
-          {% if profile.user not in list_receiver and profile.user not in list_sender and user != profile.user %}
+          {% if profile.user not in list_receiver and profile.user not in list_sender and user != profile.user and profile.user not in request.user.profile.friends.all %}
           <form action="{% url 'friends:send_invitation' %}" method="POST" class="to-invites-add-friends">
             {% csrf_token %}
             <input type="hidden" name="profile_id" value="{{profile.id}}">
             <input type="hidden" name="redirect" value="profile">
             <button class="btn-add-friends" type="submit">Envoyer une invitation</button>
           </form>
+          {% elif profile.user in request.user.profile.friends.all %}
+          <a class="btn-container-update-profile" href="{% url 'chats:chatroom' uid=profile.uid %}">Envoyer un message</a>
           {% endif %}
 
 

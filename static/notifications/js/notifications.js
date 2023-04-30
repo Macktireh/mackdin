@@ -30,15 +30,22 @@ document.addEventListener("DOMContentLoaded", () => {
     setInterval(() => {
       try {
         api_notif("/notifications/data/", notif_alerte);
-        api_notif("/messagerie/chat-api-notif/", notif_alerte_chat);
+        // api_notif("/messagerie/chat-api-notif/", notif_alerte_chat);
         // setTimeout(() => {
-        // }, 1000);
+        // }, 5000);
       } catch (error) {
         api_notif("/notifications/data/", notif_alerte);
-        api_notif("/messagerie/chat-api-notif/", notif_alerte_chat);
+        // api_notif("/messagerie/chat-api-notif/", notif_alerte_chat);
         // setTimeout(() => {
-        // }, 1000);
+        // }, 5000);
       }
-    }, 1000)
-  }, 8000);
+    }, 3000)
+    setInterval(() => {
+      try {
+        api_notif("/messagerie/chat-api-notif/", notif_alerte_chat);
+      } catch (error) {
+        api_notif("/messagerie/chat-api-notif/", notif_alerte_chat);
+      }
+    }, 5000)
+  }, 2000);
 });

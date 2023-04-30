@@ -1,5 +1,8 @@
 a.my-friends-info-link
   width: 100%
+  padding: 2px 0.2rem
+  &:hover
+    background-color: $color6
   .my-friends-info-container
     width: 100%
     position: relative
@@ -85,4 +88,5 @@ span#msg-not-seen
   @include position-abs(50%, null, null, 1px, null, -50%)
 
 hr
-  @include hr-el(5px, 5px, 100%, 1px, $color6)
+  // @include hr-el(5px, 5px, 100%, 1px, $color6)
+  @include hr-el(0, 0, 100%, 0.5px, $color10)

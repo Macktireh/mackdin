@@ -40,7 +40,6 @@ a:visited {
   display: flex;
   justify-content: start;
   flex-direction: column;
-  gap: 0.4rem;
 }
 .container-main .container-notif .pas-de-notif {
   width: 100%;
@@ -58,6 +57,10 @@ a:visited {
   grid-gap: 0.5rem;
   align-items: center;
   position: relative;
+  transition: background-color 0.2s ease-in-out;
+}
+.container-main .container-notif .box-notif:hover {
+  background-color: #0000001a;
 }
 .container-main .container-notif .box-notif .info-notif p {
   display: inline-block;

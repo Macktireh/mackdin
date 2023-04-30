@@ -6,7 +6,8 @@
 <div class="my-friends-container">
   {% for obj in qs %}
 
-  {% if request.user in obj.friends.all %}
+  
+  {% comment %} {% if request.user in obj.friends.all %} {% endcomment %}
   <!-- les utilisateurs pas de relation et pas reçu d'invitation et pas envoyer une invitation -->
   <div class="container-list-my-friends-profiles">
     <div class="my-friends-info">
@@ -63,6 +64,6 @@
       <button class="btn-add-friends" type="submit">Supprimer</button>
     </form>
   </div>
-  {% endif %}
+  {% comment %} {% endif %} {% endcomment %}
   {% endfor %}
 </div>

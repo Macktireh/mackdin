@@ -9,7 +9,7 @@
     background-color: $color4
     @include flex-el(start, null)
     flex-direction: column
-    gap: 0.4rem
+    // gap: 0.4rem
 
     .pas-de-notif
       width: 100%
@@ -31,6 +31,9 @@
       grid-gap: 0.5rem
       align-items: center
       position: relative
+      transition: background-color 0.2s ease-in-out
+      &:hover
+        background-color: $color6
 
       .info-notif
         p

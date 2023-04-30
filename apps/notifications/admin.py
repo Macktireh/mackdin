@@ -10,6 +10,6 @@ class NotificationAdmin(ImportExportModelAdmin, admin.ModelAdmin):
     list_filter = ('type_notif', 'seen', 'bg_seen',)
     ordering = ('-date_created',)
     list_per_page = 20
-    list_max_show_all = 200
+    list_max_show_all = 100
 
 admin.site.register(Notification, NotificationAdmin)
