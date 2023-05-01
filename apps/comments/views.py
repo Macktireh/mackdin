@@ -5,7 +5,7 @@ from django.contrib.auth.decorators import login_required
 from django.contrib.auth import get_user_model
 from django.contrib.humanize.templatetags.humanize import naturaltime
 from django.core.paginator import Paginator
-from django.http import JsonResponse
+from django.http import HttpResponse, HttpResponseNotFound, JsonResponse
 from django.shortcuts import get_object_or_404
 
 from apps.chat.templatetags.chat import timestr
@@ -71,8 +71,12 @@ def get_comments_post(request, post_id) -> JsonResponse:
     qs_user = User.objects.prefetch_related("profile")
 
     paginator = Paginator(qs_comment, 3)
-    page_number = request.GET.get('page')
-    qs_comment = paginator.get_page(page_number)
+    page = request.GET.get('page')
+    num = paginator.num_pages
+
+    if page is None: page = 1
+    if int(page) > num: return HttpResponseNotFound("<h1>Page not found 404</h1>")
+    qs_comment = paginator.get_page(page)
     
     data = []
     

@@ -6,6 +6,7 @@ from django.contrib.auth.decorators import login_required
 from django.core.paginator import Paginator
 from django.http import (
     HttpResponse,
+    HttpResponseNotFound,
     HttpResponsePermanentRedirect,
     HttpResponseRedirect,
     JsonResponse,
@@ -24,10 +25,6 @@ def qs_notification_data():
 # @async_to_sync
 def notification_data(request) -> JsonResponse:
     qs = Notification.objects.all().filter(to_user=request.user)
-
-    # paginator = Paginator(_qs, 10)
-    # page_number = request.GET.get('page')
-    # qs = paginator.get_page(page_number)
 
     data = []
     for obj in qs:
@@ -66,8 +63,12 @@ def list_notification(request) -> HttpResponse:
                 obj.save()
 
     paginator = Paginator(qs, 10)
-    page_number = request.GET.get("page")
-    qs = paginator.get_page(page_number)
+    page = request.GET.get("page")
+    num = paginator.num_pages
+
+    if page is None: page = 1
+    if int(page) > num: return HttpResponseNotFound("<h1>Page not found 404</h1>")
+    qs = paginator.get_page(page)
     template = "post/post_list.html"
     context = {
         "qs": qs,

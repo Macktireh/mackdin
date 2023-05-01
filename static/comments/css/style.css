@@ -231,6 +231,13 @@ a:visited {
   cursor: not-allowed;
   opacity: 0.4;
 }
+.form-comment-list-input-container-global .voir-plus {
+  color: #1abc9c;
+  cursor: pointer;
+}
+.form-comment-list-input-container-global .voir-plus:hover {
+  text-decoration: underline;
+}
 
 .comment-options-btn {
   position: absolute;

@@ -11,3 +11,4 @@ node_modules
 staticfiles
 logs.log
 initial_data.json
+package-lock.json

@@ -2,7 +2,7 @@ from django.contrib.auth import get_user_model
 from django.contrib.auth.decorators import login_required
 from django.core.paginator import Paginator
 from django.db.models import Q
-from django.http import HttpResponseNotFound, JsonResponse
+from django.http import HttpResponse, HttpResponseNotFound, JsonResponse
 from django.shortcuts import redirect, render, get_object_or_404
 
 User = get_user_model()
@@ -47,13 +47,17 @@ def chat_api_view(request):
 
 
 @login_required(login_url="sign_in")
-def chat_view(request):
+def chat_view(request) -> HttpResponseNotFound | HttpResponse:
     qs = Profile.objects.select_related("user").get(user=request.user)
 
-    paginator = Paginator(qs.friends.all(), 10)
-    page_number = request.GET.get("page")
-    my_friends = paginator.get_page(page_number)
-    # my_friends = qs.friends.all()
+    paginator = Paginator(qs.friends.all(), 18)
+    num  = paginator.num_pages
+    page = request.GET.get("page")
+
+    if page is None: page = 1
+    if int(page) > num: return HttpResponseNotFound("<h1>Page not found 404</h1>")
+
+    my_friends = paginator.get_page(page)
 
     last_msgs = []
     for obj in my_friends:

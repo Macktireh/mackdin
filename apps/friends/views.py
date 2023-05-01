@@ -2,7 +2,7 @@ from django.contrib.auth import get_user_model
 from django.contrib.auth.decorators import login_required
 from django.core.paginator import Paginator
 from django.db.models import Q
-from django.http import HttpRequest
+from django.http import HttpRequest, HttpResponse, HttpResponseNotFound
 from django.shortcuts import get_object_or_404, render, redirect
 from django.utils import timezone
 
@@ -27,19 +27,7 @@ def is_ajax(request: HttpRequest):
 
 def list_relation_receiver_and_sender(request):
     qs = Profile.objects.get_all_profiles_to_invites(request, request.user)
-    # user = User.objects.get(email__iexact=request.user.email)
     profile = Profile.objects.get(user=request.user)
-
-    # qs_relation_receiver = Relationship.objects.select_related('receiver').filter(sender=profile)
-    # qs_relation_sender = Relationship.objects.select_related('sender').filter(receiver=profile)
-
-    # list_relation_receiver = []
-    # for item in qs_relation_receiver:
-    #     list_relation_receiver.append(item.receiver.user)
-
-    # list_relation_sender = []
-    # for item in qs_relation_sender:
-    #     list_relation_sender.append(item.sender.user)
 
     list_relation_receiver = [
         item.receiver.user
@@ -54,9 +42,16 @@ def list_relation_receiver_and_sender(request):
         )
     ]
 
-    paginator = Paginator(qs, 24)
-    page_number = request.GET.get("page")
-    qs = paginator.get_page(page_number)
+    # paginator = Paginator(qs, 24)
+    # page = request.GET.get("page")
+    # num = paginator.num_pages
+
+    # if page is None:
+    #     page = 1
+    # if int(page) > num:
+    #     raise ValueError("")
+
+    # qs = paginator.get_page(page)
 
     num = 0
     for obj in qs:
@@ -95,8 +90,11 @@ def statistic_relationship_receiver(request):
 
 # Vue de tous utiliateurs qui ne sont pas ami (avec moi => utilisateur connecté) et il y'a aucune invitation et reception
 @login_required(login_url="sign_in")
-def invites_list_profiles_view(request: HttpRequest):
-    template, context = list_relation_receiver_and_sender(request)
+def invites_list_profiles_view(request: HttpRequest) -> HttpResponse:
+    try:
+        template, context = list_relation_receiver_and_sender(request)
+    except ValueError:
+        return HttpResponseNotFound("<h1>Page not found 404</h1>")
     context.update(
         {
             "page": "list_not_friends",
@@ -142,8 +140,15 @@ def my_friends_invites_profiles_view(request):
 
     profile = Profile.objects.get(user=request.user)
     paginator = Paginator(profile.friends.all(), 8)
-    page_number = request.GET.get("page")
-    _profile = paginator.get_page(page_number)
+    page = request.GET.get("page")
+    num = paginator.num_pages
+
+    if page is None:
+        page = 1
+    if int(page) > num:
+        return HttpResponseNotFound("<h1>Page not found 404</h1>")
+
+    _profile = paginator.get_page(page)
 
     qs = []
     for friend in _profile:

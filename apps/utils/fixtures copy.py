@@ -41,7 +41,7 @@ def generate_data(count: int) -> list[dict]:
         users_data.append(
             {
                 "model": "users.CustomUser",
-                "pk": i + id,
+                "pk": count,
                 "fields": {
                     "email": email,
                     "first_name": f"{fake.first_name()}",
@@ -63,7 +63,7 @@ def generate_data(count: int) -> list[dict]:
         profile_data.append(
             {
                 "model": "profiles.Profile",
-                "pk": i + 2,
+                "pk": count,
                 "fields": {
                     "uid": f"{uid_gerator()}",
                     "user_id": f"{i + 2}",

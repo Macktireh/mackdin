@@ -193,6 +193,11 @@ CLOUDINARY_STORAGE = {
 }
 
 
+ADMIN_FIRST_NAME = get_env_variable('ADMIN_FIRST_NAME', 'Admin')
+ADMIN_LAST_NAME = get_env_variable('ADMIN_LAST_NAME', 'AD')
+ADMIN_EMAIL = get_env_variable('ADMIN_EMAIL', 'admin@gmail.com')
+ADMIN_PASSWORD = get_env_variable('ADMIN_PASSWORD', 'admin')
+
 # uid acces Interface Administrateur 
 UID_ADMIN = get_env_variable('UID_ADMIN', '2de70bac-86a5-4fb5-a3b4-9b375ef0342b03f63189-3f5b-4a07-b8d2-8402b9af726f')
 

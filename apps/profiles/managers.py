@@ -45,13 +45,27 @@ class ProfileManager(models.Manager):
             .exclude(user=sender)
         )
         paginator = Paginator(_profiles, 30)
-        page_number = request.GET.get("page")
-        profiles = paginator.get_page(page_number)
+        page_ = request.GET.get("page")
+        num_ = paginator.num_pages
+
+        if page_ is None:
+            page_ = 1
+        if int(page_) > num_:
+            raise ValueError("")
+
+        profiles = paginator.get_page(page_)
 
         _qs = Relationship.objects.filter(Q(sender=profile) | Q(receiver=profile))
         paginator = Paginator(_qs, 30)
-        page_number = request.GET.get("page")
-        qs = paginator.get_page(page_number)
+        _page = request.GET.get("page")
+        _num = paginator.num_pages
+
+        if _page is None:
+            _page = 1
+        if num_ < _num:
+            if int(_page) > _num:
+                raise ValueError("")
+        qs = paginator.get_page(_page)
 
         accepted = set([])
         for q in qs:

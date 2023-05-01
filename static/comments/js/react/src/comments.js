@@ -12,7 +12,12 @@ class AppLikeComment extends React.Component {
       isLike: props.isLike,
       nberLike: props.nberLike,
       nberComment: props.nberComment,
+      page: 2,
+      canRequest: true,
     };
+
+    this.handleGetComment = this.handleGetComment.bind(this);
+    this.handleGetCommentPaginator = this.handleGetCommentPaginator.bind(this);
 
     this.handlIsLike = this.handlIsLike.bind(this);
     this.handleLikeorUnlike = this.handleLikeorUnlike.bind(this);
@@ -24,15 +29,55 @@ class AppLikeComment extends React.Component {
     this.handleDeleteComment = this.handleDeleteComment.bind(this);
   }
 
+  componentDidMount() {
+    this.handleGetComment();
+  }
+
   handleClickToggle() {
     const toggle = this.state.classTogglePostDetail;
     this.setState({ classTogglePostDetail: !toggle });
   }
 
-  componentDidMount() {
+  handleGetComment() {
     fetch(this.state.urlGetData, { method: "GET" })
       .then((res) => res.json())
       .then((res) => this.setState({ listComments: res.data }));
+  }
+
+  handleGetCommentPaginator(params = "") {
+    fetch(`${this.state.urlGetData}?page=${this.state.page}`, { method: "GET" })
+      .then((res) => {
+        if (res.status === 200) {
+          return res.json();
+        } else {
+          this.setState({ canRequest: false });
+        }
+      })
+      .then((res) => {
+        if (res.data.length > 0) {
+          // return res.json();
+
+          copyComment = this.state.listComments.slice();
+          comments = [...copyComment];
+          res.data.forEach((item2) => {
+            const foundIndex = comments.findIndex((item1) => item1.id === item2.id);
+            if (foundIndex === -1) {
+              comments.push(item2);
+            } else {
+              comments[foundIndex] = item2;
+            }
+          });
+          this.setState({ listComments: comments });
+          this.setState({ page: this.state.page + 1 });
+          console.log("res", res.data);
+          console.log("comments", comments);
+          console.log("page", this.state.page);
+        }
+      });
+  }
+
+  handlePaginator() {
+    this.handleGetComment(`&page=${e}`);
   }
 
   handlIsLike(type) {
@@ -171,15 +216,22 @@ class AppLikeComment extends React.Component {
           />
           <div className="container-global-comment-list">
             {this.state.listComments.length > 0 &&
-              this.state.listComments.map((comment) => (
-                <ListComments
-                  key={comment.id}
-                  comment={comment}
-                  handleEditComment={this.handleEditComment}
-                  handleDeleteComment={this.handleDeleteComment}
-                />
-              ))}
+              this.state.listComments
+                .sort((a, b) => a.id - b.id)
+                .map((comment) => (
+                  <ListComments
+                    key={comment.id}
+                    comment={comment}
+                    handleEditComment={this.handleEditComment}
+                    handleDeleteComment={this.handleDeleteComment}
+                  />
+                ))}
           </div>
+          {this.state.canRequest && (
+            <div className="voir-plus" onClick={this.handleGetCommentPaginator}>
+              voir plus
+            </div>
+          )}
         </div>
       </React.Fragment>
     );

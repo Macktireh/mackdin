@@ -1,5 +1,7 @@
 var _createClass = function () { function defineProperties(target, props) { for (var i = 0; i < props.length; i++) { var descriptor = props[i]; descriptor.enumerable = descriptor.enumerable || false; descriptor.configurable = true; if ("value" in descriptor) descriptor.writable = true; Object.defineProperty(target, descriptor.key, descriptor); } } return function (Constructor, protoProps, staticProps) { if (protoProps) defineProperties(Constructor.prototype, protoProps); if (staticProps) defineProperties(Constructor, staticProps); return Constructor; }; }();
 
+function _toConsumableArray(arr) { if (Array.isArray(arr)) { for (var i = 0, arr2 = Array(arr.length); i < arr.length; i++) { arr2[i] = arr[i]; } return arr2; } else { return Array.from(arr); } }
+
 function _classCallCheck(instance, Constructor) { if (!(instance instanceof Constructor)) { throw new TypeError("Cannot call a class as a function"); } }
 
 function _possibleConstructorReturn(self, call) { if (!self) { throw new ReferenceError("this hasn't been initialised - super() hasn't been called"); } return call && (typeof call === "object" || typeof call === "function") ? call : self; }
@@ -24,8 +26,13 @@ var AppLikeComment = function (_React$Component) {
       listComments: [],
       isLike: props.isLike,
       nberLike: props.nberLike,
-      nberComment: props.nberComment
+      nberComment: props.nberComment,
+      page: 2,
+      canRequest: true
     };
+
+    _this.handleGetComment = _this.handleGetComment.bind(_this);
+    _this.handleGetCommentPaginator = _this.handleGetCommentPaginator.bind(_this);
 
     _this.handlIsLike = _this.handlIsLike.bind(_this);
     _this.handleLikeorUnlike = _this.handleLikeorUnlike.bind(_this);
@@ -39,14 +46,19 @@ var AppLikeComment = function (_React$Component) {
   }
 
   _createClass(AppLikeComment, [{
+    key: "componentDidMount",
+    value: function componentDidMount() {
+      this.handleGetComment();
+    }
+  }, {
     key: "handleClickToggle",
     value: function handleClickToggle() {
       var toggle = this.state.classTogglePostDetail;
       this.setState({ classTogglePostDetail: !toggle });
     }
   }, {
-    key: "componentDidMount",
-    value: function componentDidMount() {
+    key: "handleGetComment",
+    value: function handleGetComment() {
       var _this2 = this;
 
       fetch(this.state.urlGetData, { method: "GET" }).then(function (res) {
@@ -54,6 +66,48 @@ var AppLikeComment = function (_React$Component) {
       }).then(function (res) {
         return _this2.setState({ listComments: res.data });
       });
+    }
+  }, {
+    key: "handleGetCommentPaginator",
+    value: function handleGetCommentPaginator() {
+      var _this3 = this;
+
+      var params = arguments.length > 0 && arguments[0] !== undefined ? arguments[0] : "";
+
+      fetch(this.state.urlGetData + "?page=" + this.state.page, { method: "GET" }).then(function (res) {
+        if (res.status === 200) {
+          return res.json();
+        } else {
+          _this3.setState({ canRequest: false });
+        }
+      }).then(function (res) {
+        if (res.data.length > 0) {
+          // return res.json();
+
+          copyComment = _this3.state.listComments.slice();
+          comments = [].concat(_toConsumableArray(copyComment));
+          res.data.forEach(function (item2) {
+            var foundIndex = comments.findIndex(function (item1) {
+              return item1.id === item2.id;
+            });
+            if (foundIndex === -1) {
+              comments.push(item2);
+            } else {
+              comments[foundIndex] = item2;
+            }
+          });
+          _this3.setState({ listComments: comments });
+          _this3.setState({ page: _this3.state.page + 1 });
+          console.log("res", res.data);
+          console.log("comments", comments);
+          console.log("page", _this3.state.page);
+        }
+      });
+    }
+  }, {
+    key: "handlePaginator",
+    value: function handlePaginator() {
+      this.handleGetComment("&page=" + e);
     }
   }, {
     key: "handlIsLike",
@@ -101,7 +155,7 @@ var AppLikeComment = function (_React$Component) {
   }, {
     key: "handleLikeorUnlike",
     value: function handleLikeorUnlike() {
-      var _this3 = this;
+      var _this4 = this;
 
       var formData = new FormData();
       formData.append("post_id", this.state.postId);
@@ -109,14 +163,14 @@ var AppLikeComment = function (_React$Component) {
       fetch(this.configFetch("/feed/like/", "POST", formData)).then(function (res) {
         return res.json();
       }).then(function (res) {
-        _this3.handlIsLike(res.value);
-        _this3.updateNberLike(res.value);
+        _this4.handlIsLike(res.value);
+        _this4.updateNberLike(res.value);
       });
     }
   }, {
     key: "handleAddComment",
     value: function handleAddComment(action) {
-      var _this4 = this;
+      var _this5 = this;
 
       var data = JSON.stringify({
         message: action.payload.msg,
@@ -127,17 +181,17 @@ var AppLikeComment = function (_React$Component) {
       fetch(this.configFetch(this.state.urlAddUpdateComment, "POST", data)).then(function (res) {
         return res.json();
       }).then(function (res) {
-        var commentData = _this4.state.listComments.slice();
+        var commentData = _this5.state.listComments.slice();
         commentData.push(res);
-        _this4.setState({ listComments: commentData });
+        _this5.setState({ listComments: commentData });
       }).then(function () {
-        _this4.updateNberComment("ADD");
+        _this5.updateNberComment("ADD");
       });
     }
   }, {
     key: "handleEditComment",
     value: function handleEditComment(action) {
-      var _this5 = this;
+      var _this6 = this;
 
       var data = JSON.stringify({
         message: action.payload.msg,
@@ -146,11 +200,11 @@ var AppLikeComment = function (_React$Component) {
       });
 
       fetch(this.configFetch(this.state.urlAddUpdateComment, "POST", data)).then(function () {
-        var commentData1 = _this5.state.listComments.slice();
+        var commentData1 = _this6.state.listComments.slice();
         commentData1.filter(function (comment) {
           if (comment.id === action.payload.comment_id) {
             comment.comment_message = action.payload.msg;
-            _this5.setState({ listComments: commentData1 });
+            _this6.setState({ listComments: commentData1 });
           }
         });
       });
@@ -158,24 +212,24 @@ var AppLikeComment = function (_React$Component) {
   }, {
     key: "handleDeleteComment",
     value: function handleDeleteComment(id) {
-      var _this6 = this;
+      var _this7 = this;
 
       var formData = new FormData();
       formData.append("id_comment", id);
       if (window.confirm("Vous êtes sûr de vouloir supprimer")) {
         fetch(this.configFetch("/comment/delete-comment/", "POST", formData)).then(function () {
-          var filteredListComments = _this6.state.listComments.filter(function (t) {
+          var filteredListComments = _this7.state.listComments.filter(function (t) {
             return t.id !== id;
           });
-          _this6.setState({ listComments: filteredListComments });
-          _this6.updateNberComment("DELETE");
+          _this7.setState({ listComments: filteredListComments });
+          _this7.updateNberComment("DELETE");
         });
       }
     }
   }, {
     key: "render",
     value: function render() {
-      var _this7 = this;
+      var _this8 = this;
 
       return React.createElement(
         React.Fragment,
@@ -207,14 +261,21 @@ var AppLikeComment = function (_React$Component) {
           React.createElement(
             "div",
             { className: "container-global-comment-list" },
-            this.state.listComments.length > 0 && this.state.listComments.map(function (comment) {
+            this.state.listComments.length > 0 && this.state.listComments.sort(function (a, b) {
+              return a.id - b.id;
+            }).map(function (comment) {
               return React.createElement(ListComments, {
                 key: comment.id,
                 comment: comment,
-                handleEditComment: _this7.handleEditComment,
-                handleDeleteComment: _this7.handleDeleteComment
+                handleEditComment: _this8.handleEditComment,
+                handleDeleteComment: _this8.handleDeleteComment
               });
             })
+          ),
+          this.state.canRequest && React.createElement(
+            "div",
+            { className: "voir-plus", onClick: this.handleGetCommentPaginator },
+            "voir plus"
           )
         )
       );
