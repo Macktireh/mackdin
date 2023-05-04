@@ -5,7 +5,7 @@
     "version": "0.2.0",
     "configurations": [
         {
-            "name": "Python: Django",
+            "name": "Django runserver",
             "type": "python",
             "request": "launch",
             "program": "${workspaceFolder}\\manage.py",
@@ -14,6 +14,39 @@
             ],
             "django": true,
             "justMyCode": true
-        }
+        },
+        {
+            "name": "Django makemigrations",
+            "type": "python",
+            "request": "launch",
+            "program": "${workspaceFolder}\\manage.py",
+            "args": [
+                "makemigrations"
+            ],
+            "django": true,
+            "justMyCode": true
+        },
+        {
+            "name": "Django migrate",
+            "type": "python",
+            "request": "launch",
+            "program": "${workspaceFolder}\\manage.py",
+            "args": [
+                "migrate"
+            ],
+            "django": true,
+            "justMyCode": true
+        },
+        {
+            "name": "Django loaddata",
+            "type": "python",
+            "request": "launch",
+            "program": "${workspaceFolder}\\manage.py",
+            "args": [
+                "load_data", "initial_data.json"
+            ],
+            "django": true,
+            "justMyCode": true
+        },
     ]
 }

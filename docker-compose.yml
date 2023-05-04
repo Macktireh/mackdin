@@ -1,6 +1,6 @@
 version: '3'
 
-name: mackdin_db
+name: mackdin
 
 services:
 

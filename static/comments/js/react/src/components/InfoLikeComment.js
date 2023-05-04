@@ -15,7 +15,7 @@ class InfoLikeComment extends React.Component {
           </span>
         </div>
         <div className="comments-count-post">
-          <span id="comments-num{{post.id}}">
+          <span id="comments-num" onClick={() => this.props.handleClickToggle()}>
             {this.props.nberComment > 1
               ? this.props.nberComment + " commentaires"
               : this.props.nberComment + " commentaire"}

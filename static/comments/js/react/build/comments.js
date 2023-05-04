@@ -27,6 +27,8 @@ var AppLikeComment = function (_React$Component) {
       isLike: props.isLike,
       nberLike: props.nberLike,
       nberComment: props.nberComment,
+      isLikeComment: false,
+      nberLikeCommnet: 0,
       page: 2,
       canRequest: true
     };
@@ -36,6 +38,7 @@ var AppLikeComment = function (_React$Component) {
 
     _this.handlIsLike = _this.handlIsLike.bind(_this);
     _this.handleLikeorUnlike = _this.handleLikeorUnlike.bind(_this);
+    _this.handleLikeorUnlikeComment = _this.handleLikeorUnlikeComment.bind(_this);
 
     _this.handleClickToggle = _this.handleClickToggle.bind(_this);
 
@@ -49,6 +52,20 @@ var AppLikeComment = function (_React$Component) {
     key: "componentDidMount",
     value: function componentDidMount() {
       this.handleGetComment();
+    }
+  }, {
+    key: "configFetch",
+    value: function configFetch(url, method, data) {
+      var request = new Request(url, {
+        method: method,
+        headers: {
+          Accept: "application/json",
+          "X-Requested-With": "XMLHttpRequest",
+          "X-CSRFToken": this.state.csrfToken
+        },
+        body: data
+      });
+      return request;
     }
   }, {
     key: "handleClickToggle",
@@ -105,17 +122,14 @@ var AppLikeComment = function (_React$Component) {
       });
     }
   }, {
-    key: "handlePaginator",
-    value: function handlePaginator() {
-      this.handleGetComment("&page=" + e);
-    }
-  }, {
     key: "handlIsLike",
-    value: function handlIsLike(type) {
-      if (type === "Unlike") {
-        this.setState({ isLike: false });
-      } else if (type === "Like") {
-        this.setState({ isLike: true });
+    value: function handlIsLike(obj, type) {
+      if (obj === "post") {
+        if (type === "Unlike") {
+          this.setState({ isLike: false });
+        } else if (type === "Like") {
+          this.setState({ isLike: true });
+        }
       }
     }
   }, {
@@ -129,6 +143,56 @@ var AppLikeComment = function (_React$Component) {
       }
     }
   }, {
+    key: "updateNberLikeComment",
+    value: function updateNberLikeComment(id, type) {
+      var copyComment = this.state.listComments.slice();
+      var comments = [].concat(_toConsumableArray(copyComment));
+      comments = comments.map(function (item) {
+        if (item.id === id) {
+          if (type === "Unlike") {
+            item.comment_is_like = false;
+            item.comment_number_like = item.comment_number_like - 1;
+          } else if (type === "Like") {
+            item.comment_is_like = true;
+            item.comment_number_like = item.comment_number_like + 1;
+          }
+          return item;
+        }
+        return item;
+      });
+      this.setState({ listComments: comments });
+    }
+  }, {
+    key: "handleLikeorUnlikeComment",
+    value: function handleLikeorUnlikeComment(comment_id) {
+      var _this4 = this;
+
+      var formData = new FormData();
+      formData.append("comment_id", comment_id);
+
+      fetch(this.configFetch("/comment/like/", "POST", formData)).then(function (res) {
+        return res.json();
+      }).then(function (res) {
+        _this4.handlIsLike("comment", res.value);
+        _this4.updateNberLikeComment(comment_id, res.value);
+      });
+    }
+  }, {
+    key: "handleLikeorUnlike",
+    value: function handleLikeorUnlike() {
+      var _this5 = this;
+
+      var formData = new FormData();
+      formData.append("post_id", this.state.postId);
+
+      fetch(this.configFetch("/feed/like/", "POST", formData)).then(function (res) {
+        return res.json();
+      }).then(function (res) {
+        _this5.handlIsLike("post", res.value);
+        _this5.updateNberLike(res.value);
+      });
+    }
+  }, {
     key: "updateNberComment",
     value: function updateNberComment(type) {
       var num = parseInt(this.state.nberComment);
@@ -139,38 +203,9 @@ var AppLikeComment = function (_React$Component) {
       }
     }
   }, {
-    key: "configFetch",
-    value: function configFetch(url, method, data) {
-      var request = new Request(url, {
-        method: method,
-        headers: {
-          Accept: "application/json",
-          "X-Requested-With": "XMLHttpRequest",
-          "X-CSRFToken": this.state.csrfToken
-        },
-        body: data
-      });
-      return request;
-    }
-  }, {
-    key: "handleLikeorUnlike",
-    value: function handleLikeorUnlike() {
-      var _this4 = this;
-
-      var formData = new FormData();
-      formData.append("post_id", this.state.postId);
-
-      fetch(this.configFetch("/feed/like/", "POST", formData)).then(function (res) {
-        return res.json();
-      }).then(function (res) {
-        _this4.handlIsLike(res.value);
-        _this4.updateNberLike(res.value);
-      });
-    }
-  }, {
     key: "handleAddComment",
     value: function handleAddComment(action) {
-      var _this5 = this;
+      var _this6 = this;
 
       var data = JSON.stringify({
         message: action.payload.msg,
@@ -181,17 +216,17 @@ var AppLikeComment = function (_React$Component) {
       fetch(this.configFetch(this.state.urlAddUpdateComment, "POST", data)).then(function (res) {
         return res.json();
       }).then(function (res) {
-        var commentData = _this5.state.listComments.slice();
+        var commentData = _this6.state.listComments.slice();
         commentData.push(res);
-        _this5.setState({ listComments: commentData });
+        _this6.setState({ listComments: commentData });
       }).then(function () {
-        _this5.updateNberComment("ADD");
+        _this6.updateNberComment("ADD");
       });
     }
   }, {
     key: "handleEditComment",
     value: function handleEditComment(action) {
-      var _this6 = this;
+      var _this7 = this;
 
       var data = JSON.stringify({
         message: action.payload.msg,
@@ -200,11 +235,11 @@ var AppLikeComment = function (_React$Component) {
       });
 
       fetch(this.configFetch(this.state.urlAddUpdateComment, "POST", data)).then(function () {
-        var commentData1 = _this6.state.listComments.slice();
+        var commentData1 = _this7.state.listComments.slice();
         commentData1.filter(function (comment) {
           if (comment.id === action.payload.comment_id) {
             comment.comment_message = action.payload.msg;
-            _this6.setState({ listComments: commentData1 });
+            _this7.setState({ listComments: commentData1 });
           }
         });
       });
@@ -212,24 +247,24 @@ var AppLikeComment = function (_React$Component) {
   }, {
     key: "handleDeleteComment",
     value: function handleDeleteComment(id) {
-      var _this7 = this;
+      var _this8 = this;
 
       var formData = new FormData();
       formData.append("id_comment", id);
       if (window.confirm("Vous êtes sûr de vouloir supprimer")) {
         fetch(this.configFetch("/comment/delete-comment/", "POST", formData)).then(function () {
-          var filteredListComments = _this7.state.listComments.filter(function (t) {
+          var filteredListComments = _this8.state.listComments.filter(function (t) {
             return t.id !== id;
           });
-          _this7.setState({ listComments: filteredListComments });
-          _this7.updateNberComment("DELETE");
+          _this8.setState({ listComments: filteredListComments });
+          _this8.updateNberComment("DELETE");
         });
       }
     }
   }, {
     key: "render",
     value: function render() {
-      var _this8 = this;
+      var _this9 = this;
 
       return React.createElement(
         React.Fragment,
@@ -239,7 +274,8 @@ var AppLikeComment = function (_React$Component) {
           { className: "post-footer" },
           React.createElement(InfoLikeComment, {
             nberComment: this.state.nberComment,
-            nberLike: this.state.nberLike
+            nberLike: this.state.nberLike,
+            handleClickToggle: this.handleClickToggle
           }),
           React.createElement("hr", null),
           React.createElement(BtnLikeCommentShare, {
@@ -251,7 +287,10 @@ var AppLikeComment = function (_React$Component) {
         React.createElement(
           "div",
           {
-            className: this.state.classTogglePostDetail ? "form-comment-list-input-container-global D-none_V-hidden_O-0" : "form-comment-list-input-container-global"
+            className: this.state.classTogglePostDetail ? "form-comment-list-input-container-global D-none_V-hidden_O-0" : "form-comment-list-input-container-global",
+            style: {
+              display: this.state.classTogglePostDetail ? "none" : "flex"
+            }
           },
           React.createElement(InputForm, {
             postId: this.state.postId,
@@ -262,19 +301,25 @@ var AppLikeComment = function (_React$Component) {
             "div",
             { className: "container-global-comment-list" },
             this.state.listComments.length > 0 && this.state.listComments.sort(function (a, b) {
-              return a.id - b.id;
+              return new Date(a.created_at).getTime() - new Date(b.created_at).getTime();
             }).map(function (comment) {
               return React.createElement(ListComments, {
                 key: comment.id,
                 comment: comment,
-                handleEditComment: _this8.handleEditComment,
-                handleDeleteComment: _this8.handleDeleteComment
+                handleEditComment: _this9.handleEditComment,
+                handleDeleteComment: _this9.handleDeleteComment,
+                handleLikeorUnlikeComment: _this9.handleLikeorUnlikeComment,
+                isLikeComment: _this9.state.isLikeComment,
+                nberLikeCommnet: _this9.state.nberLikeCommnet
               });
             })
           ),
-          this.state.canRequest && React.createElement(
+          this.state.canRequest && this.state.nberComment > this.state.listComments.length && React.createElement(
             "div",
-            { className: "voir-plus", onClick: this.handleGetCommentPaginator },
+            {
+              className: "voir-plus",
+              onClick: this.handleGetCommentPaginator
+            },
             "voir plus"
           )
         )
