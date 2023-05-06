@@ -66,4 +66,6 @@ class Profile(models.Model):
     class Meta:
         verbose_name = _('Profile')
         verbose_name_plural = _('Profiles')
+        ordering = ['-date_updated']
+        
     
