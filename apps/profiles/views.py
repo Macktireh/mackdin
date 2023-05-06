@@ -67,12 +67,12 @@ def update_profile(request):
                     if ENV == 'production':
                         if key == 'img_profile':
                             if profile.is_updating_img_profile:
-                                cloudinary.uploader.destroy(profile.img_profile.public_id)
+                                cloudinary.uploader.destroy(str(profile.img_profile))
                             else:
                                 is_updating_img_profile = True
                         if key == 'img_bg':
                             if profile.is_updating_img_bg:
-                                cloudinary.uploader.destroy(profile.img_bg.public_id)
+                                cloudinary.uploader.destroy(str(profile.img_bg))
                             else:
                                 is_updating_img_bg = True
                     else:
@@ -80,16 +80,16 @@ def update_profile(request):
                             if profile.is_updating_img_profile:
                                 try:
                                     os.remove(profile.img_profile.path)
-                                except AttributeError:
-                                    cloudinary.uploader.destroy(profile.img_profile.public_id)
+                                except:
+                                    cloudinary.uploader.destroy(str(profile.img_profile))
                             else:
                                 is_updating_img_profile = True
                         if key == 'img_bg':
                             if profile.is_updating_img_bg:
                                 try:
                                     os.remove(profile.img_bg.path)
-                                except AttributeError:
-                                    cloudinary.uploader.destroy(profile.img_bg.public_id)
+                                except:
+                                    cloudinary.uploader.destroy(str(profile.img_bg))
                             else:
                                 is_updating_img_bg = True
             user_profile_form.save()

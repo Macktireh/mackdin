@@ -1,6 +1,5 @@
 git
 .venv
-.vscode
 .env
 db.sqlite3
 __pycache__
@@ -10,4 +9,6 @@ media
 fonts
 node_modules
 staticfiles
-logs.development.log
+logs.log
+initial_data.json
+package-lock.json

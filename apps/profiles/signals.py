@@ -37,20 +37,20 @@ def image_delete(sender, instance, **kwargs):
     if ENV == 'production':
         if instance.img_profile:
             if instance.is_updating_img_profile:
-                cloudinary.uploader.destroy(instance.img_profile.public_id)
+                cloudinary.uploader.destroy(str(instance.img_profile))
         if instance.img_bg:
             if instance.is_updating_img_bg:
-                cloudinary.uploader.destroy(instance.img_bg.public_id)
+                cloudinary.uploader.destroy(str(instance.img_bg))
     else:
         if instance.img_profile:
             if instance.is_updating_img_profile:
                 try:
                     os.remove(instance.img_profile.path)
-                except AttributeError:
-                    cloudinary.uploader.destroy(instance.img_profile.public_id)
+                except:
+                    cloudinary.uploader.destroy(str(instance.img_profile))
         if instance.img_bg:
             if instance.is_updating_img_bg:
                 try:
                     os.remove(instance.img_bg.path)
-                except AttributeError:
-                    cloudinary.uploader.destroy(instance.img_bg.public_id)
+                except:
+                    cloudinary.uploader.destroy(str(instance.img_bg))

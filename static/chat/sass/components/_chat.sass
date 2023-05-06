@@ -22,10 +22,11 @@ main.messagerie
 
   .container-left-chat
     width: 50%
-    padding: 0.5rem
+    padding: 0.5rem 0
     max-height: 60vh
     overflow: hidden
     overflow-y: scroll
+    @include srolled
     @include flex-el(start, start)
 
   .container-main
@@ -35,7 +36,7 @@ main.messagerie
     background-color: $color4
     @include flex-el(start, start)
     flex-direction: column
-    padding: 0.5rem
+    padding: 0.5rem 0
 
     .pas-de-relation
       width: 100%

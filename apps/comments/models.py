@@ -17,7 +17,11 @@ class Comment(models.Model):
     class Meta:
         ordering = ('date_added',)
     
-    def __str__(self):
+    @property
+    def number_of_like(self) -> int:
+        return self.liked.all().count()
+    
+    def __str__(self) -> str:
         return f"Comment-{self.id}-{self.author.first_name}"
 
 class ReponseComment(models.Model):
@@ -27,7 +31,7 @@ class ReponseComment(models.Model):
     date_added = models.DateTimeField(auto_now_add=True)
     date_updated = models.DateTimeField(auto_now=True)
     
-    def __str__(self):
+    def __str__(self) -> str:
         return f"{self.author.first_name} {self.author.last_name}"
 
 class LikeComment(models.Model):

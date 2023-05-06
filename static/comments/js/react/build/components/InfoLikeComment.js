@@ -21,6 +21,8 @@ var InfoLikeComment = function (_React$Component) {
   _createClass(InfoLikeComment, [{
     key: "render",
     value: function render() {
+      var _this2 = this;
+
       return React.createElement(
         "div",
         { className: "count-likes-comments" },
@@ -38,7 +40,9 @@ var InfoLikeComment = function (_React$Component) {
           { className: "comments-count-post" },
           React.createElement(
             "span",
-            { id: "comments-num{{post.id}}" },
+            { id: "comments-num", onClick: function onClick() {
+                return _this2.props.handleClickToggle();
+              } },
             this.props.nberComment > 1 ? this.props.nberComment + " commentaires" : this.props.nberComment + " commentaire"
           )
         )

@@ -3,16 +3,22 @@
 {% load cloudinary %}
 {% load chat %}
 
-
+{% for obj in my_friends %}
 <a class="my-friends-info-link" href="{% url 'chats:chatroom' uid=obj.profile.uid %}">
   <div class="my-friends-info-container">
     <div class="my-friends-info">
       <div id="link-profile-user">
-        <img src="{% if obj.profile.img_profile %}
+        <img src="
+        {% if obj.profile.is_fixture %}
+        {{obj.profile.img_profile_str}}
+        {% else %}
+        {% if obj.profile.img_profile %}
           {{obj.profile.img_profile.url}}
         {% else %}
           {% static 'home/img/default-img-profile.jpg' %}
-        {% endif %}" class="my-friends-img-profile">
+        {% endif %}
+        {% endif %}
+        " class="my-friends-img-profile">
 
         {% if obj.last_logout %}
         <span id="point-connexion-color" class="{% if obj.last_logout > obj.last_login %}
@@ -63,3 +69,4 @@
   </div>
 </a>
 <hr>
+{% endfor %}

@@ -1,0 +1,94 @@
+{
+  "version": "2.0.0",
+  "tasks": [
+    {
+      "type": "npm",
+      "script": "sass",
+      "path": "static/chat",
+      "problemMatcher": [],
+      "label": "npm: sass - static/chat",
+      "detail": "sass --watch ./sass/main.sass:./css/style.css"
+    },
+    {
+      "type": "npm",
+      "script": "sass",
+      "path": "static/comments",
+      "problemMatcher": [],
+      "label": "npm: sass - static/comments",
+      "detail": "sass --watch ./sass/main.sass:./css/style.css"
+    },
+    {
+      "type": "npm",
+      "script": "sass",
+      "path": "static/components",
+      "problemMatcher": [],
+      "label": "npm: sass - static/components",
+      "detail": "sass --watch ./sass/main.sass:./css/style.css"
+    },
+    {
+      "type": "npm",
+      "script": "sass",
+      "path": "static/friends",
+      "problemMatcher": [],
+      "label": "npm: sass - static/friends",
+      "detail": "sass --watch ./sass/main.sass:./css/style.css"
+    },
+    {
+      "type": "npm",
+      "script": "sass",
+      "path": "static/home",
+      "problemMatcher": [],
+      "label": "npm: sass - static/home",
+      "detail": "sass --watch ./sass/main.sass:./css/style.css"
+    },
+    {
+      "type": "npm",
+      "script": "sass",
+      "path": "static/notifications",
+      "problemMatcher": [],
+      "label": "npm: sass - static/notifications",
+      "detail": "sass --watch ./sass/main.sass:./css/style.css"
+    },
+    {
+      "type": "npm",
+      "script": "sass",
+      "path": "static/post",
+      "problemMatcher": [],
+      "label": "npm: sass - static/post",
+      "detail": "sass --watch ./sass/main.sass:./css/style.css"
+    },
+    {
+      "type": "npm",
+      "script": "sass",
+      "path": "static/profiles",
+      "problemMatcher": [],
+      "label": "npm: sass - static/profiles",
+      "detail": "sass --watch ./sass/main.sass:./css/style.css"
+    },
+    {
+      "type": "npm",
+      "script": "sass",
+      "path": "static/users",
+      "problemMatcher": [],
+      "label": "npm: sass - static/users",
+      "detail": "sass --watch ./sass/main.sass:./css/style.css"
+    },
+    {
+      "type": "npm",
+      "script": "start",
+      "path": "static/comments/js/react",
+      "problemMatcher": [],
+      "label": "npm: start - static/comments/js/react",
+      "detail": "npx babel --watch src --out-dir build/ --presets react-app/prod"
+    },
+    {
+      "type": "npm",
+      "script": "install",
+      "path": "static/comments/js/react",
+      "group": "clean",
+      "problemMatcher": [],
+      "label": "npm: install - static/comments/js/react",
+      "detail": "install dependencies from package"
+    }
+  ]
+}

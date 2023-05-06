@@ -37,9 +37,7 @@
     {% else %}
 
     {% include 'post/components/add_post.html' %}
-    {% for post in posts %}
     {% include 'post/components/post-detail.html' %}
-    {% endfor %}
 
     {% endif %}
     <input type="hidden" id="input_hidden_url_delete_comment" value="{% url 'comments:delete-comment' %}">

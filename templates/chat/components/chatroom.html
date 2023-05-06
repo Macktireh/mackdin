@@ -9,11 +9,17 @@
     <img id="back-chat" src="{% static 'home/svg/back.svg'%}">
   </a>
   <a href="{% url 'profiles:profile' pseudo=other_user.pseudo %}" id="link-profile-user">
-    <img id="img-profile" src="{% if other_user.img_profile %}
+    <img id="img-profile" src="
+      {% if other_user.is_fixture %}
+        {{ other_user.img_profile_str }}
+      {% else %}
+        {% if other_user.img_profile %}
         {{ other_user.img_profile.url }}
         {% else %}
         {% static 'home/img/default-img-profile.jpg' %}
-        {% endif %}">
+        {% endif %}
+      {% endif %}"
+        >
 
     {% if other_user.user.last_logout %}
     <span id="point-connexion-color" class='{% if other_user.user.last_logout > other_user.user.last_login %}

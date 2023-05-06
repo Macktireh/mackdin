@@ -65,11 +65,16 @@
   <div class="nav-profil">
     <div class="nav-box-profil">
       <img src="        
-      {% if user.profile.img_profile %}
-      {{ user.profile.img_profile.url }}
+      {% if user.profile.is_fixture %}
+        {{ user.profile.img_profile_str }}
       {% else %}
-      {% static 'home/svg/user.svg' %}
-      {% endif %}" alt="">
+        {% if user.profile.img_profile %}
+        {{ user.profile.img_profile.url }}
+        {% else %}
+        {% static 'home/svg/user.svg' %}
+        {% endif %}
+      {% endif %}
+      " alt="">
     </div>
     <div class="drop-down-list">
       <span>Vous</span>

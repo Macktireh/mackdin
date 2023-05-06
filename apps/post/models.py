@@ -5,7 +5,6 @@ from django.contrib.auth import get_user_model
 from django.utils.translation import gettext_lazy as _
 from django.core.validators import FileExtensionValidator
 
-from cloudinary.models import CloudinaryField
 from apps.utils.function import rename_post_img_video
 
 User = get_user_model()
@@ -16,8 +15,10 @@ class Post(models.Model):
     message = models.TextField(_("message"), blank=True)
     
     # cloudinary will be used to upload images and videos eslse
-    img = CloudinaryField(_("image"), blank=True, null=True)
-    # img = models.ImageField(_("image"), upload_to=rename_post_img_video, validators=[FileExtensionValidator(['png', 'jpg', 'jpeg', 'gif'])], blank=True, null=True)
+    # img = CloudinaryField(_("image"), blank=True, null=True)
+    img = models.ImageField(_("image"), upload_to=rename_post_img_video, validators=[FileExtensionValidator(['png', 'jpg', 'jpeg', 'gif'])], blank=True, null=True)
+    img_str = models.CharField(max_length=500, blank=True, null=True)
+    is_fixture = models.BooleanField(default=False)
     video = models.FileField(_("video"), upload_to=rename_post_img_video, blank=True, null=True)
     date_created = models.DateTimeField(_("date created"), auto_now_add=True)
     date_updated = models.DateTimeField(_("date updated"), auto_now=True)
