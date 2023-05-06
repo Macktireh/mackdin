@@ -48,6 +48,13 @@ def generate_data(count: int) -> list[dict]:
                     "last_name": f"{fake.last_name()}",
                     "is_email_verified": True,
                     "password": f"{password}",
+                    "date_joined": str(
+                        timezone.now()
+                        + timedelta(days=random.randint(-100, -51))
+                        + timedelta(hours=random.randint(-9, 9))
+                        + timedelta(minutes=random.randint(-20, 20))
+                        + timedelta(seconds=random.randint(-20, 20))
+                    ),
                 },
             }
         )
@@ -55,7 +62,7 @@ def generate_data(count: int) -> list[dict]:
     profile_data = []
 
     for i, user in enumerate(users_data):
-        pseudo = user["fields"]["email"].split("@")[0]
+        pseudo = user["fields"]["email"].split("@")[0] + str(user["pk"]) + str(user["pk"])
         friends = random_numbers(1, len(users_data) - 1, random.randint(20, 50))
         if user["pk"] in friends:
             friends.remove(user["pk"])

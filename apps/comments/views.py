@@ -115,8 +115,6 @@ def get_comments_post(request, post_id) -> JsonResponse:
                 "created_at": comment.date_added,
                 "post_id": comment.post.id,
                 "post_author": comment.post.author.email,
-                # 'post_message': comment.post.message,
-                # 'post_img': comment.post.img.url if comment.post.img else None,
                 "user_profile_pseudo": qs_user.get(id=comment.author.id).profile.pseudo,
                 "user_profile_bio": qs_user.get(id=comment.author.id).profile.bio,
                 "user_profile_img": user_profile_img,
@@ -131,9 +129,7 @@ def get_comments_post(request, post_id) -> JsonResponse:
 def add_update_comment_view(request) -> JsonResponse:
     user = request.user
 
-    if request.headers.get("x-requested-with") == "XMLHttpRequest":
-        # print('\n\najax request with fetch')
-
+    if request.is_ajax():
         don = json.load(request)
 
         message = don["message"]
@@ -142,32 +138,35 @@ def add_update_comment_view(request) -> JsonResponse:
 
         if id_comment:
             if Comment.objects.filter(id=id_comment).exists():
-                comment_post = Comment.objects.get(id=id_comment)
-                comment_post.message = message
-                comment_post.save()
+                comment = Comment.objects.get(id=id_comment)
+                comment.message = message
+                comment.save()
         else:
-            comment_post = Comment.objects.create(
+            comment = Comment.objects.create(
                 author=user, post_id=id_post, message=message
             )
 
-        if comment_post.author.profile.is_fixture:
-            user_profile_img = comment_post.author.profile.img_profile_str
-        elif comment_post.author.profile.img_profile:
-            user_profile_img = comment_post.author.profile.img_profile.url
+        if comment.author.profile.is_fixture:
+            user_profile_img = comment.author.profile.img_profile_str
+        elif comment.author.profile.img_profile:
+            user_profile_img = comment.author.profile.img_profile.url
         else:
             user_profile_img = "https://res.cloudinary.com/dm68aag3e/image/upload/v1649743168/default-img-profile_hrhx6z.jpg"
 
         data = {
-            "id": comment_post.id,
-            "comment_author": comment_post.author.email,
-            "comment_author_first_name": comment_post.author.first_name,
-            "comment_author_last_name": comment_post.author.last_name,
-            "comment_message": comment_post.message,
-            "comment_date_added": timestr(naturaltime(comment_post.date_added)),
-            "post_author": comment_post.post.author.email,
-            "post_id": comment_post.post.id,
-            "user_profile_pseudo": comment_post.author.profile.pseudo,
-            "user_profile_bio": comment_post.author.profile.bio,
+            "id": comment.id,
+            "comment_author": comment.author.email,
+            "comment_author_first_name": comment.author.first_name,
+            "comment_author_last_name": comment.author.last_name,
+            "comment_message": comment.message,
+            "comment_number_like": comment.number_of_like,
+            "comment_is_like": request.user in comment.liked.all(),
+            "comment_date_added": timestr(naturaltime(comment.date_added)),
+            "created_at": comment.date_added,
+            "post_author": comment.post.author.email,
+            "post_id": comment.post.id,
+            "user_profile_pseudo": comment.author.profile.pseudo,
+            "user_profile_bio": comment.author.profile.bio,
             "user_profile_img": user_profile_img,
             "current_user": request.user.email,
         }
