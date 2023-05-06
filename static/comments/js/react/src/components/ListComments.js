@@ -89,6 +89,26 @@ class ListComments extends React.Component {
           )}
           {/* </div> */}
         </div>
+        <span></span>
+        <div className="comment-like-container">
+          <span
+            className={
+              this.props.comment.comment_is_like ? "comment-like active" : "comment-like"
+            }
+            onClick={() =>
+              this.props.handleLikeorUnlikeComment(this.props.comment.id)
+            }
+          >
+            J'aime
+          </span>
+          <span className="sep"></span>
+          <div>
+            <img src="/static/home/svg/unlike.svg" alt=" button like" />
+            {this.props.comment.comment_number_like}
+          </div>
+          <span className="sep2">|</span>
+          <span className="comment-like">Répondre</span>
+        </div>
       </div>
     );
   }

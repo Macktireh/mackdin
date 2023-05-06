@@ -10,15 +10,21 @@ try {
   });
 } catch (error) {}
 
-function paginatorWithAjax(url, classContainerData, classContainerSpinner, csrfToken, h, isPagePosts = false) {
+function paginatorWithAjax(
+  url,
+  classContainerData,
+  classContainerSpinner,
+  csrfToken,
+  h,
+  isPagePosts = false
+) {
   let page = 1;
   let isPageEmpty = false;
   let canRequest = false;
   const spinnerHTML = `<div class="spinner-loader" role="status"></div>`;
 
-  window.addEventListener("scroll", (e) => {
+  window.addEventListener("scroll", async (e) => {
     const marginY = document.body.clientHeight - window.innerHeight - h;
-    // console.table([{clientHeight:document.body.clientHeight, innerHeight:window.innerHeight, marginY, pageYOffset: window.pageYOffset}]);
     if (window.pageYOffset > marginY && !isPageEmpty && !canRequest) {
       canRequest = true;
       page += 1;
@@ -29,16 +35,17 @@ function paginatorWithAjax(url, classContainerData, classContainerSpinner, csrfT
 
       const spinner = containerSpinner.querySelector(".spinner-loader");
 
-      fetch(`${url}?page=${page}`, {
-        method: "GET",
-        headers: {
-          "X-Requested-With": "XMLHttpRequest",
-          "X-CSRFToken": csrfToken,
-        },
-      })
-        .then((res) => res.text())
-        .then((data) => {
-          // console.log(data);
+      try {
+        const response = await fetch(`${url}?page=${page}`, {
+          method: "GET",
+          headers: {
+            "X-Requested-With": "XMLHttpRequest",
+            "X-CSRFToken": csrfToken,
+          },
+        });
+        if (response.status === 200) {
+          let data = await response.text();
+
           if (data === "") {
             isPageEmpty = true;
             containerSpinner.removeChild(spinner);
@@ -79,7 +86,13 @@ function paginatorWithAjax(url, classContainerData, classContainerSpinner, csrfT
                 });
             }
           }
-        });
+        }
+      else {
+        containerSpinner.removeChild(spinner);
+      }
+      } catch (error) {}
+
+      // .then((res) => res.text())
     }
   });
 }

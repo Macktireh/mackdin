@@ -22,5 +22,5 @@ def rename_profile_img(instance, filename):
     return os.path.join('media', folder, 'image_profile', filename)
 
 def uid_gerator() -> str:
-    uid = str(uuid.uuid4()).replace('-', '') + str(uuid.uuid4()).replace('-', '') + str(uuid.uuid4()).replace('-', '')
+    uid = str(uuid.uuid4()).replace('-', '') + str(uuid.uuid4()).replace('-', '')
     return str(uid)

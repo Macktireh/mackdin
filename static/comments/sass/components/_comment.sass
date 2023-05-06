@@ -184,3 +184,43 @@
           button[disabled]
             cursor: not-allowed
             opacity: 0.4
+    .comment-like-container
+      margin-top: 3px
+      padding-left: 0.5rem
+      @include flex-el(start, null)
+      gap: 8px
+      font-size: 14px
+      span.comment-like
+        background-color: transparent
+        color: rgba($color2, 0.8)
+        cursor: pointer
+        transition: 0.1s ease-in-out
+        border-radius: 8px
+        &:hover
+          text-decoration: underline
+      span.active
+        color: $color3
+      span.sep
+        &::before
+          content: "\00b7"
+          box-sizing: inherit
+      div
+        @include flex-el(center, center)
+        gap: 5px
+        color: rgba($color2, 0.6)
+        img
+          width: 15px
+      span.sep2
+        padding: 0 4px
+        
+  .voir-plus
+    color: $color3
+    cursor: pointer
+    &:hover
+      text-decoration: underline
+
+.count-likes-comments
+  #comments-num
+    cursor: pointer
+    &:hover
+      text-decoration: underline

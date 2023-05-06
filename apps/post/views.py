@@ -21,8 +21,13 @@ def post_create_list_view(request, *args, **kwargs) -> HttpResponseRedirect | Ht
     current_user = Profile.objects.select_related('user').get(user=request.user)
 
     paginator = Paginator(_posts, 6)
-    page_number = request.GET.get('page')
-    posts = paginator.get_page(page_number)
+    page = request.GET.get('page')
+    num = paginator.num_pages
+
+    if page is None: page = 1
+    if int(page) > num: return HttpResponseNotFound("<h1>Page not found 404</h1>")
+
+    posts = paginator.get_page(page)
     
     AddPostForm = PostForm()
     
@@ -49,7 +54,7 @@ def post_create_list_view(request, *args, **kwargs) -> HttpResponseRedirect | Ht
         'page': 'list',
         'domain':  get_current_site(request),
         "is_ajax": request.is_ajax(),
-        "page_number": page_number,
+        "page_number": page,
     }
     context.update(comment_view(request))
 
@@ -87,12 +92,12 @@ def update_post(request, uid):
             if post_edit.img:
                 if len(post_edit.img) > 0:
                     if settings.ENV == 'production':
-                        cloudinary.uploader.destroy(post_edit.img.public_id)
+                        cloudinary.uploader.destroy(str(post_edit.img))
                     else:
                         try:
                             os.remove(post_edit.img.path)
-                        except AttributeError:
-                            cloudinary.uploader.destroy(post_edit.img.public_id)
+                        except:
+                            cloudinary.uploader.destroy(str(post_edit.img))
             post_edit.img = request.FILES['img']      
         post_edit.message = request.POST.get('message')
         post_edit.save()

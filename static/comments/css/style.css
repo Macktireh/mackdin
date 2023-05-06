@@ -1,3 +1,4 @@
+@charset "UTF-8";
 @import url("https://fonts.googleapis.com/css2?family=Baumans&family=Inconsolata:wght@300&family=Megrim&display=swap");
 *, ::after, ::before {
   box-sizing: border-box;
@@ -230,6 +231,58 @@ a:visited {
 .form-comment-list-input-container-global .container-global-comment-list .container-comment-list .comment-content-box .box-btn button[disabled] {
   cursor: not-allowed;
   opacity: 0.4;
+}
+.form-comment-list-input-container-global .container-global-comment-list .comment-like-container {
+  margin-top: 3px;
+  padding-left: 0.5rem;
+  display: flex;
+  justify-content: start;
+  gap: 8px;
+  font-size: 14px;
+}
+.form-comment-list-input-container-global .container-global-comment-list .comment-like-container span.comment-like {
+  background-color: transparent;
+  color: rgba(241, 241, 241, 0.8);
+  cursor: pointer;
+  transition: 0.1s ease-in-out;
+  border-radius: 8px;
+}
+.form-comment-list-input-container-global .container-global-comment-list .comment-like-container span.comment-like:hover {
+  text-decoration: underline;
+}
+.form-comment-list-input-container-global .container-global-comment-list .comment-like-container span.active {
+  color: #1abc9c;
+}
+.form-comment-list-input-container-global .container-global-comment-list .comment-like-container span.sep::before {
+  content: "·";
+  box-sizing: inherit;
+}
+.form-comment-list-input-container-global .container-global-comment-list .comment-like-container div {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  gap: 5px;
+  color: rgba(241, 241, 241, 0.6);
+}
+.form-comment-list-input-container-global .container-global-comment-list .comment-like-container div img {
+  width: 15px;
+}
+.form-comment-list-input-container-global .container-global-comment-list .comment-like-container span.sep2 {
+  padding: 0 4px;
+}
+.form-comment-list-input-container-global .voir-plus {
+  color: #1abc9c;
+  cursor: pointer;
+}
+.form-comment-list-input-container-global .voir-plus:hover {
+  text-decoration: underline;
+}
+
+.count-likes-comments #comments-num {
+  cursor: pointer;
+}
+.count-likes-comments #comments-num:hover {
+  text-decoration: underline;
 }
 
 .comment-options-btn {

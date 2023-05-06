@@ -34,64 +34,59 @@ def random_numbers(low, high, n) -> list[int]:
 
 
 def generate_data(count: int) -> list[dict]:
-    # id = count + 1
+    id = count + 1
     for i, email in enumerate(list_email_unique):
         # email = _email.split("@")[0] + str(i + 2) + "@" + _email.split("@")[1]
         password = email.split("@")[0]
         users_data.append(
             {
                 "model": "users.CustomUser",
-                "pk": i + count,
+                "pk": count,
                 "fields": {
                     "email": email,
                     "first_name": f"{fake.first_name()}",
                     "last_name": f"{fake.last_name()}",
                     "is_email_verified": True,
                     "password": f"{password}",
-                    "date_joined": str(
-                        timezone.now()
-                        + timedelta(days=random.randint(-100, -51))
-                        + timedelta(hours=random.randint(-9, 9))
-                        + timedelta(minutes=random.randint(-20, 20))
-                        + timedelta(seconds=random.randint(-20, 20))
-                    ),
                 },
             }
         )
 
+
     profile_data = []
 
     for i, user in enumerate(users_data):
-        pseudo = user["fields"]["email"].split("@")[0] + str(user["pk"]) + str(user["pk"])
-        friends = random_numbers(1, len(users_data) - 1, random.randint(20, 50))
-        if user["pk"] in friends:
-            friends.remove(user["pk"])
+        pseudo = user["fields"]["email"].split("@")[0]
+        friends = random_numbers(1, len(users_data) - 1, random.randint(10, 30))
+        if i + 2 in friends:
+            friends.remove(i + 2)
         profile_data.append(
             {
                 "model": "profiles.Profile",
-                "pk": user["pk"],
+                "pk": count,
                 "fields": {
-                    "user": user["pk"],
                     "uid": f"{uid_gerator()}",
-                    "pseudo": pseudo,
-                    "bio": fake.text(80),
+                    "user_id": f"{i + 2}",
+                    "pseudo": f"{pseudo}",
+                    "bio": f"{fake.text(80)}",
                     "birth_date": fake.date_time_between(
                         start_date="-50y", end_date="-18y"
                     ).strftime("%Y-%m-%d"),
-                    "img_profile_str": images[i],
-                    "img_bg_str": fake.image_url(),
+                    "img_profile_str": f"{images[i]}",
+                    "img_bg_str": f"{fake.image_url()}",
                     "is_fixture": True,
-                    "phone": fake.phone_number(),
-                    "adress": fake.street_address(),
-                    "town": fake.city(),
-                    "region": fake.region(),
-                    "zipcode": fake.postcode(),
-                    "country": fake.country(),
+                    "phone": f"{fake.phone_number()}",
+                    "phone": f"{fake.street_address()}",
+                    "town": f"{fake.city()}",
+                    "region": f"{fake.region()}",
+                    "zipcode": f"{fake.postcode()}",
+                    "country": f"{fake.country()}",
                     "date_updated": str(timezone.now()),
                     "friends": friends,
                 },
             }
         )
+
 
     post_data = []
 
@@ -123,6 +118,7 @@ def generate_data(count: int) -> list[dict]:
             }
         )
 
+
     likes_post_data = []
 
     pks = []
@@ -140,6 +136,7 @@ def generate_data(count: int) -> list[dict]:
                     },
                 }
             )
+
 
     comment_data = []
 
@@ -196,6 +193,7 @@ def generate_data(count: int) -> list[dict]:
                 }
             )
 
+
     likes_comment_data = []
 
     pks = []
@@ -213,6 +211,7 @@ def generate_data(count: int) -> list[dict]:
                     },
                 }
             )
+
 
     relationship_data = []
 
@@ -245,11 +244,5 @@ def generate_data(count: int) -> list[dict]:
                 }
             )
 
-    return (
-        users_data
-        + profile_data
-        + post_data
-        + likes_post_data
-        + comment_data
-        + relationship_data
-    )
+
+    return users_data + profile_data + post_data + likes_post_data + comment_data + relationship_data
