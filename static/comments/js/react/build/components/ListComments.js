@@ -135,6 +135,38 @@ var ListComments = function (_React$Component) {
             null,
             this.props.comment.comment_message
           )
+        ),
+        React.createElement("span", null),
+        React.createElement(
+          "div",
+          { className: "comment-like-container" },
+          React.createElement(
+            "span",
+            {
+              className: this.props.comment.comment_is_like ? "comment-like active" : "comment-like",
+              onClick: function onClick() {
+                return _this2.props.handleLikeorUnlikeComment(_this2.props.comment.id);
+              }
+            },
+            "J'aime"
+          ),
+          React.createElement("span", { className: "sep" }),
+          React.createElement(
+            "div",
+            null,
+            React.createElement("img", { src: "/static/home/svg/unlike.svg", alt: " button like" }),
+            this.props.comment.comment_number_like
+          ),
+          React.createElement(
+            "span",
+            { className: "sep2" },
+            "|"
+          ),
+          React.createElement(
+            "span",
+            { className: "comment-like" },
+            "R\xE9pondre"
+          )
         )
       );
     }

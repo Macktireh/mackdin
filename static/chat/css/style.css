@@ -1,4 +1,15 @@
 @import url("https://fonts.googleapis.com/css2?family=Baumans&family=Inconsolata:wght@300&family=Megrim&display=swap");
+.flex-center, .container-main form#form-chat button#chat-btn-send-msg, a.my-friends-info-link .my-friends-info-container .my-friends-info, main.messagerie .container-main .pas-de-relation {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}
+
+.flex-column {
+  display: flex;
+  flex-direction: column;
+}
+
 *, ::after, ::before {
   box-sizing: border-box;
   margin: 0;
@@ -20,15 +31,24 @@ a:visited {
   color: #f1f1f1;
 }
 
-.flex-center, .container-main form#form-chat button#chat-btn-send-msg, a.my-friends-info-link .my-friends-info-container .my-friends-info, main.messagerie .container-main .pas-de-relation {
-  display: flex;
-  justify-content: center;
-  align-items: center;
+body {
+  overflow-y: scroll;
 }
-
-.flex-column {
-  display: flex;
-  flex-direction: column;
+body ::-webkit-scrollbar {
+  width: 8px;
+}
+@media (max-width: 900px) {
+  body ::-webkit-scrollbar {
+    width: 0px;
+  }
+}
+body ::-webkit-scrollbar-track {
+  background: transparent;
+  border-radius: 10px;
+}
+body ::-webkit-scrollbar-thumb {
+  background: rgba(26, 188, 156, 0.5);
+  border-radius: 10px;
 }
 
 .container-left .left-sub-container {
@@ -193,13 +213,29 @@ main.messagerie .container-left {
 }
 main.messagerie .container-left-chat {
   width: 50%;
-  padding: 0.5rem;
+  padding: 0.5rem 0;
   max-height: 60vh;
   overflow: hidden;
   overflow-y: scroll;
   display: flex;
   justify-content: start;
   align-items: start;
+}
+main.messagerie .container-left-chat ::-webkit-scrollbar {
+  width: 8px;
+}
+@media (max-width: 900px) {
+  main.messagerie .container-left-chat ::-webkit-scrollbar {
+    width: 0px;
+  }
+}
+main.messagerie .container-left-chat ::-webkit-scrollbar-track {
+  background: transparent;
+  border-radius: 10px;
+}
+main.messagerie .container-left-chat ::-webkit-scrollbar-thumb {
+  background: rgba(26, 188, 156, 0.5);
+  border-radius: 10px;
 }
 main.messagerie .container-main {
   width: 100%;
@@ -210,7 +246,7 @@ main.messagerie .container-main {
   justify-content: start;
   align-items: start;
   flex-direction: column;
-  padding: 0.5rem;
+  padding: 0.5rem 0;
 }
 main.messagerie .container-main .pas-de-relation {
   width: 100%;
@@ -261,6 +297,11 @@ main.messagerie .container-main .pas-de-relation a:active {
 
 a.my-friends-info-link {
   width: 100%;
+  padding: 2px 0.2rem;
+  transition: background-color 0.2s ease-in-out;
+}
+a.my-friends-info-link:hover {
+  background-color: #0000001a;
 }
 a.my-friends-info-link .my-friends-info-container {
   width: 100%;
@@ -281,8 +322,8 @@ a.my-friends-info-link .my-friends-info-container .my-friends-info div#link-prof
   position: relative;
 }
 a.my-friends-info-link .my-friends-info-container .my-friends-info div#link-profile-user img.my-friends-img-profile {
-  width: 4.5rem;
-  height: 4.5rem;
+  width: 50px;
+  height: 50px;
   border-radius: 50%;
   border: 3px solid #34495e;
   background-color: #34495e;
@@ -374,10 +415,10 @@ span#msg-not-seen {
 }
 
 hr {
-  margin: 5px auto 5px;
+  margin: 0 auto 0;
   width: 100%;
-  height: 1px;
-  background-color: #0000001a;
+  height: 0.5px;
+  background-color: #666464;
   border: none;
   outline: none;
 }

@@ -7,11 +7,16 @@
     <a href="{% url 'profiles:profile' pseudo=user.profile.pseudo  %}">
       <div class="new-add-post-left-container">
         <img src="        
-      {% if user.profile.img_profile %}
-      {{ user.profile.img_profile.url }}
-      {% else %}
-      {% static 'home/img/default-img-profile.jpg' %}
-      {% endif %}" alt="">
+          {% if user.profile.is_fixture %}
+            {{ user.profile.img_profile_str }}
+          {% else %}
+            {% if user.profile.img_profile %}
+              {{ user.profile.img_profile.url }}
+            {% else %}
+              {% static 'home/img/default-img-profile.jpg' %}
+            {% endif %}
+          {% endif %}
+      " alt="">
       </div>
     </a>
     <div class="new-add-post-right-container">
@@ -52,12 +57,17 @@
         <p id="Previsualisation">Prévisualisation de votre post :</p>
         <div class="previous-post-header">
           <div class="previous-post-header-img">
-            <img src="        
-            {% if user.profile.img_profile %}
-            {{ user.profile.img_profile.url }}
-            {% else %}
-            {% static 'home/img/default-img-profile.jpg' %}
-            {% endif %}" alt="">
+            <img src="                   
+              {% if user.profile.is_fixture %}
+                {{ user.profile.img_profile_str }}
+              {% else %}
+                {% if user.profile.img_profile %}
+                  {{ user.profile.img_profile.url }}
+                {% else %}
+                  {% static 'home/img/default-img-profile.jpg' %}
+                {% endif %}
+              {% endif %}
+            " alt="">
           </div>
           <div class="previous-post-header-info">
             <strong></strong>

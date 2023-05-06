@@ -1,0 +1,24 @@
+version: '3'
+
+name: mackdin
+
+services:
+
+  db:
+    image: postgres:14
+    container_name: postgres
+    environment:
+      - POSTGRES_USER=admin
+      - POSTGRES_PASSWORD=admin
+      - POSTGRES_DB=mackdin
+    ports:
+      - 5432:5432
+  
+  pgadmin:
+    image: dpage/pgadmin4
+    container_name: pgadmin
+    environment: 
+      - PGADMIN_DEFAULT_EMAIL=admin@gmail.com
+      - PGADMIN_DEFAULT_PASSWORD=admin
+    ports:
+      - "5050:80"

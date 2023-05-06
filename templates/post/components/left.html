@@ -6,19 +6,30 @@
 <div class="left-sub-container">
   <div class="left-container-bg-img">
     <img src="        
-    {% if request.user.profile.img_bg %}
-    {{ request.user.profile.img_bg.url }}
-    {% else %}
-    {% static 'home/img/default-img-bg.jpg' %}
-    {% endif %}" class=left-bg-img />
+      {% if request.user.profile.is_fixture %}
+        {{ request.user.profile.img_bg_str }}
+      {% else %}
+        {% if request.user.profile.img_bg %}
+          {{ request.user.profile.img_bg.url }}
+        {% else %}
+          {% static 'home/img/default-img-bg.jpg' %}
+        {% endif %}
+      {% endif %}
+    " class=left-bg-img />
   </div>
 
   <a href="{% url 'profiles:profile' pseudo=request.user.profile.pseudo  %}">
-    <img src="{% if request.user.profile.img_profile %}
-  {{ request.user.profile.img_profile.url }}
-  {% else %}
-  {% static 'home/img/default-img-profile.jpg' %}
-  {% endif %}" class="left-img-profile" />
+    <img src="
+      {% if request.user.profile.is_fixture %}
+        {{ request.user.profile.img_profile_str }}
+      {% else %}
+        {% if request.user.profile.img_profile %}
+          {{ request.user.profile.img_profile.url }}
+        {% else %}
+          {% static 'home/img/default-img-profile.jpg' %}
+        {% endif %}
+      {% endif %}
+  " class="left-img-profile" />
   </a>
 
   <div class="left-container-info">

@@ -18,10 +18,10 @@ def save_uid_post(sender, instance, **kwargs):
 def image_delete(sender, instance, **kwargs):
     if ENV == 'production':
         if instance.img:
-            cloudinary.uploader.destroy(instance.img.public_id)
+            cloudinary.uploader.destroy(str(instance.img))
     else:
         if instance.img:
             try:
                 os.remove(instance.img.path)
-            except AttributeError:
-                cloudinary.uploader.destroy(instance.img.public_id)
+            except:
+                cloudinary.uploader.destroy(str(instance.img))

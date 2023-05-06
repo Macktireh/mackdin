@@ -6,45 +6,7 @@
 
 <div class="container-notif">
   {% if is_notif %}
-  {% for notif in qs %}
-  {% if notif.from_user != request.user and notif.to_user == request.user %}
-  <div class="box-notif {% if notif.bg_seen == False %}bg_seen{% endif %}">
-    {% if notif.bg_seen == False %}
-    <span id="bg_seen"></span>
-    {% endif %}
-
-    <a href="{% url 'profiles:profile' pseudo=notif.from_user.profile.pseudo  %}">
-      <img src="{% if notif.from_user.profile.img_profile %}
-        {{ notif.from_user.profile.img_profile.url }}
-        {% else %}
-        {% static 'home/img/default-img-profile.jpg' %}
-        {% endif %}">
-    </a>
-    <a href="{% url 'notifications:seen' id=notif.id %}">
-      <div class="info-notif">
-        <strong>{{ notif.from_user.first_name }} {{ notif.from_user.last_name }}</strong>
-        <p>
-          {% if notif.type_notif == 'Add_Post' %}
-          à ajouter un nouveau post : {{notif.post.message}}
-          {% elif notif.type_notif == 'Like_Post' %}
-          à aimer votre post : {{notif.post.message}}
-          {% elif notif.type_notif == 'Add_Comment' %}
-          à commenter votre post : {{notif.post.message}}
-          {% elif notif.type_notif == 'invitation_send' %}
-          souhaite rejoindre à votre réseau
-          {% elif notif.type_notif == 'invitation_accepted' %}
-          à accepté votre invitation desormais vous êtes ami sur Mackdin
-          {% elif notif.type_notif == 'seen_profile' %}
-          a consulté votre profil
-          {% endif %}
-        </p>
-        <em>{{ notif.date_created|naturaltime|timestr }}</em>
-      </div>
-    </a>
-  </div>
-  <hr>
-  {% endif %}
-  {% endfor %}
+  {% include 'notifications/card-notification.html' %}
   {% else %}
   <div class="pas-de-notif">
     <p>Vous n'avez pas des notifications. Revenez plus tard pour voir les dernières notifications</p>

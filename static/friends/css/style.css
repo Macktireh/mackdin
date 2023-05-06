@@ -93,6 +93,7 @@ main.my-network .container-right .to-invites-container {
   display: grid;
   grid-template-columns: repeat(auto-fill, minmax(180px, 1fr));
   grid-gap: 1rem;
+  justify-items: center;
 }
 main.my-network .container-right .to-invites-container .container-list-to-invites-profiles {
   height: 250px;
@@ -180,6 +181,7 @@ main.my-network .container-right .my-friends-container {
   justify-content: start;
   flex-direction: column;
   gap: 1rem;
+  align-items: center;
 }
 main.my-network .container-right .my-friends-container .container-list-my-friends-profiles {
   width: 100%;
@@ -361,10 +363,17 @@ main.my-network .container-left .container-nav-statistics a.nav-link-statistc {
 main.my-network .container-left .container-nav-statistics a.nav-link-statistc:hover {
   background-color: #0000001a;
 }
-main.my-network .container-left .container-nav-statistics a.nav-link-statistc span.text:hover {
+main.my-network .container-left .container-nav-statistics a.nav-link-statistc-active {
+  background-color: #0000001a;
+  border-left-color: #1abc9c;
+  border-left-style: solid;
+  border-left-width: 4px;
+  padding-left: 12px;
+}
+main.my-network .container-left .container-nav-statistics a.nav-link-statistc-active span.text:hover {
   text-decoration: underline;
 }
-main.my-network .container-left .container-nav-statistics a.nav-link-statistc span.num {
+main.my-network .container-left .container-nav-statistics a.nav-link-statistc-active span.num {
   color: #1abc9c;
   font-weight: bold;
 }

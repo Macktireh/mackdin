@@ -34,3 +34,17 @@
     display: flex
     justify-content: $jc
     align-items: $at
+
+@mixin srolled()
+    ::-webkit-scrollbar
+        width: 8px
+        @media (max-width: 900px)
+            width: 0px
+
+    ::-webkit-scrollbar-track
+        background: transparent
+        border-radius: 10px
+
+    ::-webkit-scrollbar-thumb
+        background: rgba($color3, 0.5)
+        border-radius: 10px
