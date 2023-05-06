@@ -7,6 +7,7 @@ from apps.comments.models import Comment, ReponseComment, LikeComment
 
 class CommentAdmin(ImportExportModelAdmin, admin.ModelAdmin):
     list_display = ('Author_comment', 'post', 'message', 'count_like', 'date_added',)
+    search_fields = ('author__first_name', 'author__last_name', 'post__message', 'message',)
 
     ordering = ('-date_added',)
     

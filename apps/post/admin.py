@@ -6,6 +6,7 @@ from import_export.admin import ImportExportModelAdmin
 
 class PostAdmin(ImportExportModelAdmin, admin.ModelAdmin):
     list_display = ('full_name', 'message', 'number_of_like', 'number_of_comment', 'date_created',)
+    search_fields = ('author__first_name', 'author__last_name', 'message',)
 
     ordering = ('-date_created',)
     
