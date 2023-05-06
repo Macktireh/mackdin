@@ -34,7 +34,7 @@ class CustomUser(AbstractUser):
     class Meta:
         verbose_name = _("User")
         verbose_name_plural = _("Users")
-        # ordering = ("date_joined",)
+        ordering = ("date_joined",)
 
     def __str__(self) -> str:
         return f"{self.first_name} {self.last_name} <{self.email}>"
