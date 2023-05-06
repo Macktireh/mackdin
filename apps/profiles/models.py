@@ -20,8 +20,8 @@ class Profile(models.Model):
     
     # img_profile = CloudinaryField('photo de profile', blank=True, null=True, default="https://res.cloudinary.com/dm68aag3e/image/upload/v1649743168/default-img-profile_hrhx6z.jpg")
     # img_bg = CloudinaryField('photo de couverture', blank=True, null=True, default="https://res.cloudinary.com/dm68aag3e/image/upload/v1649743327/default-img-bg_zbeoo4.jpg")
-    img_profile = models.ImageField(_("photo de profile"), upload_to=rename_profile_img, default="https://res.cloudinary.com/dm68aag3e/image/upload/v1649743168/default-img-profile_hrhx6z.jpg", blank=True, null=True)
-    img_bg = models.ImageField(_("photo de couverture"), upload_to=rename_profile_img, default="https://res.cloudinary.com/dm68aag3e/image/upload/v1649743327/default-img-bg_zbeoo4.jpg", blank=True, null=True)
+    img_profile = models.ImageField(_("photo de profile"), upload_to=rename_profile_img, default="mediafiles/default/profile_jyytyz.jpg", blank=True, null=True)
+    img_bg = models.ImageField(_("photo de couverture"), upload_to=rename_profile_img, default="mediafiles/default/bg_r0siq1.jpg", blank=True, null=True)
     img_profile_str = models.CharField(max_length=500, default="https://res.cloudinary.com/dm68aag3e/image/upload/v1649743168/default-img-profile_hrhx6z.jpg", blank=True, null=True)
     img_bg_str = models.CharField(max_length=500, default="https://res.cloudinary.com/dm68aag3e/image/upload/v1649743327/default-img-bg_zbeoo4.jpg", blank=True, null=True)
     is_fixture = models.BooleanField(default=False)
