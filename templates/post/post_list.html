@@ -25,7 +25,7 @@
   <div class="container-left">
     {% include 'post/components/left.html' %}
   </div>
-  <div class="container-main">
+  <div class="container-main" style="{% if page == 'detail' %} justify-content: start; {% endif %}" >
     {% if page == 'detail' %}
 
     {% include 'post/components/post-detail.html' %}

@@ -74,7 +74,7 @@ def post_detail_view(request, uid):
     template = 'post/post_list.html'
     context = {
         'start_animation': 'feed',
-        'post': post,
+        'posts': [post],
         'page': 'detail',
     }
     context.update(comment_view(request))
