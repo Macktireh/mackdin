@@ -112,7 +112,7 @@
 
           {% if profile.user == request.user %}
           <!-- <div class="btn-container-update-profile"> -->
-          <a class="btn-container-update-profile" href="{% url 'profiles:update_profile' %}">Modifier le profile</a>
+          <a class="btn-container-update-profile" href="{% url 'profiles:update_profile' %}">Modifier mon profil</a>
           <!-- </div> -->
           {% endif %}
 
@@ -182,7 +182,7 @@
       {% if profile.user == request.user %}
       <div class="statistic-profile">
         <div class="num-vue statistic">
-          <span class="statistic-text">Vues de votre profile</span>
+          <span class="statistic-text">Vues de votre profil</span>
           <span class="statistic-num">
             {% if profile.number_views %}
             {{profile.number_views}}
