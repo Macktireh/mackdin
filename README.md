@@ -4,17 +4,47 @@
 
 Mackdin est un projet réseau social (clone LinkedIn personnalisé), j'ai réalisé en Python avec Django et un peu de React.
 
-![](static/home/img/mackdin.jpg)
+  <!-- <table>
+    <tr>
+      <td>
+        <img src="static/home/img/mackdin_1.png" width=400 />
+      </td>
+      <td>
+        <img src="static/home/img/mackdin_2.png" width=400 />
+      </td>      
+    </tr>   
+    <tr>
+      <td>
+        <img src="static/home/img/mackdin_3.png" height=400 />
+      </td>
+      <td>
+        <img src="static/home/img/mackdin_4.png" height=400 />
+      </td>      
+    </tr>   
+</table> -->
+
+ 
+<img src="static/home/img/mackdin_1.png" width=500 />
+<img src="static/home/img/mackdin_2.png" width=500 />
+<img src="static/home/img/mackdin_3.png" width=400 />
+<img src="static/home/img/mackdin_4.png" width=400 />
+
+<!--
+![](static/home/img/mackdin_1.png)
+![](static/home/img/mackdin_2.png)
+![](static/home/img/mackdin_3.png)
+![](static/home/img/mackdin_4.png)
+![](static/home/img/mackdin_5.png) -->
 
 **Les technologies utilisés :**
 
-* Python
-* Django
-* PostgreSQL
-* JavaScript
-* React
-* SASS
-* Cloudinary
+- Python
+- Django
+- PostgreSQL
+- JavaScript
+- React
+- SASS
+- Cloudinary
 
 ## Installation
 
@@ -41,13 +71,13 @@ python -m venv .venv
 
 Activer l'environnement virtual:
 
-***Pour Windows :***
+**_Pour Windows :_**
 
 ```bash
 .venv\Scripts\activate.bat
 ```
 
-***Pour Linux et Mac os :***
+**_Pour Linux et Mac os :_**
 
 ```bash
 source .venv/bin/activate
@@ -61,7 +91,7 @@ pip install -r requirements.txt
 
 ### 5. Configurer les variables d'environnement
 
-Renommer le fichier .env.example en .env et renseigner vos informations personnelles. 
+Renommer le fichier .env.example en .env et renseigner vos informations personnelles.
 Puis appliquer les migrations :
 
 ```bash
