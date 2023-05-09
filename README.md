@@ -50,7 +50,7 @@ Mackdin est un projet réseau social (clone LinkedIn personnalisé), j'ai réali
 
 ### 1. Pré-requis
 
-Python 3.7+, NodeJS et Git.
+Python 3.10+, NodeJS et Git.
 
 ### 2. Cloner le projet
 
