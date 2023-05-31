@@ -24,6 +24,13 @@
     {% endfor %}
     {% endif %}
 
+    {% include 'users/components/btn-social-auth.html' %}
+
+    <div class="sep">
+      <hr />
+      <span>ou</span>
+    </div>
+
     <form method="POST">
       {% csrf_token %}
       <div class="txt_field">

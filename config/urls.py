@@ -6,9 +6,10 @@ from django.views.static import serve
 
 
 urlpatterns = [
-    path(f'admin/mackind/{settings.UID_ADMIN}/', admin.site.urls, name='admin'),
+    path(f'admin/mackdin/{settings.UID_ADMIN}/', admin.site.urls, name='admin'),
     path('', include('apps.home.urls')),
     path('accounts/', include('apps.users.urls')),
+    path('accounts/', include('allauth.urls')),
     path('profile/', include('apps.profiles.urls')),
     path('feed/', include('apps.post.urls')),
     path('comment/', include('apps.comments.urls')),
