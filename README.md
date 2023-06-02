@@ -2,7 +2,7 @@
 
 ## Introduction
 
-Mackdin est un projet réseau social (clone LinkedIn personnalisé), j'ai réalisé en Python avec Django et un peu de React.
+Mackdin is a social networking project I created using Python with Django and a bit of React. It's a customized clone of LinkedIn.
 
   <!-- <table>
     <tr>
