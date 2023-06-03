@@ -8,8 +8,8 @@ msgid ""
 msgstr ""
 "Project-Id-Version: PACKAGE VERSION\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2023-06-03 22:32+0200\n"
-"PO-Revision-Date: 2023-06-03 22:33+0200\n"
+"POT-Creation-Date: 2023-06-03 23:27+0200\n"
+"PO-Revision-Date: 2023-06-03 23:28+0200\n"
 "Last-Translator: Charco AD <admin@gmail.com>\n"
 "Language-Team: LANGUAGE <LL@li.org>\n"
 "Language: \n"
@@ -347,48 +347,47 @@ msgstr "Users"
 msgid "Bienvenue sur Mackdin !"
 msgstr "Welcome to Mackdin!"
 
-#: .\apps\users\views.py:32
-msgid ""
-"pour activer votre compte Mackdin.Si vous n'avez pas reçu l'email, veuillez "
-"vérifier votre dossier spam."
-msgstr ""
-"to activate your Mackdin account. If you haven't received the e-mail, please"
-" check your spam folder."
-
-#: .\apps\users\views.py:35
+#: .\apps\users\views.py:31
 #, python-format
+#| msgid ""
+#| "Merci de votre incription. Veuillez activer votre adresse e-mail pour "
+#| "accéder à votre compte Mackdin. Nous avons envoyé un email à %(email)s"
 msgid ""
 "Merci de votre incription. Veuillez activer votre adresse e-mail pour "
-"accéder à votre compte Mackdin. Nous avons envoyé un email à %(email)s"
+"accéder à votre compte Mackdin. Nous avons envoyé un email à %(email)s pour "
+"activer votre compte Mackdin.Si vous n'avez pas reçu l'email, veuillez "
+"vérifier votre dossier spam."
 msgstr ""
-"Thank you for registering. Please activate your e-mail address to access "
-"your Mackdin account. We have sent an email to %(email)s"
+"Thank you for registering. Please activate your email address to access your"
+" Mackdin account. We have sent an email to %(email)s to activate your "
+"Mackdin account. If you did not receive the email, please check your spam "
+"folder."
 
-#: .\apps\users\views.py:47
+#: .\apps\users\views.py:42
 msgid "Confirmez l'adresse e-mail de votre compte Mackdin"
 msgstr "Confirm your Mackdin account e-mail address"
 
-#: .\apps\users\views.py:55
+#: .\apps\users\views.py:50
 msgid "Merci de bien remplir les informations correctement."
 msgstr "Please fill in the information correctly."
 
-#: .\apps\users\views.py:74
+#: .\apps\users\views.py:69
 msgid "Merci de confirmer d'abord votre adresse email."
 msgstr "Please confirm your email address first."
 
-#: .\apps\users\views.py:84
+#: .\apps\users\views.py:79
 msgid "ERREUR : adresse email ou mot de passe incorrect."
 msgstr "ERROR: incorrect email address or password."
 
-#: .\apps\users\views.py:111
+#: .\apps\users\views.py:106
 msgid "Votre email est vérifié avec succès. Vous pouvez vous connecter."
 msgstr "Your email has been successfully verified. You can now log in."
 
-#: .\config\settings.py:208
+#: .\config\settings.py:211
 msgid "French"
 msgstr "Français"
 
-#: .\config\settings.py:209
+#: .\config\settings.py:212
 msgid "English"
 msgstr "Anglais"
 
@@ -472,12 +471,10 @@ msgid "Accueil"
 msgstr "Home"
 
 #: .\templates\home\components\navbar2.html:102
-#| msgid "Traduire en"
 msgid "Traduire en Anglais"
 msgstr "Translate into English"
 
 #: .\templates\home\components\navbar2.html:102
-#| msgid "Traduire en"
 msgid "Traduire en Français"
 msgstr "Translate into French"
 
@@ -784,6 +781,13 @@ msgstr "Sign up"
 #: .\templates\users\sign_up.html:59
 msgid "Vous avez déjà un compte ?"
 msgstr "Already have an account?"
+
+#~ msgid ""
+#~ "pour activer votre compte Mackdin.Si vous n'avez pas reçu l'email, veuillez "
+#~ "vérifier votre dossier spam."
+#~ msgstr ""
+#~ "to activate your Mackdin account. If you haven't received the e-mail, please"
+#~ " check your spam folder."
 
 #~ msgid "Dear"
 #~ msgstr "Dear"
