@@ -183,7 +183,7 @@ def delete_comment(request) -> JsonResponse:
         obj = Comment.objects.get(id=id_comment)
         obj.delete()
 
-    return JsonResponse()
+    return JsonResponse({"action": "delete"})
 
 
 @login_required(login_url="sign_in")

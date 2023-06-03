@@ -1,4 +1,5 @@
 const aside = document.querySelector(".container-aside-1");
+const lang = document.getElementById("language_code").value;
 const options = {
   method: "GET",
   headers: {
@@ -8,7 +9,7 @@ const options = {
 };
 
 fetch(
-  "https://free-news.p.rapidapi.com/v1/search?q=Microsoft&lang=fr&page_size=10",
+  `https://free-news.p.rapidapi.com/v1/search?q=Microsoft&lang=${lang}&page_size=10`,
   options
 )
   .then((response) => response.json())

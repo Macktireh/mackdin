@@ -2,6 +2,7 @@
 {% load humanize %}
 {% load cloudinary %}
 {% load chat %}
+{% load i18n %}
 
 
 <div class="my-friends-container">
@@ -41,7 +42,7 @@
       <form action="{% url 'friends:reject_invitation' %}" method="POST" class="my-friends-add-friends">
         {% csrf_token %}
         <input type="hidden" name="profile_id" value="{{obj.sender.id}}">
-        <button class="btn-add-friends btn-rejected-invitation" type="submit">Ignorer</button>
+        <button class="btn-add-friends btn-rejected-invitation" type="submit">{% translate 'Rejeter' %}</button>
       </form>
 
       <form action="{% url 'friends:accept_invitation' %}" method="POST" class="my-friends-add-friends">

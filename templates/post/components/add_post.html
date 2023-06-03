@@ -1,5 +1,6 @@
 {% load static %}
 {% load cloudinary %}
+{% load i18n %}
 
 
 <div class="new-add-post">
@@ -39,11 +40,11 @@
             {% endif %}
             <label for="file" class="form-lable">
               <img src="{% static 'home/svg/gal.svg' %}" alt="">
-              <span>Ajouter une photo</span>
+              <span>{% translate "Ajouter une photo" %}</span>
             </label>
           </div>
           <button id="btn-add-new-post" type="submit" name="submit_p_form">
-            <span>Publier</span>
+            <span>{% translate "Publier" %}</span>
             <img src="{% static 'home/svg/send.svg' %}" alt="">
           </button>
         </div>
@@ -54,7 +55,7 @@
   <div class="previous-new-add-post">
     <div class="previous-post-container">
       <div class="previous-post-box">
-        <p id="Previsualisation">Prévisualisation de votre post :</p>
+        <p id="Previsualisation">{% translate "Prévisualisation de votre post :" %}</p>
         <div class="previous-post-header">
           <div class="previous-post-header-img">
             <img src="                   
@@ -98,10 +99,10 @@
     <div class="cancel-add-post-container">
       {% if page == 'update' %}
       <a href="{% url 'post:post_list' %}">
-        <span id="btn-cancel-add-post">Annuler</span>
+        <span id="btn-cancel-add-post">{% translate "Annuler" %}</span>
       </a>
       {% else %}
-      <span id="btn-cancel-add-post">Annuler</span>
+      <span id="btn-cancel-add-post">{% translate "Annuler" %}</span>
       {% endif %}
     </div>
   </div>

@@ -1,13 +1,90 @@
-{% autoescape off %}
+{% load i18n %}
 
-Hé, {{user.first_name}} !
+<!DOCTYPE html>
+<html>
 
-Merci de votre inscription sur Mackdin ! Vous devez suivre ce lien pour activer votre compte :
+<head>
+    <title></title>
+    <style>
+        /* Add your custom CSS styles here */
+        a:visited {
+            color: none;
+        }
 
-https://{{domain}}{% url 'activate' uidb64=uid token=token %}
+        body {
+            font-family: Arial, sans-serif;
+            line-height: 1.6;
+            background-color: #CCC;
+        }
 
-Amusez-vous et n'hésitez pas à nous faire part de vos commentaires :).
+        .container {
+            max-width: 600px;
+            margin: 0 auto;
+            padding: 20px;
+            background-color: #F1F1F1;
+            border-radius: 10px;
+            box-shadow: 0px 0px 10px rgba(0, 0, 0, 0.1);
+        }
 
-L'équipe Mackdin
-https://{{domain}}
-{% endautoescape %}
+        h2 {
+            color: #333333;
+        }
+
+        p {
+            margin-bottom: 20px;
+        }
+
+        .activation-link {
+            display: inline-block;
+            margin: 10px auto;
+            padding: 10px 20px;
+            background-color: #299AE6;
+            text-decoration: none;
+            border-radius: 5px;
+            transition: all 0.2s ease;
+            color: #ffffff;
+        }
+
+        .activation-link:hover {
+            background-color: #299ae6b9;
+        }
+
+        .contact-info {
+            margin-top: 30px;
+            font-size: 14px;
+            color: #666666;
+        }
+
+        .footer {
+            margin-top: 30px;
+            font-size: 12px;
+            color: #999999;
+        }
+    </style>
+</head>
+
+<body>
+    <div class="container">
+        <h2>{% translate "Chèr(e)" %} {{ user.get_full_name }},</h2>
+        <br />
+        <p>{% translate "Pour compléter votre inscription sur Mackdin, veuillez activer votre compte en cliquant sur le lien de confirmation ci-dessous :" %}</p>
+        <a class="activation-link" href="https://{{domain}}{% url 'activate' uidb64=uid token=token %}"
+          style="color: #ffffff">{% translate "Activer mon compte" %}</a>
+        <p>{% translate "Ou vous pouvez copier le lien ci-dessous dans votre navigateur." %}</p>
+        <a href="https://{{domain}}{% url 'activate' uidb64=uid token=token %}">https://{{domain}}{% url 'activate' uidb64=uid token=token %}</a>
+        <br />
+        <br />
+        <p>{% translate "Veuillez noter que le lien est valable pendant 24 heures. Il est utilisé pour vérifier votre identité et protéger la sécurité de votre compte." %}</p>
+        <p>{% translate "Si vous n'avez pas créé de compte sur notre plateforme, veuillez ignorer cet e-mail." %}</p>
+        <div class="contact-info">
+            <p>{% translate "Pour toute assistance supplémentaire, n'hésitez pas à nous contacter à l'adresse électronique suivante :" %} welcomtomackdin@gmail.com</p>
+        </div>
+        <p>{% translate "Merci et bienvenue chez Mackdin !" %}</p>
+        <div class="footer">
+            <p>{% translate "Cordialement," %}<br>{% translate "L'équipe Mackdin" %}</p>
+            <p><a href="https://{{ domain }}">https://{{ domain }}</a></p>
+        </div>
+    </div>
+</body>
+
+</html>

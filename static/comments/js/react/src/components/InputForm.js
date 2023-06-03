@@ -30,7 +30,7 @@ class InputForm extends React.Component {
             <textarea
               className="input_message_comment_id"
               autoComplete="off"
-              placeholder="Ajouter un commentaire..."
+              placeholder={this.props.lang === "fr" ? "Ajouter un commentaire..." : "Add a comment..."}
               required
               value={this.state.msg}
               onChange={(e) => this.setState({ msg: e.target.value })}

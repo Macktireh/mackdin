@@ -1,5 +1,6 @@
 {% extends 'base.html' %}
 {% load static %}
+{% load i18n %}
 
 
 {% block style %}
@@ -12,7 +13,7 @@
 
 <div class="form-container-pass">
   <div class="title-pass">
-    <p class="p-info">Oups désolé vous perdu cette page n'existe pas.</p>
+    <p class="p-info">{% translate "Oups désolé vous perdu cette page n'existe pas." %}</p>
   </div>
 </div>
 

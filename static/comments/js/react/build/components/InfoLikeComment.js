@@ -43,7 +43,7 @@ var InfoLikeComment = function (_React$Component) {
             { id: "comments-num", onClick: function onClick() {
                 return _this2.props.handleClickToggle();
               } },
-            this.props.nberComment > 1 ? this.props.nberComment + " commentaires" : this.props.nberComment + " commentaire"
+            this.props.nberComment > 1 ? this.props.nberComment + (this.props.lang === "fr" ? " commentaires" : " comments") : this.props.nberComment + (this.props.lang === "fr" ? " commentaire" : " comment")
           )
         )
       );

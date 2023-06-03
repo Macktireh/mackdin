@@ -71,7 +71,7 @@ var OptionComment = function (_React$Component) {
               React.createElement(
                 "span",
                 { className: "btn-edit-comment comment-options-item-span" },
-                "Modifier"
+                this.props.lang === "fr" ? "Modifier" : "Edit"
               )
             ),
             React.createElement(
@@ -90,7 +90,7 @@ var OptionComment = function (_React$Component) {
               React.createElement(
                 "span",
                 { className: "btn-del-comment comment-options-item-span" },
-                "Supprimer"
+                this.props.lang === "fr" ? "Supprimer" : "Delete"
               )
             )
           )

@@ -109,7 +109,8 @@ try {
 
 document.querySelectorAll("a.options-delete-post").forEach((element) =>
   element.addEventListener("click", (e) => {
-    window.confirm("Vous êtes sûr de vouloir supprimer")
+    const lang = document.getElementById("language_code").value;
+    window.confirm(`${lang === "fr" ? "Vous êtes sûr de vouloir supprimer" : "Are you sure you want to delete"}`)
       ? null
       : e.preventDefault();
   })

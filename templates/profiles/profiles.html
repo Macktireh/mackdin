@@ -3,6 +3,7 @@
 {% load humanize %}
 {% load cloudinary %}
 {% load chat %}
+{% load i18n %}
 
 
 {% block title %} {{profile.user.first_name}} {{profile.user.last_name}} {% endblock title %}
@@ -112,7 +113,7 @@
 
           {% if profile.user == request.user %}
           <!-- <div class="btn-container-update-profile"> -->
-          <a class="btn-container-update-profile" href="{% url 'profiles:update_profile' %}">Modifier mon profil</a>
+          <a class="btn-container-update-profile" href="{% url 'profiles:update_profile' %}">{% translate 'Modifier mon profil' %}</a>
           <!-- </div> -->
           {% endif %}
 
@@ -121,10 +122,10 @@
             {% csrf_token %}
             <input type="hidden" name="profile_id" value="{{profile.id}}">
             <input type="hidden" name="redirect" value="profile">
-            <button class="btn-add-friends" type="submit">Envoyer une invitation</button>
+            <button class="btn-add-friends" type="submit">{% translate 'Envoyer une invitation' %}</button>
           </form>
           {% elif profile.user in request.user.profile.friends.all %}
-          <a class="btn-container-update-profile" href="{% url 'chats:chatroom' uid=profile.uid %}">Envoyer un message</a>
+          <a class="btn-container-update-profile" href="{% url 'chats:chatroom' uid=profile.uid %}">{% translate 'Envoyer un message' %}</a>
           {% endif %}
 
 
@@ -182,7 +183,7 @@
       {% if profile.user == request.user %}
       <div class="statistic-profile">
         <div class="num-vue statistic">
-          <span class="statistic-text">Vues de votre profil</span>
+          <span class="statistic-text">{% translate 'Vues de votre profil' %}</span>
           <span class="statistic-num">
             {% if profile.number_views %}
             {{profile.number_views}}
@@ -192,7 +193,7 @@
           </span>
         </div>
         <div class="num-post statistic">
-          <span class="statistic-text">Nombre de post</span>
+          <span class="statistic-text">{% translate 'Nombre de post' %}</span>
           <span class="statistic-num">{{profile.user.post.count}}</span>
         </div>
       </div>
@@ -236,9 +237,9 @@
       <div class="profile-friends-box-container">
         <h4>
           {% if profile.user == request.user %}
-          Vos Relations
+          {% translate 'Vos Relations' %}
           {% else %}
-          Les connaissez-vous ?
+          {% translate 'Les connaissez-vous ?' %}
           {% endif %}
         </h4>
         <div class="profile-friends-container">
@@ -264,9 +265,9 @@
                 {% if obj.last_logout %}
                 <P>
                   {% if obj.last_logout > obj.last_login %}
-                  En ligne {{obj.last_logout|naturaltime|timestr}}
+                  {% translate 'En ligne' %} {{obj.last_logout|naturaltime|timestr}}
                   {% else %}
-                  En ligne maintenant
+                  {% translate 'En ligne maintenant' %}
                   {% endif %}
                 </P>
                 {% endif %}
@@ -281,7 +282,7 @@
         {% if profile.user == request.user %}
         {% if profile.friends.all|length > 5 %}
         <div class="voir-plus-box">
-          <a href="{% url 'friends:my_friends' %}" class="voir-plus">Voir plus</a>
+          <a href="{% url 'friends:my_friends' %}" class="voir-plus">{% translate 'Voir plus' %}</a>
         </div>
         {% endif %}
         {% endif %}

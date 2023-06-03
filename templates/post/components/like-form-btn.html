@@ -1,4 +1,5 @@
 {% load static %}
+{% load i18n %}
 
 <form action="{% url 'post:like_post' %}" method="POST" class="like-form" id="{{post.id}}">
     {% csrf_token %}
@@ -6,10 +7,10 @@
     <button type="submit" class="like-btn{{post.id}}">
         {% if user not in post.liked.all %}
         <img id="like-img{{post.id}}" class="icon-like-comment-share" src="{% static 'home/svg/unlike.svg' %}" />
-        <span class="like-text{{post.id}} label-like-comment-share">J'aime</span>
+        <span class="like-text{{post.id}} label-like-comment-share">{% translate "J'aime" %}</span>
         {% else %}
         <img id="like-img{{post.id}}" class="icon-like-comment-share" src="{% static 'home/svg/like.svg' %}" />
-        <span class="like-text{{post.id}} text-like_unlike-span label-like-comment-share">J'aime</span>
+        <span class="like-text{{post.id}} text-like_unlike-span label-like-comment-share">{% translate "J'aime" %}</span>
         {% endif %}
     </button>
 </form>

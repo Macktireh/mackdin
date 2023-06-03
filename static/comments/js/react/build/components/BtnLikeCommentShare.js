@@ -37,7 +37,7 @@ var BtnLikeCommentShare = function (_React$Component) {
           React.createElement(
             "span",
             { style: { color: this.props.isLike ? "#1abc9c" : "#f1f1f1" } },
-            "J'aime"
+            this.props.lang === "fr" ? "J'aime" : "Like"
           )
         ),
         React.createElement(
@@ -49,7 +49,7 @@ var BtnLikeCommentShare = function (_React$Component) {
           React.createElement(
             "span",
             null,
-            "Commenter"
+            this.props.lang === "fr" ? "Commenter" : "Comment"
           )
         ),
         React.createElement(
@@ -59,7 +59,7 @@ var BtnLikeCommentShare = function (_React$Component) {
           React.createElement(
             "span",
             null,
-            "Partager"
+            this.props.lang === "fr" ? "Partager" : "Share"
           )
         )
       );

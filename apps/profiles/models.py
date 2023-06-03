@@ -14,7 +14,7 @@ User = get_user_model()
 class Profile(models.Model):
     user = models.OneToOneField(User, on_delete=models.CASCADE, related_name="profile")
     uid = models.CharField(_("code identifiant"), max_length=500, blank=True)
-    pseudo = models.CharField(_("non d'utilisateur"), max_length=48, blank=True, unique=True)
+    pseudo = models.CharField(_("nom d'utilisateur"), max_length=48, blank=True, unique=True)
     bio = models.CharField(_("titre du profil"), max_length=250, blank=True)
     birth_date = models.DateField(_("date de naissence"), null=True, blank=True)
     

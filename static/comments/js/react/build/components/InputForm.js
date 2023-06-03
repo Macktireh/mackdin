@@ -54,7 +54,7 @@ var InputForm = function (_React$Component) {
             React.createElement("textarea", {
               className: "input_message_comment_id",
               autoComplete: "off",
-              placeholder: "Ajouter un commentaire...",
+              placeholder: this.props.lang === "fr" ? "Ajouter un commentaire..." : "Add a comment...",
               required: true,
               value: this.state.msg,
               onChange: function onChange(e) {

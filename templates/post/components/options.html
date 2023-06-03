@@ -1,4 +1,5 @@
 {% load static %}
+{% load i18n %}
 
 {% if request.user == post.author %}
 <div id="{{post.id}}" class="options-btn">
@@ -11,11 +12,11 @@
   <ul>
     <a href="{% url 'post:update_post' post.uid  %}" class="options-item">
       <img src="{% static 'home/svg/edit.svg' %}">
-      <span class="btn-edit-post" id="{{post.id}}">Modifier</span>
+      <span class="btn-edit-post" id="{{post.id}}">{% translate "Modifier" %}</span>
     </a>
     <a href="{% url 'post:delete_post' post.uid  %}" class="options-item options-delete-post">
       <img src="{% static 'home/svg/delete.svg' %}">
-      <span class="btn-del-post" id="{{post.id}}">Supprimer</span>
+      <span class="btn-del-post" id="{{post.id}}">{% translate "Supprimer" %}</span>
     </a>
   </ul>
 </div>

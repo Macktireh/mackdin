@@ -2,6 +2,7 @@
 {% load humanize %}
 {% load cloudinary %}
 {% load chat %}
+{% load i18n %}
 
 
 {% for notif in qs %}
@@ -29,17 +30,17 @@
       <strong>{{ notif.from_user.first_name }} {{ notif.from_user.last_name }}</strong>
       <p>
         {% if notif.type_notif == 'Add_Post' %}
-        à ajouter un nouveau post : {{notif.post.message}}
+        {% translate 'a ajouter un nouveau post' %}: {{notif.post.message}}
         {% elif notif.type_notif == 'Like_Post' %}
-        à aimer votre post : {{notif.post.message}}
+        {% translate 'a aimer votre post' %} : {{notif.post.message}}
         {% elif notif.type_notif == 'Add_Comment' %}
-        à commenter votre post : {{notif.post.message}}
+        {% translate 'a commenter votre post' %}: {{notif.post.message}}
         {% elif notif.type_notif == 'invitation_send' %}
-        souhaite rejoindre à votre réseau
+        {% translate 'souhaite rejoindre à votre réseau' %}
         {% elif notif.type_notif == 'invitation_accepted' %}
-        à accepté votre invitation desormais vous êtes ami sur Mackdin
+        {% translate 'a accepté votre invitation et vous êtes maintenant amis sur Mackdin' %}
         {% elif notif.type_notif == 'seen_profile' %}
-        a consulté votre profil
+        {% translate 'a consulté votre profil' %}
         {% endif %}
       </p>
       <em>{{ notif.date_created|naturaltime|timestr }}</em>

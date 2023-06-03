@@ -40,7 +40,7 @@ class ListComments extends React.Component {
                 </a>
                 {this.props.comment.comment_author ===
                 this.props.comment.post_author ? (
-                  <span id="author_post_and_comment">Auteur</span>
+                  <span id="author_post_and_comment">{this.props.lang === "fr" ? "Auteur" : "Author"}</span>
                 ) : null}
               </strong>
               <p id="comment-author-profile-title">
@@ -74,13 +74,13 @@ class ListComments extends React.Component {
                   }}
                   disabled={this.state.msg === ""}
                 >
-                  Valider
+                  {this.props.lang === "fr" ? "Valider" : "Save"}
                 </button>
                 <div
                   className="cancel"
                   onClick={() => this.handleIsEditingComment()}
                 >
-                  Annuler
+                  {this.props.lang === "fr" ? "Annuler" : "Cancel"}
                 </div>
               </div>
             </form>
@@ -99,7 +99,7 @@ class ListComments extends React.Component {
               this.props.handleLikeorUnlikeComment(this.props.comment.id)
             }
           >
-            J'aime
+            {this.props.lang === "fr" ? "J'aime" : "Like"}
           </span>
           <span className="sep"></span>
           <div>
@@ -107,7 +107,7 @@ class ListComments extends React.Component {
             {this.props.comment.comment_number_like}
           </div>
           <span className="sep2">|</span>
-          <span className="comment-like">Répondre</span>
+          <span className="comment-like">{this.props.lang === "fr" ? "Répondre" : "Reply"}</span>
         </div>
       </div>
     );

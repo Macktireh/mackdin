@@ -26,19 +26,19 @@ class CustomUserChangeForm(UserChangeForm):
         
 
 class Sign_UpForm(forms.ModelForm):
-    first_name = forms.CharField(label='Prénom', min_length=2, required=True, widget=forms.TextInput(
+    first_name = forms.CharField(label=_('Prénom'), min_length=2, required=True, widget=forms.TextInput(
         attrs={'id': 'firstname', 'class': 'form-control', 'autocomplete': 'off'}))
     
-    last_name = forms.CharField(label='Nom', min_length=2, required=True, widget=forms.TextInput(
+    last_name = forms.CharField(label=_('Nom'), min_length=2, required=True, widget=forms.TextInput(
         attrs={'id': 'lastname', 'class': 'form-control', 'autocomplete': 'off'}))
     
     email = forms.EmailField(label='Email', max_length=255, required=True, widget=forms.EmailInput(
         attrs={'id': 'email', 'class': 'form-control', 'autocomplete': 'off'}))
     
-    password = forms.CharField(label='Mot de pass', required=True, widget=forms.PasswordInput(
+    password = forms.CharField(label=_('Mot de passe'), required=True, widget=forms.PasswordInput(
         attrs={'id': 'password', 'class': 'form-control', 'autocomplete': 'off'}))
     
-    confirm_password = forms.CharField(label='Confimer le mot de pass', required=True, widget=forms.PasswordInput(
+    confirm_password = forms.CharField(label=_('Confimer le mot de passe'), required=True, widget=forms.PasswordInput(
         attrs={'id': 'confirm', 'class': 'form-control', 'autocomplete': 'off'}))
     
     class Meta:

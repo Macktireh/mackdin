@@ -1,5 +1,6 @@
 const form = document.querySelector("form");
 const inputs = document.querySelectorAll(".form-control");
+const lang = document.getElementById("language_code").value;
 // const progressBar = document.getElementById("progress-bar");
 let firstname, lastname, email, password, confirmPass;
 
@@ -21,13 +22,17 @@ const firstnamechecker = (input_name, value) => {
   if (value.length > 0 && (value.length < 2 || value.length > 50)) {
     errorDisplay(
       input_name,
-      "Le prénom doit contenir entre 2 et 50 caractères"
+      lang === "fr"
+        ? "Le prénom doit contenir entre 2 et 50 caractères"
+        : "The first name must contain between 2 and 50 characters."
     );
     firstname = null;
   } else if (!value.match(/^[a-zA-Z -]*$/)) {
     errorDisplay(
       input_name,
-      "Le prénom ne doit pas contenir de caractères spéciaux"
+      lang === "fr"
+        ? "Le prénom ne doit pas contenir de caractères spéciaux"
+        : "The first name must not contain any special characters."
     );
     firstname = null;
   } else {
@@ -38,12 +43,19 @@ const firstnamechecker = (input_name, value) => {
 
 const lastnamechecker = (input_name, value) => {
   if (value.length > 0 && (value.length < 2 || value.length > 50)) {
-    errorDisplay(input_name, "Le nom doit contenir entre 2 et 50 caractères");
+    errorDisplay(
+      input_name,
+      lang === "fr"
+        ? "Le nom doit contenir entre 2 et 50 caractères"
+        : "The last name must contain between 2 and 50 characters."
+    );
     lastname = null;
   } else if (!value.match(/^[a-zA-Z -]*$/)) {
     errorDisplay(
       input_name,
-      "Le nom ne doit pas contenir de caractères spéciaux"
+      lang === "fr"
+        ? "Le nom ne doit pas contenir de caractères spéciaux"
+        : "The last name must not contain any special characters."
     );
     lastname = null;
   } else {
@@ -54,7 +66,10 @@ const lastnamechecker = (input_name, value) => {
 
 const emailChecker = (input_name, value) => {
   if (!value.match(/^\w+([\.-]?\w+)*@\w+([\.-]?\w+)*(\.\w{2,4})+$/)) {
-    errorDisplay("email", "Le mail n'est pas valide");
+    errorDisplay(
+      "email",
+      lang === "fr" ? "L'e-mail n'est pas valide" : "Invalid e-mail"
+    );
     email = null;
   } else {
     errorDisplay(input_name, "", true);
@@ -72,7 +87,9 @@ const passwordChecker = (input_name, value) => {
   ) {
     errorDisplay(
       input_name,
-      "Minimum de 8 caractères, une majuscule, un chiffre et un caractère spécial"
+      lang === "fr"
+        ? "Le mot de passe doit contenir au moins 8 caractères, une lettre majuscule, un chiffre et un caractère spécial."
+        : "The password must contain at least 8 characters, a capital letter, a number and a special character."
     );
     // progressBar.classList.add("progressRed");
     password = null;
@@ -90,7 +107,12 @@ const passwordChecker = (input_name, value) => {
 
 const confirmChecker = (input_name, value) => {
   if (value !== password) {
-    errorDisplay(input_name, "Les mots de passe ne correspondent pas");
+    errorDisplay(
+      input_name,
+      lang === "fr"
+        ? "Les mots de passe ne correspondent pas"
+        : "Passwords do not match"
+    );
     confirmPass = false;
   } else {
     errorDisplay(input_name, "", true);
