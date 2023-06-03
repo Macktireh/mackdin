@@ -8,7 +8,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: PACKAGE VERSION\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2023-06-03 22:32+0200\n"
+"POT-Creation-Date: 2023-06-03 23:27+0200\n"
 "PO-Revision-Date: YEAR-MO-DA HO:MI+ZONE\n"
 "Last-Translator: FULL NAME <EMAIL@ADDRESS>\n"
 "Language-Team: LANGUAGE <LL@li.org>\n"
@@ -344,44 +344,40 @@ msgstr ""
 msgid "Bienvenue sur Mackdin !"
 msgstr ""
 
-#: .\apps\users\views.py:32
-msgid ""
-"pour activer votre compte Mackdin.Si vous n'avez pas reçu l'email, veuillez "
-"vérifier votre dossier spam."
-msgstr ""
-
-#: .\apps\users\views.py:35
+#: .\apps\users\views.py:31
 #, python-format
 msgid ""
 "Merci de votre incription. Veuillez activer votre adresse e-mail pour "
-"accéder à votre compte Mackdin. Nous avons envoyé un email à %(email)s"
+"accéder à votre compte Mackdin. Nous avons envoyé un email à %(email)s pour "
+"activer votre compte Mackdin.Si vous n'avez pas reçu l'email, veuillez "
+"vérifier votre dossier spam."
 msgstr ""
 
-#: .\apps\users\views.py:47
+#: .\apps\users\views.py:42
 msgid "Confirmez l'adresse e-mail de votre compte Mackdin"
 msgstr ""
 
-#: .\apps\users\views.py:55
+#: .\apps\users\views.py:50
 msgid "Merci de bien remplir les informations correctement."
 msgstr ""
 
-#: .\apps\users\views.py:74
+#: .\apps\users\views.py:69
 msgid "Merci de confirmer d'abord votre adresse email."
 msgstr ""
 
-#: .\apps\users\views.py:84
+#: .\apps\users\views.py:79
 msgid "ERREUR : adresse email ou mot de passe incorrect."
 msgstr ""
 
-#: .\apps\users\views.py:111
+#: .\apps\users\views.py:106
 msgid "Votre email est vérifié avec succès. Vous pouvez vous connecter."
 msgstr ""
 
-#: .\config\settings.py:208
+#: .\config\settings.py:211
 msgid "French"
 msgstr ""
 
-#: .\config\settings.py:209
+#: .\config\settings.py:212
 msgid "English"
 msgstr ""
 
