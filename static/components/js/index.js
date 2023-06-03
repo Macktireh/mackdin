@@ -101,9 +101,8 @@ function paginatorWithAjax(
 const lang_ = document.getElementById("language_code").value;
 const langLink = document.getElementById("language_code_link");
 langLink.addEventListener("click", () => {
-  // location.reload();
   console.log("lang_", lang_);
-  let url = location.href;
+  let url = location.href.split("?")[0];
   // console.log("1 - url:", url);
   if (lang_ === "fr") {
     url = url.replace("fr", "en");
@@ -111,5 +110,5 @@ langLink.addEventListener("click", () => {
     url = url.replace("en", "fr");
   }
   // console.log("2 - url:", url);
-  location.href = url;
+  window.location = url + "?timestamp=" + (new Date()).getTime();
 })
