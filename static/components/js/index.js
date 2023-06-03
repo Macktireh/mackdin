@@ -102,9 +102,9 @@ const lang_ = document.getElementById("language_code").value;
 const langLink = document.getElementById("language_code_link");
 
 if (lang_ === "fr") {
-  langLink.href = location.href.replace("fr", "en");
+  langLink.href = location.href.replace("/fr/", "/en/");
 } else {
-  langLink.href = location.href.replace("en", "fr");
+  langLink.href = location.href.replace("/en/", "/fr/");
 }
 
 // langLink.addEventListener("click", () => {
