@@ -8,7 +8,6 @@ from django.views.static import serve
 
 urlpatterns = i18n_patterns(
     path(f'admin/mackdin/{settings.UID_ADMIN}/', admin.site.urls, name='admin'),
-    path("admin/i18n/", include("rosetta.urls")),
     path('', include('apps.home.urls')),
     path('accounts/', include('apps.users.urls')),
     path('accounts/', include('allauth.urls')),
@@ -21,6 +20,7 @@ urlpatterns = i18n_patterns(
 )
 
 if settings.ENV == 'development':
+    urlpatterns += [path("admin/i18n/", include("rosetta.urls"))]
     if settings.DEBUG:
         urlpatterns += static(settings.MEDIA_URL, document_root=settings.MEDIA_ROOT)
     else:

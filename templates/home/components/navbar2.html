@@ -2,6 +2,8 @@
 {% load cloudinary %}
 {% load i18n %}
 
+{% get_current_language as LANGUAGE_CODE %}
+
 <div class="nav-container">
   <div>
     <a class="logo logo2" href="{% url 'home:home' %}">
@@ -26,6 +28,7 @@
           <span>{% translate 'Inscription' %}</span>
         </div>
       </a>
+      
       {% else %}
       <a href="{% url 'post:post_list' %}" class="nav-item">
         <div class="nav-text">
@@ -94,6 +97,10 @@
       <span class="text">Administration</span>
     </a>
     {% endif %}
+    <a href="/{% if LANGUAGE_CODE == 'fr' %}en{% else %}fr{% endif %}/feed/">
+      <img src="{% static 'home/svg/language.svg' %}">
+      <span class="text">{% translate 'Traduire en' %} {% if LANGUAGE_CODE == 'fr' %}Anglais{% else %}Français{% endif %}</span>
+    </a>
     <a href="{% url 'logout' %}">
       <img src="{% static 'home/svg/logout.svg' %}">
       <span class="text">{% translate 'Déconnexion' %}</span>
