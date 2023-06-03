@@ -15,14 +15,17 @@ BASE_DIR = Path(__file__).resolve().parent.parent
 load = load_dotenv(os.path.join(BASE_DIR, ".env"))
 
 
-def get_env_variable(var_name: str, default: Union[str, None] = None) -> str:
+def get_env_variable(var_name: str, default: None | str = None, raise_error: bool = True) -> str:
     try:
-        return os.environ[var_name] if os.environ[var_name] else default
+        if os.environ[var_name]:
+            return os.environ[var_name]
+        raise KeyError
     except KeyError:
         if default is not None:
             return default
-        error_msg = f"Set the {var_name} environment variable"
-        raise ImproperlyConfigured(error_msg)
+        if raise_error:
+            raise ImproperlyConfigured(f"Set the {var_name} environment variable")
+        return ""
 
 
 # Variable environment local or production
@@ -248,8 +251,8 @@ AUTH_USER_MODEL = "users.CustomUser"
 # Config Send Email
 EMAIL_BACKEND = "django.core.mail.backends.smtp.EmailBackend"
 EMAIL_HOST = "smtp.gmail.com"
-EMAIL_HOST_USER = get_env_variable("EMAIL_HOST_USER")
-EMAIL_HOST_PASSWORD = get_env_variable("EMAIL_HOST_PASSWORD")
+EMAIL_HOST_USER = get_env_variable("EMAIL_HOST_USER", raise_error=True)
+EMAIL_HOST_PASSWORD = get_env_variable("EMAIL_HOST_PASSWORD", raise_error=True)
 EMAIL_PORT = 587
 EMAIL_USE_TLS = True
 
@@ -257,9 +260,9 @@ EMAIL_USE_TLS = True
 # config cloudinary for production
 # if ENV == 'production':
 CLOUDINARY_STORAGE = {
-    "CLOUD_NAME": get_env_variable("CLOUDINARY_CLOUD_NAME"),
-    "API_KEY": get_env_variable("CLOUDINARY_API_KEY"),
-    "API_SECRET": get_env_variable("CLOUDINARY_API_SECRET"),
+    "CLOUD_NAME": get_env_variable("CLOUDINARY_CLOUD_NAME", raise_error=True),
+    "API_KEY": get_env_variable("CLOUDINARY_API_KEY", raise_error=True),
+    "API_SECRET": get_env_variable("CLOUDINARY_API_SECRET", raise_error=True),
 }
 
 
