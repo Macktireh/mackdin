@@ -7,6 +7,7 @@ from dotenv import load_dotenv
 
 from django.core.exceptions import ImproperlyConfigured
 from django.core.management.utils import get_random_secret_key
+from django.utils.translation import gettext_lazy as _
 
 
 # Build paths inside the project like this: BASE_DIR / 'subdir'.
@@ -59,7 +60,9 @@ THIRD_PARTY_APPS = [
     "allauth.account",
     "allauth.socialaccount",
     "allauth.socialaccount.providers.google",
+    "allauth.socialaccount.providers.facebook",
     "allauth.socialaccount.providers.github",
+    "rosetta",
 ]
 
 LOCAL_APPS = [
@@ -79,6 +82,7 @@ MIDDLEWARE = [
     "django.middleware.security.SecurityMiddleware",
     "whitenoise.middleware.WhiteNoiseMiddleware",
     "django.contrib.sessions.middleware.SessionMiddleware",
+    'django.middleware.locale.LocaleMiddleware',
     "django.middleware.common.CommonMiddleware",
     "django.middleware.csrf.CsrfViewMiddleware",
     "django.contrib.auth.middleware.AuthenticationMiddleware",
@@ -117,14 +121,46 @@ AUTHENTICATION_BACKENDS = [
 ]
 
 SITE_ID = 1
-ACCOUNT_EMAIL_VERIFICATION = "mandatory"
+ACCOUNT_EMAIL_VERIFICATION = ("none")
 LOGIN_REDIRECT_URL = "home:home"
 ACCOUNT_LOGOUT_ON_GET = True
-SOCIALACCOUNT_LOGIN_ON_GET=True
+SOCIALACCOUNT_LOGIN_ON_GET = True
 ACCOUNT_USER_MODEL_USERNAME_FIELD = None
 ACCOUNT_AUTHENTICATION_METHOD = "email"
 ACCOUNT_EMAIL_REQUIRED = True
 ACCOUNT_USERNAME_REQUIRED = False
+
+SOCIALACCOUNT_PROVIDERS = {
+    "google": {
+        "SCOPE": [
+            "profile",
+            "email",
+        ],
+        "AUTH_PARAMS": {
+            "access_type": "online",
+        },
+        "OAUTH_PKCE_ENABLED": True,
+    },
+    "facebook": {
+        "METHOD": "oauth2",
+        'SDK_URL': '//connect.facebook.net/{locale}/sdk.js',
+        "SCOPE": ["email", "public_profile"],
+        "AUTH_PARAMS": {"auth_type": "reauthenticate"},
+        "INIT_PARAMS": {"cookie": True},
+        "FIELDS": [
+            "id",
+            "first_name",
+            "last_name",
+            "middle_name",
+            "name",
+        ],
+        "EXCHANGE_TOKEN": True,
+        'LOCALE_FUNC': lambda request: 'fr',
+        "VERIFIED_EMAIL": False,
+        "VERSION": "v13.0",
+        "GRAPH_API_URL": "https://graph.facebook.com/v13.0",
+    },
+}
 
 WSGI_APPLICATION = "config.wsgi.application"
 
@@ -158,7 +194,7 @@ AUTH_PASSWORD_VALIDATORS = [
 # Internationalization
 # https://docs.djangoproject.com/en/3.2/topics/i18n/
 
-LANGUAGE_CODE = "fr-fr"
+LANGUAGE_CODE = "fr"
 
 TIME_ZONE = "Europe/Paris"
 
@@ -167,6 +203,15 @@ USE_I18N = True
 USE_L10N = True
 
 USE_TZ = True
+
+LANGUAGES = (
+    ("fr", _("French")),
+    ("en", _("English")),
+)
+
+LOCALE_PATHS = [
+    BASE_DIR / "locale/",
+]
 
 
 # Static files (CSS, JavaScript, Images) and media

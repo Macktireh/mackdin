@@ -2,6 +2,7 @@
 {% load humanize %}
 {% load cloudinary %}
 {% load chat %}
+{% load i18n %}
 
 
 <div class="container-notif">
@@ -9,7 +10,7 @@
   {% include 'notifications/card-notification.html' %}
   {% else %}
   <div class="pas-de-notif">
-    <p>Vous n'avez pas des notifications. Revenez plus tard pour voir les dernières notifications</p>
+    <p>{% translate "Vous n'avez pas de notifications. Revenez plus tard pour voir les dernières notifications" %}</p>
   </div>
   {% endif %}
 </div>

@@ -2,6 +2,7 @@
 {% load humanize %}
 {% load cloudinary %}
 {% load chat %}
+{% load i18n %}
 
 
 {% for obj in qs %}
@@ -46,9 +47,9 @@
         {% if obj.user.last_logout %}
         <P>
           {% if obj.user.last_logout > obj.user.last_login %}
-          En ligne {{obj.user.last_logout|naturaltime|timestr}}
+          {% translate "En ligne" %} {{obj.user.last_logout|naturaltime|timestr}}
           {% else %}
-          En ligne maintenant
+          {% translate "En ligne maintenant" %}
           {% endif %}
         </P>
         {% endif %}
@@ -59,8 +60,8 @@
     <form action="{% url 'friends:remove_invitation' %}" method="POST" class="my-friends-add-friends">
       {% csrf_token %}
       <input type="hidden" name="profile_id" value="{{obj.id}}">
-      <a href="{% url 'profiles:profile' pseudo=obj.pseudo %}">Voir le profile</a>
-      <button class="btn-add-friends" type="submit">Supprimer</button>
+      <a href="{% url 'profiles:profile' pseudo=obj.pseudo %}">{% translate "Voir le profil" %}</a>
+      <button class="btn-add-friends" type="submit">{% translate "Supprimer" %}</button>
     </form>
   </div>
   {% comment %} {% endif %} {% endcomment %}

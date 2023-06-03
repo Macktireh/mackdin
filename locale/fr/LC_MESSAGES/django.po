@@ -1,0 +1,732 @@
+# SOME DESCRIPTIVE TITLE.
+# Copyright (C) YEAR THE PACKAGE'S COPYRIGHT HOLDER
+# This file is distributed under the same license as the PACKAGE package.
+# FIRST AUTHOR <EMAIL@ADDRESS>, YEAR.
+#
+#, fuzzy
+msgid ""
+msgstr ""
+"Project-Id-Version: PACKAGE VERSION\n"
+"Report-Msgid-Bugs-To: \n"
+"POT-Creation-Date: 2023-06-03 03:22+0200\n"
+"PO-Revision-Date: YEAR-MO-DA HO:MI+ZONE\n"
+"Last-Translator: FULL NAME <EMAIL@ADDRESS>\n"
+"Language-Team: LANGUAGE <LL@li.org>\n"
+"Language: \n"
+"MIME-Version: 1.0\n"
+"Content-Type: text/plain; charset=UTF-8\n"
+"Content-Transfer-Encoding: 8bit\n"
+"Plural-Forms: nplurals=2; plural=(n > 1);\n"
+
+#: .\apps\friends\models.py:17
+msgid "send"
+msgstr ""
+
+#: .\apps\friends\models.py:18
+msgid "accepted"
+msgstr ""
+
+#: .\apps\friends\views.py:103
+msgid "Personnes à qui vous pourriez envoyer une invitation"
+msgstr ""
+
+#: .\apps\friends\views.py:104 .\apps\friends\views.py:167
+msgid "Pas de profils avec lesquels interagir"
+msgstr ""
+
+#: .\apps\friends\views.py:166
+msgid "Vos relations"
+msgstr ""
+
+#: .\apps\friends\views.py:211
+msgid "Invitations en attente que vous acceptez"
+msgstr ""
+
+#: .\apps\friends\views.py:212
+msgid "Aucune invitation reçue en attente"
+msgstr ""
+
+#: .\apps\friends\views.py:259
+msgid "Pas d'invitations envoyées qui sont en cours d'acceptation"
+msgstr ""
+
+#: .\apps\notifications\models.py:16
+msgid "Like Post"
+msgstr ""
+
+#: .\apps\notifications\models.py:17
+msgid "Add Post"
+msgstr ""
+
+#: .\apps\notifications\models.py:18
+msgid "Add Comment"
+msgstr ""
+
+#: .\apps\notifications\models.py:19
+msgid "invitation accepted"
+msgstr ""
+
+#: .\apps\notifications\models.py:20
+msgid "invitation send"
+msgstr ""
+
+#: .\apps\notifications\models.py:21
+msgid "seen profile"
+msgstr ""
+
+#: .\apps\notifications\models.py:23
+msgid "type_notif"
+msgstr ""
+
+#: .\apps\post\forms.py:10
+msgid "Ajouter un post"
+msgstr ""
+
+#: .\apps\post\forms.py:22
+msgid "Veuillez saisir un message ou télécharger une image"
+msgstr ""
+
+#: .\apps\post\models.py:14
+msgid "code post"
+msgstr ""
+
+#: .\apps\post\models.py:15
+msgid "message"
+msgstr ""
+
+#: .\apps\post\models.py:19
+msgid "image"
+msgstr ""
+
+#: .\apps\post\models.py:22
+msgid "video"
+msgstr ""
+
+#: .\apps\post\models.py:23
+msgid "date created"
+msgstr ""
+
+#: .\apps\post\models.py:24
+msgid "date updated"
+msgstr ""
+
+#: .\apps\post\models.py:40
+msgid "Post"
+msgstr ""
+
+#: .\apps\post\models.py:41
+msgid "Posts"
+msgstr ""
+
+#: .\apps\profiles\admin.py:33 .\apps\users\admin.py:23
+msgid "Personal info"
+msgstr ""
+
+#: .\apps\profiles\admin.py:52
+msgid "Location"
+msgstr ""
+
+#: .\apps\profiles\admin.py:64
+msgid "Description"
+msgstr ""
+
+#: .\apps\profiles\admin.py:66
+msgid "Social network"
+msgstr ""
+
+#: .\apps\profiles\admin.py:76
+msgid "Friends"
+msgstr ""
+
+#: .\apps\profiles\models.py:16
+msgid "code identifiant"
+msgstr ""
+
+#: .\apps\profiles\models.py:17
+msgid "nom d'utilisateur"
+msgstr ""
+
+#: .\apps\profiles\models.py:18
+msgid "titre du profil"
+msgstr ""
+
+#: .\apps\profiles\models.py:19
+msgid "date de naissence"
+msgstr ""
+
+#: .\apps\profiles\models.py:23
+msgid "photo de profile"
+msgstr ""
+
+#: .\apps\profiles\models.py:24
+msgid "photo de couverture"
+msgstr ""
+
+#: .\apps\profiles\models.py:28
+msgid "is updating img profile"
+msgstr ""
+
+#: .\apps\profiles\models.py:29
+msgid "is updating img bg"
+msgstr ""
+
+#: .\apps\profiles\models.py:31
+msgid "Masculin"
+msgstr ""
+
+#: .\apps\profiles\models.py:32
+msgid "Féminin"
+msgstr ""
+
+#: .\apps\profiles\models.py:34
+msgid "sexe"
+msgstr ""
+
+#: .\apps\profiles\models.py:35
+msgid "téléphone"
+msgstr ""
+
+#: .\apps\profiles\models.py:36
+msgid "adresse"
+msgstr ""
+
+#: .\apps\profiles\models.py:37
+msgid "ville"
+msgstr ""
+
+#: .\apps\profiles\models.py:38
+msgid "région"
+msgstr ""
+
+#: .\apps\profiles\models.py:39
+msgid "code postal"
+msgstr ""
+
+#: .\apps\profiles\models.py:40
+msgid "pays"
+msgstr ""
+
+#: .\apps\profiles\models.py:41
+msgid "description"
+msgstr ""
+
+#: .\apps\profiles\models.py:42
+msgid "lien de votre profil linkedin"
+msgstr ""
+
+#: .\apps\profiles\models.py:43
+msgid "lien de votre gitthub"
+msgstr ""
+
+#: .\apps\profiles\models.py:44
+msgid "lien de votre twitter"
+msgstr ""
+
+#: .\apps\profiles\models.py:45
+msgid "lien de votre site web"
+msgstr ""
+
+#: .\apps\profiles\models.py:46
+msgid "Nombre de vue profil"
+msgstr ""
+
+#: .\apps\profiles\models.py:48
+msgid "date de modification"
+msgstr ""
+
+#: .\apps\profiles\models.py:67
+msgid "Profile"
+msgstr ""
+
+#: .\apps\profiles\models.py:68
+msgid "Profiles"
+msgstr ""
+
+#: .\apps\users\admin.py:24
+msgid "Permissions"
+msgstr ""
+
+#: .\apps\users\admin.py:27
+msgid "Important dates"
+msgstr ""
+
+#: .\apps\users\forms.py:29
+msgid "Prénom"
+msgstr ""
+
+#: .\apps\users\forms.py:32
+msgid "Nom"
+msgstr ""
+
+#: .\apps\users\forms.py:38 .\templates\users\sign_in.html:46
+msgid "Mot de passe"
+msgstr ""
+
+#: .\apps\users\forms.py:41
+msgid "Confimer le mot de passe"
+msgstr ""
+
+#: .\apps\users\forms.py:62
+msgid "Le champ prénom ne doit pas être vide !"
+msgstr ""
+
+#: .\apps\users\forms.py:64
+msgid "Le champ prénom n'est pas valide !"
+msgstr ""
+
+#: .\apps\users\forms.py:71
+msgid "Le champ nom ne doit pas être vide !"
+msgstr ""
+
+#: .\apps\users\forms.py:73
+msgid "Le champ nom n'est pas valide !"
+msgstr ""
+
+#: .\apps\users\forms.py:80
+msgid "Le champ email n'est pas valide!"
+msgstr ""
+
+#: .\apps\users\forms.py:87
+msgid ""
+"Le champ mot de passe doit contenir: minimum de 8 caractères, au moins "
+"majuscule et minuscule, au moins chiffre et un caractère spécial."
+msgstr ""
+
+#: .\apps\users\forms.py:98
+msgid "Les mots de passe ne correspondent pas"
+msgstr ""
+
+#: .\apps\users\managers.py:14
+msgid "The Email must be set"
+msgstr ""
+
+#: .\apps\users\managers.py:31
+msgid "Superuser must have is_staff=True."
+msgstr ""
+
+#: .\apps\users\managers.py:33
+msgid "Superuser must have is_superuser=True."
+msgstr ""
+
+#: .\apps\users\models.py:13
+msgid "email address"
+msgstr ""
+
+#: .\apps\users\models.py:16
+msgid "Required to authenticate"
+msgstr ""
+
+#: .\apps\users\models.py:19
+msgid "email verified"
+msgstr ""
+
+#: .\apps\users\models.py:21
+msgid "Specifies whether the user should verify their email address."
+msgstr ""
+
+#: .\apps\users\models.py:24
+msgid "last date logout"
+msgstr ""
+
+#: .\apps\users\models.py:27
+msgid "last date logout user"
+msgstr ""
+
+#: .\apps\users\models.py:35
+msgid "User"
+msgstr ""
+
+#: .\apps\users\models.py:36
+msgid "Users"
+msgstr ""
+
+#: .\apps\users\signals.py:16
+msgid "Bienvenue sur Mackdin !"
+msgstr ""
+
+#: .\apps\users\views.py:36
+msgid "Merci de bien remplir les informations correctement."
+msgstr ""
+
+#: .\apps\users\views.py:53
+msgid "Merci de confirmer d'abord votre adresse email."
+msgstr ""
+
+#: .\apps\users\views.py:61
+msgid "ERREUR : adresse email ou mot de passe incorrect."
+msgstr ""
+
+#: .\apps\users\views.py:85
+msgid "Votre email est vérifié avec succès. Vous pouvez vous connecter."
+msgstr ""
+
+#: .\config\settings.py:208
+msgid "French"
+msgstr ""
+
+#: .\config\settings.py:209
+msgid "English"
+msgstr ""
+
+#: .\templates\chat\chat.html:7 .\templates\home\components\navbar2.html:49
+msgid "Messagerie"
+msgstr ""
+
+#: .\templates\chat\components\chatroom.html:46
+#: .\templates\friends\components\list_myfriends.html:51
+#: .\templates\profiles\profiles.html:270
+msgid "En ligne"
+msgstr ""
+
+#: .\templates\chat\components\chatroom.html:48
+#: .\templates\friends\components\list_myfriends.html:53
+#: .\templates\profiles\profiles.html:272
+msgid "En ligne maintenant"
+msgstr ""
+
+#: .\templates\chat\components\list_chatroom.html:52
+#: .\templates\home\components\navbar2.html:81
+msgid "Vous"
+msgstr ""
+
+#: .\templates\friends\components\invitation-received.html:45
+msgid "Rejeter"
+msgstr ""
+
+#: .\templates\friends\components\invitation-send.html:45
+msgid "Retirer"
+msgstr ""
+
+#: .\templates\friends\components\invites_list_profiles.html:52
+#: .\templates\users\password_reset_send.html:19
+msgid "Se connecter"
+msgstr ""
+
+#: .\templates\friends\components\list_myfriends.html:64
+msgid "Voir le profil"
+msgstr ""
+
+#: .\templates\friends\components\list_myfriends.html:65
+#: .\templates\post\components\options.html:19
+msgid "Supprimer"
+msgstr ""
+
+#: .\templates\friends\components\nav-statistic.html:5
+msgid "Gérer mon réseau"
+msgstr ""
+
+#: .\templates\friends\components\nav-statistic.html:11
+#: .\templates\home\components\navbar2.html:41
+msgid "Réseau"
+msgstr ""
+
+#: .\templates\friends\components\nav-statistic.html:19
+msgid "Invitations reçues"
+msgstr ""
+
+#: .\templates\friends\components\nav-statistic.html:23
+msgid "Invitations envoyées"
+msgstr ""
+
+#: .\templates\friends\components\nav-statistic.html:28
+msgid "Evénements"
+msgstr ""
+
+#: .\templates\home\components\navbar-home.html:18
+#: .\templates\home\components\navbar2.html:19
+msgid "Connexion"
+msgstr ""
+
+#: .\templates\home\components\navbar-home.html:25
+#: .\templates\home\components\navbar2.html:26
+msgid "Inscription"
+msgstr ""
+
+#: .\templates\home\components\navbar2.html:34
+msgid "Accueil"
+msgstr ""
+
+#: .\templates\home\components\navbar2.html:99
+msgid "Déconnexion"
+msgstr ""
+
+#: .\templates\home\index.html:23
+msgid "Bienvenue dans votre réseau social professionnel"
+msgstr ""
+
+#: .\templates\home\index.html:24
+msgid ""
+"Veuillez vous connecter si vous avez déjà un compte ou vous inscrire si vous "
+"n'avez pas de compte."
+msgstr ""
+
+#: .\templates\home\index.html:32
+msgid "Connectez-vous avec de bonnes personnes"
+msgstr ""
+
+#: .\templates\home\index.html:38
+msgid "Boostez et enrichissez votre profil"
+msgstr ""
+
+#: .\templates\notifications\card-notification.html:33
+msgid "a ajouter un nouveau post"
+msgstr ""
+
+#: .\templates\notifications\card-notification.html:35
+msgid "a aimer votre post"
+msgstr ""
+
+#: .\templates\notifications\card-notification.html:37
+msgid "a commenter votre post"
+msgstr ""
+
+#: .\templates\notifications\card-notification.html:39
+msgid "souhaite rejoindre à votre réseau"
+msgstr ""
+
+#: .\templates\notifications\card-notification.html:41
+msgid "a accepté votre invitation et vous êtes maintenant amis sur Mackdin"
+msgstr ""
+
+#: .\templates\notifications\card-notification.html:43
+msgid "a consulté votre profil"
+msgstr ""
+
+#: .\templates\notifications\list-notification.html:13
+msgid ""
+"Vous n'avez pas de notifications. Revenez plus tard pour voir les dernières "
+"notifications"
+msgstr ""
+
+#: .\templates\post\components\add_post.html:43
+msgid "Ajouter une photo"
+msgstr ""
+
+#: .\templates\post\components\add_post.html:47
+msgid "Publier"
+msgstr ""
+
+#: .\templates\post\components\add_post.html:58
+msgid "Prévisualisation de votre post :"
+msgstr ""
+
+#: .\templates\post\components\add_post.html:102
+#: .\templates\post\components\add_post.html:105
+msgid "Annuler"
+msgstr ""
+
+#: .\templates\post\components\count-likes-comments.html:23
+msgid "Commentaires"
+msgstr ""
+
+#: .\templates\post\components\count-likes-comments.html:25
+msgid "Commentaire"
+msgstr ""
+
+#: .\templates\post\components\left.html:47
+#: .\templates\profiles\profiles.html:188
+msgid "Vues de votre profil"
+msgstr ""
+
+#: .\templates\post\components\left.html:57
+#: .\templates\profiles\profiles.html:198
+msgid "Nombre de post"
+msgstr ""
+
+#: .\templates\post\components\like-form-btn.html:10
+#: .\templates\post\components\like-form-btn.html:13
+msgid "J'aime"
+msgstr ""
+
+#: .\templates\post\components\options.html:15
+msgid "Modifier"
+msgstr ""
+
+#: .\templates\post\post_list.html:8
+msgid "Fil d'actualité"
+msgstr ""
+
+#: .\templates\post\post_list.html:48
+msgid "Actualités"
+msgstr ""
+
+#: .\templates\profiles\profiles.html:117
+msgid "Modifier mon profil"
+msgstr ""
+
+#: .\templates\profiles\profiles.html:126
+msgid "Envoyer une invitation"
+msgstr ""
+
+#: .\templates\profiles\profiles.html:129
+msgid "Envoyer un message"
+msgstr ""
+
+#: .\templates\profiles\profiles.html:242
+msgid "Vos Relations"
+msgstr ""
+
+#: .\templates\profiles\profiles.html:244
+msgid "Les connaissez-vous ?"
+msgstr ""
+
+#: .\templates\profiles\profiles.html:287
+msgid "Voir plus"
+msgstr ""
+
+#: .\templates\profiles\update.html:23
+msgid "Modifier le profil"
+msgstr ""
+
+#: .\templates\users\actiavte.html:6
+msgid "Account Activation"
+msgstr ""
+
+#: .\templates\users\actiavte.html:58 .\templates\users\email-welcome.html:46
+msgid "Dear"
+msgstr ""
+
+#: .\templates\users\actiavte.html:59
+msgid ""
+"Pour compléter votre inscription sur Mackdin, veuillez activer votre compte "
+"en cliquant sur le lien de confirmation ci-dessous :"
+msgstr ""
+
+#: .\templates\users\actiavte.html:60
+msgid "Activer mon compte"
+msgstr ""
+
+#: .\templates\users\actiavte.html:61
+msgid ""
+"Veuillez noter que le lien est valable pendant 24 heures. Il est utilisé "
+"pour vérifier votre identité et protéger la sécurité de votre compte."
+msgstr ""
+
+#: .\templates\users\actiavte.html:62
+msgid ""
+"Si vous n'avez pas créé de compte sur notre plateforme, veuillez ignorer cet "
+"e-mail."
+msgstr ""
+
+#: .\templates\users\actiavte.html:64
+msgid ""
+"Pour toute assistance supplémentaire, n'hésitez pas à nous contacter à "
+"l'adresse électronique suivante :"
+msgstr ""
+
+#: .\templates\users\actiavte.html:66
+msgid "Merci et bienvenue chez Mackdin !"
+msgstr ""
+
+#: .\templates\users\actiavte.html:68 .\templates\users\email-welcome.html:52
+msgid "Cordialement,"
+msgstr ""
+
+#: .\templates\users\actiavte.html:68 .\templates\users\email-welcome.html:52
+msgid "L'équipe Mackdin"
+msgstr ""
+
+#: .\templates\users\activate_failed.html:16
+msgid "Oups désolé vous perdu cette page n'existe pas."
+msgstr ""
+
+#: .\templates\users\components\btn-social-auth.html:10
+#: .\templates\users\components\btn-social-auth.html:14
+#: .\templates\users\components\btn-social-auth.html:18
+msgid "Continue avec"
+msgstr ""
+
+#: .\templates\users\email-welcome.html:47
+msgid ""
+"Bienvenue sur Mackdin ! Nous sommes ravis de vous compter parmi nos nouveaux "
+"membres."
+msgstr ""
+
+#: .\templates\users\email-welcome.html:48
+msgid "Merci de rejoindre notre réseau social professionnel."
+msgstr ""
+
+#: .\templates\users\email-welcome.html:50
+msgid ""
+"Si vous avez des questions ou avez besoin d'aide, n'hésitez pas à nous "
+"contacter à l'adresse suivante :"
+msgstr ""
+
+#: .\templates\users\password_reset.html:10
+#: .\templates\users\password_reset.html:15
+msgid "Réinitialisation du mot de passe"
+msgstr ""
+
+#: .\templates\users\password_reset.html:31
+#: .\templates\users\password_reset_form.html:39
+#: .\templates\users\sign_in.html:53 .\templates\users\sign_up.html:60
+msgid "Revenir à la page d'accueil"
+msgstr ""
+
+#: .\templates\users\password_reset_done.html:11
+#: .\templates\users\password_reset_done.html:16
+msgid "Réinitialisation du mot de passe envoyée"
+msgstr ""
+
+#: .\templates\users\password_reset_done.html:17
+msgid ""
+"Nous vous avons envoyé par email des instructions pour définir votre mot de "
+"passe, si un compte existe avec l'e-mail que vous avez saisi. Vous devriez "
+"les recevoir sous peu."
+msgstr ""
+
+#: .\templates\users\password_reset_done.html:20
+msgid ""
+"Si vous ne recevez pas d'e-mail, assurez-vous d'avoir entré l'adresse avec "
+"laquelle vous vous êtes inscrit et vérifiez votre dossier spam."
+msgstr ""
+
+#: .\templates\users\password_reset_form.html:11
+#: .\templates\users\password_reset_form.html:16
+msgid "Entrez un nouveau mot de passe"
+msgstr ""
+
+#: .\templates\users\password_reset_form.html:26
+msgid "Nouveau mot de passe"
+msgstr ""
+
+#: .\templates\users\password_reset_form.html:33
+msgid "Confirmer le nouveau mot de passe"
+msgstr ""
+
+#: .\templates\users\password_reset_send.html:10
+#: .\templates\users\password_reset_send.html:15
+msgid "Réinitialisation du mot de passe terminée"
+msgstr ""
+
+#: .\templates\users\password_reset_send.html:16
+msgid ""
+"Votre mot de passe a été bien défini. Vous pouvez continuer et vous "
+"connecter maintenant."
+msgstr ""
+
+#: .\templates\users\sign_in.html:11 .\templates\users\sign_in.html:17
+#: .\templates\users\sign_up.html:59
+msgid "S'identifier"
+msgstr ""
+
+#: .\templates\users\sign_in.html:32 .\templates\users\sign_up.html:41
+msgid "ou"
+msgstr ""
+
+#: .\templates\users\sign_in.html:49
+msgid "Mot de passe oublié ?"
+msgstr ""
+
+#: .\templates\users\sign_in.html:52
+msgid "Vous n'êtes pas encore inscrit ?"
+msgstr ""
+
+#: .\templates\users\sign_in.html:52 .\templates\users\sign_up.html:11
+#: .\templates\users\sign_up.html:17
+msgid "S'inscrire"
+msgstr ""
+
+#: .\templates\users\sign_up.html:59
+msgid "Vous avez déjà un compte ?"
+msgstr ""

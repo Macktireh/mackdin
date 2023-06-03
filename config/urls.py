@@ -1,12 +1,14 @@
 from django.contrib import admin
 from django.urls import path, include, re_path
+from django.conf.urls.i18n import i18n_patterns
 from django.conf import settings
 from django.conf.urls.static import static
 from django.views.static import serve
 
 
-urlpatterns = [
+urlpatterns = i18n_patterns(
     path(f'admin/mackdin/{settings.UID_ADMIN}/', admin.site.urls, name='admin'),
+    path("admin/i18n/", include("rosetta.urls")),
     path('', include('apps.home.urls')),
     path('accounts/', include('apps.users.urls')),
     path('accounts/', include('allauth.urls')),
@@ -16,7 +18,7 @@ urlpatterns = [
     path('mynetwork/', include('apps.friends.urls')),
     path('notifications/', include('apps.notifications.urls')),
     path('messagerie/', include('apps.chat.urls')),
-]
+)
 
 if settings.ENV == 'development':
     if settings.DEBUG:

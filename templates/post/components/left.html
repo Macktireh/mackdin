@@ -1,6 +1,7 @@
 {% load static %}
 {% load humanize %}
 {% load cloudinary %}
+{% load i18n %}
 
 
 <div class="left-sub-container">
@@ -43,7 +44,7 @@
 
   <div class="post-left-statistic-profile">
     <div class="post-left-num-vue statistic">
-      <span class="post-left-statistic-text">Vues de votre profil</span>
+      <span class="post-left-statistic-text">{% translate "Vues de votre profil" %}</span>
       <span class="post-left-statistic-num">
         {% if request.user.profile.number_views %}
         {{request.user.profile.number_views}}
@@ -53,7 +54,7 @@
       </span>
     </div>
     <div class="post-left-num-post statistic">
-      <span class="post-left-statistic-text">Nombre de post</span>
+      <span class="post-left-statistic-text">{% translate "Nombre de post" %}</span>
       <span class="post-left-statistic-num">{{request.user.post.count}}</span>
     </div>
   </div>

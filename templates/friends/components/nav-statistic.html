@@ -1,13 +1,14 @@
 {% load static %}
+{% load i18n %}
 
 <div class="gestion-network">
-    <h4>Gérer mon réseau</h4>
+    <h4>{% translate "Gérer mon réseau" %}</h4>
 </div>
 
 <div class="container-nav-statistics">
     <!-- Plus de suggestions pour vous -->
     <a class="nav-link-statistc {% if page == 'list_not_friends' %}nav-link-statistc-active{% endif %}" href="{% url 'friends:my_network' %}">
-        <span class="text">Réseau</span>
+        <span class="text">{% translate "Réseau" %}</span>
         <span class="num"></span>
     </a>
     <a class="nav-link-statistc {% if page == 'my_friends' %}nav-link-statistc-active{% endif %}" href="{% url 'friends:my_friends' %}">
@@ -15,16 +16,16 @@
         <span class="num">{{num_friends}}</span>
     </a>
     <a class="nav-link-statistc {% if page == 'invitation_received' %}nav-link-statistc-active{% endif %}" href="{% url 'friends:invitation_received' %}">
-        <span class="text">Invitation reçu</span>
+        <span class="text">{% translate "Invitations reçues" %}</span>
         <span class="num">{{num_invitation_received}}</span>
     </a>
     <a class="nav-link-statistc {% if page == 'invitation_send' %}nav-link-statistc-active{% endif %}" href="{% url 'friends:invitation_send' %}">
-        <span class="text">Invitation envoyer</span>
+        <span class="text">{% translate "Invitations envoyées" %}</span>
         <span class="num">{{num_invitation_send}}</span>
     </a>
 
     <a class="nav-link-statistc">
-        <span class="text">Evénements</span>
+        <span class="text">{% translate "Evénements" %}</span>
     </a>
     <a class="nav-link-statistc">
         <span class="text">Pages</span>

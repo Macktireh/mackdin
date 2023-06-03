@@ -1,4 +1,5 @@
 {% load static %}
+{% load i18n %}
 
 <div class="nav-container">
   <div>
@@ -14,14 +15,14 @@
           <div class="nav-text">
             <img class="nav-img" src="{% static 'home/svg/user.svg' %}" alt="">
             <span class="animation {% if start_animation == 'sign_in' %}start-animation{% endif %}"></span>
-            <span class="nav-text-span">Connexion</span>
+            <span class="nav-text-span">{% translate 'Connexion' %}</span>
           </div>
         </a>
         <a href="{% url 'sign_up' %}" class="nav-item">
           <div class="nav-text">
             <img class="nav-img" src="{% static 'home/svg/signup.svg' %}" alt="">
             <span class="animation {% if start_animation == 'sign_up' %}start-animation{% endif %}"></span>
-            <span>S'inscrire</span>
+            <span>{% translate 'Inscription' %}</span>
           </div>
         </a>
         {% endif %}

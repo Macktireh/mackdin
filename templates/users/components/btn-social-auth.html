@@ -1,14 +1,20 @@
 {% load static %}
 {% load socialaccount %}
+{% load i18n %}
+{% providers_media_js %}
 
 
 <div class="social-auth-container">
   <a href="{% provider_login_url 'google' %}" id="google" class="btn-link">
     <img class="ml" src="{% static 'home/svg/google.svg' %}" alt="Compte google">
-    <span>Continue avec Google</span>
+    <span>{% translate "Continue avec" %} Google</span>
+  </a>
+  <a href="{% provider_login_url 'facebook' method='js_sdk' %}" id="github" class="btn-link">
+    <img class="ml" src="{% static 'home/svg/facebook.svg' %}" alt="Compte facebook">
+    <span>{% translate "Continue avec" %} Facebook</span>
   </a>
   <a href="{% provider_login_url 'github' %}" id="github" class="btn-link">
     <img class="ml" src="{% static 'home/svg/github.svg' %}" alt="Compte github">
-    <span>Continue avec GitHub</span>
+    <span>{% translate "Continue avec" %} GitHub</span>
   </a>
 </div>

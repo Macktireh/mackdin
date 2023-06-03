@@ -30,7 +30,8 @@ var AppLikeComment = function (_React$Component) {
       isLikeComment: false,
       nberLikeCommnet: 0,
       page: 2,
-      canRequest: true
+      canRequest: true,
+      lang: "fr"
     };
 
     _this.handleGetComment = _this.handleGetComment.bind(_this);
@@ -52,6 +53,8 @@ var AppLikeComment = function (_React$Component) {
     key: "componentDidMount",
     value: function componentDidMount() {
       this.handleGetComment();
+      var lang = document.getElementById("language_code").value;
+      this.setState({ lang: lang });
     }
   }, {
     key: "configFetch",
@@ -170,7 +173,7 @@ var AppLikeComment = function (_React$Component) {
       var formData = new FormData();
       formData.append("comment_id", comment_id);
 
-      fetch(this.configFetch("/comment/like/", "POST", formData)).then(function (res) {
+      fetch(this.configFetch("/" + this.state.lang + "/comment/like/", "POST", formData)).then(function (res) {
         return res.json();
       }).then(function (res) {
         _this4.handlIsLike("comment", res.value);
@@ -185,7 +188,7 @@ var AppLikeComment = function (_React$Component) {
       var formData = new FormData();
       formData.append("post_id", this.state.postId);
 
-      fetch(this.configFetch("/feed/like/", "POST", formData)).then(function (res) {
+      fetch(this.configFetch("/" + this.state.lang + "/feed/like/", "POST", formData)).then(function (res) {
         return res.json();
       }).then(function (res) {
         _this5.handlIsLike("post", res.value);
@@ -251,8 +254,8 @@ var AppLikeComment = function (_React$Component) {
 
       var formData = new FormData();
       formData.append("id_comment", id);
-      if (window.confirm("Vous êtes sûr de vouloir supprimer")) {
-        fetch(this.configFetch("/comment/delete-comment/", "POST", formData)).then(function () {
+      if (window.confirm("" + (this.props.lang === "fr" ? "Vous êtes sûr de vouloir supprimer" : "Are you sure you want to delete"))) {
+        fetch(this.configFetch("/" + this.state.lang + "/comment/delete-comment/", "POST", formData)).then(function () {
           var filteredListComments = _this8.state.listComments.filter(function (t) {
             return t.id !== id;
           });
@@ -275,13 +278,15 @@ var AppLikeComment = function (_React$Component) {
           React.createElement(InfoLikeComment, {
             nberComment: this.state.nberComment,
             nberLike: this.state.nberLike,
-            handleClickToggle: this.handleClickToggle
+            handleClickToggle: this.handleClickToggle,
+            lang: this.state.lang
           }),
           React.createElement("hr", null),
           React.createElement(BtnLikeCommentShare, {
             handleClickToggle: this.handleClickToggle,
             handleLikeorUnlike: this.handleLikeorUnlike,
-            isLike: this.state.isLike
+            isLike: this.state.isLike,
+            lang: this.state.lang
           })
         ),
         React.createElement(
@@ -295,7 +300,8 @@ var AppLikeComment = function (_React$Component) {
           React.createElement(InputForm, {
             postId: this.state.postId,
             imgProfile: this.state.imgProfile,
-            handleAddComment: this.handleAddComment
+            handleAddComment: this.handleAddComment,
+            lang: this.state.lang
           }),
           React.createElement(
             "div",

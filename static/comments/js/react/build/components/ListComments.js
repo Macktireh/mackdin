@@ -71,7 +71,7 @@ var ListComments = function (_React$Component) {
                 this.props.comment.comment_author === this.props.comment.post_author ? React.createElement(
                   "span",
                   { id: "author_post_and_comment" },
-                  "Auteur"
+                  this.props.lang === "fr" ? "Auteur" : "Author"
                 ) : null
               ),
               React.createElement(
@@ -117,7 +117,7 @@ var ListComments = function (_React$Component) {
                   },
                   disabled: this.state.msg === ""
                 },
-                "Valider"
+                this.props.lang === "fr" ? "Valider" : "Save"
               ),
               React.createElement(
                 "div",
@@ -127,7 +127,7 @@ var ListComments = function (_React$Component) {
                     return _this2.handleIsEditingComment();
                   }
                 },
-                "Annuler"
+                this.props.lang === "fr" ? "Annuler" : "Cancel"
               )
             )
           ) : React.createElement(
@@ -148,7 +148,7 @@ var ListComments = function (_React$Component) {
                 return _this2.props.handleLikeorUnlikeComment(_this2.props.comment.id);
               }
             },
-            "J'aime"
+            this.props.lang === "fr" ? "J'aime" : "Like"
           ),
           React.createElement("span", { className: "sep" }),
           React.createElement(
@@ -165,7 +165,7 @@ var ListComments = function (_React$Component) {
           React.createElement(
             "span",
             { className: "comment-like" },
-            "R\xE9pondre"
+            this.props.lang === "fr" ? "Répondre" : "Reply"
           )
         )
       );

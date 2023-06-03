@@ -16,6 +16,7 @@ class AppLikeComment extends React.Component {
       nberLikeCommnet: 0,
       page: 2,
       canRequest: true,
+      lang: "fr",
     };
 
     this.handleGetComment = this.handleGetComment.bind(this);
@@ -34,6 +35,8 @@ class AppLikeComment extends React.Component {
 
   componentDidMount() {
     this.handleGetComment();
+    const lang = document.getElementById("language_code").value;
+    this.setState({ lang: lang });
   }
 
   configFetch(url, method, data) {
@@ -136,7 +139,7 @@ class AppLikeComment extends React.Component {
     const formData = new FormData();
     formData.append("comment_id", comment_id);
 
-    fetch(this.configFetch("/comment/like/", "POST", formData))
+    fetch(this.configFetch(`/${this.state.lang}/comment/like/`, "POST", formData))
       .then((res) => res.json())
       .then((res) => {
         this.handlIsLike("comment", res.value);
@@ -148,7 +151,7 @@ class AppLikeComment extends React.Component {
     const formData = new FormData();
     formData.append("post_id", this.state.postId);
 
-    fetch(this.configFetch("/feed/like/", "POST", formData))
+    fetch(this.configFetch(`/${this.state.lang}/feed/like/`, "POST", formData))
       .then((res) => res.json())
       .then((res) => {
         this.handlIsLike("post", res.value);
@@ -207,9 +210,9 @@ class AppLikeComment extends React.Component {
   handleDeleteComment(id) {
     const formData = new FormData();
     formData.append("id_comment", id);
-    if (window.confirm("Vous êtes sûr de vouloir supprimer")) {
+    if (window.confirm(`${this.props.lang === "fr" ? "Vous êtes sûr de vouloir supprimer" : "Are you sure you want to delete"}`)) {
       fetch(
-        this.configFetch("/comment/delete-comment/", "POST", formData)
+        this.configFetch(`/${this.state.lang}/comment/delete-comment/`, "POST", formData)
       ).then(() => {
         const filteredListComments = this.state.listComments.filter(
           (t) => t.id !== id
@@ -228,12 +231,14 @@ class AppLikeComment extends React.Component {
             nberComment={this.state.nberComment}
             nberLike={this.state.nberLike}
             handleClickToggle={this.handleClickToggle}
+            lang={this.state.lang}
           />
           <hr />
           <BtnLikeCommentShare
             handleClickToggle={this.handleClickToggle}
             handleLikeorUnlike={this.handleLikeorUnlike}
             isLike={this.state.isLike}
+            lang={this.state.lang}
           />
         </div>
 
@@ -251,6 +256,7 @@ class AppLikeComment extends React.Component {
             postId={this.state.postId}
             imgProfile={this.state.imgProfile}
             handleAddComment={this.handleAddComment}
+            lang={this.state.lang}
           />
           <div className="container-global-comment-list">
             {this.state.listComments.length > 0 &&

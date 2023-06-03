@@ -6,6 +6,7 @@ from django.urls import reverse
 from django.utils.http import urlsafe_base64_decode
 from django.utils.encoding import force_str
 from django.contrib.sites.shortcuts import get_current_site
+from django.utils.translation import gettext_lazy as _
 
 from apps.users.forms import Sign_UpForm
 from apps.users.token import generate_token
@@ -23,7 +24,7 @@ def sign_up(request):
             # user.is_email_verified = True
             user.save()
             
-            msg = f"Merci de votre incription. Veuillez activer votre adresse email afin d'accéder à votre compte Mackdin. \n Nous avons envoyé un email à {user.email} \n pour activer votre compte Mackdin. \n Si vous n'avez pas reçu l'email, veuillez vérifier votre dossier spam."
+            msg = f"""{_('Merci de votre incription. Veuillez activer votre adresse e-mail pour accéder à votre compte Mackdin')}. \n {_('Nous avons envoyé un email à %(email)s')} % {user.email} \n {_('pour activer votre compte Mackdin')}. \n {("Si vous n'avez pas reçu l'email, veuillez vérifier votre dossier spam.")}"""
             # msg: str = f"Votre compte a été créé et est prêt à être utilisé !"
             
             messages.success(request, msg)
@@ -32,7 +33,7 @@ def sign_up(request):
             send_email_activation_account(user, request)
             return redirect('sign_in')
         else:
-            messages.error(request, "Merci de bien remplir les informations correctement.")
+            messages.error(request, _("Merci de bien remplir les informations correctement."))
     else:
         user_form = Sign_UpForm()
     template = 'users/sign_up.html'
@@ -49,7 +50,7 @@ def sign_in(request):
         user = authenticate(email=email, password=password)
         if user:
             if not user.is_email_verified:
-                messages.warning(request, "Merci de confirmer d'abord votre adresse email.")
+                messages.warning(request, _("Merci de confirmer d'abord votre adresse email."))
                 return redirect('sign_in')
             else:
                 login(request, user)
@@ -57,7 +58,7 @@ def sign_in(request):
         # elif User.objects.filter(email=email).exists():
         #     messages.error(request, "ERREUR : mot de passe ou adresse email est incorrect.")
         else:
-            messages.error(request, "ERREUR : adresse email ou mot de passe incorrect.")
+            messages.error(request, _("ERREUR : adresse email ou mot de passe incorrect."))
             # messages.error(request, "ERREUR : Il semble que vous n'avez pas compte avec cette adresse email")
     template = 'users/sign_in.html'
     return render(request, template)
@@ -81,7 +82,7 @@ def activate_user(request, uidb64, token):
         user.is_email_verified = True
         user.save()
         send_email_activation_account_success(user, request)
-        messages.success(request, "Votre email est vérifié avec succès. Vous pouvez vous connecter.")
+        messages.success(request, _("Votre email est vérifié avec succès. Vous pouvez vous connecter."))
         return redirect(reverse('sign_in'))
     template = 'users/activate_failed.html'
     context = {'user': user}

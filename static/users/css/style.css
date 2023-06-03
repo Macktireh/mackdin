@@ -38,6 +38,26 @@ body {
   background: linear-gradient(120deg, #2c3e50, #34495e);
   font-family: "Poppins", sans-serif;
 }
+@media screen and (max-width: 500px) {
+  body {
+    height: 100%;
+    width: 100%;
+  }
+}
+
+@media screen and (max-width: 500px) {
+  .body-container {
+    height: 100%;
+    width: 100%;
+  }
+}
+
+@media screen and (max-width: 500px) {
+  main {
+    height: 100%;
+    width: 100%;
+  }
+}
 
 .message-success {
   margin: 1rem;
@@ -64,15 +84,21 @@ body {
 }
 
 .form-container {
-  width: 400px;
+  width: 100%;
+  max-width: 460px;
   background: #f1f1f1;
   border-radius: 10px;
   box-shadow: 0 0 5px #34495e;
-  margin: 1.5rem 0;
+}
+@media screen and (max-width: 500px) {
+  .form-container {
+    height: 100%;
+    width: 100%;
+  }
 }
 .form-container .title-form {
   text-align: center;
-  padding: 15px 0;
+  padding: 8px 0;
   border-bottom: 1px solid silver;
 }
 .form-container .title-form .p-info {
@@ -132,6 +158,11 @@ body {
 
 form {
   padding: 0 40px;
+}
+@media screen and (max-width: 500px) {
+  form {
+    padding: 0 20px;
+  }
 }
 form .txt_field {
   position: relative;

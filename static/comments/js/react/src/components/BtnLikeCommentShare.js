@@ -16,18 +16,18 @@ class BtnLikeCommentShare extends React.Component {
             }
           />
           <span style={{ color: this.props.isLike ? "#1abc9c" : "#f1f1f1" }}>
-            J'aime
+            {this.props.lang === "fr" ? "J'aime" : "Like"}
           </span>
         </button>
 
         <button onClick={() => this.props.handleClickToggle()}>
           <img src="/static/home/svg/comment.svg" />
-          <span>Commenter</span>
+          <span>{this.props.lang === "fr" ? "Commenter" : "Comment"}</span>
         </button>
 
         <button>
           <img src="/static/home/svg/share.svg" />
-          <span>Partager</span>
+          <span>{this.props.lang === "fr" ? "Partager" : "Share"}</span>
         </button>
       </div>
     );
