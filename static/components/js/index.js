@@ -100,15 +100,22 @@ function paginatorWithAjax(
 
 const lang_ = document.getElementById("language_code").value;
 const langLink = document.getElementById("language_code_link");
-langLink.addEventListener("click", () => {
-  console.log("lang_", lang_);
-  let url = location.href.split("?")[0];
-  // console.log("1 - url:", url);
-  if (lang_ === "fr") {
-    url = url.replace("fr", "en");
-  } else {
-    url = url.replace("en", "fr");
-  }
-  // console.log("2 - url:", url);
-  window.location = url + "?timestamp=" + (new Date()).getTime();
-})
+
+if (lang_ === "fr") {
+  langLink.href = location.href.replace("fr", "en");
+} else {
+  langLink.href = location.href.replace("en", "fr");
+}
+
+// langLink.addEventListener("click", () => {
+//   console.log("lang_", lang_);
+//   let url = location.href.split("?")[0];
+//   // console.log("1 - url:", url);
+//   if (lang_ === "fr") {
+//     url = url.replace("fr", "en");
+//   } else {
+//     url = url.replace("en", "fr");
+//   }
+//   // console.log("2 - url:", url);
+//   window.location = url + "?timestamp=" + (new Date()).getTime();
+// })
