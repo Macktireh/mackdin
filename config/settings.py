@@ -251,8 +251,8 @@ AUTH_USER_MODEL = "users.CustomUser"
 # Config Send Email
 EMAIL_BACKEND = "django.core.mail.backends.smtp.EmailBackend"
 EMAIL_HOST = "smtp.gmail.com"
-EMAIL_HOST_USER = get_env_variable("EMAIL_HOST_USER", raise_error=True)
-EMAIL_HOST_PASSWORD = get_env_variable("EMAIL_HOST_PASSWORD", raise_error=True)
+EMAIL_HOST_USER = get_env_variable("EMAIL_HOST_USER", raise_error=False)
+EMAIL_HOST_PASSWORD = get_env_variable("EMAIL_HOST_PASSWORD", raise_error=False)
 EMAIL_PORT = 587
 EMAIL_USE_TLS = True
 
@@ -260,9 +260,9 @@ EMAIL_USE_TLS = True
 # config cloudinary for production
 # if ENV == 'production':
 CLOUDINARY_STORAGE = {
-    "CLOUD_NAME": get_env_variable("CLOUDINARY_CLOUD_NAME", raise_error=True),
-    "API_KEY": get_env_variable("CLOUDINARY_API_KEY", raise_error=True),
-    "API_SECRET": get_env_variable("CLOUDINARY_API_SECRET", raise_error=True),
+    "CLOUD_NAME": get_env_variable("CLOUDINARY_CLOUD_NAME", raise_error=False),
+    "API_KEY": get_env_variable("CLOUDINARY_API_KEY", raise_error=False),
+    "API_SECRET": get_env_variable("CLOUDINARY_API_SECRET", raise_error=False),
 }
 
 
