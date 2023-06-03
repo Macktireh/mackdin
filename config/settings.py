@@ -15,7 +15,7 @@ BASE_DIR = Path(__file__).resolve().parent.parent
 load = load_dotenv(os.path.join(BASE_DIR, ".env"))
 
 
-def get_env_variable(var_name: str, default: None | str = None, raise_error: bool = True) -> str:
+def get_env_variable(var_name: str, default: Union[None, str] = None, raise_error: bool = True) -> str:
     try:
         if os.environ[var_name]:
             return os.environ[var_name]
