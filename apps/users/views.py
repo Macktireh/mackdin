@@ -27,14 +27,9 @@ def sign_up(request):
             user.set_password(user.password)
             # user.is_email_verified = True
             user.save()
-
-            msg_ = _(
-                "pour activer votre compte Mackdin.Si vous n'avez pas reçu l'email, veuillez vérifier votre dossier spam."
-            )
-            _msg = _(
-                "Merci de votre incription. Veuillez activer votre adresse e-mail pour accéder à votre compte Mackdin. Nous avons envoyé un email à %(email)s"
+            msg = _(
+                "Merci de votre incription. Veuillez activer votre adresse e-mail pour accéder à votre compte Mackdin. Nous avons envoyé un email à %(email)s pour activer votre compte Mackdin.Si vous n'avez pas reçu l'email, veuillez vérifier votre dossier spam."
             ) % {"email": user.email}
-            msg = f"{_msg} {msg_}"
             messages.success(request, msg)
 
             mail_content = {
