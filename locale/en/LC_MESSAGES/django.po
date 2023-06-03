@@ -8,8 +8,8 @@ msgid ""
 msgstr ""
 "Project-Id-Version: PACKAGE VERSION\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2023-06-03 03:22+0200\n"
-"PO-Revision-Date: 2023-06-03 03:26+0200\n"
+"POT-Creation-Date: 2023-06-03 22:32+0200\n"
+"PO-Revision-Date: 2023-06-03 22:33+0200\n"
 "Last-Translator: Charco AD <admin@gmail.com>\n"
 "Language-Team: LANGUAGE <LL@li.org>\n"
 "Language: \n"
@@ -21,11 +21,11 @@ msgstr ""
 
 #: .\apps\friends\models.py:17
 msgid "send"
-msgstr ""
+msgstr "send"
 
 #: .\apps\friends\models.py:18
 msgid "accepted"
-msgstr ""
+msgstr "accepted"
 
 #: .\apps\friends\views.py:103
 msgid "Personnes à qui vous pourriez envoyer une invitation"
@@ -53,31 +53,31 @@ msgstr "No invitations sent that are in the process of being accepted"
 
 #: .\apps\notifications\models.py:16
 msgid "Like Post"
-msgstr ""
+msgstr "Like Post"
 
 #: .\apps\notifications\models.py:17
 msgid "Add Post"
-msgstr ""
+msgstr "Add Post"
 
 #: .\apps\notifications\models.py:18
 msgid "Add Comment"
-msgstr ""
+msgstr "Add Comment"
 
 #: .\apps\notifications\models.py:19
 msgid "invitation accepted"
-msgstr ""
+msgstr "invitation accepted"
 
 #: .\apps\notifications\models.py:20
 msgid "invitation send"
-msgstr ""
+msgstr "invitation send"
 
 #: .\apps\notifications\models.py:21
 msgid "seen profile"
-msgstr ""
+msgstr "seen profile"
 
 #: .\apps\notifications\models.py:23
 msgid "type_notif"
-msgstr ""
+msgstr "type_notif"
 
 #: .\apps\post\forms.py:10
 msgid "Ajouter un post"
@@ -89,59 +89,59 @@ msgstr "Please enter a message or upload an image"
 
 #: .\apps\post\models.py:14
 msgid "code post"
-msgstr ""
+msgstr "code post"
 
 #: .\apps\post\models.py:15
 msgid "message"
-msgstr ""
+msgstr "message"
 
 #: .\apps\post\models.py:19
 msgid "image"
-msgstr ""
+msgstr "image"
 
 #: .\apps\post\models.py:22
 msgid "video"
-msgstr ""
+msgstr "video"
 
 #: .\apps\post\models.py:23
 msgid "date created"
-msgstr ""
+msgstr "date created"
 
 #: .\apps\post\models.py:24
 msgid "date updated"
-msgstr ""
+msgstr "date updated"
 
 #: .\apps\post\models.py:40
 msgid "Post"
-msgstr ""
+msgstr "Post"
 
 #: .\apps\post\models.py:41
 msgid "Posts"
-msgstr ""
+msgstr "Posts"
 
 #: .\apps\profiles\admin.py:33 .\apps\users\admin.py:23
 msgid "Personal info"
-msgstr ""
+msgstr "Personal info"
 
 #: .\apps\profiles\admin.py:52
 msgid "Location"
-msgstr ""
+msgstr "Location"
 
 #: .\apps\profiles\admin.py:64
 msgid "Description"
-msgstr ""
+msgstr "Description"
 
 #: .\apps\profiles\admin.py:66
 msgid "Social network"
-msgstr ""
+msgstr "Social network"
 
 #: .\apps\profiles\admin.py:76
 msgid "Friends"
-msgstr ""
+msgstr "Friends"
 
 #: .\apps\profiles\models.py:16
 msgid "code identifiant"
-msgstr ""
+msgstr "identification code"
 
 #: .\apps\profiles\models.py:17
 msgid "nom d'utilisateur"
@@ -165,23 +165,23 @@ msgstr "cover photo"
 
 #: .\apps\profiles\models.py:28
 msgid "is updating img profile"
-msgstr ""
+msgstr "is updating img profile"
 
 #: .\apps\profiles\models.py:29
 msgid "is updating img bg"
-msgstr ""
+msgstr "is updating img bg"
 
 #: .\apps\profiles\models.py:31
 msgid "Masculin"
-msgstr ""
+msgstr "Male"
 
 #: .\apps\profiles\models.py:32
 msgid "Féminin"
-msgstr ""
+msgstr "Female"
 
 #: .\apps\profiles\models.py:34
 msgid "sexe"
-msgstr ""
+msgstr "gender"
 
 #: .\apps\profiles\models.py:35
 msgid "téléphone"
@@ -209,7 +209,7 @@ msgstr "country"
 
 #: .\apps\profiles\models.py:41
 msgid "description"
-msgstr ""
+msgstr "description"
 
 #: .\apps\profiles\models.py:42
 msgid "lien de votre profil linkedin"
@@ -233,23 +233,23 @@ msgstr "Number of profile views"
 
 #: .\apps\profiles\models.py:48
 msgid "date de modification"
-msgstr ""
+msgstr "modification date"
 
 #: .\apps\profiles\models.py:67
 msgid "Profile"
-msgstr ""
+msgstr "Profile"
 
 #: .\apps\profiles\models.py:68
 msgid "Profiles"
-msgstr ""
+msgstr "Profiles"
 
 #: .\apps\users\admin.py:24
 msgid "Permissions"
-msgstr ""
+msgstr "Permissions"
 
 #: .\apps\users\admin.py:27
 msgid "Important dates"
-msgstr ""
+msgstr "Important dates"
 
 #: .\apps\users\forms.py:29
 msgid "Prénom"
@@ -301,77 +301,98 @@ msgstr "Passwords don't match"
 
 #: .\apps\users\managers.py:14
 msgid "The Email must be set"
-msgstr ""
+msgstr "The Email must be set"
 
 #: .\apps\users\managers.py:31
 msgid "Superuser must have is_staff=True."
-msgstr ""
+msgstr "Superuser must have is_staff=True."
 
 #: .\apps\users\managers.py:33
 msgid "Superuser must have is_superuser=True."
-msgstr ""
+msgstr "Superuser must have is_superuser=True."
 
 #: .\apps\users\models.py:13
 msgid "email address"
-msgstr ""
+msgstr "email address"
 
 #: .\apps\users\models.py:16
 msgid "Required to authenticate"
-msgstr ""
+msgstr "Required to authenticate"
 
 #: .\apps\users\models.py:19
 msgid "email verified"
-msgstr ""
+msgstr "email verified"
 
 #: .\apps\users\models.py:21
 msgid "Specifies whether the user should verify their email address."
-msgstr ""
+msgstr "Specifies whether the user should verify their email address."
 
 #: .\apps\users\models.py:24
 msgid "last date logout"
-msgstr ""
+msgstr "last date logout"
 
 #: .\apps\users\models.py:27
 msgid "last date logout user"
-msgstr ""
+msgstr "last date logout user"
 
 #: .\apps\users\models.py:35
 msgid "User"
-msgstr ""
+msgstr "User"
 
 #: .\apps\users\models.py:36
 msgid "Users"
-msgstr ""
+msgstr "Users"
 
 #: .\apps\users\signals.py:16
 msgid "Bienvenue sur Mackdin !"
 msgstr "Welcome to Mackdin!"
 
-#: .\apps\users\views.py:36
+#: .\apps\users\views.py:32
+msgid ""
+"pour activer votre compte Mackdin.Si vous n'avez pas reçu l'email, veuillez "
+"vérifier votre dossier spam."
+msgstr ""
+"to activate your Mackdin account. If you haven't received the e-mail, please"
+" check your spam folder."
+
+#: .\apps\users\views.py:35
+#, python-format
+msgid ""
+"Merci de votre incription. Veuillez activer votre adresse e-mail pour "
+"accéder à votre compte Mackdin. Nous avons envoyé un email à %(email)s"
+msgstr ""
+"Thank you for registering. Please activate your e-mail address to access "
+"your Mackdin account. We have sent an email to %(email)s"
+
+#: .\apps\users\views.py:47
+msgid "Confirmez l'adresse e-mail de votre compte Mackdin"
+msgstr "Confirm your Mackdin account e-mail address"
+
+#: .\apps\users\views.py:55
 msgid "Merci de bien remplir les informations correctement."
 msgstr "Please fill in the information correctly."
 
-#: .\apps\users\views.py:53
+#: .\apps\users\views.py:74
 msgid "Merci de confirmer d'abord votre adresse email."
 msgstr "Please confirm your email address first."
 
-#: .\apps\users\views.py:61
+#: .\apps\users\views.py:84
 msgid "ERREUR : adresse email ou mot de passe incorrect."
 msgstr "ERROR: incorrect email address or password."
 
-#: .\apps\users\views.py:85
+#: .\apps\users\views.py:111
 msgid "Votre email est vérifié avec succès. Vous pouvez vous connecter."
 msgstr "Your email has been successfully verified. You can now log in."
 
 #: .\config\settings.py:208
 msgid "French"
-msgstr ""
+msgstr "Français"
 
 #: .\config\settings.py:209
 msgid "English"
-msgstr ""
+msgstr "Anglais"
 
-#: .\templates\chat\chat.html:7 .\templates\home\components\navbar2.html:49
+#: .\templates\chat\chat.html:7 .\templates\home\components\navbar2.html:52
 msgid "Messagerie"
 msgstr "Messaging"
 
@@ -388,7 +409,7 @@ msgid "En ligne maintenant"
 msgstr "Online now"
 
 #: .\templates\chat\components\list_chatroom.html:52
-#: .\templates\home\components\navbar2.html:81
+#: .\templates\home\components\navbar2.html:84
 msgid "Vous"
 msgstr "you"
 
@@ -419,7 +440,7 @@ msgid "Gérer mon réseau"
 msgstr "Manage my network"
 
 #: .\templates\friends\components\nav-statistic.html:11
-#: .\templates\home\components\navbar2.html:41
+#: .\templates\home\components\navbar2.html:44
 msgid "Réseau"
 msgstr "Network"
 
@@ -435,21 +456,32 @@ msgstr "Invitations sent"
 msgid "Evénements"
 msgstr "Events"
 
-#: .\templates\home\components\navbar-home.html:18
-#: .\templates\home\components\navbar2.html:19
+#: .\templates\home\components\navbar-home.html:30
+#: .\templates\home\components\navbar2.html:21
 msgid "Connexion"
 msgstr "Connection"
 
-#: .\templates\home\components\navbar-home.html:25
-#: .\templates\home\components\navbar2.html:26
+#: .\templates\home\components\navbar-home.html:37
+#: .\templates\home\components\navbar-home.html:44
+#: .\templates\home\components\navbar2.html:28
 msgid "Inscription"
 msgstr "Registration"
 
-#: .\templates\home\components\navbar2.html:34
+#: .\templates\home\components\navbar2.html:37
 msgid "Accueil"
 msgstr "Home"
 
-#: .\templates\home\components\navbar2.html:99
+#: .\templates\home\components\navbar2.html:102
+#| msgid "Traduire en"
+msgid "Traduire en Anglais"
+msgstr "Translate into English"
+
+#: .\templates\home\components\navbar2.html:102
+#| msgid "Traduire en"
+msgid "Traduire en Français"
+msgstr "Translate into French"
+
+#: .\templates\home\components\navbar2.html:106
 msgid "Déconnexion"
 msgstr "Logout"
 
@@ -553,7 +585,6 @@ msgid "Fil d'actualité"
 msgstr "feed"
 
 #: .\templates\post\post_list.html:48
-#| msgid "Fil d'actualité"
 msgid "Actualités"
 msgstr "News"
 
@@ -585,15 +616,11 @@ msgstr "See more"
 msgid "Modifier le profil"
 msgstr "Modify profile"
 
-#: .\templates\users\actiavte.html:6
-msgid "Account Activation"
-msgstr "Activation du compte"
+#: .\templates\users\actiavte.html:68 .\templates\users\email-welcome.html:46
+msgid "Chèr(e)"
+msgstr "Dear"
 
-#: .\templates\users\actiavte.html:58 .\templates\users\email-welcome.html:46
-msgid "Dear"
-msgstr "Chèr(e)"
-
-#: .\templates\users\actiavte.html:59
+#: .\templates\users\actiavte.html:70
 msgid ""
 "Pour compléter votre inscription sur Mackdin, veuillez activer votre compte "
 "en cliquant sur le lien de confirmation ci-dessous :"
@@ -601,11 +628,15 @@ msgstr ""
 "To complete your Mackdin registration, please activate your account by "
 "clicking on the confirmation link below:"
 
-#: .\templates\users\actiavte.html:60
+#: .\templates\users\actiavte.html:72
 msgid "Activer mon compte"
 msgstr "Activate my account"
 
-#: .\templates\users\actiavte.html:61
+#: .\templates\users\actiavte.html:73
+msgid "Ou vous pouvez copier le lien ci-dessous dans votre navigateur."
+msgstr "Or you can copy the link below into your browser."
+
+#: .\templates\users\actiavte.html:77
 msgid ""
 "Veuillez noter que le lien est valable pendant 24 heures. Il est utilisé "
 "pour vérifier votre identité et protéger la sécurité de votre compte."
@@ -613,7 +644,7 @@ msgstr ""
 "Please note that the link is valid for 24 hours. It is used to verify your "
 "identity and protect the security of your account."
 
-#: .\templates\users\actiavte.html:62
+#: .\templates\users\actiavte.html:78
 msgid ""
 "Si vous n'avez pas créé de compte sur notre plateforme, veuillez ignorer cet"
 " e-mail."
@@ -621,22 +652,22 @@ msgstr ""
 "If you have not created an account on our platform, please ignore this "
 "e-mail."
 
-#: .\templates\users\actiavte.html:64
+#: .\templates\users\actiavte.html:80
 msgid ""
 "Pour toute assistance supplémentaire, n'hésitez pas à nous contacter à "
 "l'adresse électronique suivante :"
 msgstr ""
 "For further assistance, please contact us at the following e-mail address:"
 
-#: .\templates\users\actiavte.html:66
+#: .\templates\users\actiavte.html:82
 msgid "Merci et bienvenue chez Mackdin !"
 msgstr "Thank you and welcome to Mackdin!"
 
-#: .\templates\users\actiavte.html:68 .\templates\users\email-welcome.html:52
+#: .\templates\users\actiavte.html:84 .\templates\users\email-welcome.html:52
 msgid "Cordialement,"
 msgstr "Best regards,"
 
-#: .\templates\users\actiavte.html:68 .\templates\users\email-welcome.html:52
+#: .\templates\users\actiavte.html:84 .\templates\users\email-welcome.html:52
 msgid "L'équipe Mackdin"
 msgstr "The Mackdin team"
 
@@ -753,6 +784,12 @@ msgstr "Sign up"
 #: .\templates\users\sign_up.html:59
 msgid "Vous avez déjà un compte ?"
 msgstr "Already have an account?"
+
+#~ msgid "Dear"
+#~ msgstr "Dear"
+
+#~ msgid "Account Activation"
+#~ msgstr "Activation du compte"
 
 #~ msgid ""
 #~ "Mot de passe oublié ? Entrez votre adresse email ci-dessous et nous vous "

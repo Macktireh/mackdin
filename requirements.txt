@@ -1,7 +1,8 @@
-django-cloudinary-storage
-dj-database-url
-Django
-django-import-export
+Django==4.2.1
+django-allauth==0.54.0
+django-cloudinary-storage==0.3.0
+django-import-export==3.2.0
+dj-database-url==2.0.0
 gunicorn
 Pillow
 psycopg2-binary

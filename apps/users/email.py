@@ -11,7 +11,6 @@ from django.utils.http import urlsafe_base64_encode
 from django.utils.translation import gettext_lazy as _
 
 
-
 from apps.users.token import generate_token
 
 

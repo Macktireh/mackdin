@@ -8,7 +8,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: PACKAGE VERSION\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2023-06-03 03:22+0200\n"
+"POT-Creation-Date: 2023-06-03 22:32+0200\n"
 "PO-Revision-Date: YEAR-MO-DA HO:MI+ZONE\n"
 "Last-Translator: FULL NAME <EMAIL@ADDRESS>\n"
 "Language-Team: LANGUAGE <LL@li.org>\n"
@@ -344,19 +344,36 @@ msgstr ""
 msgid "Bienvenue sur Mackdin !"
 msgstr ""
 
-#: .\apps\users\views.py:36
+#: .\apps\users\views.py:32
+msgid ""
+"pour activer votre compte Mackdin.Si vous n'avez pas reçu l'email, veuillez "
+"vérifier votre dossier spam."
+msgstr ""
+
+#: .\apps\users\views.py:35
+#, python-format
+msgid ""
+"Merci de votre incription. Veuillez activer votre adresse e-mail pour "
+"accéder à votre compte Mackdin. Nous avons envoyé un email à %(email)s"
+msgstr ""
+
+#: .\apps\users\views.py:47
+msgid "Confirmez l'adresse e-mail de votre compte Mackdin"
+msgstr ""
+
+#: .\apps\users\views.py:55
 msgid "Merci de bien remplir les informations correctement."
 msgstr ""
 
-#: .\apps\users\views.py:53
+#: .\apps\users\views.py:74
 msgid "Merci de confirmer d'abord votre adresse email."
 msgstr ""
 
-#: .\apps\users\views.py:61
+#: .\apps\users\views.py:84
 msgid "ERREUR : adresse email ou mot de passe incorrect."
 msgstr ""
 
-#: .\apps\users\views.py:85
+#: .\apps\users\views.py:111
 msgid "Votre email est vérifié avec succès. Vous pouvez vous connecter."
 msgstr ""
 
@@ -368,7 +385,7 @@ msgstr ""
 msgid "English"
 msgstr ""
 
-#: .\templates\chat\chat.html:7 .\templates\home\components\navbar2.html:49
+#: .\templates\chat\chat.html:7 .\templates\home\components\navbar2.html:52
 msgid "Messagerie"
 msgstr ""
 
@@ -385,7 +402,7 @@ msgid "En ligne maintenant"
 msgstr ""
 
 #: .\templates\chat\components\list_chatroom.html:52
-#: .\templates\home\components\navbar2.html:81
+#: .\templates\home\components\navbar2.html:84
 msgid "Vous"
 msgstr ""
 
@@ -416,7 +433,7 @@ msgid "Gérer mon réseau"
 msgstr ""
 
 #: .\templates\friends\components\nav-statistic.html:11
-#: .\templates\home\components\navbar2.html:41
+#: .\templates\home\components\navbar2.html:44
 msgid "Réseau"
 msgstr ""
 
@@ -432,21 +449,30 @@ msgstr ""
 msgid "Evénements"
 msgstr ""
 
-#: .\templates\home\components\navbar-home.html:18
-#: .\templates\home\components\navbar2.html:19
+#: .\templates\home\components\navbar-home.html:30
+#: .\templates\home\components\navbar2.html:21
 msgid "Connexion"
 msgstr ""
 
-#: .\templates\home\components\navbar-home.html:25
-#: .\templates\home\components\navbar2.html:26
+#: .\templates\home\components\navbar-home.html:37
+#: .\templates\home\components\navbar-home.html:44
+#: .\templates\home\components\navbar2.html:28
 msgid "Inscription"
 msgstr ""
 
-#: .\templates\home\components\navbar2.html:34
+#: .\templates\home\components\navbar2.html:37
 msgid "Accueil"
 msgstr ""
 
-#: .\templates\home\components\navbar2.html:99
+#: .\templates\home\components\navbar2.html:102
+msgid "Traduire en Anglais"
+msgstr ""
+
+#: .\templates\home\components\navbar2.html:102
+msgid "Traduire en Français"
+msgstr ""
+
+#: .\templates\home\components\navbar2.html:106
 msgid "Déconnexion"
 msgstr ""
 
@@ -578,51 +604,51 @@ msgstr ""
 msgid "Modifier le profil"
 msgstr ""
 
-#: .\templates\users\actiavte.html:6
-msgid "Account Activation"
+#: .\templates\users\actiavte.html:68 .\templates\users\email-welcome.html:46
+msgid "Chèr(e)"
 msgstr ""
 
-#: .\templates\users\actiavte.html:58 .\templates\users\email-welcome.html:46
-msgid "Dear"
-msgstr ""
-
-#: .\templates\users\actiavte.html:59
+#: .\templates\users\actiavte.html:70
 msgid ""
 "Pour compléter votre inscription sur Mackdin, veuillez activer votre compte "
 "en cliquant sur le lien de confirmation ci-dessous :"
 msgstr ""
 
-#: .\templates\users\actiavte.html:60
+#: .\templates\users\actiavte.html:72
 msgid "Activer mon compte"
 msgstr ""
 
-#: .\templates\users\actiavte.html:61
+#: .\templates\users\actiavte.html:73
+msgid "Ou vous pouvez copier le lien ci-dessous dans votre navigateur."
+msgstr ""
+
+#: .\templates\users\actiavte.html:77
 msgid ""
 "Veuillez noter que le lien est valable pendant 24 heures. Il est utilisé "
 "pour vérifier votre identité et protéger la sécurité de votre compte."
 msgstr ""
 
-#: .\templates\users\actiavte.html:62
+#: .\templates\users\actiavte.html:78
 msgid ""
 "Si vous n'avez pas créé de compte sur notre plateforme, veuillez ignorer cet "
 "e-mail."
 msgstr ""
 
-#: .\templates\users\actiavte.html:64
+#: .\templates\users\actiavte.html:80
 msgid ""
 "Pour toute assistance supplémentaire, n'hésitez pas à nous contacter à "
 "l'adresse électronique suivante :"
 msgstr ""
 
-#: .\templates\users\actiavte.html:66
+#: .\templates\users\actiavte.html:82
 msgid "Merci et bienvenue chez Mackdin !"
 msgstr ""
 
-#: .\templates\users\actiavte.html:68 .\templates\users\email-welcome.html:52
+#: .\templates\users\actiavte.html:84 .\templates\users\email-welcome.html:52
 msgid "Cordialement,"
 msgstr ""
 
-#: .\templates\users\actiavte.html:68 .\templates\users\email-welcome.html:52
+#: .\templates\users\actiavte.html:84 .\templates\users\email-welcome.html:52
 msgid "L'équipe Mackdin"
 msgstr ""
 

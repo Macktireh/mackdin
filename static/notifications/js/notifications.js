@@ -25,27 +25,27 @@ const api_notif = async (url, element) => {
   return api;
 };
 
-// document.addEventListener("DOMContentLoaded", () => {
-//   setTimeout(() => {
-//     setInterval(() => {
-//       try {
-//         api_notif("/notifications/data/", notif_alerte);
-//         // api_notif("/messagerie/chat-api-notif/", notif_alerte_chat);
-//         // setTimeout(() => {
-//         // }, 5000);
-//       } catch (error) {
-//         api_notif("/notifications/data/", notif_alerte);
-//         // api_notif("/messagerie/chat-api-notif/", notif_alerte_chat);
-//         // setTimeout(() => {
-//         // }, 5000);
-//       }
-//     }, 3000)
-//     setInterval(() => {
-//       try {
-//         api_notif("/messagerie/chat-api-notif/", notif_alerte_chat);
-//       } catch (error) {
-//         api_notif("/messagerie/chat-api-notif/", notif_alerte_chat);
-//       }
-//     }, 5000)
-//   }, 2000);
-// });
+document.addEventListener("DOMContentLoaded", () => {
+  setTimeout(() => {
+    setInterval(() => {
+      try {
+        api_notif("/notifications/data/", notif_alerte);
+        // api_notif("/messagerie/chat-api-notif/", notif_alerte_chat);
+        // setTimeout(() => {
+        // }, 5000);
+      } catch (error) {
+        api_notif("/notifications/data/", notif_alerte);
+        // api_notif("/messagerie/chat-api-notif/", notif_alerte_chat);
+        // setTimeout(() => {
+        // }, 5000);
+      }
+    }, 3000)
+    setInterval(() => {
+      try {
+        api_notif("/messagerie/chat-api-notif/", notif_alerte_chat);
+      } catch (error) {
+        api_notif("/messagerie/chat-api-notif/", notif_alerte_chat);
+      }
+    }, 5000)
+  }, 2000);
+});

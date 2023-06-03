@@ -97,9 +97,9 @@
       <span class="text">Administration</span>
     </a>
     {% endif %}
-    <a href="/{% if LANGUAGE_CODE == 'fr' %}en{% else %}fr{% endif %}/feed/">
+    <a  id="language_code_link" style="cursor: pointer">
       <img src="{% static 'home/svg/language.svg' %}">
-      <span class="text">{% translate 'Traduire en' %} {% if LANGUAGE_CODE == 'fr' %}Anglais{% else %}Français{% endif %}</span>
+      <span class="text">{% if LANGUAGE_CODE == 'fr' %}{% translate 'Traduire en Anglais' %}{% else %}{% translate 'Traduire en Français' %}{% endif %}</span>
     </a>
     <a href="{% url 'logout' %}">
       <img src="{% static 'home/svg/logout.svg' %}">
