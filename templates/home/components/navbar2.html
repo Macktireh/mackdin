@@ -97,7 +97,7 @@
       <span class="text">Administration</span>
     </a>
     {% endif %}
-    <a  id="language_code_link" style="cursor: pointer">
+    <a  id="language_code_link" style="cursor: pointer" href="/">
       <img src="{% static 'home/svg/language.svg' %}">
       <span class="text">{% if LANGUAGE_CODE == 'fr' %}{% translate 'Traduire en Anglais' %}{% else %}{% translate 'Traduire en Français' %}{% endif %}</span>
     </a>
