@@ -2,9 +2,10 @@
 {% load static %}
 {% load humanize %}
 {% load cloudinary %}
+{% load i18n %}
 
 
-{% block title %} {% if page == 'notif' %} Notifications {% else %} Fil d'actualité {% endif %} {% endblock title %}
+{% block title %} {% if page == 'notif' %} Notifications {% else %} {% translate "Fil d'actualité" %} {% endif %} {% endblock title %}
 
 {% block style %}
 <link rel="shortcut icon" href=" {% static 'home/svg/linkedin-cust.svg' %} " type="image/x-icon" />
@@ -44,7 +45,7 @@
   </div>
   <div class="container-right">
     <ul class="container-aside-1">
-      <h4>Actualités</h4>
+      <h4>{% translate "Actualités" %}</h4>
     </ul>
   </div>
 </main>

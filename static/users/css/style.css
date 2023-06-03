@@ -7,7 +7,7 @@
 }
 
 *::selection {
-  background-color: #2691d9;
+  background-color: #0000001a;
   color: #f1f1f1;
 }
 
@@ -20,7 +20,7 @@ a:visited {
   color: #f1f1f1;
 }
 
-.flex-center, main, body {
+.flex-center, .sep span, .social-auth-container .btn-link, .social-auth-container, main, body {
   display: flex;
   justify-content: center;
   align-items: center;
@@ -33,10 +33,30 @@ a:visited {
 
 body {
   background-color: #f1f1f1;
-  color: #333333;
+  color: #2c3e50;
   min-height: 100vh;
-  background: linear-gradient(120deg, #2980b9, #8e44ad);
+  background: linear-gradient(120deg, #2c3e50, #34495e);
   font-family: "Poppins", sans-serif;
+}
+@media screen and (max-width: 500px) {
+  body {
+    height: 100%;
+    width: 100%;
+  }
+}
+
+@media screen and (max-width: 500px) {
+  .body-container {
+    height: 100%;
+    width: 100%;
+  }
+}
+
+@media screen and (max-width: 500px) {
+  main {
+    height: 100%;
+    width: 100%;
+  }
 }
 
 .message-success {
@@ -64,15 +84,21 @@ body {
 }
 
 .form-container {
-  width: 400px;
+  width: 100%;
+  max-width: 460px;
   background: #f1f1f1;
   border-radius: 10px;
-  box-shadow: 0 0 5px #666666;
-  margin: 1.5rem 0;
+  box-shadow: 0 0 5px #34495e;
+}
+@media screen and (max-width: 500px) {
+  .form-container {
+    height: 100%;
+    width: 100%;
+  }
 }
 .form-container .title-form {
   text-align: center;
-  padding: 15px 0;
+  padding: 8px 0;
   border-bottom: 1px solid silver;
 }
 .form-container .title-form .p-info {
@@ -80,13 +106,68 @@ body {
   padding: 1rem;
 }
 
+.social-auth-container {
+  padding: 0 40px;
+  margin: 0.5rem 0;
+  flex-direction: column;
+  gap: 8px;
+}
+.social-auth-container .btn-link {
+  width: 100%;
+  gap: 8px;
+  padding: 0.5rem 1rem;
+  background: #34495e;
+  border-radius: 10px;
+  cursor: pointer;
+  transition: 0.5s;
+}
+.social-auth-container .btn-link:hover {
+  background: rgba(52, 73, 94, 0.7);
+  transition: 0.5s;
+}
+.social-auth-container .btn-link img {
+  width: 25px;
+  height: 25px;
+}
+
+.sep {
+  margin: 1.5rem 0 0.5rem;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  width: 100%;
+  height: 10px;
+  position: relative;
+}
+.sep hr {
+  background-color: #979eaa;
+  height: 1px;
+  width: 100%;
+  border: none;
+  outline: none;
+}
+.sep span {
+  position: absolute;
+  top: 50%;
+  left: 50%;
+  transform: translate(-50%, -50%);
+  width: 35px;
+  background-color: #f1f1f1;
+  color: #979eaa;
+}
+
 form {
   padding: 0 40px;
 }
+@media screen and (max-width: 500px) {
+  form {
+    padding: 0 20px;
+  }
+}
 form .txt_field {
   position: relative;
-  border-bottom: 2px solid #adadad;
-  margin: 30px 0 10px;
+  border-bottom: 2px solid #34495e;
+  margin: 20px 0 10px;
 }
 form .txt_field input {
   width: 100%;
@@ -101,7 +182,7 @@ form .txt_field label {
   position: absolute;
   top: 50%;
   left: 5px;
-  color: #adadad;
+  color: #34495e;
   transform: translateY(-50%);
   font-size: 16px;
   pointer-events: none;
@@ -114,13 +195,13 @@ form .txt_field .span-border-bottom::before {
   left: 0;
   width: 0%;
   height: 2px;
-  background: #2691d9;
+  background: #34495e;
   transition: 0.5s;
 }
 form .txt_field input:focus ~ label,
 form .txt_field input:valid ~ label {
   top: -5px;
-  color: #2691d9;
+  color: #34495e;
 }
 form .txt_field input:focus ~ .span-border-bottom::before,
 form .txt_field input:valid ~ .span-border-bottom::before {
@@ -153,7 +234,7 @@ form .error .content-error {
   color: red;
 }
 form .pass {
-  color: #666666;
+  color: #34495e;
 }
 form .pass:hover {
   text-decoration: underline;
@@ -163,7 +244,7 @@ form input[type=submit] {
   width: 100%;
   height: 50px;
   border: 1px solid;
-  background: linear-gradient(120deg, #2691d9, #8e44ad);
+  background: linear-gradient(120deg, #34495e, #1abc9c);
   border-radius: 25px;
   font-size: 18px;
   color: #f1f1f1;
@@ -172,14 +253,14 @@ form input[type=submit] {
   outline: none;
 }
 form input[type=submit]:hover {
-  border-color: #2691d9;
+  border-color: #34495e;
   transition: 0.5s;
 }
 form .sign_link {
   margin: 15px 0;
   text-align: center;
   font-size: 16px;
-  color: #666666;
+  color: #34495e;
 }
 form .sign_link a {
   color: #2691d9;
@@ -194,13 +275,13 @@ form .progressRed {
   visibility: visible;
 }
 form .progressBlue {
-  background: #2691d9;
+  background: #34495e;
   width: 67%;
   visibility: visible;
 }
 form .progressGreen {
   width: 100%;
-  background: #2691d9;
+  background: #34495e;
   visibility: visible;
 }
 
@@ -208,10 +289,10 @@ form .progressGreen {
   margin: 15px 0;
   text-align: center;
   font-size: 16px;
-  color: #666666;
+  color: #34495e;
 }
 .sign_link a {
-  color: #2691d9;
+  color: #34495e;
   text-decoration: none;
 }
 .sign_link a:hover {
@@ -222,7 +303,7 @@ form .progressGreen {
   width: 85%;
   background: #f1f1f1;
   border-radius: 10px;
-  box-shadow: 0 0 5px #666666;
+  box-shadow: 0 0 5px #34495e;
   margin: 3rem 3rem;
 }
 

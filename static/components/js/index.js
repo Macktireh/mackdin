@@ -96,3 +96,20 @@ function paginatorWithAjax(
     }
   });
 }
+
+
+const lang_ = document.getElementById("language_code").value;
+const langLink = document.getElementById("language_code_link");
+langLink.addEventListener("click", () => {
+  // location.reload();
+  console.log("lang_", lang_);
+  let url = location.href;
+  // console.log("1 - url:", url);
+  if (lang_ === "fr") {
+    url = url.replace("fr", "en");
+  } else {
+    url = url.replace("en", "fr");
+  }
+  // console.log("2 - url:", url);
+  location.href = url;
+})

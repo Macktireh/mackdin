@@ -1,5 +1,6 @@
 {% extends 'base.html' %}
 {% load static %}
+{% load i18n %}
 
 
 {% block style %}
@@ -7,13 +8,13 @@
 <link rel="stylesheet" href="{% static 'users/css/style.css' %}">
 {% endblock style %}
 
-{% block title %} S'inscrire {% endblock title %}
+{% block title %} {% translate "S'inscrire" %} {% endblock title %}
 
 {% block content %}
 <main>
   <div class="form-container">
     <div class="title-form">
-      <h1>S'inscrire</h1>
+      <h1>{% translate "S'inscrire" %}</h1>
     </div>
 
     {% if messages %}
@@ -33,6 +34,13 @@
     {% endfor %}
     {% endif %}
 
+    {% include 'users/components/btn-social-auth.html' %}
+
+    <div class="sep">
+      <hr />
+      <span>{% translate "ou" %}</span>
+    </div>
+
     <form method="post">{% csrf_token %}
 
       {% for field in user_form %}
@@ -48,8 +56,8 @@
 
       <input type="submit" value="S'inscrire">
       <div class="sign_link">
-        Vous avez déjà un compte ? <a href="{% url 'sign_in' %}">S'identifier</a>
-        <p>Revenir à la page <a href="{% url 'home:home' %}">d'accueil</a></p>
+        {% translate "Vous avez déjà un compte ?" %} <a href="{% url 'sign_in' %}">{% translate "S'identifier" %}</a>
+        <p><a href="{% url 'home:home' %}">{% translate "Revenir à la page d'accueil" %}</a></p>
       </div>
     </form>
   </div>

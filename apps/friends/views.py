@@ -5,6 +5,7 @@ from django.db.models import Q
 from django.http import HttpRequest, HttpResponse, HttpResponseNotFound
 from django.shortcuts import get_object_or_404, render, redirect
 from django.utils import timezone
+from django.utils.translation import gettext as _
 
 from apps.friends.models import Relationship
 from apps.profiles.models import Profile
@@ -99,8 +100,8 @@ def invites_list_profiles_view(request: HttpRequest) -> HttpResponse:
         {
             "page": "list_not_friends",
             "start_animation": "my_network",
-            "h3": "Les personnes que vous pourriez envoyer une invitation",
-            "h3_empty": "Pas de profils avec lesquels interagir",
+            "h3": _("Personnes à qui vous pourriez envoyer une invitation"),
+            "h3_empty": _("Pas de profils avec lesquels interagir"),
         }
     )
     context.update(statistic_relationship_receiver(request))
@@ -162,8 +163,8 @@ def my_friends_invites_profiles_view(request):
         "page": "my_friends",
         "start_animation": "my_network",
         "is_empty": is_empty,
-        "h3": "Vos relations",
-        "h3_empty": "Pas de relation avec lesquels interagir",
+        "h3": _("Vos relations"),
+        "h3_empty": _("Pas de profils avec lesquels interagir"),
     }
 
     context.update(statistic_relationship_receiver(request))
@@ -207,8 +208,8 @@ def invites_received_view(request):
         "page": "invitation_received",
         "start_animation": "my_network",
         "is_empty": is_empty,
-        "h3": "Les invitations reçu en attente que vous acceptez",
-        "h3_empty": "Aucune invitation reçu en attente",
+        "h3": _("Invitations en attente que vous acceptez"),
+        "h3_empty": _("Aucune invitation reçue en attente"),
     }
 
     context.update(statistic_relationship_receiver(request))
@@ -255,7 +256,7 @@ def invites_sended_view(request):
         "start_animation": "my_network",
         "is_empty": is_empty,
         "h3": "Les invitations envoyer qui sont en cours d'acceptation",
-        "h3_empty": "Aucune invitation envoyer qui est en cours d'acceptation",
+        "h3_empty": _("Pas d'invitations envoyées qui sont en cours d'acceptation"),
     }
 
     context.update(statistic_relationship_receiver(request))

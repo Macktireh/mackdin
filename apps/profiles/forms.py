@@ -28,6 +28,8 @@ class ProfileForm(forms.ModelForm):
             "is_updating_img_profile",
             "is_updating_img_bg",
             "is_fixture",
+            "img_profile_str",
+            "img_bg_str",
         )
         widgets = {
             "pseudo": forms.TextInput(attrs={"class": "form-control-profile"}),

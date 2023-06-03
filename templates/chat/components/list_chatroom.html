@@ -2,6 +2,8 @@
 {% load humanize %}
 {% load cloudinary %}
 {% load chat %}
+{% load i18n %}
+
 
 {% for obj in my_friends %}
 <a class="my-friends-info-link" href="{% url 'chats:chatroom' uid=obj.profile.uid %}">
@@ -47,7 +49,7 @@
         </p>
         {% elif obj.id == last_msg.reciever_id %}
         <p id="last_msg">
-          Vous: {{last_msg.msg}}
+          {% translate 'Vous' %}: {{last_msg.msg}}
         </p>
         {% endif %}
         {% endfor %}

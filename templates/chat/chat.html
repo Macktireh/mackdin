@@ -2,8 +2,9 @@
 {% load static %}
 {% load humanize %}
 {% load cloudinary %}
+{% load i18n %}
 
-{% block title %} Messagerie {% endblock title %}
+{% block title %} {% translate 'Messagerie' %} {% endblock title %}
 
 {% block style %}
 <link rel="shortcut icon" href=" {% static 'home/svg/linkedin-cust.svg' %} " type="image/x-icon" />

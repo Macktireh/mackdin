@@ -2,6 +2,7 @@
 {% load humanize %}
 {% load cloudinary %}
 {% load chat %}
+{% load i18n %}
 
 
 <div class="header-chat">
@@ -42,9 +43,9 @@
       {% if other_user.user.last_logout %}
       <P>
         {% if other_user.user.last_logout > other_user.user.last_login %}
-        En ligne {{other_user.user.last_logout|naturaltime|timestr}}
+        {% translate 'En ligne' %} {{other_user.user.last_logout|naturaltime|timestr}}
         {% else %}
-        En ligne maintenant
+        {% translate 'En ligne maintenant' %}
         {% endif %}
       </P>
       {% endif %}

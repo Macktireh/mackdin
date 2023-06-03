@@ -1,5 +1,6 @@
 {% extends 'base.html' %}
 {% load static %}
+{% load i18n %}
 
 
 {% block style %}
@@ -7,13 +8,13 @@
 <link rel="stylesheet" href="{% static 'users/css/style.css' %}">
 {% endblock style %}
 
-{% block title %} S'identifier {% endblock title %}
+{% block title %} {% translate "S'identifier" %} {% endblock title %}
 
 {% block content %}
 <main>
   <div class="form-container">
     <div class="title-form">
-      <h1>S'identifier</h1>
+      <h1>{% translate "S'identifier" %}</h1>
     </div>
 
     {% if messages %}
@@ -23,6 +24,13 @@
     </div>
     {% endfor %}
     {% endif %}
+
+    {% include 'users/components/btn-social-auth.html' %}
+
+    <div class="sep">
+      <hr />
+      <span>{% translate "ou" %}</span>
+    </div>
 
     <form method="POST">
       {% csrf_token %}
@@ -35,14 +43,14 @@
       <div class="txt_field">
         <input type="password" name="password" required autocomplete="off">
         <span class="span-border-bottom"></span>
-        <label>Mot de passe</label>
+        <label>{% translate "Mot de passe" %}</label>
       </div>
 
-      <a href="{% url 'reset_password' %}" class="pass">Mot de passe oublié ?</a>
+      <a href="{% url 'reset_password' %}" class="pass">{% translate "Mot de passe oublié ?" %}</a>
       <input type="submit" value="Se connecter">
       <div class="sign_link">
-        Vous n'avez pas de compte ? <a href="{% url 'sign_up' %}">S'inscrire</a>
-        <p>Revenir à la page <a href="{% url 'home:home' %}">d'd'accueil</a></p>
+        {% translate "Vous n'êtes pas encore inscrit ?" %} <a href="{% url 'sign_up' %}">{% translate "S'inscrire" %}</a>
+        <p><a href="{% url 'home:home' %}">{% translate "Revenir à la page d'accueil" %}</a></p>
       </div>
     </form>
   </div>

@@ -44,7 +44,7 @@ class OptionComment extends React.Component {
                 className="comment-options-item-img"
               />
               <span className="btn-edit-comment comment-options-item-span">
-                Modifier
+                {this.props.lang === "fr" ? "Modifier" : "Edit"}
               </span>
             </div>
 
@@ -60,7 +60,7 @@ class OptionComment extends React.Component {
                 className="comment-options-item-img"
               />
               <span className="btn-del-comment comment-options-item-span">
-                Supprimer
+              {this.props.lang === "fr" ? "Supprimer" : "Delete"}
               </span>
             </div>
           </ul>

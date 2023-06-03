@@ -1,6 +1,7 @@
 import datetime
 from django import template
 from django.utils import timezone
+from django.utils.translation import gettext as _
 
 register = template.Library()
 
@@ -28,7 +29,7 @@ def parsedate(value):
         return date_last_msg.strftime('%Y/%m/%d')
 
     if date_last_msg.day + 1 == datetime.datetime.now().day:
-        return f"Hier à {date_last_msg.strftime('%H:%M')}"
+        return f"{_('Hier à')} {date_last_msg.strftime('%H:%M')}"
     return date_last_msg.strftime('%H:%M')
 
 # print(parsedate(datetime.datetime(2022, 4, 21, 12, 30, 10)))

@@ -51,11 +51,13 @@ def chat_view(request) -> HttpResponseNotFound | HttpResponse:
     qs = Profile.objects.select_related("user").get(user=request.user)
 
     paginator = Paginator(qs.friends.all(), 18)
-    num  = paginator.num_pages
+    num = paginator.num_pages
     page = request.GET.get("page")
 
-    if page is None: page = 1
-    if int(page) > num: return HttpResponseNotFound("<h1>Page not found 404</h1>")
+    if page is None:
+        page = 1
+    if int(page) > num:
+        return HttpResponseNotFound("<h1>Page not found 404</h1>")
 
     my_friends = paginator.get_page(page)
 
@@ -85,7 +87,7 @@ def chat_view(request) -> HttpResponseNotFound | HttpResponse:
 
     if request.is_ajax():
         return render(request, "chat/components/list_chatroom.html", context)
-    
+
     return render(request, template, context=context)
 
 
@@ -156,9 +158,10 @@ def ajax_load_messages(request, uid):
     for obj in qs:
         item = {
             "msg": obj.message,
-            "date_created": parserdate(
-                obj.date_created.strftime("%d %b %Y %H:%M").lower()
-            ),
+            # "date_created": parserdate(
+            #     obj.date_created.strftime("%d %b %Y %H:%M").lower()
+            # ),
+            "date_created": obj.date_created.strftime("%d %b %Y %H:%M"),
             "sent": "right" if obj.sender == current_user else "left",
         }
         data.append(item)
@@ -176,9 +179,7 @@ def ajax_load_messages(request, uid):
         data.append(
             {
                 "msg": new_msg.message,
-                "date_created": parserdate(
-                    new_msg.date_created.strftime("%d %b %Y %H:%M").lower()
-                ),
+                "date_created": new_msg.date_created.strftime("%d %b %Y %H:%M"),
                 "sent": "right",
             }
         )

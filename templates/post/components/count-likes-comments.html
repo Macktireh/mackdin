@@ -1,4 +1,6 @@
 {% load static %}
+{% load i18n %}
+
 
 <div class="count-likes-comments">
   <div id="likes-count{{post.id}}">
@@ -18,9 +20,9 @@
     <span id="comments-num{{post.id}}">{{post.post_comment.count}}</span>
     <span id="text-plural-comments{{post.id}}">
       {% if post.post_comment.count > 1 %}
-      commentaires
+      {% translate "Commentaires" %}
       {% else %}
-      commentaire
+      {% translate "Commentaire" %}
       {% endif %}
     </span>
 

@@ -1,5 +1,8 @@
 {% load static %}
 {% load cloudinary %}
+{% load i18n %}
+
+{% get_current_language as LANGUAGE_CODE %}
 
 <div class="nav-container">
   <div>
@@ -7,7 +10,7 @@
       <img src=" {% static 'home/svg/linkedin-cust.svg' %} " alt="logo">
     </a>
   </div>
-
+  
   <nav>
     <ul class="nav-menu">
       {% if not user.is_authenticated %}
@@ -15,29 +18,30 @@
         <div class="nav-text">
           <img class="nav-img" src="{% static 'home/svg/user.svg' %}" alt="">
           <span class="animation {% if start_animation == 'sign_in' %}start-animation{% endif %}"></span>
-          <span class="nav-text-span">Connexion</span>
+          <span class="nav-text-span">{% translate 'Connexion' %}</span>
         </div>
       </a>
       <a href="{% url 'sign_up' %}" class="nav-item">
         <div class="nav-text">
           <img class="nav-img" src="{% static 'home/svg/signup.svg' %}" alt="">
           <span class="animation {% if start_animation == 'sign_up' %}start-animation{% endif %}"></span>
-          <span>S'inscrire</span>
+          <span>{% translate 'Inscription' %}</span>
         </div>
       </a>
+      
       {% else %}
       <a href="{% url 'post:post_list' %}" class="nav-item">
         <div class="nav-text">
           <img class="nav-img" src="{% static 'home/svg/home.svg' %}" alt="">
           <span class="animation  {% if start_animation == 'feed' %}start-animation{% endif %}"></span>
-          <span class="nav-text-span">Acceuil</span>
+          <span class="nav-text-span">{% translate 'Accueil' %}</span>
         </div>
       </a>
       <a href="{% url 'friends:my_network' %}" class="nav-item">
         <div class="nav-text">
           <img class="nav-img" src="{% static 'home/svg/friends.svg' %}" alt="">
           <span class="animation {% if start_animation == 'my_network' %}start-animation{% endif %}"></span>
-          <span class="nav-text-span">Réseau</span>
+          <span class="nav-text-span">{% translate 'Réseau' %}</span>
         </div>
       </a>
       <a href="{% url 'chats:chat' %}" class="nav-item nav-nofit">
@@ -45,7 +49,7 @@
         <div class="nav-text">
           <img class="nav-img" src="{% static 'home/svg/chat.svg' %}" alt="">
           <span class="animation {% if start_animation == 'chat' %}start-animation{% endif %}"></span>
-          <span class="nav-text-span">Messagerie</span>
+          <span class="nav-text-span">{% translate 'Messagerie' %}</span>
         </div>
       </a>
       <a href="{% url 'notifications:notif' %}" class="nav-item nav-nofit" id="nav-nofit-icon">
@@ -77,7 +81,7 @@
       " alt="">
     </div>
     <div class="drop-down-list">
-      <span>Vous</span>
+      <span>{% translate 'Vous' %}</span>
       <img src="{% static 'home/svg/down-arrow.svg' %}" class="down-arrow">
     </div>
   </div>
@@ -85,7 +89,7 @@
   <div class="list-box">
     <a href="{% url 'profiles:profile' pseudo=user.profile.pseudo %}">
       <img src="{% static 'home/svg/user.svg' %}">
-      <span class="text">Profile</span>
+      <span class="text">Profil</span>
     </a>
     {% if user.is_staff %}
     <a href="{% url 'admin:index' %}" target="_blank">
@@ -93,9 +97,13 @@
       <span class="text">Administration</span>
     </a>
     {% endif %}
+    <a  id="language_code_link" style="cursor: pointer">
+      <img src="{% static 'home/svg/language.svg' %}">
+      <span class="text">{% if LANGUAGE_CODE == 'fr' %}{% translate 'Traduire en Anglais' %}{% else %}{% translate 'Traduire en Français' %}{% endif %}</span>
+    </a>
     <a href="{% url 'logout' %}">
       <img src="{% static 'home/svg/logout.svg' %}">
-      <span class="text">Déconnexion</span>
+      <span class="text">{% translate 'Déconnexion' %}</span>
     </a>
   </div>
   {% endif %}

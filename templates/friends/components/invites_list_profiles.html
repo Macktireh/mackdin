@@ -1,5 +1,6 @@
 {% load static %}
 {% load cloudinary %}
+{% load i18n %}
 
 
 {% for obj in qs %}
@@ -48,7 +49,7 @@
     {% csrf_token %}
     <input type="hidden" name="profile_id" value="{{obj.id}}">
     <input type="hidden" name="redirect" value="my_network">
-    <button class="btn-add-friends" type="submit">Se connecter</button>
+    <button class="btn-add-friends" type="submit">{% translate 'Se connecter' %}</button>
   </form>
 </div>
 {% endif %}
