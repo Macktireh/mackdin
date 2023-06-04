@@ -20,7 +20,7 @@ a:visited {
   color: #f1f1f1;
 }
 
-.flex-center, .sep span, .social-auth-container .btn-link, .social-auth-container, main, body {
+.flex-center, .form-container .sep span, .form-container .social-auth-container .btn-link, .form-container .social-auth-container, main, body {
   display: flex;
   justify-content: center;
   align-items: center;
@@ -105,32 +105,38 @@ body {
   margin-top: 10px;
   padding: 1rem;
 }
-
-.social-auth-container {
+.form-container .social-auth-container {
   padding: 0 40px;
   margin: 0.5rem 0;
   flex-direction: column;
   gap: 8px;
 }
-.social-auth-container .btn-link {
+.form-container .social-auth-container form {
+  width: 100%;
+  padding: 0;
+}
+.form-container .social-auth-container .btn-link {
   width: 100%;
   gap: 8px;
   padding: 0.5rem 1rem;
   background: #34495e;
+  color: #f1f1f1;
+  font-size: 16px;
+  outline: none;
+  border: none;
   border-radius: 10px;
   cursor: pointer;
   transition: 0.5s;
 }
-.social-auth-container .btn-link:hover {
+.form-container .social-auth-container .btn-link:hover {
   background: rgba(52, 73, 94, 0.7);
   transition: 0.5s;
 }
-.social-auth-container .btn-link img {
+.form-container .social-auth-container .btn-link img {
   width: 25px;
   height: 25px;
 }
-
-.sep {
+.form-container .sep {
   margin: 1.5rem 0 0.5rem;
   display: flex;
   justify-content: center;
@@ -139,14 +145,14 @@ body {
   height: 10px;
   position: relative;
 }
-.sep hr {
+.form-container .sep hr {
   background-color: #979eaa;
   height: 1px;
   width: 100%;
   border: none;
   outline: none;
 }
-.sep span {
+.form-container .sep span {
   position: absolute;
   top: 50%;
   left: 50%;
@@ -155,21 +161,20 @@ body {
   background-color: #f1f1f1;
   color: #979eaa;
 }
-
-form {
+.form-container form {
   padding: 0 40px;
 }
 @media screen and (max-width: 500px) {
-  form {
+  .form-container form {
     padding: 0 20px;
   }
 }
-form .txt_field {
+.form-container form .txt_field {
   position: relative;
   border-bottom: 2px solid #34495e;
   margin: 20px 0 10px;
 }
-form .txt_field input {
+.form-container form .txt_field input {
   width: 100%;
   padding: 0 5px;
   height: 40px;
@@ -178,7 +183,7 @@ form .txt_field input {
   background: none;
   outline: none;
 }
-form .txt_field label {
+.form-container form .txt_field label {
   position: absolute;
   top: 50%;
   left: 5px;
@@ -188,7 +193,7 @@ form .txt_field label {
   pointer-events: none;
   transition: 0.5s;
 }
-form .txt_field .span-border-bottom::before {
+.form-container form .txt_field .span-border-bottom::before {
   content: "";
   position: absolute;
   top: 40px;
@@ -198,16 +203,16 @@ form .txt_field .span-border-bottom::before {
   background: #34495e;
   transition: 0.5s;
 }
-form .txt_field input:focus ~ label,
-form .txt_field input:valid ~ label {
+.form-container form .txt_field input:focus ~ label,
+.form-container form .txt_field input:valid ~ label {
   top: -5px;
   color: #34495e;
 }
-form .txt_field input:focus ~ .span-border-bottom::before,
-form .txt_field input:valid ~ .span-border-bottom::before {
+.form-container form .txt_field input:focus ~ .span-border-bottom::before,
+.form-container form .txt_field input:valid ~ .span-border-bottom::before {
   width: 100%;
 }
-form .txt_field p {
+.form-container form .txt_field p {
   background: red;
   width: 33%;
   height: 6px;
@@ -216,7 +221,7 @@ form .txt_field p {
   visibility: hidden;
   transition: 0.3s;
 }
-form .content-error {
+.form-container form .content-error {
   margin-bottom: 20px;
   display: block;
   font-size: 0.8rem;
@@ -225,21 +230,21 @@ form .content-error {
   transition: 0.3s;
   color: red;
 }
-form .error .txt_field span {
+.form-container form .error .txt_field span {
   background-color: red;
 }
-form .error .content-error {
+.form-container form .error .content-error {
   visibility: visible;
   opacity: 1;
   color: red;
 }
-form .pass {
+.form-container form .pass {
   color: #34495e;
 }
-form .pass:hover {
+.form-container form .pass:hover {
   text-decoration: underline;
 }
-form input[type=submit] {
+.form-container form input[type=submit] {
   margin: 15px 0 5px;
   width: 100%;
   height: 50px;
@@ -252,34 +257,34 @@ form input[type=submit] {
   cursor: pointer;
   outline: none;
 }
-form input[type=submit]:hover {
+.form-container form input[type=submit]:hover {
   border-color: #34495e;
   transition: 0.5s;
 }
-form .sign_link {
+.form-container form .sign_link {
   margin: 15px 0;
   text-align: center;
   font-size: 16px;
   color: #34495e;
 }
-form .sign_link a {
+.form-container form .sign_link a {
   color: #2691d9;
   text-decoration: none;
 }
-form .sign_link a:hover {
+.form-container form .sign_link a:hover {
   text-decoration: underline;
 }
-form .progressRed {
+.form-container form .progressRed {
   background: red;
   width: 33%;
   visibility: visible;
 }
-form .progressBlue {
+.form-container form .progressBlue {
   background: #34495e;
   width: 67%;
   visibility: visible;
 }
-form .progressGreen {
+.form-container form .progressGreen {
   width: 100%;
   background: #34495e;
   visibility: visible;
