@@ -17,177 +17,186 @@
       margin-top: 10px
       padding: 1rem
 
-.social-auth-container
-  padding: 0 40px
-  margin: .5rem 0
-  @extend .flex-center
-  flex-direction: column
-  gap: 8px
-  .btn-link
-    width: 100%
+  .social-auth-container
+    padding: 0 40px
+    margin: .5rem 0
     @extend .flex-center
+    flex-direction: column
     gap: 8px
-    padding: 0.5rem 1rem
-    background: $color4
-    border-radius: 10px
-    cursor: pointer
-    transition: 0.5s
-    &:hover
-      background: rgba($color4, 0.7)
-      transition: 0.5s
-    img
-      width: 25px
-      height: 25px
 
-.sep
-  margin: 1.5rem 0 .5rem
-  display: flex
-  justify-content: center
-  align-items: center
-  width: 100%
-  // max-width: 460px
-  height: 10px
-  position: relative
-  hr
-    background-color: $color7
-    height: 1px
+    form
+      width: 100%
+      padding: 0
+
+    .btn-link
+      width: 100%
+      @extend .flex-center
+      gap: 8px
+      padding: 0.5rem 1rem
+      background: $color4
+      color: $color2
+      font-size: 16px
+      outline: none
+      border: none
+      border-radius: 10px
+      cursor: pointer
+      transition: 0.5s
+      &:hover
+        background: rgba($color4, 0.7)
+        transition: 0.5s
+      img
+        width: 25px
+        height: 25px
+
+  .sep
+    margin: 1.5rem 0 .5rem
+    display: flex
+    justify-content: center
+    align-items: center
     width: 100%
     // max-width: 460px
-    border: none
-    outline: none
-  span
-    position: absolute
-    top: 50%
-    left: 50%
-    transform: translate(-50%, -50%)
-    @extend .flex-center
-    width: 35px
-    background-color: $color2
-    color: $color7
-
-form
-  padding: 0 40px
-  @media screen and (max-width: 500px)
-    padding: 0 20px
-  
-  .txt_field
+    height: 10px
     position: relative
-    border-bottom: 2px solid $color4
-    margin: 20px 0 10px
-
-    input
+    hr
+      background-color: $color7
+      height: 1px
       width: 100%
-      padding: 0 5px
-      height: 40px
-      font-size: 16px
+      // max-width: 460px
       border: none
-      background: none
       outline: none
-
-    label
+    span
       position: absolute
       top: 50%
-      left: 5px
+      left: 50%
+      transform: translate(-50%, -50%)
+      @extend .flex-center
+      width: 35px
+      background-color: $color2
+      color: $color7
+
+  form
+    padding: 0 40px
+    @media screen and (max-width: 500px)
+      padding: 0 20px
+    
+    .txt_field
+      position: relative
+      border-bottom: 2px solid $color4
+      margin: 20px 0 10px
+
+      input
+        width: 100%
+        padding: 0 5px
+        height: 40px
+        font-size: 16px
+        border: none
+        background: none
+        outline: none
+
+      label
+        position: absolute
+        top: 50%
+        left: 5px
+        color: $color4
+        transform: translateY(-50%)
+        font-size: 16px
+        pointer-events: none
+        transition: 0.5s
+
+      .span-border-bottom::before
+        content: ""
+        position: absolute
+        top: 40px
+        left: 0
+        width: 0%
+        height: 2px
+        background: $color4
+        transition: 0.5s
+
+      input:focus ~ label,
+      input:valid ~ label
+        top: -5px
+        color: $color4
+
+      input:focus ~ .span-border-bottom::before,
+      input:valid ~ .span-border-bottom::before
+        width: 100%
+      p
+        background: red
+        width: 33%
+        height: 6px
+        margin: -2px 0 2px
+        border-radius: 50px
+        visibility: hidden
+        transition: 0.3s
+    
+
+    .content-error
+      margin-bottom: 20px
+      display: block
+      font-size: 0.8rem
+      visibility: hidden
+      opacity: 0
+      transition: 0.3s
+      color: red
+
+    .error .txt_field span
+      background-color: red
+
+    .error .content-error
+      visibility: visible
+      opacity: 1
+      color: red
+
+    .pass
       color: $color4
-      transform: translateY(-50%)
-      font-size: 16px
-      pointer-events: none
-      transition: 0.5s
 
-    .span-border-bottom::before
-      content: ""
-      position: absolute
-      top: 40px
-      left: 0
-      width: 0%
-      height: 2px
-      background: $color4
-      transition: 0.5s
+    .pass:hover
+      text-decoration: underline
 
-    input:focus ~ label,
-    input:valid ~ label
-      top: -5px
-      color: $color4
-
-    input:focus ~ .span-border-bottom::before,
-    input:valid ~ .span-border-bottom::before
+    input[type="submit"]
+      margin: 15px 0 5px
       width: 100%
-    p
+      height: 50px
+      border: 1px solid
+      background: linear-gradient(120deg, $color4, $color3)
+      border-radius: 25px
+      font-size: 18px
+      color: $color2
+      font-weight: 700
+      cursor: pointer
+      outline: none
+
+    input[type="submit"]:hover
+      border-color: $color4
+      transition: 0.5s
+
+    .sign_link
+      margin: 15px 0
+      text-align: center
+      font-size: 16px
+      color: $color4
+
+      a
+        color: $color12
+        text-decoration: none
+        &:hover
+          text-decoration: underline
+
+    .progressRed
       background: red
       width: 33%
-      height: 6px
-      margin: -2px 0 2px
-      border-radius: 50px
-      visibility: hidden
-      transition: 0.3s
-  
+      visibility: visible
 
-  .content-error
-    margin-bottom: 20px
-    display: block
-    font-size: 0.8rem
-    visibility: hidden
-    opacity: 0
-    transition: 0.3s
-    color: red
+    .progressBlue
+      background: $color4
+      width: 67%
+      visibility: visible
 
-  .error .txt_field span
-    background-color: red
-
-  .error .content-error
-    visibility: visible
-    opacity: 1
-    color: red
-
-  .pass
-    color: $color4
-
-  .pass:hover
-    text-decoration: underline
-
-  input[type="submit"]
-    margin: 15px 0 5px
-    width: 100%
-    height: 50px
-    border: 1px solid
-    background: linear-gradient(120deg, $color4, $color3)
-    border-radius: 25px
-    font-size: 18px
-    color: $color2
-    font-weight: 700
-    cursor: pointer
-    outline: none
-
-  input[type="submit"]:hover
-    border-color: $color4
-    transition: 0.5s
-
-  .sign_link
-    margin: 15px 0
-    text-align: center
-    font-size: 16px
-    color: $color4
-
-    a
-      color: $color12
-      text-decoration: none
-      &:hover
-        text-decoration: underline
-
-  .progressRed
-    background: red
-    width: 33%
-    visibility: visible
-
-  .progressBlue
-    background: $color4
-    width: 67%
-    visibility: visible
-
-  .progressGreen
-    width: 100%
-    background: $color4
-    visibility: visible
+    .progressGreen
+      width: 100%
+      background: $color4
+      visibility: visible
 
 .sign_link
   margin: 15px 0

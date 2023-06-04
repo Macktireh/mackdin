@@ -10,14 +10,13 @@ urlpatterns = i18n_patterns(
     path(f'admin/mackdin/{settings.UID_ADMIN}/', admin.site.urls, name='admin'),
     path('', include('apps.home.urls')),
     path('accounts/', include('apps.users.urls')),
-    path('accounts/', include('allauth.urls')),
     path('profile/', include('apps.profiles.urls')),
     path('feed/', include('apps.post.urls')),
     path('comment/', include('apps.comments.urls')),
     path('mynetwork/', include('apps.friends.urls')),
     path('notifications/', include('apps.notifications.urls')),
     path('messagerie/', include('apps.chat.urls')),
-)
+) + [path('accounts/', include('allauth.urls'))]
 
 if settings.ENV == 'development':
     urlpatterns += i18n_patterns(path("admin/i18n/", include("rosetta.urls")))
