@@ -244,7 +244,7 @@ body {
 .form-container form .pass:hover {
   text-decoration: underline;
 }
-.form-container form input[type=submit] {
+.form-container form button[type=submit] {
   margin: 15px 0 5px;
   width: 100%;
   height: 50px;
@@ -257,7 +257,7 @@ body {
   cursor: pointer;
   outline: none;
 }
-.form-container form input[type=submit]:hover {
+.form-container form button[type=submit]:hover {
   border-color: #34495e;
   transition: 0.5s;
 }
