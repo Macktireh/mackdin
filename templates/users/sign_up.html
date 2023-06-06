@@ -54,7 +54,7 @@
       </div>
       {% endfor %}
 
-      <input type="submit" value="S'inscrire">
+      <button type="submit">{% translate "S'inscrire" %}</button>
       <div class="sign_link">
         {% translate "Vous avez déjà un compte ?" %} <a href="{% url 'sign_in' %}">{% translate "S'identifier" %}</a>
         <p><a href="{% url 'home:home' %}">{% translate "Revenir à la page d'accueil" %}</a></p>

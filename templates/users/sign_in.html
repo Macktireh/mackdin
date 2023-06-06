@@ -47,7 +47,7 @@
       </div>
 
       <a href="{% url 'reset_password' %}" class="pass">{% translate "Mot de passe oublié ?" %}</a>
-      <input type="submit" value="Se connecter">
+      <button type="submit">{% translate "S'identifier" %}</button>
       <div class="sign_link">
         {% translate "Vous n'êtes pas encore inscrit ?" %} <a href="{% url 'sign_up' %}">{% translate "S'inscrire" %}</a>
         <p><a href="{% url 'home:home' %}">{% translate "Revenir à la page d'accueil" %}</a></p>
