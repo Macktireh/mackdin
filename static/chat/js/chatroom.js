@@ -1,7 +1,8 @@
 const other_user_id = document.getElementById("other_user_id").value;
 const chat_textarea_msg = document.getElementById("chat-textarea-msg");
 const chat_form = document.getElementById("form-chat");
-const url_ajax_chat = `/messagerie/load-data/${other_user_id}/`;
+const _lang = document.getElementById("language_code").value;
+const url_ajax_chat = `/${_lang}/messagerie/load-data/${other_user_id}/`;
 let msg;
 
 function getCookie(name) {
