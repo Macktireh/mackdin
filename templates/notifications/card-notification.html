@@ -30,11 +30,11 @@
       <strong>{{ notif.from_user.first_name }} {{ notif.from_user.last_name }}</strong>
       <p>
         {% if notif.type_notif == 'Add_Post' %}
-        {% translate 'a ajouter un nouveau post' %}: {{notif.post.message}}
+        {% translate 'a ajouté un nouveau post' %}: {{notif.post.message}}
         {% elif notif.type_notif == 'Like_Post' %}
-        {% translate 'a aimer votre post' %} : {{notif.post.message}}
+        {% translate 'a aimé votre post' %} : {{notif.post.message}}
         {% elif notif.type_notif == 'Add_Comment' %}
-        {% translate 'a commenter votre post' %}: {{notif.post.message}}
+        {% translate 'a commenté votre post' %}: {{notif.post.message}}
         {% elif notif.type_notif == 'invitation_send' %}
         {% translate 'souhaite rejoindre à votre réseau' %}
         {% elif notif.type_notif == 'invitation_accepted' %}
