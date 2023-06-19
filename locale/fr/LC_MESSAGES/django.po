@@ -8,7 +8,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: PACKAGE VERSION\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2023-06-03 23:27+0200\n"
+"POT-Creation-Date: 2023-06-19 20:15+0200\n"
 "PO-Revision-Date: YEAR-MO-DA HO:MI+ZONE\n"
 "Last-Translator: FULL NAME <EMAIL@ADDRESS>\n"
 "Language-Team: LANGUAGE <LL@li.org>\n"
@@ -491,15 +491,15 @@ msgid "Boostez et enrichissez votre profil"
 msgstr ""
 
 #: .\templates\notifications\card-notification.html:33
-msgid "a ajouter un nouveau post"
+msgid "a ajouté un nouveau post"
 msgstr ""
 
 #: .\templates\notifications\card-notification.html:35
-msgid "a aimer votre post"
+msgid "a aimé votre post"
 msgstr ""
 
 #: .\templates\notifications\card-notification.html:37
-msgid "a commenter votre post"
+msgid "a commenté votre post"
 msgstr ""
 
 #: .\templates\notifications\card-notification.html:39
@@ -652,9 +652,12 @@ msgstr ""
 msgid "Oups désolé vous perdu cette page n'existe pas."
 msgstr ""
 
-#: .\templates\users\components\btn-social-auth.html:10
-#: .\templates\users\components\btn-social-auth.html:14
-#: .\templates\users\components\btn-social-auth.html:18
+#: .\templates\users\components\btn-social-auth.html:11
+#: .\templates\users\components\btn-social-auth.html:19
+#: .\templates\users\components\btn-social-auth.html:27
+#: .\templates\users\components\btn-social-auth.html:33
+#: .\templates\users\components\btn-social-auth.html:37
+#: .\templates\users\components\btn-social-auth.html:41
 msgid "Continue avec"
 msgstr ""
 
@@ -728,7 +731,7 @@ msgid ""
 msgstr ""
 
 #: .\templates\users\sign_in.html:11 .\templates\users\sign_in.html:17
-#: .\templates\users\sign_up.html:59
+#: .\templates\users\sign_in.html:50 .\templates\users\sign_up.html:59
 msgid "S'identifier"
 msgstr ""
 
@@ -745,7 +748,7 @@ msgid "Vous n'êtes pas encore inscrit ?"
 msgstr ""
 
 #: .\templates\users\sign_in.html:52 .\templates\users\sign_up.html:11
-#: .\templates\users\sign_up.html:17
+#: .\templates\users\sign_up.html:17 .\templates\users\sign_up.html:57
 msgid "S'inscrire"
 msgstr ""
 
