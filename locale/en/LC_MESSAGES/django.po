@@ -8,8 +8,8 @@ msgid ""
 msgstr ""
 "Project-Id-Version: PACKAGE VERSION\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2023-06-03 23:27+0200\n"
-"PO-Revision-Date: 2023-06-03 23:28+0200\n"
+"POT-Creation-Date: 2023-06-19 20:15+0200\n"
+"PO-Revision-Date: 2023-06-19 20:16+0200\n"
 "Last-Translator: Charco AD <admin@gmail.com>\n"
 "Language-Team: LANGUAGE <LL@li.org>\n"
 "Language: \n"
@@ -349,9 +349,6 @@ msgstr "Welcome to Mackdin!"
 
 #: .\apps\users\views.py:31
 #, python-format
-#| msgid ""
-#| "Merci de votre incription. Veuillez activer votre adresse e-mail pour "
-#| "accéder à votre compte Mackdin. Nous avons envoyé un email à %(email)s"
 msgid ""
 "Merci de votre incription. Veuillez activer votre adresse e-mail pour "
 "accéder à votre compte Mackdin. Nous avons envoyé un email à %(email)s pour "
@@ -503,15 +500,18 @@ msgid "Boostez et enrichissez votre profil"
 msgstr "Boost and enrich your profile"
 
 #: .\templates\notifications\card-notification.html:33
-msgid "a ajouter un nouveau post"
+#| msgid "a ajouter un nouveau post"
+msgid "a ajouté un nouveau post"
 msgstr "has added a new message"
 
 #: .\templates\notifications\card-notification.html:35
-msgid "a aimer votre post"
+#| msgid "a aimer votre post"
+msgid "a aimé votre post"
 msgstr "has liked your post"
 
 #: .\templates\notifications\card-notification.html:37
-msgid "a commenter votre post"
+#| msgid "a commenter votre post"
+msgid "a commenté votre post"
 msgstr "has commented on your post"
 
 #: .\templates\notifications\card-notification.html:39
@@ -672,9 +672,12 @@ msgstr "The Mackdin team"
 msgid "Oups désolé vous perdu cette page n'existe pas."
 msgstr "Oops sorry lost you this page does not exist."
 
-#: .\templates\users\components\btn-social-auth.html:10
-#: .\templates\users\components\btn-social-auth.html:14
-#: .\templates\users\components\btn-social-auth.html:18
+#: .\templates\users\components\btn-social-auth.html:11
+#: .\templates\users\components\btn-social-auth.html:19
+#: .\templates\users\components\btn-social-auth.html:27
+#: .\templates\users\components\btn-social-auth.html:33
+#: .\templates\users\components\btn-social-auth.html:37
+#: .\templates\users\components\btn-social-auth.html:41
 msgid "Continue avec"
 msgstr "Continue with"
 
@@ -757,7 +760,7 @@ msgstr ""
 "Your password has been set correctly. You can continue and log in now."
 
 #: .\templates\users\sign_in.html:11 .\templates\users\sign_in.html:17
-#: .\templates\users\sign_up.html:59
+#: .\templates\users\sign_in.html:50 .\templates\users\sign_up.html:59
 msgid "S'identifier"
 msgstr "Login"
 
@@ -774,7 +777,7 @@ msgid "Vous n'êtes pas encore inscrit ?"
 msgstr "Not registered yet?"
 
 #: .\templates\users\sign_in.html:52 .\templates\users\sign_up.html:11
-#: .\templates\users\sign_up.html:17
+#: .\templates\users\sign_up.html:17 .\templates\users\sign_up.html:57
 msgid "S'inscrire"
 msgstr "Sign up"
 
