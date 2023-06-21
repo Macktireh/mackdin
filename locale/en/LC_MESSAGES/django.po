@@ -8,8 +8,8 @@ msgid ""
 msgstr ""
 "Project-Id-Version: PACKAGE VERSION\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2023-06-19 20:15+0200\n"
-"PO-Revision-Date: 2023-06-19 20:16+0200\n"
+"POT-Creation-Date: 2023-06-21 21:16+0200\n"
+"PO-Revision-Date: 2023-06-21 21:18+0200\n"
 "Last-Translator: Charco AD <admin@gmail.com>\n"
 "Language-Team: LANGUAGE <LL@li.org>\n"
 "Language: \n"
@@ -418,7 +418,7 @@ msgid "Retirer"
 msgstr "Remove"
 
 #: .\templates\friends\components\invites_list_profiles.html:52
-#: .\templates\users\password_reset_send.html:19
+#: .\templates\users\password_reset_send.html:20
 msgid "Se connecter"
 msgstr "Connect"
 
@@ -500,17 +500,14 @@ msgid "Boostez et enrichissez votre profil"
 msgstr "Boost and enrich your profile"
 
 #: .\templates\notifications\card-notification.html:33
-#| msgid "a ajouter un nouveau post"
 msgid "a ajouté un nouveau post"
 msgstr "has added a new message"
 
 #: .\templates\notifications\card-notification.html:35
-#| msgid "a aimer votre post"
 msgid "a aimé votre post"
 msgstr "has liked your post"
 
 #: .\templates\notifications\card-notification.html:37
-#| msgid "a commenter votre post"
 msgid "a commenté votre post"
 msgstr "has commented on your post"
 
@@ -706,8 +703,21 @@ msgstr ""
 msgid "Réinitialisation du mot de passe"
 msgstr "Password reset"
 
-#: .\templates\users\password_reset.html:31
-#: .\templates\users\password_reset_form.html:39
+#: .\templates\users\password_reset.html:16
+msgid ""
+"Mot de passe oublié ? Entrez votre adresse email ci-dessous et nous vous "
+"enverrons par e-mail des instructions pour en définir une nouvelle."
+msgstr ""
+"Forgot your password? Enter your email address below and we'll email you "
+"instructions for setting up a new one."
+
+#: .\templates\users\password_reset.html:28
+#: .\templates\users\password_reset_form.html:36
+msgid "Envoyer"
+msgstr "Send"
+
+#: .\templates\users\password_reset.html:30
+#: .\templates\users\password_reset_form.html:38
 #: .\templates\users\sign_in.html:53 .\templates\users\sign_up.html:60
 msgid "Revenir à la page d'accueil"
 msgstr "Back to home page"
@@ -739,20 +749,28 @@ msgstr ""
 msgid "Entrez un nouveau mot de passe"
 msgstr "Enter a new password"
 
-#: .\templates\users\password_reset_form.html:26
+#: .\templates\users\password_reset_form.html:17
+msgid ""
+"Veuillez entrer votre nouveau mot de passe deux fois afin que nous puissions"
+" vérifier que vous l'avez saisi correctement."
+msgstr ""
+"Please enter your new password twice so that we can check that you have "
+"entered it correctly."
+
+#: .\templates\users\password_reset_form.html:25
 msgid "Nouveau mot de passe"
 msgstr "New password"
 
-#: .\templates\users\password_reset_form.html:33
+#: .\templates\users\password_reset_form.html:32
 msgid "Confirmer le nouveau mot de passe"
 msgstr "Confirm new password"
 
-#: .\templates\users\password_reset_send.html:10
-#: .\templates\users\password_reset_send.html:15
+#: .\templates\users\password_reset_send.html:11
+#: .\templates\users\password_reset_send.html:16
 msgid "Réinitialisation du mot de passe terminée"
 msgstr "Password reset complete"
 
-#: .\templates\users\password_reset_send.html:16
+#: .\templates\users\password_reset_send.html:17
 msgid ""
 "Votre mot de passe a été bien défini. Vous pouvez continuer et vous "
 "connecter maintenant."
@@ -797,10 +815,3 @@ msgstr "Already have an account?"
 
 #~ msgid "Account Activation"
 #~ msgstr "Activation du compte"
-
-#~ msgid ""
-#~ "Mot de passe oublié ? Entrez votre adresse email ci-dessous et nous vous "
-#~ "enverrons par e-mail des instructions pour en définir une nouvelle."
-#~ msgstr ""
-#~ "Forgot your password? Enter your email address below and we'll email you "
-#~ "instructions for setting up a new one."
