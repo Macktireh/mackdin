@@ -8,7 +8,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: PACKAGE VERSION\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2023-06-19 20:15+0200\n"
+"POT-Creation-Date: 2023-06-21 21:16+0200\n"
 "PO-Revision-Date: YEAR-MO-DA HO:MI+ZONE\n"
 "Last-Translator: FULL NAME <EMAIL@ADDRESS>\n"
 "Language-Team: LANGUAGE <LL@li.org>\n"
@@ -411,7 +411,7 @@ msgid "Retirer"
 msgstr ""
 
 #: .\templates\friends\components\invites_list_profiles.html:52
-#: .\templates\users\password_reset_send.html:19
+#: .\templates\users\password_reset_send.html:20
 msgid "Se connecter"
 msgstr ""
 
@@ -682,8 +682,19 @@ msgstr ""
 msgid "Réinitialisation du mot de passe"
 msgstr ""
 
-#: .\templates\users\password_reset.html:31
-#: .\templates\users\password_reset_form.html:39
+#: .\templates\users\password_reset.html:16
+msgid ""
+"Mot de passe oublié ? Entrez votre adresse email ci-dessous et nous vous "
+"enverrons par e-mail des instructions pour en définir une nouvelle."
+msgstr ""
+
+#: .\templates\users\password_reset.html:28
+#: .\templates\users\password_reset_form.html:36
+msgid "Envoyer"
+msgstr ""
+
+#: .\templates\users\password_reset.html:30
+#: .\templates\users\password_reset_form.html:38
 #: .\templates\users\sign_in.html:53 .\templates\users\sign_up.html:60
 msgid "Revenir à la page d'accueil"
 msgstr ""
@@ -711,20 +722,26 @@ msgstr ""
 msgid "Entrez un nouveau mot de passe"
 msgstr ""
 
-#: .\templates\users\password_reset_form.html:26
+#: .\templates\users\password_reset_form.html:17
+msgid ""
+"Veuillez entrer votre nouveau mot de passe deux fois afin que nous puissions "
+"vérifier que vous l'avez saisi correctement."
+msgstr ""
+
+#: .\templates\users\password_reset_form.html:25
 msgid "Nouveau mot de passe"
 msgstr ""
 
-#: .\templates\users\password_reset_form.html:33
+#: .\templates\users\password_reset_form.html:32
 msgid "Confirmer le nouveau mot de passe"
 msgstr ""
 
-#: .\templates\users\password_reset_send.html:10
-#: .\templates\users\password_reset_send.html:15
+#: .\templates\users\password_reset_send.html:11
+#: .\templates\users\password_reset_send.html:16
 msgid "Réinitialisation du mot de passe terminée"
 msgstr ""
 
-#: .\templates\users\password_reset_send.html:16
+#: .\templates\users\password_reset_send.html:17
 msgid ""
 "Votre mot de passe a été bien défini. Vous pouvez continuer et vous "
 "connecter maintenant."
