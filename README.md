@@ -1,7 +1,5 @@
 # Mackdin
 
-## Introduction
-
 Mackdin is a social networking project I created using Python with Django and a bit of React. It's a customized clone of LinkedIn.
 
   <!-- <table>
@@ -48,60 +46,60 @@ Mackdin is a social networking project I created using Python with Django and a 
 
 ## Installation
 
-### 1. Pré-requis
+### 1. Prerequisites
 
-Python 3.10+, NodeJS et Git.
+Python 3.10+, NodeJS and Git.
 
-### 2. Cloner le projet
+### 2. Clone project
 
-Ouvrer un terminal et exécuter les commandes suivantes:
+Open a terminal and run the following commands:
 
 ```bash
 git clone https://github.com/Macktireh/mackdin.git
 cd mackdin
 ```
 
-### 3. Créer et activer l'environnement virtual
+### 3. Create and activate the virtual environment
 
-Créer l'environnement virtual:
+Create the virtual environment:
 
 ```bash
 python -m venv .venv
 ```
 
-Activer l'environnement virtual:
+Activate the virtual environment :
 
-**_Pour Windows :_**
+**_For Windows :_**
 
 ```bash
 .venv\Scripts\activate.bat
 ```
 
-**_Pour Linux et Mac os :_**
+**_For Linux and Mac os :_**
 
 ```bash
 source .venv/bin/activate
 ```
 
-### 4. Installer les dépendances
+### 4. Installing dependencies
 
 ```bash
 pip install -r requirements.txt
 ```
 
-### 5. Configurer les variables d'environnement
+### 5. Setting environment variables
 
-Renommer le fichier .env.example en .env et renseigner vos informations personnelles.
-Puis appliquer les migrations :
+Rename the .env.example file to .env and enter your personal information.
+Then apply the migrations :
 
 ```bash
 python manage.py migrate
 ```
 
-Ensuite lancer le server de développement :
+Then launch the development server :
 
 ```bash
 python manage.py runserver
 ```
 
-Aller sur http://127.0.0.1:8000 dans un navigateur web.
+Go to http://127.0.0.1:8000 in a web browser.
