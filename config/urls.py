@@ -7,31 +7,39 @@ from django.views.static import serve
 
 
 urlpatterns = i18n_patterns(
-    path(f'admin/mackdin/{settings.UID_ADMIN}/', admin.site.urls, name='admin'),
-    path('', include('apps.home.urls')),
-    path('accounts/', include('apps.users.urls')),
-    path('profile/', include('apps.profiles.urls')),
-    path('feed/', include('apps.post.urls')),
-    path('comment/', include('apps.comments.urls')),
-    path('mynetwork/', include('apps.friends.urls')),
-    path('notifications/', include('apps.notifications.urls')),
-    path('messagerie/', include('apps.chat.urls')),
-) + [path('accounts/', include('allauth.urls'))]
+    path(f"admin/mackdin/{settings.UID_ADMIN}/", admin.site.urls, name="admin"),
+    path("", include("apps.home.urls")),
+    path("accounts/", include("apps.users.urls")),
+    path("profile/", include("apps.profiles.urls")),
+    path("feed/", include("apps.post.urls")),
+    path("comment/", include("apps.comments.urls")),
+    path("mynetwork/", include("apps.friends.urls")),
+    path("notifications/", include("apps.notifications.urls")),
+    path("messagerie/", include("apps.chat.urls")),
+) + [path("accounts/", include("allauth.urls"))]
 
-if settings.ENV == 'development':
-    urlpatterns += i18n_patterns(path("admin/i18n/", include("rosetta.urls")))
+if settings.ENV == "development":
+    urlpatterns += i18n_patterns(path("admin/i18n/", include("rosetta.urls"))) + [
+        path("__debug__/", include("debug_toolbar.urls"))
+    ]
     if settings.DEBUG:
         urlpatterns += static(settings.MEDIA_URL, document_root=settings.MEDIA_ROOT)
     else:
-        urlpatterns += [re_path(r'^mediafiles/(?P<path>.*)$', serve, {'document_root': settings.MEDIA_ROOT}),]
-        
+        urlpatterns += [
+            re_path(
+                r"^mediafiles/(?P<path>.*)$",
+                serve,
+                {"document_root": settings.MEDIA_ROOT},
+            ),
+        ]
+
     # import debug_toolbar
     # from rest_framework import routers
     # from apps.notifications.api.urls import router as router_notifications
 
     # router = routers.DefaultRouter()
     # router.registry.extend(router_notifications.registry)
-    
+
     # urlpatterns += [
     #     path('api/', include('apps.profiles.api.urls')),
     #     path('api/', include('apps.notifications.api.urls')),
@@ -39,4 +47,8 @@ if settings.ENV == 'development':
     #     # path('__debug__/', include(debug_toolbar.urls)),
     # ]
 else:
-    urlpatterns += [re_path(r'^mediafiles/(?P<path>.*)$', serve, {'document_root': settings.MEDIA_ROOT}),]
+    urlpatterns += [
+        re_path(
+            r"^mediafiles/(?P<path>.*)$", serve, {"document_root": settings.MEDIA_ROOT}
+        ),
+    ]

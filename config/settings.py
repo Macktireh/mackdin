@@ -15,7 +15,9 @@ BASE_DIR = Path(__file__).resolve().parent.parent
 load = load_dotenv(os.path.join(BASE_DIR, ".env"))
 
 
-def get_env_variable(var_name: str, default: None | str = None, raise_error: bool = True) -> str:
+def get_env_variable(
+    var_name: str, default: None | str = None, raise_error: bool = True
+) -> str:
     try:
         if os.environ[var_name]:
             return os.environ[var_name]
@@ -85,7 +87,7 @@ MIDDLEWARE = [
     "django.middleware.security.SecurityMiddleware",
     "whitenoise.middleware.WhiteNoiseMiddleware",
     "django.contrib.sessions.middleware.SessionMiddleware",
-    'django.middleware.locale.LocaleMiddleware',
+    "django.middleware.locale.LocaleMiddleware",
     "django.middleware.common.CommonMiddleware",
     "django.middleware.csrf.CsrfViewMiddleware",
     "django.contrib.auth.middleware.AuthenticationMiddleware",
@@ -124,7 +126,7 @@ AUTHENTICATION_BACKENDS = [
 ]
 
 SITE_ID = int(get_env_variable("SITE_ID", "1"))
-ACCOUNT_EMAIL_VERIFICATION = ("none")
+ACCOUNT_EMAIL_VERIFICATION = "none"
 LOGIN_REDIRECT_URL = "home:home"
 ACCOUNT_LOGOUT_ON_GET = True
 SOCIALACCOUNT_LOGIN_ON_GET = True
@@ -146,7 +148,7 @@ SOCIALACCOUNT_PROVIDERS = {
     },
     "facebook": {
         "METHOD": "oauth2",
-        'SDK_URL': '//connect.facebook.net/{locale}/sdk.js',
+        "SDK_URL": "//connect.facebook.net/{locale}/sdk.js",
         "SCOPE": ["email", "public_profile"],
         "AUTH_PARAMS": {"auth_type": "reauthenticate"},
         "INIT_PARAMS": {"cookie": True},
@@ -158,7 +160,7 @@ SOCIALACCOUNT_PROVIDERS = {
             "name",
         ],
         "EXCHANGE_TOKEN": True,
-        'LOCALE_FUNC': lambda request: 'fr',
+        "LOCALE_FUNC": lambda request: "fr",
         "VERIFIED_EMAIL": False,
         "VERSION": "v13.0",
         "GRAPH_API_URL": "https://graph.facebook.com/v13.0",
@@ -174,6 +176,23 @@ if ENV == "production":
     DATABASE_URL = get_env_variable("DATABASE_URL")
 
 DATABASES = {"default": dj_database_url.config(default=DEFAULT_DATABASE_URL)}
+
+if ENV == "production":
+    hosts_redis = [
+        (
+            f"redis://:{get_env_variable('REDIS_PASSWORD')}@{get_env_variable('REDIS_HOST')}:{get_env_variable('REDIS_PORT')}/0"
+        )
+    ]
+else:
+    hosts_redis = [("127.0.0.1", 6379)]
+
+CHANNEL_LAYERS = {
+    "default": {
+        "BACKEND": "channels_redis.core.RedisChannelLayer",
+        "CONFIG": {"hosts": hosts_redis},
+    },
+}
+
 
 # Password validation
 # https://docs.djangoproject.com/en/3.2/ref/settings/#auth-password-validators
@@ -278,31 +297,30 @@ UID_ADMIN = get_env_variable(
 )
 
 
-# # Django Debug Toolbar
-# if ENV == 'development':
-#     INSTALLED_APPS += [
-#         'debug_toolbar',
-#         'django_extensions',
-#         'rest_framework',
-#     ]
-#     MIDDLEWARE = ['debug_toolbar.middleware.DebugToolbarMiddleware'] + list(MIDDLEWARE)
-#     INTERNAL_IPS = ['127.0.0.1']
+# Django Debug Toolbar
+if ENV == "development":
+    INSTALLED_APPS += [
+        "debug_toolbar",
+    ]
+    MIDDLEWARE = ["debug_toolbar.middleware.DebugToolbarMiddleware"] + list(MIDDLEWARE)
+    INTERNAL_IPS = ["127.0.0.1"]
 
-#     import mimetypes
-#     mimetypes.add_type("application/javascript", ".js", True)
+    import mimetypes
 
-#     DEBUG_TOOLBAR_PATCH_SETTINGS = False
+    mimetypes.add_type("application/javascript", ".js", True)
 
-#     def show_toolbar(request):
-#         return True
+    DEBUG_TOOLBAR_PATCH_SETTINGS = False
 
-#     DEBUG_TOOLBAR_CONFIG = {
-#         'INTERCEPT_REDIRECTS': False,
-#         "SHOW_TOOLBAR_CALLBACK": show_toolbar,
-#         'INSERT_BEFORE': '</head>',
-#         'INTERCEPT_REDIRECTS': False,
-#         'RENDER_PANELS': True,
-#     }
+    def show_toolbar(request):
+        return True
+
+    DEBUG_TOOLBAR_CONFIG = {
+        "INTERCEPT_REDIRECTS": False,
+        "SHOW_TOOLBAR_CALLBACK": show_toolbar,
+        "INSERT_BEFORE": "</head>",
+        "INTERCEPT_REDIRECTS": False,
+        "RENDER_PANELS": True,
+    }
 
 
 # Config logs
