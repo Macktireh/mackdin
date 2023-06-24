@@ -2,6 +2,8 @@ from django.contrib.auth import get_user_model
 from django.contrib.auth.decorators import login_required
 from django.core.paginator import Paginator
 from django.db.models import Q
+from django.views.decorators.cache import cache_page
+from django.core.cache import cache
 from django.http import HttpRequest, HttpResponse, HttpResponseNotFound
 from django.shortcuts import get_object_or_404, render, redirect
 from django.utils import timezone
@@ -12,18 +14,6 @@ from apps.profiles.models import Profile
 
 
 User = get_user_model()
-
-
-def num_friends(request):
-    qs = Profile.objects.get_all_profiles_exclude_me(request, request.user)
-    num_friends = 0
-    for friend in qs:
-        num_friends += request.user in friend.friends.all()
-    return num_friends
-
-
-def is_ajax(request: HttpRequest):
-    return request.META.get("HTTP_X_REQUESTED_WITH") == "XMLHttpRequest"
 
 
 def list_relation_receiver_and_sender(request):
@@ -62,7 +52,6 @@ def list_relation_receiver_and_sender(request):
         )
     is_empty = num == 0
 
-    template = "friends/mynetwork.html"
     context = {
         "qs": qs,
         "list_receiver": list_relation_receiver,
@@ -70,7 +59,7 @@ def list_relation_receiver_and_sender(request):
         "is_empty": is_empty,
     }
 
-    return template, context
+    return context
 
 
 def statistic_relationship_receiver(request):
@@ -81,7 +70,7 @@ def statistic_relationship_receiver(request):
     num_invitation_send = Relationship.objects.invatation_sended(profile).count()
 
     dict_stat_context = {
-        "num_friends": num_friends(request),
+        "num_friends": request.user.friends.count(),
         "num_invitation_received": num_invitation_received,
         "num_invitation_send": num_invitation_send,
     }
@@ -92,24 +81,38 @@ def statistic_relationship_receiver(request):
 # Vue de tous utiliateurs qui ne sont pas ami (avec moi => utilisateur connecté) et il y'a aucune invitation et reception
 @login_required(login_url="sign_in")
 def invites_list_profiles_view(request: HttpRequest) -> HttpResponse:
-    try:
-        template, context = list_relation_receiver_and_sender(request)
-    except ValueError:
-        return HttpResponseNotFound("<h1>Page not found 404</h1>")
-    context.update(
-        {
-            "page": "list_not_friends",
-            "start_animation": "my_network",
-            "h3": _("Personnes à qui vous pourriez envoyer une invitation"),
-            "h3_empty": _("Pas de profils avec lesquels interagir"),
-        }
-    )
-    context.update(statistic_relationship_receiver(request))
+    page = request.GET.get("page")
+    if page is None:
+        page = 1
+    context = cache.get(f"list_relation_receiver_and_sender_context_{page}")
+
+    if context is None:
+        try:
+            context = list_relation_receiver_and_sender(request)
+        except ValueError:
+            return HttpResponseNotFound("<h1>Page not found 404</h1>")
+
+        context.update(statistic_relationship_receiver(request))
+        context.update(
+            {
+                "page": "list_not_friends",
+                "start_animation": "my_network",
+                "h3": _("Personnes à qui vous pourriez envoyer une invitation"),
+                "h3_empty": _("Pas de profils avec lesquels interagir"),
+            }
+        )
+        try:
+            cache.set(
+                f"list_relation_receiver_and_sender_context_{page}",
+                context,
+                60 * 60 * 24,
+            )
+        except Exception:
+            pass
 
     if request.is_ajax():
         return render(request, "friends/components/invites_list_profiles.html", context)
-
-    return render(request, template, context)
+    return render(request, "friends/mynetwork.html", context)
 
 
 # fonction pour envoyer une invitation aux utilisateurs
@@ -135,44 +138,50 @@ def send_invitation(request):
 
 
 # Vue des profiles amis
+# @cache_page(timeout=60 * 15)
 @login_required(login_url="sign_in")
 def my_friends_invites_profiles_view(request):
-    # qs = Profile.objects.get_all_profiles_exclude_me(request, request.user)
-
-    profile = Profile.objects.get(user=request.user)
-    paginator = Paginator(profile.friends.all(), 8)
     page = request.GET.get("page")
-    num = paginator.num_pages
-
     if page is None:
         page = 1
-    if int(page) > num:
-        return HttpResponseNotFound("<h1>Page not found 404</h1>")
+    context = cache.get(f"my_friends_invites_profiles_view_context_{page}")
 
-    _profile = paginator.get_page(page)
+    if context is None:
 
-    qs = []
-    for friend in _profile:
-        qs.append(friend.profile)
+        profile = Profile.objects.get(user=request.user)
+        paginator = Paginator(profile.friends.all(), 8)
+        num = paginator.num_pages
 
-    is_empty = num_friends(request) == 0
+        if int(page) > num:
+            return HttpResponseNotFound("<h1>Page not found 404</h1>")
 
-    template = "friends/mynetwork.html"
-    context = {
-        "qs": qs,
-        "page": "my_friends",
-        "start_animation": "my_network",
-        "is_empty": is_empty,
-        "h3": _("Vos relations"),
-        "h3_empty": _("Pas de profils avec lesquels interagir"),
-    }
+        _profile = paginator.get_page(page)
 
-    context.update(statistic_relationship_receiver(request))
+        qs = [friend.profile for friend in _profile]
+
+        is_empty = request.user.friends.count() == 0
+        context = {
+            "qs": qs,
+            "page": "my_friends",
+            "start_animation": "my_network",
+            "is_empty": is_empty,
+            "h3": _("Vos relations"),
+            "h3_empty": _("Pas de profils avec lesquels interagir"),
+        }
+        context.update(statistic_relationship_receiver(request))
+        try:
+            cache.set(
+                f"my_friends_invites_profiles_view_context_{page}",
+                context,
+                60 * 60 * 24,
+            )
+        except Exception:
+            pass
 
     if request.is_ajax():
         return render(request, "friends/components/list_myfriends.html", context)
 
-    return render(request, template, context)
+    return render(request, "friends/mynetwork.html", context)
 
 
 # Vue pour surpprimer les profiles amis
@@ -196,6 +205,7 @@ def remove_from_friends(request):
 
 
 # Vue des invitation reçu
+# @cache_page(timeout=60 * 15)
 @login_required(login_url="sign_in")
 def invites_received_view(request):
     profile = Profile.objects.get(user=request.user)
@@ -243,6 +253,7 @@ def reject_invitation(request):
 
 
 # Vue pour les invitation envoyer
+# @cache_page(timeout=60 * 15)
 @login_required(login_url="sign_in")
 def invites_sended_view(request):
     profile = Profile.objects.get(user=request.user)

@@ -9,7 +9,7 @@ class ProfileManager(models.Manager):
         me : utilisateur connecté
 
         Returns:
-            cette méthode renvoie tout les profiles sauf moi (moi c'est-à-dire utilisateur connecté)
+            cette méthode renvoie tous les profils à l'exception de l'utilisateur connecté
         """
         from apps.profiles.models import Profile
 
@@ -31,7 +31,7 @@ class ProfileManager(models.Manager):
             sender : utilisateur qui envoie l'invitation
 
         Returns:
-            cette méthode renvoie tout les profiles pas de relation avec moi (moi c'est-à-dire utilisateur connecté)
+            cette méthode renvoie tous les profils qui ne sont pas liés à l'utilisateur connecté
         """
         from apps.friends.models import Relationship
         from apps.profiles.models import Profile
