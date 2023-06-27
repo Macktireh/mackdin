@@ -72,7 +72,7 @@ Activate the virtual environment :
 **_For Windows :_**
 
 ```bash
-.venv\Scripts\activate.bat
+.venv\Scripts\activate
 ```
 
 **_For Linux and Mac os :_**
