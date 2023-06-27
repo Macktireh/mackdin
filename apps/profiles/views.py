@@ -41,7 +41,7 @@ def profile(request, pseudo):
                 profile.number_views = profile.number_views + 1
                 profile.save()
     template = "profiles/profiles.html"
-    t, context = list_relation_receiver_and_sender(request)
+    context = list_relation_receiver_and_sender(request)
     context.update(
         {
             'profile': profile,
