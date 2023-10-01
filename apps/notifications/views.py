@@ -1,15 +1,18 @@
 import asyncio
+from collections.abc import AsyncGenerator
 
 from asgiref.sync import async_to_sync, sync_to_async
 
 from django.contrib.auth.decorators import login_required
 from django.core.paginator import Paginator
 from django.http import (
+    HttpRequest,
     HttpResponse,
     HttpResponseNotFound,
     HttpResponsePermanentRedirect,
     HttpResponseRedirect,
     JsonResponse,
+    StreamingHttpResponse,
 )
 from django.shortcuts import get_object_or_404, redirect, render
 
@@ -105,3 +108,23 @@ def seen_notification(
     elif qs.type_notif == "invitation_send":
         return redirect("friends:invitation_received")
     return redirect("notifications:notif")
+
+
+async def stream_notifications() -> AsyncGenerator[str, None]:
+    latest_notif = None
+
+    while True:
+        current_notif = await Notification.objects.order_by("-id").afirst()
+
+        # If we have a new message yield that
+        if latest_notif != current_notif:
+            yield "data: {current_notif.text}\n\n"
+            latest_notif = current_notif
+
+        await asyncio.sleep(3)
+
+async def stream_notifications_view(request: HttpRequest) -> StreamingHttpResponse:
+    return StreamingHttpResponse(
+        streaming_content=stream_notifications(),
+        content_type="text/event-stream",
+    )
