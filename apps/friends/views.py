@@ -84,7 +84,7 @@ def invites_list_profiles_view(request: HttpRequest) -> HttpResponse:
     page = request.GET.get("page")
     if page is None:
         page = 1
-    context = cache.get(f"list_relation_receiver_and_sender_context_{page}")
+    context = cache.get(f"list_relation_receiver_and_sender_context_{page}_{request.user.id}")
 
     if context is None:
         try:
@@ -103,7 +103,7 @@ def invites_list_profiles_view(request: HttpRequest) -> HttpResponse:
         )
         try:
             cache.set(
-                f"list_relation_receiver_and_sender_context_{page}",
+                f"list_relation_receiver_and_sender_context_{page}_{request.user.id}",
                 context,
                 60 * 60 * 24,
             )
@@ -144,7 +144,7 @@ def my_friends_invites_profiles_view(request):
     page = request.GET.get("page")
     if page is None:
         page = 1
-    context = cache.get(f"my_friends_invites_profiles_view_context_{page}")
+    context = cache.get(f"my_friends_invites_profiles_view_context_{page}_{request.user.id}")
 
     if context is None:
 
@@ -171,7 +171,7 @@ def my_friends_invites_profiles_view(request):
         context.update(statistic_relationship_receiver(request))
         try:
             cache.set(
-                f"my_friends_invites_profiles_view_context_{page}",
+                f"my_friends_invites_profiles_view_context_{page}_{request.user.id}",
                 context,
                 60 * 60 * 24,
             )
