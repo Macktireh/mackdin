@@ -8,7 +8,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: PACKAGE VERSION\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2023-06-21 21:16+0200\n"
+"POT-Creation-Date: 2024-01-30 14:05+0100\n"
 "PO-Revision-Date: YEAR-MO-DA HO:MI+ZONE\n"
 "Last-Translator: FULL NAME <EMAIL@ADDRESS>\n"
 "Language-Team: LANGUAGE <LL@li.org>\n"
@@ -26,27 +26,27 @@ msgstr ""
 msgid "accepted"
 msgstr ""
 
-#: .\apps\friends\views.py:103
+#: .\apps\friends\views.py:100
 msgid "Personnes à qui vous pourriez envoyer une invitation"
 msgstr ""
 
-#: .\apps\friends\views.py:104 .\apps\friends\views.py:167
+#: .\apps\friends\views.py:101 .\apps\friends\views.py:169
 msgid "Pas de profils avec lesquels interagir"
 msgstr ""
 
-#: .\apps\friends\views.py:166
+#: .\apps\friends\views.py:168
 msgid "Vos relations"
 msgstr ""
 
-#: .\apps\friends\views.py:211
+#: .\apps\friends\views.py:221
 msgid "Invitations en attente que vous acceptez"
 msgstr ""
 
-#: .\apps\friends\views.py:212
+#: .\apps\friends\views.py:222
 msgid "Aucune invitation reçue en attente"
 msgstr ""
 
-#: .\apps\friends\views.py:259
+#: .\apps\friends\views.py:270
 msgid "Pas d'invitations envoyées qui sont en cours d'acceptation"
 msgstr ""
 
@@ -373,11 +373,11 @@ msgstr ""
 msgid "Votre email est vérifié avec succès. Vous pouvez vous connecter."
 msgstr ""
 
-#: .\config\settings.py:211
+#: .\config\settings.py:231
 msgid "French"
 msgstr ""
 
-#: .\config\settings.py:212
+#: .\config\settings.py:232
 msgid "English"
 msgstr ""
 
@@ -447,13 +447,14 @@ msgstr ""
 
 #: .\templates\home\components\navbar-home.html:30
 #: .\templates\home\components\navbar2.html:21
-msgid "Connexion"
+msgid "s'identifier"
 msgstr ""
 
 #: .\templates\home\components\navbar-home.html:37
-#: .\templates\home\components\navbar-home.html:44
 #: .\templates\home\components\navbar2.html:28
-msgid "Inscription"
+#: .\templates\users\sign_in.html:52 .\templates\users\sign_up.html:11
+#: .\templates\users\sign_up.html:17 .\templates\users\sign_up.html:57
+msgid "S'inscrire"
 msgstr ""
 
 #: .\templates\home\components\navbar2.html:37
@@ -762,11 +763,6 @@ msgstr ""
 
 #: .\templates\users\sign_in.html:52
 msgid "Vous n'êtes pas encore inscrit ?"
-msgstr ""
-
-#: .\templates\users\sign_in.html:52 .\templates\users\sign_up.html:11
-#: .\templates\users\sign_up.html:17 .\templates\users\sign_up.html:57
-msgid "S'inscrire"
 msgstr ""
 
 #: .\templates\users\sign_up.html:59

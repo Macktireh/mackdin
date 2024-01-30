@@ -8,8 +8,8 @@ msgid ""
 msgstr ""
 "Project-Id-Version: PACKAGE VERSION\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2023-06-21 21:16+0200\n"
-"PO-Revision-Date: 2023-06-21 21:18+0200\n"
+"POT-Creation-Date: 2024-01-30 14:05+0100\n"
+"PO-Revision-Date: 2024-01-30 14:02+0100\n"
 "Last-Translator: Charco AD <admin@gmail.com>\n"
 "Language-Team: LANGUAGE <LL@li.org>\n"
 "Language: \n"
@@ -17,7 +17,7 @@ msgstr ""
 "Content-Type: text/plain; charset=UTF-8\n"
 "Content-Transfer-Encoding: 8bit\n"
 "Plural-Forms: nplurals=2; plural=(n != 1);\n"
-"X-Translated-Using: django-rosetta 0.9.9\n"
+"X-Translated-Using: django-rosetta 0.10.0\n"
 
 #: .\apps\friends\models.py:17
 msgid "send"
@@ -27,27 +27,27 @@ msgstr "send"
 msgid "accepted"
 msgstr "accepted"
 
-#: .\apps\friends\views.py:103
+#: .\apps\friends\views.py:100
 msgid "Personnes à qui vous pourriez envoyer une invitation"
 msgstr "People to whom you could send an invitation"
 
-#: .\apps\friends\views.py:104 .\apps\friends\views.py:167
+#: .\apps\friends\views.py:101 .\apps\friends\views.py:169
 msgid "Pas de profils avec lesquels interagir"
 msgstr "No profiles to interact with"
 
-#: .\apps\friends\views.py:166
+#: .\apps\friends\views.py:168
 msgid "Vos relations"
 msgstr "Your relationships"
 
-#: .\apps\friends\views.py:211
+#: .\apps\friends\views.py:221
 msgid "Invitations en attente que vous acceptez"
 msgstr "Pending invitations that you accept"
 
-#: .\apps\friends\views.py:212
+#: .\apps\friends\views.py:222
 msgid "Aucune invitation reçue en attente"
 msgstr "No invitation received pending"
 
-#: .\apps\friends\views.py:259
+#: .\apps\friends\views.py:270
 msgid "Pas d'invitations envoyées qui sont en cours d'acceptation"
 msgstr "No invitations sent that are in the process of being accepted"
 
@@ -355,10 +355,9 @@ msgid ""
 "activer votre compte Mackdin.Si vous n'avez pas reçu l'email, veuillez "
 "vérifier votre dossier spam."
 msgstr ""
-"Thank you for registering. Please activate your email address to access your"
-" Mackdin account. We have sent an email to %(email)s to activate your "
-"Mackdin account. If you did not receive the email, please check your spam "
-"folder."
+"Thank you for registering. Please activate your email address to access your "
+"Mackdin account. We have sent an email to %(email)s to activate your Mackdin "
+"account. If you did not receive the email, please check your spam folder."
 
 #: .\apps\users\views.py:42
 msgid "Confirmez l'adresse e-mail de votre compte Mackdin"
@@ -380,11 +379,11 @@ msgstr "ERROR: incorrect email address or password."
 msgid "Votre email est vérifié avec succès. Vous pouvez vous connecter."
 msgstr "Your email has been successfully verified. You can now log in."
 
-#: .\config\settings.py:211
+#: .\config\settings.py:231
 msgid "French"
 msgstr "Français"
 
-#: .\config\settings.py:212
+#: .\config\settings.py:232
 msgid "English"
 msgstr "Anglais"
 
@@ -454,14 +453,15 @@ msgstr "Events"
 
 #: .\templates\home\components\navbar-home.html:30
 #: .\templates\home\components\navbar2.html:21
-msgid "Connexion"
-msgstr "Connection"
+msgid "s'identifier"
+msgstr "Login"
 
 #: .\templates\home\components\navbar-home.html:37
-#: .\templates\home\components\navbar-home.html:44
 #: .\templates\home\components\navbar2.html:28
-msgid "Inscription"
-msgstr "Registration"
+#: .\templates\users\sign_in.html:52 .\templates\users\sign_up.html:11
+#: .\templates\users\sign_up.html:17 .\templates\users\sign_up.html:57
+msgid "S'inscrire"
+msgstr "Sign up"
 
 #: .\templates\home\components\navbar2.html:37
 msgid "Accueil"
@@ -485,11 +485,11 @@ msgstr "Welcome to your professional social network"
 
 #: .\templates\home\index.html:24
 msgid ""
-"Veuillez vous connecter si vous avez déjà un compte ou vous inscrire si vous"
-" n'avez pas de compte."
+"Veuillez vous connecter si vous avez déjà un compte ou vous inscrire si vous "
+"n'avez pas de compte."
 msgstr ""
-"Please login if you already have an account or register if you don't have an"
-" account."
+"Please login if you already have an account or register if you don't have an "
+"account."
 
 #: .\templates\home\index.html:32
 msgid "Connectez-vous avec de bonnes personnes"
@@ -640,11 +640,11 @@ msgstr ""
 
 #: .\templates\users\actiavte.html:78
 msgid ""
-"Si vous n'avez pas créé de compte sur notre plateforme, veuillez ignorer cet"
-" e-mail."
-msgstr ""
-"If you have not created an account on our platform, please ignore this "
+"Si vous n'avez pas créé de compte sur notre plateforme, veuillez ignorer cet "
 "e-mail."
+msgstr ""
+"If you have not created an account on our platform, please ignore this e-"
+"mail."
 
 #: .\templates\users\actiavte.html:80
 msgid ""
@@ -680,11 +680,10 @@ msgstr "Continue with"
 
 #: .\templates\users\email-welcome.html:47
 msgid ""
-"Bienvenue sur Mackdin ! Nous sommes ravis de vous compter parmi nos nouveaux"
-" membres."
+"Bienvenue sur Mackdin ! Nous sommes ravis de vous compter parmi nos nouveaux "
+"membres."
 msgstr ""
-"Welcome to Mackdin! We're delighted to welcome you as one of our new "
-"members."
+"Welcome to Mackdin! We're delighted to welcome you as one of our new members."
 
 #: .\templates\users\email-welcome.html:48
 msgid "Merci de rejoindre notre réseau social professionnel."
@@ -751,8 +750,8 @@ msgstr "Enter a new password"
 
 #: .\templates\users\password_reset_form.html:17
 msgid ""
-"Veuillez entrer votre nouveau mot de passe deux fois afin que nous puissions"
-" vérifier que vous l'avez saisi correctement."
+"Veuillez entrer votre nouveau mot de passe deux fois afin que nous puissions "
+"vérifier que vous l'avez saisi correctement."
 msgstr ""
 "Please enter your new password twice so that we can check that you have "
 "entered it correctly."
@@ -774,8 +773,7 @@ msgstr "Password reset complete"
 msgid ""
 "Votre mot de passe a été bien défini. Vous pouvez continuer et vous "
 "connecter maintenant."
-msgstr ""
-"Your password has been set correctly. You can continue and log in now."
+msgstr "Your password has been set correctly. You can continue and log in now."
 
 #: .\templates\users\sign_in.html:11 .\templates\users\sign_in.html:17
 #: .\templates\users\sign_in.html:50 .\templates\users\sign_up.html:59
@@ -794,21 +792,22 @@ msgstr "Forgot your password?"
 msgid "Vous n'êtes pas encore inscrit ?"
 msgstr "Not registered yet?"
 
-#: .\templates\users\sign_in.html:52 .\templates\users\sign_up.html:11
-#: .\templates\users\sign_up.html:17 .\templates\users\sign_up.html:57
-msgid "S'inscrire"
-msgstr "Sign up"
-
 #: .\templates\users\sign_up.html:59
 msgid "Vous avez déjà un compte ?"
 msgstr "Already have an account?"
 
+#~ msgid "Inscription"
+#~ msgstr "Registration"
+
+#~ msgid "Connexion"
+#~ msgstr "Connection"
+
 #~ msgid ""
-#~ "pour activer votre compte Mackdin.Si vous n'avez pas reçu l'email, veuillez "
-#~ "vérifier votre dossier spam."
+#~ "pour activer votre compte Mackdin.Si vous n'avez pas reçu l'email, "
+#~ "veuillez vérifier votre dossier spam."
 #~ msgstr ""
-#~ "to activate your Mackdin account. If you haven't received the e-mail, please"
-#~ " check your spam folder."
+#~ "to activate your Mackdin account. If you haven't received the e-mail, "
+#~ "please check your spam folder."
 
 #~ msgid "Dear"
 #~ msgstr "Dear"
