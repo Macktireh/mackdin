@@ -34,7 +34,7 @@ Mackdin is a social networking project I created using Python with Django and a 
 ![](static/home/img/mackdin_4.png)
 ![](static/home/img/mackdin_5.png) -->
 
-**Les technologies utilisés :**
+**Here are the technologies I used:**
 
 - Python
 - Django
